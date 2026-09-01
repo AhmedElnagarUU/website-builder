@@ -1,0 +1,27 @@
+
+> website-version2@0.1.0 dev
+> next dev
+
+ ⚠ Attempted to load @next/swc-win32-x64-msvc, but an error occurred: \\?\C:\Users\ahmed\OneDrive\Desktop\website-version2\node_modules\@next\swc-win32-x64-msvc\next-swc.win32-x64-msvc.node is not a valid Win32 application.
+\\?\C:\Users\ahmed\OneDrive\Desktop\website-version2\node_modules\@next\swc-win32-x64-msvc\next-swc.win32-x64-msvc.node
+ ⚠ Attempted to load @next/swc-win32-x64-msvc, but an error occurred: \\?\C:\Users\ahmed\OneDrive\Desktop\website-version2\node_modules\@next\swc-win32-x64-msvc\next-swc.win32-x64-msvc.node is not a valid Win32 application.
+\\?\C:\Users\ahmed\OneDrive\Desktop\website-version2\node_modules\@next\swc-win32-x64-msvc\next-swc.win32-x64-msvc.node
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.4:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 8s
+ ○ Compiling /_not-found ...
+ ✓ Compiled /middleware in 22.4s (772 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/0db9b04f7a02ba0b.webpack.hot-update.json 404 in 24441ms
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 5.5s (750 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /en 200 in 6498ms
+ GET /_next/static/webpack/0db9b04f7a02ba0b.webpack.hot-update.json 404 in 914ms
+ GET /en 200 in 4556ms
+
+C:\Users\ahmed\OneDrive\Desktop\website-version2>

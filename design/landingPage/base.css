@@ -1,0 +1,29 @@
+/* =========================================================
+   VEXO — Editorial Light Variant
+   Companion stylesheet. HTML in index.html inlines the spec;
+   this file is kept separate so the file can be opened standalone
+   or referenced from a build step later.
+   See index.html for the live rules.
+   ========================================================= */
+
+/*
+  Palette tokens
+  ──────────────
+  --paper    #F2EDE4   warm off-white background (never bright white)
+  --paper-2  #ECE5D7   slightly cooler section background
+  --ink      #1A1714   warm near-black for primary text
+  --ink-2    #4A4239   body / secondary
+  --ink-3    #7A7064   caption / tertiary
+  --clay     #C8553D   terracotta — single saturated accent
+  --clay-2   #E07A5F   terracotta highlight / gradient pair
+  --moss     #5C6E4E   secondary accent — muted plant green
+  --rule     #D9CFBF   hairline border
+  --rule-2   #E5DDC9   subtle border / divider
+  --postit   #F4E27A   the signature Post-it yellow
+
+  Type tokens
+  ───────────
+  --font-display  Fraunces (optical sizing, soft terminals)
+  --font-body     Inter Tight (functional, neutral)
+  --font-mono     JetBrains Mono (caption / data / code-like moments)
+*/

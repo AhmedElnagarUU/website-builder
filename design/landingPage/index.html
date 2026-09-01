@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vexo — 7 landing page styles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0F0F12; --surface: #1A1A1F; --border: rgba(255,255,255,0.08); --text: #F0F0F2; --muted: #8A8A92; }
+    html, body { background: var(--bg); color: var(--text); }
+    body {
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      padding: 56px 24px 96px;
+    }
+    .wrap { max-width: 1280px; margin: 0 auto; }
+    h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; }
+    .sub { color: var(--muted); margin-top: 12px; max-width: 720px; font-size: 15.5px; }
+    .legend {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+      transition: transform .15s ease, border-color .15s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+    .card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.18); }
+    .swatch {
+      height: 160px;
+      position: relative;
+      display: flex; align-items: flex-end; justify-content: flex-end;
+      padding: 14px;
+    }
+    .swatch .num {
+      font-family: 'Inter Tight', monospace;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 4px 10px;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px;
+      color: #fff;
+      backdrop-filter: blur(4px);
+    }
+    .meta { padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+    .meta .title { font-weight: 600; font-size: 16px; letter-spacing: -0.01em; }
+    .meta .mood { color: var(--muted); font-size: 13.5px; line-height: 1.5; margin-top: 4px; }
+    .meta .open {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #fff;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .meta .open::after { content: "→"; }
+
+    .note {
+      margin-top: 40px;
+      padding: 22px 24px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    }
+    .note h2 { font-size: 17px; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .note p { color: #c8c8d0; font-size: 14px; line-height: 1.6; }
+    .pillrow { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { border: 1px solid var(--border); padding: 5px 10px; border-radius: 999px; font-size: 12px; color: #fff; background: rgba(255,255,255,0.04); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Vexo — 7 landing-page directions</h1>
+    <p class="sub">
+      Each card below is the <em>same content</em>, dressed in a fundamentally different design language — not just a color swap. Pick the mood that fits the product, not the other way around.
+    </p>
+
+    <div class="legend">
+
+      <a class="card" href="editorial.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #F2EDE4, #C8553D 130%); border-bottom: 1px solid rgba(0,0,0,0.08);">
+          <span class="num" style="color:#1A1714; background:rgba(255,255,255,0.6); border-color:rgba(26,23,20,0.2);">0 · Editorial Light</span>
+        </div>
+        <div class="meta">
+          <div class="title">Editorial Light (signature)</div>
+          <div class="mood">Paper-warm, Fraunces serif, signature Post-it margin note. Best fit for the SMB café owner audience. Recommended default.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-1/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #FFFFFF, #E5E5E5); border-bottom: 1px solid var(--border);">
+          <span class="num" style="color:#0A0A0A; background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.18);">1 · Brutalist Mono</span>
+        </div>
+        <div class="meta">
+          <div class="title">Brutalist Manifesto</div>
+          <div class="mood">Pure black/white. Oversized Archivo. Marquee scrollers. Hard rules everywhere. The "shout from the page" direction.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-2/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #F26B8A, #4A6FE3);">
+          <span class="num">2 · Risograph Print</span>
+        </div>
+        <div class="meta">
+          <div class="title">Risograph Print</div>
+          <div class="mood">Two-color halftone, paper texture, hand-misregistered feel. DM Serif italic. Pull-quote postcards. Studio-of-one mood.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-3/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #2257E5, #F5C518 60%, #E14B3A);">
+          <span class="num">3 · Bauhaus Geometric</span>
+        </div>
+        <div class="meta">
+          <div class="title">Bauhaus Geometric</div>
+          <div class="mood">Primary colors, geometric shapes, asymmetric grid. Bricolage display. The "designed by a real designer" direction.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-4/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #FFE8F2, #E6F4FF 60%, #FFF6E5);">
+          <span class="num" style="color:#1F1A3A; background:rgba(255,255,255,0.6); border-color:rgba(31,26,58,0.2);">4 · Soft Glass</span>
+        </div>
+        <div class="meta">
+          <div class="title">Soft Glassmorphism</div>
+          <div class="mood">Pastel blobs, blurred glass cards, floating UI stickers. Plus Jakarta Sans. The consumer-app, friendly direction.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-5/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #0B0E0C;">
+          <span class="num" style="color:#6FE07B; border-color:#6FE07B;">5 · Terminal</span>
+        </div>
+        <div class="meta">
+          <div class="title">Terminal / Hacker</div>
+          <div class="mood">Dark mono-only. ASCII box drawing. Live prompt with blinking cursor. Subverts the AI-tool audience by looking like the dev tool you already use.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-6/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #F4F0E8, #ECE5D6); border-bottom: 1px solid #C9BFA9;">
+          <span class="num" style="color:#14110E; background:rgba(255,255,255,0.4); border-color:rgba(20,17,14,0.2);">6 · Magazine</span>
+        </div>
+        <div class="meta">
+          <div class="title">Magazine Editorial</div>
+          <div class="mood">Quiet, paper-warm, masthead + section numbers + drop-cap ledes. Fraunces serif. A periodical for small business owners.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-7/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #FF3D9A 0%, #9D4EDD 50%, #00F0FF 100%);">
+          <span class="num">7 · Neon 80s</span>
+        </div>
+        <div class="meta">
+          <div class="title">Neon Cyberpunk 80s</div>
+          <div class="mood">Hot pink + cyan + scanlines, chrome cards, glowing text. Major Mono Display. Loud, dark, unapologetically retro-futurist.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-8/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #F1ECDF, #C8341E 130%); border-bottom: 1px solid rgba(0,0,0,0.08);">
+          <span class="num" style="color:#1A1714; background:rgba(255,255,255,0.6); border-color:rgba(26,23,20,0.2);">8 · Japanese Stationery</span>
+        </div>
+        <div class="meta">
+          <div class="title">Japanese Stationery</div>
+          <div class="mood">Washi paper texture, Shippori Mincho serif, vertical accents, vermilion seal stamp. Kanji paired with Latin. Quiet, deliberate, signed by hand.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-9/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #FFFFFF; border-bottom: 2px solid #0E0E0E;">
+          <span class="num" style="color:#0E0E0E; background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.18);">9 · Swiss Typographic</span>
+        </div>
+        <div class="meta">
+          <div class="title">Swiss / Typographic</div>
+          <div class="mood">Pure 12-column grid, hairline rules, black + a single red. Inter Tight + italic Source Serif. Müller-Brockmann mood — function over decoration.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-10/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #FF7AA8, #2EC4B6 60%, #FFD23F);">
+          <span class="num" style="color:#1A1A1A; background:rgba(255,255,255,0.7); border-color:rgba(26,26,26,0.4);">10 · Memphis 80s</span>
+        </div>
+        <div class="meta">
+          <div class="title">Memphis Design 80s</div>
+          <div class="mood">Squiggles, dots, zigzags, tilted cards with hard shadows. Pastel primary palette. Fraunces serif. The joy of a Sottsass living room.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-11/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #EFE6D2, #5E6B3D 130%); border-bottom: 1px solid rgba(0,0,0,0.08);">
+          <span class="num" style="color:#1F2A1A; background:rgba(255,255,255,0.6); border-color:rgba(31,42,26,0.3);">11 · Apothecary</span>
+        </div>
+        <div class="meta">
+          <div class="title">Botanical Apothecary</div>
+          <div class="mood">Aged paper, italic serif (Cormorant Garamond), Latin labels, hand-drawn botanical icons. Forest + rust + gold. A field guide, not a website.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-12/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #F5EFE0; border-bottom: 3px solid #1A1A1A;">
+          <span class="num" style="color:#1A1A1A; background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.18);">12 · Broadsheet</span>
+        </div>
+        <div class="meta">
+          <div class="title">Newspaper (FT-style)</div>
+          <div class="mood">Three-column rules, masthead, dateline, bylines, FT salmon red. Source Serif 4 + Roboto Condensed. "The Vexo Times" — a periodical for owners.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-13/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(180deg, #1A0936 0%, #C82E9A 60%, #FFB347 100%);">
+          <span class="num" style="color: #F8E9FF; background:rgba(0,0,0,0.3); border-color:rgba(248,233,255,0.4);">13 · Outrun / Synthwave</span>
+        </div>
+        <div class="meta">
+          <div class="title">Outrun / Synthwave</div>
+          <div class="mood">Magenta sunset + amber sun + perspective grid + scanlines. Audiowide display. A horizon, not a page. Refined 80s, not the cyberpunk variant.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-14/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #F5EFDF; border-bottom: 1px solid #B4C8E8;">
+          <span class="num" style="color:#2A2622; background:rgba(178,58,72,0.1); border-color:rgba(42,38,34,0.3);">14 · Field Notebook</span>
+        </div>
+        <div class="meta">
+          <div class="title">Field Notebook</div>
+          <div class="mood">Ruled paper, red margin line, Caveat handwriting, tape stickers, sticky-note quotes, "obs. № 03". Darwin's notebook for the SMB owner.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-15/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #FFFFFF 0%, #E0321F 30%, #2257E5 70%, #F2C71D 100%); border-bottom: 2px solid #161616;">
+          <span class="num" style="color:#161616; background:rgba(255,255,255,0.85); border-color:rgba(22,22,22,0.4);">15 · Bauhaus Enhanced</span>
+        </div>
+        <div class="meta">
+          <div class="title">Bauhaus · Enhanced</div>
+          <div class="mood">Overlap, not placement. Real mathematical 12-col grid, headline that bleeds into geometry, asymmetric feature spans.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-16/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #FFE9F0, #E5F2FF 60%, #FFF6E5);">
+          <span class="num" style="color:#1B1838; background:rgba(255,255,255,0.6); border-color:rgba(27,24,56,0.3);">16 · Glass Enhanced</span>
+        </div>
+        <div class="meta">
+          <div class="title">Soft Glass · Enhanced</div>
+          <div class="mood">Dropped the stickers. Calmer hero with one stacked serif-italic word. Glass earns its saturation now.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-17/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #0B0E0C;">
+          <span class="num" style="color:#6FE07B; border-color:#6FE07B;">17 · Terminal Enhanced</span>
+        </div>
+        <div class="meta">
+          <div class="title">Terminal · Enhanced</div>
+          <div class="mood">Real man-page formatting, git-log commit history, inline diff showing what Vexo changed. Less costume, more documentation.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-18/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #F4F0E8; border-bottom: 3px solid #14110E;">
+          <span class="num" style="color:#14110E; background:rgba(255,255,255,0.6); border-color:rgba(20,17,14,0.3);">18 · Magazine Enhanced</span>
+        </div>
+        <div class="meta">
+          <div class="title">Magazine · Enhanced</div>
+          <div class="mood">Real two-column body text with drop caps, table of contents, figure captions, full-page pull quotes. An actual periodical.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-19/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #F2ECDB, #C8341E 130%); border-bottom: 1px solid rgba(0,0,0,0.08);">
+          <span class="num" style="color:#1A1714; background:rgba(255,255,255,0.6); border-color:rgba(26,23,20,0.2);">19 · Stationery Enhanced</span>
+        </div>
+        <div class="meta">
+          <div class="title">Stationery · Enhanced</div>
+          <div class="mood">Real vertical-rl Japanese text block, envelope metaphor with paper-fold corner, larger hanko stamp on the final.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-20/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(135deg, #EFE6D2, #8B3A1E 130%); border-bottom: 1px solid rgba(0,0,0,0.08);">
+          <span class="num" style="color:#1F2A1A; background:rgba(255,255,255,0.6); border-color:rgba(31,42,26,0.3);">20 · Apothecary Enhanced</span>
+        </div>
+        <div class="meta">
+          <div class="title">Apothecary · Enhanced</div>
+          <div class="mood">Richer SVG botanical illustrations, binomial nomenclature on every entry, pressed-specimen shadow + slip, herbarium-drawer final CTA.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-21/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #F5EFDF; border-bottom: 1px solid #B4C8E8;">
+          <span class="num" style="color:#2A2622; background:rgba(178,58,72,0.1); border-color:rgba(42,38,34,0.3);">21 · Notebook Enhanced</span>
+        </div>
+        <div class="meta">
+          <div class="title">Field Notebook · Enhanced</div>
+          <div class="mood">A hand-drawn SVG map of the route from idea to site, torn-paper clip-path edges, leather-bound closing card with corner rivets.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-22/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #FFFFFF; border-bottom: 1px solid #E5E5E5;">
+          <span class="num" style="color:#111; background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.15);">22 · Text-only</span>
+        </div>
+        <div class="meta">
+          <div class="title">Text-only</div>
+          <div class="mood">A single body-type column. Link-blue accents. Almost zero chrome. The page could load in 50 ms.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-23/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #FAFAF7; border-bottom: 1px solid #E8E5DD;">
+          <span class="num" style="color:#0A0A0A; background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.15);">23 · Type Architecture</span>
+        </div>
+        <div class="meta">
+          <div class="title">Type as Architecture</div>
+          <div class="mood">A giant "10m" number as the hero. Single-word sections. Lots of whitespace. The page feels quiet on purpose.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-24/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #FBFBF8; border-bottom: 1px solid #D5D5D0;">
+          <span class="num" style="color:#1A1A1A; background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.15);">24 · Memo / Letter</span>
+        </div>
+        <div class="meta">
+          <div class="title">Memo / Letter</div>
+          <div class="mood">Looks like an internal memo. TO / FROM / RE / DATE header. Narrow justified column. Sign-off at the end. No chrome.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-25/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #FFFFFF; border-bottom: 1px solid #EAEAEA;">
+          <span class="num" style="color:#0A0A0A; background:rgba(0,0,0,0.04); border-color:rgba(0,0,0,0.15);">25 · Pricing-page whitespace</span>
+        </div>
+        <div class="meta">
+          <div class="title">Pricing-page whitespace</div>
+          <div class="mood">Everything centered. Every section is one short headline + one short paragraph. Endless breathing room. Almost nothing on screen.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-26/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #F7F7F5; border-bottom: 1px solid #E5E5E0;">
+          <span class="num" style="color:#1A1A1A; background:rgba(255,255,255,0.6); border-color:rgba(26,26,26,0.15);">26 · Dashboard-flat</span>
+        </div>
+        <div class="meta">
+          <div class="title">Dashboard-flat</div>
+          <div class="mood">Looks like an internal tool: panels with status dots, breadcrumb trails, monospace meta. Feels like an app, not a brochure.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-27/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: linear-gradient(180deg, #FBFBFB 0%, #000 100%);">
+          <span class="num" style="color:#1D1D1F; background:rgba(255,255,255,0.85); border-color:rgba(0,0,0,0.2);">27 · Apple-product</span>
+        </div>
+        <div class="meta">
+          <div class="title">Apple product-page</div>
+          <div class="mood">Sticky blurred-glass nav. Single product screenshot hero. Black final CTA. "›" arrows on links. Familiar without being a clone.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+      <a class="card" href="variant-28/index.html" target="_blank" rel="noopener">
+        <div class="swatch" style="background: #FAFAFA; border-bottom: 1px solid #A2A9B1;">
+          <span class="num" style="color:#202122; background:rgba(255,255,255,0.6); border-color:rgba(32,33,34,0.2);">28 · Wikipedia-plain</span>
+        </div>
+        <div class="meta">
+          <div class="title">Wikipedia-plain</div>
+          <div class="mood">Three-column article shell, infobox table, table-of-contents sidebar, footnote-style references. Completely literal, completely un-marketing.</div>
+          <div class="open">Open variant</div>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="note">
+      <h2>Note on diversity</h2>
+      <p style="margin-top:10px;">
+        <b style="color:#fff">Set A · 7 dark/neon reskins</b> (variants 1–7): same dark/neon spec, different accent colors. A "reskin once" exercise.
+      </p>
+      <p style="margin-top:8px;">
+        <b style="color:#fff">Set B · 7 redesigned-from-scratch</b> (variants 8–14): completely different design languages — each from a real-world tradition (Japanese stationery, Swiss typography, Memphis, Apothecary, Broadsheet, Outrun, Field notebook).
+      </p>
+      <p style="margin-top:10px;">
+        Pair with the existing <code style="background:rgba(255,255,255,0.08); padding:2px 6px; border-radius:4px;">design-scratch/landing-variants/</code> for more comparison.
+      </p>
+      <div class="pillrow">
+        <span class="pill">+ editorial.html (signature)</span>
+        <span class="pill">+ 14 variants · 2 sets</span>
+        <span class="pill">+ index.html</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

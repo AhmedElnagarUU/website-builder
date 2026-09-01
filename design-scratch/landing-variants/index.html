@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vexo Landing — 7 Color Variants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#0a0a0c; --surface:#131318; --border:rgba(255,255,255,.08); --text:#f5f5f7; --muted:#8a8a96; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;min-height:100vh;padding:48px 24px 80px}
+    .wrap{max-width:1180px;margin:0 auto}
+    h1{font-size:32px;letter-spacing:-.02em;font-weight:700}
+    .sub{color:var(--muted);margin-top:8px;max-width:640px}
+    .legend{margin-top:28px;display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+    .card{border:1px solid var(--border);border-radius:18px;overflow:hidden;background:var(--surface);transition:transform .2s ease, border-color .2s ease;display:flex;flex-direction:column}
+    .card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.18)}
+    .swatch{height:140px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:14px}
+    .swatch::after{content:"";position:absolute;inset:0;background:radial-gradient(80% 100% at 50% 30%, var(--swatchGlow) 0%, transparent 65%);filter:blur(20px)}
+    .swatch .tag{position:relative;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);padding:5px 10px;border-radius:999px;color:#fff}
+    .meta{padding:18px;display:flex;flex-direction:column;gap:6px;flex:1}
+    .name{font-weight:600;font-size:16px;letter-spacing:-.01em}
+    .hex{color:var(--muted);font-size:12px;font-family:ui-monospace,Menlo,Consolas,monospace}
+    .mood{color:#c8c8d0;font-size:13.5px;line-height:1.5;margin-top:4px}
+    .open{margin:14px 18px 18px;display:inline-flex;align-items:center;gap:6px;justify-content:center;padding:11px 14px;border-radius:999px;background:#fff;color:#0a0a0c;font-weight:600;font-size:14px;text-decoration:none}
+    .open:hover{background:#eaeaf0}
+    .rec{margin-top:40px;padding:22px 24px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(180deg, rgba(255,90,31,.08), rgba(255,255,255,.01))}
+    .rec h2{font-size:18px;letter-spacing:-.01em}
+    .rec p{color:#c8c8d0;font-size:14px;margin-top:8px;line-height:1.6}
+    .pillrow{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+    .pill{border:1px solid var(--border);padding:5px 10px;border-radius:999px;font-size:12px;color:#fff;background:rgba(255,255,255,.04)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Vexo — 7 landing variants, one design.</h1>
+    <p class="sub">
+      Every card below opens the same locked design spec (hero with atmospheric glow, connector line-art, glass nav, oversized headline, features, how-it-works, social proof, final CTA, footer) — re-skinned in a different accent. Pick the mood that fits the product, not the other way around.
+    </p>
+
+    <div class="legend">
+
+      <a class="card" href="1-orange-red.html" target="_blank" rel="noopener">
+        <div class="swatch" style="--swatchGlow:rgba(255,80,25,.55);background:radial-gradient(120% 100% at 50% 0%, rgba(255,80,25,.35), #120e0c 70%)">
+          <span class="tag">Reference</span>
+        </div>
+        <div class="meta">
+          <div class="name">1. Orange → Red glow</div>
+          <div class="hex">#ff7a3d · #ff2a0a</div>
+          <div class="mood">Warm, energetic, AI-industrial — the signature version. Bold without being loud.</div>
+        </div>
+        <div class="open">Open variant →</div>
+      </a>
+
+      <a class="card" href="2-blue-cyan.html" target="_blank" rel="noopener">
+        <div class="swatch" style="--swatchGlow:rgba(0,180,255,.55);background:radial-gradient(120% 100% at 50% 0%, rgba(0,180,255,.35), #0c1118 70%)">
+          <span class="tag">Tech</span>
+        </div>
+        <div class="meta">
+          <div class="name">2. Electric blue → Cyan glow</div>
+          <div class="hex">#3b9bff · #00d0ff</div>
+          <div class="mood">Cool, technical, precise. Reads as a developer tool. Possibly the safest “AI tool” cliché.</div>
+        </div>
+        <div class="open">Open variant →</div>
+      </a>
+
+      <a class="card" href="3-violet-magenta.html" target="_blank" rel="noopener">
+        <div class="swatch" style="--swatchGlow:rgba(190,60,255,.55);background:radial-gradient(120% 100% at 50% 0%, rgba(190,60,255,.35), #140a1a 70%)">
+          <span class="tag">Premium</span>
+        </div>
+        <div class="meta">
+          <div class="name">3. Violet → Magenta glow</div>
+          <div class="hex">#8a5cff · #ff2bd6</div>
+          <div class="mood">Creative, premium, futuristic. Reads as a consumer AI product rather than infrastructure.</div>
+        </div>
+        <div class="open">Open variant →</div>
+      </a>
+
+      <a class="card" href="4-emerald-teal.html" target="_blank" rel="noopener">
+        <div class="swatch" style="--swatchGlow:rgba(0,210,170,.55);background:radial-gradient(120% 100% at 50% 0%, rgba(0,210,170,.30), #0a1316 70%)">
+          <span class="tag">Trust</span>
+        </div>
+        <div class="meta">
+          <div class="name">4. Emerald → Teal glow</div>
+          <div class="hex">#2ecc8b · #00d8c2</div>
+          <div class="mood">Calm, trustworthy, “growth” feel. Best fit for a non-technical SMB audience — the PRD's primary user.</div>
+        </div>
+        <div class="open">Open variant →</div>
+      </a>
+
+      <a class="card" href="5-amber-gold.html" target="_blank" rel="noopener">
+        <div class="swatch" style="--swatchGlow:rgba(255,200,80,.55);background:radial-gradient(120% 100% at 50% 0%, rgba(255,200,80,.30), #14110a 70%)">
+          <span class="tag">Luxury</span>
+        </div>
+        <div class="meta">
+          <div class="name">5. Amber → Gold glow</div>
+          <div class="hex">#ffb547 · #ffd166</div>
+          <div class="mood">Luxury, high-end, warmer than orange. Premium without going neon. More boutique than AI.</div>
+        </div>
+        <div class="open">Open variant →</div>
+      </a>
+
+      <a class="card" href="6-pink-red.html" target="_blank" rel="noopener">
+        <div class="swatch" style="--swatchGlow:rgba(255,50,90,.55);background:radial-gradient(120% 100% at 50% 0%, rgba(255,50,90,.30), #160a10 70%)">
+          <span class="tag">Bold</span>
+        </div>
+        <div class="meta">
+          <div class="name">6. Pink → Red glow</div>
+          <div class="hex">#ff5fa2 · #ff2e4a</div>
+          <div class="mood">Bold, modern, attention-grabbing. Leans consumer/Gen-Z; risks reading as “beauty or dating app.”</div>
+        </div>
+        <div class="open">Open variant →</div>
+      </a>
+
+      <a class="card" href="7-monochrome.html" target="_blank" rel="noopener">
+        <div class="swatch" style="--swatchGlow:rgba(255,255,255,.30);background:radial-gradient(120% 100% at 50% 0%, rgba(255,255,255,.22), #0e0e10 70%)">
+          <span class="tag">Minimal</span>
+        </div>
+        <div class="meta">
+          <div class="name">7. Monochrome white/grey</div>
+          <div class="hex">#ffffff · #e6e6ea</div>
+          <div class="mood">Pure light-and-shadow contrast. Minimal, ultra-premium. Quietest of the seven — relies on craft, not color.</div>
+        </div>
+        <div class="open">Open variant →</div>
+      </a>
+
+    </div>
+
+    <div class="rec">
+      <h2>Recommendation for Vexo</h2>
+      <p>
+        Vexo is a non-technical SMB tool, with English + Arabic as a first-class differentiator. Two variants fit best:
+      </p>
+      <p style="margin-top:10px">
+        <b style="color:#fff">#1 Orange → Red (reference)</b> — already aligned with the brand identity doc (Vexo, “Bold & Techy,” #FF4D00 / #FF6B2C). Highest memorability, works across EN and AR, and reads as “AI that gets things done” without being developer-flavored. <b>Use as the default production skin.</b>
+      </p>
+      <p style="margin-top:8px">
+        <b style="color:#fff">#4 Emerald → Teal</b> — best <i>alternative</i> for SMB trust: a non-technical owner scanning a pricing page is more likely to click a teal CTA than a pink one. Keep it as a user-selectable accent in the editor (the brand color the PRD already exposes per site, PRD §12.2).
+      </p>
+      <div class="pillrow">
+        <span class="pill">Skip: #2 (cliché)</span>
+        <span class="pill">Skip: #5 (off-brand luxury)</span>
+        <span class="pill">Skip: #6 (wrong audience)</span>
+        <span class="pill">Consider: #7 (premium AR variant)</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

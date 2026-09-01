@@ -1,0 +1,369 @@
+{
+  "app": {
+    "name": "SiteCraft"
+  },
+  "common": {
+    "loading": "Loading…",
+    "saved": "Saved",
+    "error": {
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "landing": {
+    "nav": {
+      "how": "how?",
+      "what": "what?",
+      "languages": "EN+AR",
+      "proof": "owners"
+    },
+    "hero": {
+      "meta": {
+        "kicker": "SiteCraft · Field Notebook",
+        "note": "observations on small business sites"
+      },
+      "headline": {
+        "line1": "A website,",
+        "line2": "written",
+        "line3": "by hand.",
+        "small": "obs. № 03 · a website that sounds like you, because SiteCraft listens first"
+      },
+      "note": {
+        "body": "P.S. — you don't need to know any of this. You just need to know your business.",
+        "signoff": "— signed, sitecraft"
+      },
+      "deck": "You answer a <b>few questions</b> about your business over coffee. SiteCraft writes the rest — the words, the structure, the Arabic if you need it. You change what <u>doesn't sound like you</u>. You publish.",
+      "cta": {
+        "start": "Start free",
+        "example": "See example",
+        "assure": "~10 min · yours forever"
+      }
+    },
+    "features": {
+      "tab": "Observations",
+      "title": "Six things an agency used to charge two months for.",
+      "copy": {
+        "tag": "note to self",
+        "title": "Real <em>copy,</em> not lorem ipsum.",
+        "body": "SiteCraft writes every page in your voice — your story, menu, contact note — then you edit it like a Word doc."
+      },
+      "belongs": {
+        "tag": "true",
+        "title": "A site that <em>belongs</em> to you.",
+        "body": "Your colors, your photos, your neighborhood. Visitors should recognize it from your Instagram."
+      },
+      "bilingual": {
+        "tag": "both!",
+        "title": "EN <em>and</em> AR, written together.",
+        "body": "Both languages get the same care, the same rhythm, the same headlines — not a thin translation."
+      },
+      "edits": {
+        "tag": "no breakage",
+        "title": "Edits that <em>can't</em> break it.",
+        "body": "Change a headline, swap a photo, add a menu item. The layout reflows. You can't mess it up."
+      },
+      "hosted": {
+        "tag": "live",
+        "title": "Hosted at <em>yourname</em>.sitecraft.site.",
+        "body": "Fast, on a real domain, ready when your customer searches for you tonight. SSL, mobile, search basics."
+      },
+      "keep": {
+        "tag": "yours",
+        "title": "Yours to <em>keep.</em> Always.",
+        "body": "Export your content any time. If you outgrow us, you take the writing with you. No lock-in."
+      }
+    },
+    "how": {
+      "tab": "Method",
+      "title": "Three steps. <em>One sitting.</em>",
+      "one": {
+        "ch": "step 01",
+        "title": "Tell us about your business.",
+        "body": "A short conversation — what you sell, who comes in, what you'd want a regular to know.",
+        "detail": {
+          "time_label": "Time:",
+          "time": "8–12 minutes",
+          "see_label": "Format:",
+          "see": "plain questions",
+          "can_label": "You can:",
+          "can": "answer in EN or AR"
+        }
+      },
+      "two": {
+        "ch": "step 02",
+        "title": "SiteCraft writes the site.",
+        "body": "Every page, in both languages if you want, with your tone and your details already in place.",
+        "detail": {
+          "time_label": "Time:",
+          "time": "60–90 seconds",
+          "see_label": "You see:",
+          "see": "the whole site at once",
+          "can_label": "You can:",
+          "can": "regenerate, never silently"
+        }
+      },
+      "three": {
+        "ch": "step 03",
+        "title": "Tweak, then publish.",
+        "body": "Edit the parts that don't sound like you. Hit publish. Send the link to your group chat.",
+        "detail": {
+          "time_label": "Time:",
+          "time": "as long as you want",
+          "see_label": "Hosting:",
+          "see": "included",
+          "can_label": "Domain:",
+          "can": "sitecraft.site or your own"
+        }
+      }
+    },
+    "langs": {
+      "tab": "Two voices",
+      "title": "English. Arabic. <em>The same care for both.</em>",
+      "en": {
+        "title": "\"Bread that knows your name.\"",
+        "body": "We've been baking at the same corner of Al Malqa since 2014. The saj is the same recipe my mother used."
+      },
+      "ar": {
+        "title": "«خبز يعرف اسمك»",
+        "body": "نخبز في نفس ركن الملقا منذ 2014. الصاج على وصفة أمي — نفس الوقت، نفس الملح، نفس الحب."
+      }
+    },
+    "proof": {
+      "tab": "Field notes",
+      "title": "Built for people who'd rather be <em>running</em> the place.",
+      "faisal": {
+        "quote": "I don't know what a CMS is, and I <em>don't need to.</em> I changed the about page twice. It looked better both times.",
+        "name": "Faisal A.",
+        "meta": "Tannour Bakery · Riyadh"
+      },
+      "noura": {
+        "quote": "The Arabic came out <em>right</em>. Not Google Translate right. My mother-in-law read it and didn't laugh.",
+        "name": "Noura K.",
+        "meta": "Bil Hala Catering · Jeddah"
+      },
+      "reem": {
+        "quote": "My old site took three months. This one took an afternoon. <em>Nobody can tell</em> which is newer.",
+        "name": "Reem S.",
+        "meta": "Saffron & Co. · Dubai"
+      }
+    },
+    "final": {
+      "tape": "★ Your turn ★",
+      "headline": "Make the site. <em>Own it.</em>",
+      "sub": "It takes about ten minutes. It costs nothing to try. And it ends with a site that sounds like the person who actually runs the place.",
+      "start": "Start free",
+      "talk": "Talk to a human",
+      "signoff": "— fin.",
+      "assure": "Free to try · No card · Content stays yours · EN · AR"
+    },
+    "footer": {
+      "about_label": "sitecraft",
+      "about": "A website builder for people who <b>didn't want</b> to learn how to build a website. Field-tested with small businesses in the Gulf and beyond.",
+      "sign": "— sitecraft · 2026",
+      "product": "Product",
+      "product_links": {
+        "how": "how?",
+        "what": "what?",
+        "pricing": "pricing"
+      },
+      "owners": "For owners",
+      "owners_links": {
+        "restaurants": "restaurants",
+        "retail": "retail",
+        "bilingual": "bilingual"
+      },
+      "company": "Company",
+      "company_links": {
+        "about": "about",
+        "privacy": "privacy",
+        "terms": "terms"
+      },
+      "bottom_right": "EN · AR · end of book"
+    }
+  },
+  "dashboard": {
+    "title": "Your sites",
+    "headline": "Your notebook.",
+    "sub": "Pick up where you left off, or start something new.",
+    "new_site": "Create a new site",
+    "creating": "Creating…",
+    "empty_title": "No sites yet.",
+    "empty_body": "Start with one short conversation and SiteCraft writes the site for you.",
+    "empty_cta": "Create your first site",
+    "continue": "Continue",
+    "status": {
+      "draft": "Draft",
+      "published": "Published",
+      "draft_step": {
+        "business_info": "Next: your business",
+        "templates": "Next: choose a style",
+        "language": "Next: pick a language",
+        "generating": "Still writing…",
+        "editing": "Editing"
+      }
+    },
+    "languages": "Languages",
+    "updated": "Updated"
+  },
+  "auth": {
+    "sign_in": {
+      "title": "Sign in"
+    },
+    "sign_up": {
+      "title": "Create your account"
+    },
+    "field": {
+      "name": "Your name (optional)",
+      "email": "Email",
+      "password": "Password",
+      "password_confirm": "Confirm password"
+    },
+    "action": {
+      "sign_in": "Sign in",
+      "sign_up": "Create account"
+    },
+    "hint": {
+      "password": "At least 8 characters."
+    },
+    "error": {
+      "invalid_credentials": "Invalid email or password.",
+      "email_exists": "An account with this email already exists.",
+      "password_mismatch": "Passwords do not match."
+    },
+    "link": {
+      "to_sign_up": "Don't have an account? Create one",
+      "to_sign_in": "Already have an account? Sign in"
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "sign_in": "Sign in",
+    "sign_up": "Create account",
+    "sign_out": "Sign out",
+    "language_switch_label": "Switch language"
+  },
+  "wizard": {
+    "business": {
+      "title": "Tell us about your business",
+      "group": {
+        "about": "About your business",
+        "customers": "Who you serve",
+        "contact": "How can customers reach you?",
+        "extra": "Anything else? (optional)"
+      },
+      "field": {
+        "name": "Business name",
+        "category": "Business category",
+        "category_placeholder": "Search categories…",
+        "description": "What does your business do?",
+        "target_customers": "Who are your customers?",
+        "services": "What services or products do you offer?",
+        "location": "Location",
+        "phone": "Phone number",
+        "email": "Email",
+        "usps": "What makes you different?",
+        "notes": "Anything else we should know?"
+      },
+      "action": {
+        "add_line": "Add another line"
+      },
+      "error": {
+        "name_required": "Please enter your business name.",
+        "category_required": "Please choose a category."
+      }
+    },
+    "common": {
+      "continue": "Continue"
+    },
+    "stepper": {
+      "business": "Your business",
+      "templates": "Style",
+      "language": "Language",
+      "generating": "Writing"
+    },
+    "templates": {
+      "title": "Choose your website style",
+      "suggested_group": "Suggested for you",
+      "see_all": "See all templates",
+      "selected_check": "Selected",
+      "back": "Back"
+    },
+    "language": {
+      "title": "Choose your website language",
+      "option": {
+        "en": "English only",
+        "ar": "Arabic only",
+        "both": "English + Arabic"
+      },
+      "both_hint": "Your site gets a small switcher so visitors can pick their language.",
+      "suggested_tag": "Suggested"
+    },
+    "generating": {
+      "title": "Writing your website…",
+      "msg": {
+        "hero": "Writing your homepage…",
+        "services": "Adding your services…",
+        "about": "Telling your story…",
+        "contact": "Setting up your contact details…"
+      },
+      "failed_title": "We couldn't finish writing your website.",
+      "retry": "Try again"
+    }
+  },
+  "render": {
+    "empty_field_hint": "Empty — tap to fill",
+    "sample_tag": "Sample",
+    "review_flag": "AI suggested — review this"
+  },
+  "editor": {
+    "device": {
+      "desktop": "Desktop",
+      "mobile": "Mobile"
+    },
+    "tab": {
+      "editing_en": "Editing: English",
+      "editing_ar": "Editing: Arabic"
+    },
+    "edit": {
+      "save_error": "Couldn't save — try again",
+      "field_too_long": "Too long for this spot"
+    },
+    "color": {
+      "label": "Accent color"
+    },
+    "image": {
+      "upload": "Upload image",
+      "replace": "Replace image",
+      "unsupported": "Use a JPG, PNG, or WebP image.",
+      "too_large": "File is too large (max 10 MB).",
+      "low_res": "This image may look blurry when enlarged.",
+      "reposition": "Position",
+      "upload_error": "Couldn't upload — try again",
+      "uploading": "Uploading…"
+    },
+    "regenerate": {
+      "site": "Regenerate site",
+      "confirm": "Your manual edits will be rewritten. Continue?",
+      "confirm_btn": "Rewrite and continue",
+      "cancel": "Cancel"
+    },
+    "template": {
+      "change": "Change template",
+      "notice": "Some content will be rewritten to fit the new design.",
+      "apply": "Apply new template",
+      "cancel": "Cancel"
+    }
+  },
+  "publish": {
+    "action": "Publish",
+    "confirm": "Publish your site now? The current version goes live.",
+    "confirm_btn": "Publish",
+    "success": "Published",
+    "cancel": "Cancel",
+    "unpublishable_hint": "Finish your content and languages before publishing.",
+    "open_live": "Open live site",
+    "unpublished_changes": "You have unpublished changes. The live site is behind.",
+    "republish_confirm": "Republish? Your latest edits will replace the live site.",
+    "republish_btn": "Republish",
+    "updated_at": "Last published"
+  }
+}

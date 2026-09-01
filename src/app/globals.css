@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+/*
+ * RTL safety (CODE_RULES §6):
+ * - Only logical utilities are allowed for layout: ms-*, me-*, ps-*, pe-*,
+ *   text-start, text-end, start-0, end-0.
+ * - NEVER use directional utilities (ml-*, mr-*, pl-*, pr-*, text-left,
+ *   text-right, left-0, right-0) in layout-critical styles.
+ * - Directional icons (arrows) must flip via `rtl:rotate-180`.
+ */
+
+/* =====================================================================
+ * Vexo design tokens (source: design/landingPage/variant-14/index.html)
+ *
+ * The shared semantic variables map 1:1 onto the source palette so existing
+ * shadcn-style utilities (bg-background, text-muted-foreground, border-input,
+ * bg-primary, ring-ring, ...) pick the Vexo look with zero call-site changes.
+ * New, source-named tokens (vexa-*) power the hand-crafted primitives.
+ * ===================================================================== */
+
+:root {
+  /* semantic → Vexo */
+  --background: #f5efdf; /* --paper   */
+  --foreground: #2a2622; /* --ink     */
+  --card: #ebe3d0; /* --paper-2 */
+  --card-foreground: #2a2622; /* --ink     */
+  --primary: #b23a48; /* --red     */
+  --primary-foreground: #f5efdf; /* --paper   */
+  --secondary: #ebe3d0; /* --paper-2 */
+  --secondary-foreground: #2a2622; /* --ink     */
+  --muted: #efe8d6;
+  --muted-foreground: #8e8576; /* --ink-3   */
+  --input: #c9bba0; /* warm line */
+  --ring: #b23a48; /* --red     */
+
+  /* source-named Vexo tokens */
+  --vexa-paper: #f5efdf;
+  --vexa-paper-2: #ebe3d0;
+  --vexa-line: #b4c8e8; /* ruled-line blue */
+  --vexa-ink: #2a2622;
+  --vexa-ink-2: #5c544a;
+  --vexa-ink-3: #8e8576;
+  --vexa-red: #b23a48;
+  --vexa-blue: #2d5ba8;
+  --vexa-yellow: #e8b53c;
+  --vexa-green: #4a6b3d;
+  --vexa-rule: rgba(42, 38, 34, 0.2);
+  --vexa-tape: rgba(232, 181, 60, 0.55);
+
+  --vexa-shadow: 4px 4px 0 rgba(42, 38, 34, 0.08);
+  --vexa-radius: 4px;
+}
+
+/* Tailwind v4 theme hooks */
+@theme inline {
+  --color-paper: var(--vexa-paper);
+  --color-paper-2: var(--vexa-paper-2);
+  --color-line-color: var(--vexa-line);
+  --color-ink: var(--vexa-ink);
+  --color-ink-2: var(--vexa-ink-2);
+  --color-ink-3: var(--vexa-ink-3);
+  --color-vexa-red: var(--vexa-red);
+  --color-vexa-blue: var(--vexa-blue);
+  --color-vexa-yellow: var(--vexa-yellow);
+  --color-vexa-green: var(--vexa-green);
+  --color-vexa-rule: var(--vexa-rule);
+  --color-vexa-tape: var(--vexa-tape);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-serif2: var(--font-serif2);
+  --font-mono: var(--font-mono);
+  --font-ar-serif: var(--font-ar-serif);
+  --font-ar-sans: var(--font-ar-sans);
+
+  --shadow-vexa: var(--vexa-shadow);
+  --radius-vexa: var(--vexa-radius);
+}
+
+/* ============================ Base layer ============================ */
+
+* {
+  border-color: var(--input);
+}
+
+html {
+  font-synthesis-weight: none;
+}
+
+body {
+  font-family: var(--font-body), system-ui, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Display/headline writing = Caveat (matching variant-14 .brand, headline,
+   .title, .feature h3, etc.) */
+.vexa-display {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+}
+
+/* Arabic: swap to Arabic faces; headings use the AR serif (never Caveat) */
+:lang(ar) {
+  font-family: var(--font-ar-sans), var(--font-body), system-ui, sans-serif;
+}
+:lang(ar) h1,
+:lang(ar) h2,
+:lang(ar) h3,
+:lang(ar) .vexa-display {
+  font-family: var(--font-ar-serif), var(--font-ar-sans), serif;
+}
+
+/* ============== Vexo notebook backdrop (source body) ============== */
+.vexa-page {
+  background-color: var(--background);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 31px,
+      var(--line, var(--vexa-line)) 31px,
+      var(--line, var(--vexa-line)) 32px
+    ),
+    radial-gradient(circle at 50% 100%, rgba(178, 58, 72, 0.04) 0 4px, transparent 5px);
+  background-size: 100% 32px, 100px 100px;
+  background-position: 0 0, 0 0;
+  background-attachment: local, fixed;
+  position: relative;
+}
+
+/* vertical red margin line (start side) */
+.vexa-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: 80px;
+  width: 1px;
+  background: var(--vexa-red);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 1;
+}
+@media (max-width: 700px) {
+  .vexa-page::before {
+    inset-inline-start: 28px;
+  }
+}
+
+/* Subdued surface for dense/functional pages (EPIC 05 flag #2) */
+.vexa-surface,
+.vexa-surface body {
+  background-image: none;
+}
+
+/* Ruled band used by landing "how it works" section (source .how) */
+.vexo-band {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 31px,
+    var(--line, var(--vexa-line)) 31px,
+    var(--line, var(--vexa-line)) 32px
+  );
+}
+
+/* Landing content container (source .container: max-width 1180px, pad 120px).
+   Uses logical padding so the inline-start margin line clearance flips in RTL. */
+.vexo-container {
+  max-width: 1180px;
+  margin-inline: auto;
+  padding-inline: 120px;
+}
+@media (max-width: 900px) {
+  .vexo-container {
+    padding-inline: 60px;
+  }
+}
+@media (max-width: 700px) {
+  .vexo-container {
+    padding-inline-start: 48px;
+    padding-inline-end: 24px;
+  }
+}
+
+::selection {
+  background: var(--vexa-yellow);
+  color: var(--ink, var(--vexa-ink));
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--vexa-red);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

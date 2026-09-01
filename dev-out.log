@@ -1,0 +1,215 @@
+Starting Next.js dev server...
+
+> website-version2@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.3:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 8s
+ ○ Compiling /api/auth/[...all] ...
+ ✓ Compiled /api/auth/[...all] in 23.2s (979 modules)
+ POST /api/auth/sign-in/email 200 in 30902ms
+ ○ Compiling /api/sites ...
+ ✓ Compiled /api/sites in 2.3s (1022 modules)
+ POST /api/sites 201 in 4095ms
+ POST /api/auth/sign-in/email 200 in 310ms
+ ○ Compiling /api/sites/[siteId]/business-info ...
+ ✓ Compiled /api/sites/[siteId]/business-info in 859ms (1026 modules)
+ PATCH /api/sites/6a9548d6db320457b7824b21/business-info 200 in 5166ms
+ ○ Compiling /api/sites/[siteId]/template ...
+ ✓ Compiled /api/sites/[siteId]/template in 790ms (1031 modules)
+ PATCH /api/sites/6a9548d6db320457b7824b21/template 200 in 4553ms
+ ○ Compiling /api/sites/[siteId]/languages ...
+ ✓ Compiled /api/sites/[siteId]/languages in 977ms (1034 modules)
+ PATCH /api/sites/6a9548d6db320457b7824b21/languages 200 in 4838ms
+ POST /api/auth/sign-in/email 200 in 2550ms
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 8.5s (127 modules)
+ ○ Compiling /[locale]/sites/[siteId]/editor ...
+ ✓ Compiled /[locale]/sites/[siteId]/editor in 15.3s (1528 modules)
+ GET /en/sites/6a9548d6db320457b7824b21/editor 200 in 22591ms
+ POST /api/auth/sign-in/email 200 in 333ms
+ GET /en/sites/6a9548d6db320457b7824b21/editor 200 in 370ms
+ POST /api/auth/sign-in/email 200 in 313ms
+ GET /ar/sites/6a9548d6db320457b7824b21/editor 200 in 321ms
+ POST /api/auth/sign-up/email 422 in 100ms
+ GET /en/sites/6a9548d6db320457b7824b21/editor 307 in 326ms
+ POST /api/auth/sign-in/email 200 in 300ms
+ GET /en/sites/6a9548d6db320457b7824b21/editor 404 in 255ms
+ POST /api/auth/sign-in/email 200 in 231ms
+ ○ Compiling /api/sites ...
+ ✓ Compiled /api/sites in 1606ms (1149 modules)
+ POST /api/sites 201 in 3490ms
+ POST /api/sites 201 in 26ms
+ POST /api/sites 201 in 25ms
+ POST /api/auth/sign-in/email 200 in 367ms
+ GET /en/sites/6a9549f5db320457b7824b28/editor 307 in 756ms
+ GET /en/sites/6a9549f6db320457b7824b29/editor 307 in 255ms
+ GET /en/sites/6a9549f6db320457b7824b2a/editor 307 in 345ms
+ POST /api/auth/sign-in/email 200 in 645ms
+ GET /en/sites/6a9548d6db320457b7824b21/editor 200 in 9442ms
+ POST /api/auth/sign-in/email 200 in 339ms
+ GET /en/sites/6a9548d6db320457b7824b21/editor 200 in 395ms
+ POST /api/auth/sign-in/email 200 in 366ms
+ GET /en/sites/6a9548d6db320457b7824b21/editor 200 in 662ms
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 11.4s (1519 modules)
+ GET /en 307 in 13682ms
+ ○ Compiling /[locale]/auth/sign-in ...
+ ✓ Compiled /[locale]/auth/sign-in in 3.1s (1535 modules)
+ GET /en/auth/sign-in 200 in 10678ms
+ GET /favicon.ico 404 in 187ms
+ GET /en/auth/sign-in 200 in 798ms
+ GET /en/auth/sign-in 200 in 218ms
+ POST /api/auth/sign-in/email 200 in 254ms
+ ○ Compiling /[locale]/dashboard ...
+ ✓ Compiled /[locale]/dashboard in 3.8s (1512 modules)
+ GET /en/dashboard 200 in 9758ms
+ GET /en/dashboard 200 in 101ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 7.2s (1509 modules)
+ GET /en/create/template 404 in 8226ms
+ ○ Compiling /[locale]/create/templates ...
+ ✓ Compiled /[locale]/create/templates in 2.5s (1523 modules)
+ GET /en/create/templates 307 in 8278ms
+ GET /en/dashboard 200 in 227ms
+ ✓ Compiled in 5.6s (404 modules)
+ GET /en/dashboard 200 in 518ms
+ ✓ Compiled in 8.9s (404 modules)
+ GET /en/dashboard 200 in 198ms
+ ✓ Compiled in 1054ms (404 modules)
+ GET /en/dashboard 200 in 121ms
+ ✓ Compiled in 6s (404 modules)
+ ✓ Compiled in 1240ms (404 modules)
+ ✓ Compiled in 776ms (404 modules)
+ ✓ Compiled in 1454ms (404 modules)
+ ✓ Compiled in 1366ms (404 modules)
+ ✓ Compiled in 2.1s (404 modules)
+ ✓ Compiled in 10.4s (404 modules)
+ ✓ Compiled in 3.1s (404 modules)
+ ✓ Compiled in 1107ms (404 modules)
+ ✓ Compiled in 1127ms (404 modules)
+ ✓ Compiled in 930ms (404 modules)
+ ✓ Compiled in 1400ms (404 modules)
+ ✓ Compiled in 3.2s (404 modules)
+ ✓ Compiled in 5.9s (404 modules)
+ ✓ Compiled in 1403ms (404 modules)
+ ✓ Compiled in 3.2s (404 modules)
+ ✓ Compiled in 754ms (404 modules)
+ ✓ Compiled in 995ms (404 modules)
+ ✓ Compiled in 1206ms (404 modules)
+ ✓ Compiled in 1456ms (404 modules)
+ ✓ Compiled in 619ms (404 modules)
+ ✓ Compiled in 2.5s (404 modules)
+ ✓ Compiled in 2.1s (404 modules)
+ ✓ Compiled in 973ms (404 modules)
+ ✓ Compiled in 6.8s (1521 modules)
+ ✓ Compiled in 1648ms (404 modules)
+ ✓ Compiled in 875ms (404 modules)
+ ✓ Compiled in 1077ms (404 modules)
+ ✓ Compiled in 915ms (404 modules)
+ ✓ Compiled in 1172ms (404 modules)
+ ✓ Compiled in 1455ms (404 modules)
+ ✓ Compiled in 6.6s (1521 modules)
+ ✓ Compiled in 2.2s (1521 modules)
+ ✓ Compiled in 1150ms (404 modules)
+ ✓ Compiled in 2.1s (404 modules)
+ ✓ Compiled in 1217ms (404 modules)
+ ✓ Compiled in 958ms (404 modules)
+ ✓ Compiled in 816ms (404 modules)
+ ✓ Compiled in 1624ms (404 modules)
+ ✓ Compiled in 2.8s (404 modules)
+ ✓ Compiled in 1825ms (404 modules)
+ ✓ Compiled in 608ms (404 modules)
+ ✓ Compiled in 1100ms (404 modules)
+ ✓ Compiled in 637ms (404 modules)
+ ✓ Compiled in 1251ms (404 modules)
+ ✓ Compiled in 960ms (404 modules)
+ ✓ Compiled in 1364ms (404 modules)
+ ✓ Compiled in 2.1s (404 modules)
+ ✓ Compiled in 1129ms (404 modules)
+ ✓ Compiled in 1237ms (404 modules)
+ ✓ Compiled in 777ms (404 modules)
+ ✓ Compiled in 897ms (404 modules)
+ ✓ Compiled in 580ms (404 modules)
+ ✓ Compiled in 744ms (404 modules)
+ ✓ Compiled in 880ms (404 modules)
+ ✓ Compiled in 2.4s (406 modules)
+ ✓ Compiled in 661ms (406 modules)
+ ✓ Compiled in 568ms (406 modules)
+ ✓ Compiled in 681ms (406 modules)
+ ✓ Compiled in 1023ms (406 modules)
+ ✓ Compiled in 910ms (406 modules)
+ ✓ Compiled in 970ms (406 modules)
+ ✓ Compiled in 779ms (406 modules)
+ ✓ Compiled in 10.8s (1523 modules)
+ ✓ Compiled in 952ms (406 modules)
+ ✓ Compiled in 1278ms (406 modules)
+ ✓ Compiled in 878ms (406 modules)
+ ✓ Compiled in 870ms (406 modules)
+ ✓ Compiled in 7.4s (406 modules)
+ ✓ Compiled in 3.4s (406 modules)
+ ✓ Compiled in 1614ms (406 modules)
+ ✓ Compiled in 1214ms (406 modules)
+ ✓ Compiled in 1333ms (408 modules)
+ ✓ Compiled in 1304ms (408 modules)
+ ✓ Compiled in 47.3s (1599 modules)
+ ✓ Compiled in 1500ms (421 modules)
+ ✓ Compiled in 6s (1545 modules)
+ ✓ Compiled in 3.7s (1545 modules)
+ ✓ Compiled in 3.2s (1545 modules)
+ ✓ Compiled in 1379ms (421 modules)
+ ✓ Compiled in 2.1s (1545 modules)
+ ✓ Compiled in 4.1s (421 modules)
+ ✓ Compiled in 5s (421 modules)
+ ✓ Compiled in 1636ms (421 modules)
+ ✓ Compiled in 2.5s (421 modules)
+ ✓ Compiled in 2.8s (421 modules)
+ ✓ Compiled in 1740ms (421 modules)
+ ✓ Compiled in 3s (1545 modules)
+ ✓ Compiled in 2.7s (1547 modules)
+ ✓ Compiled in 1092ms (422 modules)
+ ✓ Compiled in 2.4s (422 modules)
+ ✓ Compiled in 6.6s (1547 modules)
+ ✓ Compiled in 1032ms (422 modules)
+ ✓ Compiled in 887ms (422 modules)
+ ✓ Compiled in 707ms (422 modules)
+ ✓ Compiled in 772ms (422 modules)
+ ✓ Compiled in 814ms (422 modules)
+ ✓ Compiled in 700ms (422 modules)
+ ✓ Compiled in 632ms (422 modules)
+ ✓ Compiled in 682ms (422 modules)
+ ✓ Compiled in 667ms (422 modules)
+ ✓ Compiled in 7.6s (1547 modules)
+ ✓ Compiled in 1223ms (422 modules)
+ ✓ Compiled in 1830ms (423 modules)
+ ✓ Compiled in 1107ms (423 modules)
+ ✓ Compiled in 887ms (424 modules)
+ ✓ Compiled in 886ms (424 modules)
+ ✓ Compiled in 946ms (424 modules)
+ ✓ Compiled in 860ms (424 modules)
+ ✓ Compiled in 700ms (424 modules)
+ ✓ Compiled in 749ms (424 modules)
+ ✓ Compiled in 1271ms (424 modules)
+ ✓ Compiled in 986ms (424 modules)
+ ✓ Compiled in 1760ms (424 modules)
+ ✓ Compiled in 796ms (424 modules)
+ ✓ Compiled in 852ms (424 modules)
+ ✓ Compiled in 837ms (424 modules)
+ ✓ Compiled in 867ms (424 modules)
+ ✓ Compiled in 2.4s (1549 modules)
+ ✓ Compiled in 1513ms (1549 modules)
+ ✓ Compiled in 1765ms (1549 modules)
+ ✓ Compiled in 1879ms (424 modules)
+ ✓ Compiled in 9.9s (1549 modules)
+ ✓ Compiled in 927ms (424 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 11.6s (1127 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 17.7s (1885 modules)
+ GET /en 500 in 34081ms
+[?25h
