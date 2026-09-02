@@ -11,5 +11,7 @@ export default async function LiveSiteRedirect({ params }: LiveRedirectProps) {
   if (!result.ok) {
     notFound();
   }
-  redirect(`/live/${slug}/en`);
+  const defaultLang =
+    result.snapshot.activeLanguages[0] ?? "en";
+  redirect(`/live/${slug}/${defaultLang}`);
 }

@@ -10,16 +10,21 @@ interface LiveLocaleSwitcherProps {
   activeLanguages: Locale[];
   currentLang: string;
   slug: string;
+  pageSlug?: string;
 }
 
 export function LiveLocaleSwitcher({
   activeLanguages,
   currentLang,
   slug,
+  pageSlug,
 }: LiveLocaleSwitcherProps) {
   if (activeLanguages.length <= 1) {
     return null;
   }
+
+  const linkHref = (lang: string) =>
+    pageSlug ? `/live/${slug}/${lang}/${pageSlug}` : `/live/${slug}/${lang}`;
 
   return (
     <nav
@@ -38,7 +43,7 @@ export function LiveLocaleSwitcher({
             {LOCALE_LABELS[lang]}
           </span>
         ) : (
-          <Link key={lang} href={`/live/${slug}/${lang}`} className={className}>
+          <Link key={lang} href={linkHref(lang)} className={className}>
             {LOCALE_LABELS[lang]}
           </Link>
         );

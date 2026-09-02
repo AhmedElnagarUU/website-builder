@@ -1,5 +1,5 @@
 import { getSiteForOwner } from "@/features/sites/repository";
-import type { ContentField, Locale, SiteDTO } from "@/features/sites/types";
+import type { Locale, SiteDTO } from "@/features/sites/types";
 
 export type GenerationStatusResult =
   | {
@@ -13,9 +13,11 @@ export type GenerationStatusResult =
     }
   | { ok: false; error: "unauthorized" | "not_found" };
 
-function countFieldsInLocale(content: Record<string, ContentField> | undefined): number {
-  if (!content) return 0;
-  return Object.keys(content).length;
+function hasFieldsForLocale(content: SiteDTO["content"], locale: Locale): boolean {
+  for (const page of Object.values(content)) {
+    if (Object.keys(page[locale] ?? {}).length > 0) return true;
+  }
+  return false;
 }
 
 export async function getGenerationStatus(
@@ -30,9 +32,9 @@ export async function getGenerationStatus(
 
   const localesTotal = site.activeLanguages.length;
   let localesDone = 0;
+  const content = site.content as SiteDTO["content"];
   for (const locale of site.activeLanguages as Locale[]) {
-    const localeContent = (site.content as SiteDTO["content"])[locale];
-    if (countFieldsInLocale(localeContent) > 0) localesDone++;
+    if (hasFieldsForLocale(content, locale)) localesDone++;
   }
 
   return {

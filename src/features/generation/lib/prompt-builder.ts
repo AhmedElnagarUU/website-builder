@@ -52,7 +52,7 @@ export function buildGenerationMessages(
     `Notes: ${(b.notes ?? []).join("; ") || "(not provided)"}`,
   ];
 
-  const fieldRows: string[] = req.template.sections.flatMap((section) =>
+  const fieldRows: string[] = req.sections.flatMap((section) =>
     section.fields.map(
       (f) => `| ${f.key} | ${f.purpose} | ${describeConstraint(f)} |`
     )

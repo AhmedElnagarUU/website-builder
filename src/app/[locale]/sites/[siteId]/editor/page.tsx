@@ -5,7 +5,7 @@ import { getSiteForOwner } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
 import { EditorShell } from "@/features/editor/components/EditorShell";
 import { isLocale } from "@/shared/i18n/config";
-import type { ContentField, Locale } from "@/features/sites/types";
+import type { Locale } from "@/features/sites/types";
 
 export default async function EditorPage({
   params,
@@ -42,11 +42,6 @@ export default async function EditorPage({
     ? site.activeLanguages
     : ([locale] as Locale[]);
 
-  const contentByLocale: Record<Locale, Record<string, ContentField>> = {
-    en: site.content.en ?? {},
-    ar: site.content.ar ?? {},
-  };
-
   return (
     <EditorShell
       siteId={siteId}
@@ -56,8 +51,9 @@ export default async function EditorPage({
       images={site.images}
       brandColor={site.brandColor || template.colors.defaultAccent}
       s3PublicBaseUrl={process.env.S3_PUBLIC_BASE_URL}
-      contentByLocale={contentByLocale}
+      initialContent={site.content}
       activeLanguages={activeLanguages}
+      status={site.status}
       publishedSnapshot={site.publishedSnapshot}
       hasUnpublishedChanges={site.hasUnpublishedChanges}
     />

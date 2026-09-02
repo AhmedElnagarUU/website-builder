@@ -1,13 +1,11 @@
 import { updateSite } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
-import { getAiConfig, classifyError } from "@/features/generation/run-generation";
-import { generateFields } from "@/features/generation/lib/ai-client";
-import { buildGenerationMessages } from "@/features/generation/lib/prompt-builder";
-import { validateAndSanitize } from "@/features/generation/lib/field-validation";
-import { mergeGeneratedContent } from "@/features/generation/lib/merge-content";
-import type { Locale, SiteDTO } from "@/features/sites/types";
+import { getAiConfig, generatePage } from "@/features/generation/run-generation";
+import { pageContentOf, setPageContent } from "@/features/sites/lib/content";
+import { mergePageContent } from "@/features/generation/lib/merge-content";
+import type { Locale } from "@/features/sites/types";
 
-export async function runSiteRegeneration(siteId: string): Promise<void> {
+export async function runSiteRegeneration(siteId: string, pageIds?: string[]): Promise<void> {
   const aiConfig = getAiConfig();
   const { getSiteById } = await import("@/features/sites/repository");
   const site = await getSiteById(siteId);
@@ -17,45 +15,38 @@ export async function runSiteRegeneration(siteId: string): Promise<void> {
   if (!template) return;
 
   const locales = site.activeLanguages as Locale[];
-  const newContent: SiteDTO["content"] = { ...(site.content as SiteDTO["content"]) };
+  const pages = pageIds
+    ? template.pages.filter((p) => pageIds.includes(p.id))
+    : template.pages;
+
+  let newContent = { ...site.content };
   let lastError: string | null = null;
 
-  for (const locale of locales) {
-    try {
-      const messages = buildGenerationMessages({
-        businessInfo: site.businessInfo,
-        template,
-        locale,
-      });
-      const fields = await generateFields(messages, aiConfig);
-      const results = await validateAndSanitize(fields, template, {
-        businessName: site.businessInfo.name || "Your Business",
-        locale,
-        aiConfig,
-        retry: async (field, _retryLocale, _businessName) => {
-          const limitText =
-            field.constraint.maxWords !== undefined
-              ? `maximum ${field.constraint.maxWords} words`
-              : `maximum ${field.constraint.maxChars ?? "any"} characters`;
-          const retryUser = `Rewrite ONLY field "${field.key}" with ${limitText}. Return the same JSON shape: {"fields":{"${field.key}":"<text>"}}.`;
-          try {
-            const retryMessages = { system: messages.system, user: retryUser };
-            const retryResult = await generateFields(retryMessages, aiConfig);
-            return retryResult[field.key] ?? "";
-          } catch (e) {
-            console.error("site regeneration retry failed", e);
-            return "";
+  for (const page of pages) {
+    for (const locale of locales) {
+      const otherValues: Record<string, string> = {};
+      for (const p of template.pages) {
+        if (p.id === page.id) continue;
+        for (const s of p.sections) {
+          for (const f of s.fields) {
+            otherValues[f.key] = pageContentOf(newContent, p.id)[locale]?.[f.key]?.value ?? "";
           }
-        },
-      });
+        }
+      }
 
-      newContent[locale] = mergeGeneratedContent(results, site.businessInfo);
+      const result = await generatePage(site, page, locale, aiConfig, otherValues);
+      if (result.error) {
+        lastError = result.error;
+        break;
+      }
+      const existingPage = pageContentOf(newContent, page.id);
+      newContent = setPageContent(newContent, page.id, {
+        ...existingPage,
+        [locale]: mergePageContent(existingPage[locale] ?? {}, result.content),
+      });
       await updateSite(siteId, { content: newContent });
-    } catch (e) {
-      console.error(`Site regeneration failed for locale ${locale}:`, e);
-      lastError = classifyError(e);
-      break;
     }
+    if (lastError) break;
   }
 
   if (lastError) {

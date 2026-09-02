@@ -12,18 +12,24 @@ import { RegenerateSiteControl } from "./RegenerateSiteControl";
 import { ChangeTemplateControl } from "./ChangeTemplateControl";
 import { DeviceToggle, type DeviceMode } from "./DeviceToggle";
 import { LanguageTabs } from "./LanguageTabs";
+import { PageTabs } from "./PageTabs";
+import { LiveStatusIndicator } from "./LiveStatusIndicator";
 import { PublishControl } from "@/features/publishing/components/PublishControl";
 import { dirFor } from "@/shared/i18n/config";
+import { sectionForFieldKey, findImageSlotInTemplate, homePage } from "@/features/templates/pages";
+import { setContentField, localeContentOf } from "@/features/sites/lib/content";
 import type { TemplateDefinition, ImageSlot } from "@/features/templates/types";
 import type {
   SiteBusinessInfo,
+  SiteStatus,
   Locale,
-  ContentField,
   SiteImage,
+  SiteContent,
   PublishedSnapshot,
 } from "@/features/sites/types";
 
 interface EditingTarget {
+  pageId: string;
   locale: Locale;
   fieldKey: string;
 }
@@ -35,9 +41,10 @@ export function EditorShell({
   businessInfo,
   images,
   brandColor,
-  contentByLocale,
+  initialContent,
   activeLanguages,
   s3PublicBaseUrl,
+  status,
   publishedSnapshot,
   hasUnpublishedChanges,
 }: {
@@ -47,9 +54,10 @@ export function EditorShell({
   businessInfo: SiteBusinessInfo;
   images: Record<string, SiteImage>;
   brandColor: string;
-  contentByLocale: Record<Locale, Record<string, ContentField>>;
+  initialContent: SiteContent;
   activeLanguages: Locale[];
   s3PublicBaseUrl?: string;
+  status: SiteStatus;
   publishedSnapshot: PublishedSnapshot | null;
   hasUnpublishedChanges: boolean;
 }) {
@@ -62,9 +70,10 @@ export function EditorShell({
         businessInfo={businessInfo}
         initialImages={images}
         initialBrandColor={brandColor}
+        initialContent={initialContent}
         s3PublicBaseUrl={s3PublicBaseUrl}
-        contentByLocale={contentByLocale}
         activeLanguages={activeLanguages}
+        status={status}
         publishedSnapshot={publishedSnapshot}
         hasUnpublishedChanges={hasUnpublishedChanges}
       />
@@ -79,9 +88,10 @@ function EditorContent({
   businessInfo,
   initialImages,
   initialBrandColor,
+  initialContent,
   s3PublicBaseUrl,
-  contentByLocale,
   activeLanguages,
+  status,
   publishedSnapshot,
   hasUnpublishedChanges,
 }: {
@@ -91,9 +101,10 @@ function EditorContent({
   businessInfo: SiteBusinessInfo;
   initialImages: Record<string, SiteImage>;
   initialBrandColor: string;
+  initialContent: SiteContent;
   s3PublicBaseUrl?: string;
-  contentByLocale: Record<Locale, Record<string, ContentField>>;
   activeLanguages: Locale[];
+  status: SiteStatus;
   publishedSnapshot: PublishedSnapshot | null;
   hasUnpublishedChanges: boolean;
 }) {
@@ -105,9 +116,10 @@ function EditorContent({
   const [activeLocale, setActiveLocale] = useState<Locale>(
     activeLanguages[0] ?? appLocale
   );
-  const [working, setWorking] = useState<Record<Locale, Record<string, ContentField>>>(
-    contentByLocale
+  const [activePageId, setActivePageId] = useState<string>(
+    homePage(template)?.id ?? template.pages[0]?.id ?? "home"
   );
+  const [working, setWorking] = useState<SiteContent>(initialContent);
   const [images, setImages] = useState<Record<string, SiteImage>>(initialImages);
   const [brandColor, setBrandColor] = useState(initialBrandColor);
   const [editing, setEditing] = useState<EditingTarget | null>(null);
@@ -115,31 +127,26 @@ function EditorContent({
   const [userEdited, setUserEdited] = useState(false);
 
   useEffect(() => {
-    setWorking(contentByLocale);
+    setWorking(initialContent);
     setImages(initialImages);
-  }, [contentByLocale, initialImages]);
+  }, [initialContent, initialImages]);
 
   const markEdited = () => setUserEdited(true);
 
   const previewDir = dirFor(activeLocale);
 
   const fieldConstraint = (fieldKey: string): { maxWords?: number; maxChars?: number } | undefined => {
-    for (const section of template.sections) {
-      for (const f of section.fields) {
-        if (f.key === fieldKey) return f.constraint;
-      }
-    }
-    return undefined;
+    const section = sectionForFieldKey(template, fieldKey);
+    if (!section) return undefined;
+    const f = section.fields.find((f) => f.key === fieldKey);
+    return f?.constraint;
   };
 
   const isProseField = (fieldKey: string): boolean => fieldConstraint(fieldKey) !== undefined;
 
   const findImageSlot = (slotId: string): ImageSlot | undefined => {
-    for (const section of template.sections) {
-      const slot = (section.images ?? []).find((s) => s.slotId === slotId);
-      if (slot) return slot;
-    }
-    return undefined;
+    const section = findImageSlotInTemplate(template, slotId);
+    return section?.images?.find((s) => s.slotId === slotId);
   };
 
   const handleRequestEdit = (fieldKey: string) => {
@@ -148,18 +155,21 @@ function EditorContent({
       return;
     }
     if (!isProseField(fieldKey)) return;
-    setEditing({ locale: activeLocale, fieldKey });
+    setEditing({ pageId: activePageId, locale: activeLocale, fieldKey });
   };
 
   const commitEdit = (fieldKey: string, value: string) => {
-    setWorking((prev) => {
-      const nextLocale = {
-        ...(prev[activeLocale] ?? {}),
-        [fieldKey]: { value, origin: "user", edited: true, reviewFlagged: false },
-      };
-      return { ...prev, [activeLocale]: nextLocale };
-    });
-    save(activeLocale, fieldKey, value);
+    const pageId = editing?.pageId ?? activePageId;
+    const locale = editing?.locale ?? activeLocale;
+    setWorking((prev) =>
+      setContentField(prev, pageId, locale, fieldKey, {
+        value,
+        origin: "user",
+        edited: true,
+        reviewFlagged: false,
+      })
+    );
+    save(pageId, locale, fieldKey, value);
     setEditing(null);
     markEdited();
   };
@@ -167,6 +177,11 @@ function EditorContent({
   const handleTabChange = (next: Locale) => {
     flush(activeLocale);
     setActiveLocale(next);
+    setEditing(null);
+  };
+
+  const handlePageChange = (next: string) => {
+    setActivePageId(next);
     setEditing(null);
   };
 
@@ -186,7 +201,9 @@ function EditorContent({
 
   const renderInlineEditor = (fieldKey: string) => {
     const constraint = fieldConstraint(fieldKey);
-    const current = working[activeLocale]?.[fieldKey]?.value ?? "";
+    const pageId = editing?.pageId ?? activePageId;
+    const locale = editing?.locale ?? activeLocale;
+    const current = localeContentOf(working, pageId, locale)[fieldKey]?.value ?? "";
     return (
       <InlineFieldEditor
         key={fieldKey}
@@ -208,7 +225,13 @@ function EditorContent({
           {businessInfo.name}
           <span className="vexa-display text-sm text-vexa-red">✱</span>
         </span>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <PageTabs
+            template={template}
+            activePageId={activePageId}
+            onChange={handlePageChange}
+            appLocale={appLocale}
+          />
           {showSaved && (
             <span className="flex items-center gap-1.5 text-xs font-medium text-vexa-green">
               <span className="h-2 w-2 rounded-full bg-vexa-green" />
@@ -229,6 +252,7 @@ function EditorContent({
             onDone={() => router.refresh()}
           />
           <RegenerateSiteControl siteId={siteId} onDone={() => router.refresh()} />
+          <LiveStatusIndicator status={status} publishedSnapshot={publishedSnapshot} />
           <PublishControl
             siteId={siteId}
             canPublish={canPublish}
@@ -240,26 +264,37 @@ function EditorContent({
         </div>
       </header>
       <div
-        className="vexa-surface flex flex-1 justify-center overflow-auto bg-paper/60 p-4"
+        className="vexa-surface flex flex-1 justify-center overflow-auto bg-background p-4"
         dir={previewDir}
       >
         <div
           className={`rounded-[4px] border-[1.5px] border-ink bg-background shadow-vexa ${
-            device === "mobile" ? "w-[390px]" : "w-full max-w-5xl"
+            device === "desktop"
+              ? "w-full max-w-5xl"
+              : `w-full overflow-x-hidden overflow-y-auto max-h-[calc(100vh-8rem)] ${
+                  device === "tablet" ? "max-w-[768px]" : "max-w-[390px]"
+                }`
           }`}
         >
           <SiteRenderer
             template={template}
             locale={activeLocale}
-            content={working[activeLocale] ?? {}}
+            pageId={activePageId}
+            content={working}
             businessInfo={businessInfo}
             images={images}
             brandColor={brandColor}
             editMode
             onRequestEdit={handleRequestEdit}
-            editingFieldKey={editing?.locale === activeLocale ? editing.fieldKey : null}
+            editingFieldKey={
+              editing?.pageId === activePageId && editing?.locale === activeLocale
+                ? editing.fieldKey
+                : null
+            }
             renderInlineEditor={renderInlineEditor}
             s3PublicBaseUrl={s3PublicBaseUrl}
+            pageBaseHref=""
+            onNavigatePage={setActivePageId}
           />
         </div>
       </div>
@@ -272,6 +307,7 @@ function EditorContent({
               slot={slot}
               siteId={siteId}
               current={images[imageEditorSlot]}
+              s3PublicBaseUrl={s3PublicBaseUrl}
               onClose={() => setImageEditorSlot(null)}
               onChanged={(image) => {
                 setImages((prev) => ({ ...prev, [imageEditorSlot]: image }));

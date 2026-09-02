@@ -64,10 +64,13 @@ export interface SiteImage {
   position?: Position9;
 }
 
+export type PageContent = Record<Locale, Record<string, ContentField>>;
+export type SiteContent = Record<string /* pageId */, PageContent>;
+
 export interface PublishedSnapshot {
   templateId: string;
   activeLanguages: Locale[];
-  content: Record<Locale, Record<string, ContentField>>;
+  content: SiteContent;
   images: Record<string, SiteImage>;
   brandColor: string;
   publishedAt: Date;
@@ -96,7 +99,7 @@ export interface Site {
   templateId?: string;
   languagesRequested: Locale[];
   activeLanguages: Locale[];
-  content: { [locale in Locale]?: Record<string, ContentField> };
+  content: SiteContent;
   images: Record<string, SiteImage>;
   brandColor: string;
   slug?: string;
@@ -116,7 +119,7 @@ export interface SiteDTO {
   templateId?: string;
   languagesRequested: Locale[];
   activeLanguages: Locale[];
-  content: { [locale in Locale]?: Record<string, ContentField> };
+  content: SiteContent;
   images: Record<string, SiteImage>;
   brandColor: string;
   slug?: string;

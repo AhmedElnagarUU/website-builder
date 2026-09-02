@@ -80,3 +80,19 @@ export function mergeGeneratedContent(
   }
   return out;
 }
+
+export function mergePageContent(
+  existing: Record<string, ContentField>,
+  generated: Record<string, ContentField>
+): Record<string, ContentField> {
+  const out: Record<string, ContentField> = { ...existing };
+  for (const [key, field] of Object.entries(generated)) {
+    const prev = existing[key];
+    if (prev?.edited) {
+      out[key] = prev;
+      continue;
+    }
+    out[key] = field;
+  }
+  return out;
+}

@@ -2,10 +2,13 @@ import { MongoError } from "mongodb";
 import { getSession } from "@/features/auth/lib/session";
 import { getSiteForOwner, updateSite, toSiteDTO } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
+import { getTemplatePageIds } from "@/features/publishing/page-shape";
+import { pageContentOf } from "@/features/sites/lib/content";
 import type {
   ContentField,
   Locale,
   PublishedSnapshot,
+  SiteContent,
   SiteDTO,
 } from "@/features/sites/types";
 
@@ -43,9 +46,14 @@ export async function publishSite(siteId: string): Promise<PublishSiteResult> {
     return { ok: false, error: "validation_error" };
   }
 
-  const content = {} as Record<Locale, Record<string, ContentField>>;
-  for (const locale of site.activeLanguages) {
-    content[locale] = (site.content[locale] ?? {}) as Record<string, ContentField>;
+  const pageIds = getTemplatePageIds(site.templateId);
+  const content: SiteContent = {};
+  for (const pageId of pageIds) {
+    const byLocale: Partial<Record<Locale, Record<string, ContentField>>> = {};
+    for (const locale of site.activeLanguages) {
+      byLocale[locale] = pageContentOf(site.content, pageId)[locale] ?? {};
+    }
+    content[pageId] = byLocale as Record<Locale, Record<string, ContentField>>;
   }
 
   const snapshot: PublishedSnapshot = {

@@ -12,6 +12,16 @@ export const RADIUS_CLASSES: Record<TemplateStyle["radius"], string> = {
   soft: "rounded-[12px]",
 };
 
+export const CARD_RADIUS: Record<TemplateStyle["radius"], string> = {
+  sharp: "rounded-none border-t-[3px]",
+  soft: "rounded-2xl",
+};
+
+export const CARD_SHADOW: Record<TemplateStyle["radius"], string> = {
+  sharp: "shadow-sm",
+  soft: "shadow-[0_10px_30px_-12px_rgba(0,0,0,0.25)]",
+};
+
 export function parseBrandHex(hex: string): { r: number; g: number; b: number } {
   const clean = hex.replace("#", "");
   const full =

@@ -13,7 +13,7 @@ import type { Locale } from "@/features/sites/types";
 const DEBOUNCE_MS = 600;
 
 interface AutosaveValue {
-  save: (locale: Locale, fieldKey: string, value: string) => void;
+  save: (pageId: string, locale: Locale, fieldKey: string, value: string) => void;
   flush: (locale: Locale) => void;
   savedAt: Record<Locale, number | null>;
   saving: boolean;
@@ -38,25 +38,26 @@ export function SaveProvider({
   siteId: string;
   children: ReactNode;
 }) {
-  const pendingRef = useRef<Record<Locale, Record<string, string>>>({ en: {}, ar: {} });
-  const timersRef = useRef<Partial<Record<Locale, ReturnType<typeof setTimeout>>>>({});
+  const pendingRef = useRef<Record<string, Record<string, string>>>({});
+  const timersRef = useRef<Partial<Record<string, ReturnType<typeof setTimeout>>>>({});
   const [savedAt, setSavedAt] = useState<Record<Locale, number | null>>(emptyByLocale);
   const [errors, setErrors] = useState<Record<Locale, boolean>>(emptyErrors);
   const [saving, setSaving] = useState(false);
 
   const doFlush = useCallback(
-    async (locale: Locale) => {
-      const updates = pendingRef.current[locale] ?? {};
+    async (pageId: string, locale: Locale) => {
+      const key = `${pageId}:${locale}`;
+      const updates = pendingRef.current[key] ?? {};
       if (Object.keys(updates).length === 0) return;
       setSaving(true);
       try {
         const res = await fetch(`/api/sites/${siteId}/content`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ locale, updates }),
+          body: JSON.stringify({ locale, pageId, updates }),
         });
         if (res.ok) {
-          pendingRef.current[locale] = {};
+          pendingRef.current[key] = {};
           setSavedAt((p) => ({ ...p, [locale]: Date.now() }));
           setErrors((p) => ({ ...p, [locale]: false }));
         } else {
@@ -73,25 +74,33 @@ export function SaveProvider({
 
   const flush = useCallback(
     (locale: Locale) => {
-      const timer = timersRef.current[locale];
-      if (timer) {
-        clearTimeout(timer);
-        timersRef.current[locale] = undefined;
+      const pageIds = Object.keys(pendingRef.current).flatMap((key) => {
+        const [pid, loc] = key.split(":");
+        return loc === locale ? [pid] : [];
+      });
+      for (const pageId of pageIds) {
+        const timer = timersRef.current[`${pageId}:${locale}`];
+        if (timer) {
+          clearTimeout(timer);
+          timersRef.current[`${pageId}:${locale}`] = undefined;
+        }
+        void doFlush(pageId, locale);
       }
-      void doFlush(locale);
     },
     [doFlush]
   );
 
   const save = useCallback(
-    (locale: Locale, fieldKey: string, value: string) => {
-      pendingRef.current[locale][fieldKey] = value;
+    (pageId: string, locale: Locale, fieldKey: string, value: string) => {
+      const key = `${pageId}:${locale}`;
+      pendingRef.current[key] = pendingRef.current[key] ?? {};
+      pendingRef.current[key][fieldKey] = value;
       setSavedAt((p) => ({ ...p, [locale]: null }));
       setErrors((p) => ({ ...p, [locale]: false }));
 
-      const existing = timersRef.current[locale];
+      const existing = timersRef.current[key];
       if (existing) clearTimeout(existing);
-      timersRef.current[locale] = setTimeout(() => doFlush(locale), DEBOUNCE_MS);
+      timersRef.current[key] = setTimeout(() => doFlush(pageId, locale), DEBOUNCE_MS);
     },
     [doFlush]
   );

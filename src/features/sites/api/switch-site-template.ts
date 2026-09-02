@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { getSiteForOwner, updateSite } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
+import { allSections } from "@/features/templates/pages";
 import { hasSiteContent } from "@/features/regeneration/run-template-backfill";
 
 const switchTemplateSchema = z.object({ templateId: z.string().min(1) }).strip();
@@ -46,9 +47,9 @@ export async function switchSiteTemplate(
   let missingCount = 0;
   if (currentTemplate) {
     const currentKeys = new Set(
-      currentTemplate.sections.flatMap((s) => s.fields.map((f) => f.key))
+      allSections(currentTemplate).flatMap((s) => s.fields.map((f) => f.key))
     );
-    for (const section of newTemplate.sections) {
+    for (const section of allSections(newTemplate)) {
       for (const field of section.fields) {
         if (field.required && !currentKeys.has(field.key)) missingCount++;
       }

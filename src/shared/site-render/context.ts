@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, type ReactNode } from "react";
+import type { Locale } from "@/features/sites/types";
 
 export interface SiteEditModeContextValue {
   enabled: boolean;
@@ -32,4 +33,45 @@ export const SiteBrandContext = createContext<SiteBrandContextValue>({
 
 export function useSiteBrand(): SiteBrandContextValue {
   return useContext(SiteBrandContext);
+}
+
+export interface NavPage {
+  id: string;
+  slug: string;
+  name: { en: string; ar: string };
+}
+
+export interface SiteNavContextValue {
+  pages: NavPage[];
+  activePageId: string;
+  locale: Locale;
+  pageBaseHref: string;
+  onNavigatePage?: (pageId: string) => void;
+}
+
+export const SiteNavContext = createContext<SiteNavContextValue>({
+  pages: [],
+  activePageId: "home",
+  locale: "en",
+  pageBaseHref: "",
+});
+
+export function useSiteNav(): SiteNavContextValue {
+  return useContext(SiteNavContext);
+}
+
+export interface SiteStyleContextValue {
+  fontPair: "classic" | "modern" | "warm";
+  radius: "sharp" | "soft";
+  imagery: "photo" | "minimal";
+}
+
+export const SiteStyleContext = createContext<SiteStyleContextValue>({
+  fontPair: "classic",
+  radius: "sharp",
+  imagery: "photo",
+});
+
+export function useSiteStyle(): SiteStyleContextValue {
+  return useContext(SiteStyleContext);
 }

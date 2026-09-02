@@ -5,6 +5,26 @@ import type { SiteImage } from "@/features/sites/types";
 
 export type ImageFileError = "unsupported" | "too_large";
 
+export type UploadErrorKind =
+  | "unsupported"
+  | "too_large"
+  | "unauthorized"
+  | "not_found"
+  | "unknown_slot"
+  | "unsupported_format"
+  | "config_error"
+  | "bucket_rejected"
+  | "network"
+  | "unknown";
+
+export class UploadFlowError extends Error {
+  readonly kind: UploadErrorKind;
+  constructor(kind: UploadErrorKind) {
+    super(kind);
+    this.kind = kind;
+  }
+}
+
 export function validateImageFile(
   file: File
 ): { mime: string } | { error: ImageFileError } {
@@ -23,13 +43,28 @@ function measureImage(src: string): Promise<{ width: number; height: number }> {
   });
 }
 
+function mapApiError(status: number, body: { error?: string } | null): UploadErrorKind {
+  if (status === 401 || status === 403) return "unauthorized";
+  if (status === 404) return "not_found";
+  switch (body?.error) {
+    case "unknown_slot":
+      return "unknown_slot";
+    case "unsupported_format":
+      return "unsupported_format";
+    case "config_error":
+      return "config_error";
+    default:
+      return "unknown";
+  }
+}
+
 export async function uploadImage(
   siteId: string,
   slotId: string,
   file: File
 ): Promise<SiteImage> {
   const checked = validateImageFile(file);
-  if ("error" in checked) throw new Error(checked.error);
+  if ("error" in checked) throw new UploadFlowError(checked.error);
   const mime = checked.mime;
 
   let ticket: { uploadUrl: string; s3Key: string };
@@ -40,10 +75,13 @@ export async function uploadImage(
       body: JSON.stringify({ slotId, mimeType: mime }),
     });
     const body = await res.json().catch(() => null);
-    if (!res.ok || !body?.uploadUrl || !body?.s3Key) throw new Error("upload_error");
+    if (!res.ok || !body?.uploadUrl || !body?.s3Key) {
+      throw new UploadFlowError(mapApiError(res.status, body));
+    }
     ticket = body;
-  } catch {
-    throw new Error("upload_error");
+  } catch (e) {
+    if (e instanceof UploadFlowError) throw e;
+    throw new UploadFlowError("network");
   }
 
   try {
@@ -52,9 +90,10 @@ export async function uploadImage(
       body: file,
       headers: { "Content-Type": mime },
     });
-    if (!put.ok) throw new Error("upload_error");
-  } catch {
-    throw new Error("upload_error");
+    if (!put.ok) throw new UploadFlowError("bucket_rejected");
+  } catch (e) {
+    if (e instanceof UploadFlowError) throw e;
+    throw new UploadFlowError("bucket_rejected");
   }
 
   let dims: { width?: number; height?: number } = {};
@@ -71,9 +110,12 @@ export async function uploadImage(
       body: JSON.stringify({ slotId, s3Key: ticket.s3Key, ...dims }),
     });
     const body = await res.json().catch(() => null);
-    if (!res.ok || !body?.images?.[slotId]) throw new Error("upload_error");
+    if (!res.ok || !body?.images?.[slotId]) {
+      throw new UploadFlowError(mapApiError(res.status, body));
+    }
     return body.images[slotId] as SiteImage;
-  } catch {
-    throw new Error("upload_error");
+  } catch (e) {
+    if (e instanceof UploadFlowError) throw e;
+    throw new UploadFlowError("network");
   }
 }

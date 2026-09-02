@@ -11,11 +11,13 @@ export function F({
   content,
   className = "",
   as: Tag = "span",
+  fallback = "",
 }: {
   fieldKey: string;
   content: Record<string, ContentField>;
   className?: string;
   as?: "span" | "p" | "h1" | "h2" | "h3";
+  fallback?: string;
 }) {
   const t = useTranslations();
   const edit = useSiteEditMode();
@@ -39,7 +41,7 @@ export function F({
     );
   }
 
-  const value = field?.value ?? "";
+  const value = field?.value?.trim() ? field!.value : fallback;
   const flagged = !!field?.reviewFlagged;
 
   if (edit.enabled) {

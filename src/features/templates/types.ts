@@ -8,7 +8,13 @@ export type SectionType =
   | "testimonials"
   | "cta"
   | "contact"
-  | "footer";
+  | "footer"
+  | "menu"
+  | "gallery"
+  | "faq"
+  | "hours"
+  | "pricing"
+  | "team";
 
 export interface TemplateField {
   key: string;
@@ -33,6 +39,10 @@ export interface TemplateSection {
   fields: TemplateField[];
   images?: ImageSlot[];
   svcCount?: number;
+  itemCount?: number;
+  faqCount?: number;
+  planCount?: number;
+  memberCount?: number;
 }
 
 export interface TemplateStyle {
@@ -46,6 +56,14 @@ export interface BilingualText {
   ar: string;
 }
 
+export interface TemplatePage {
+  id: string;
+  slug: string;
+  name: BilingualText;
+  sections: TemplateSection[];
+  nav?: boolean;
+}
+
 export interface TemplateDefinition {
   id: string;
   name: BilingualText;
@@ -54,5 +72,5 @@ export interface TemplateDefinition {
   rtlValidated: boolean;
   style: TemplateStyle;
   colors: { defaultAccent: string };
-  sections: TemplateSection[];
+  pages: TemplatePage[];
 }

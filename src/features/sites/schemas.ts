@@ -47,6 +47,7 @@ export type BusinessInfoPatch = z.infer<typeof businessInfoPatchSchema>;
 export const contentPatchSchema = z
   .object({
     locale: z.enum(["en", "ar"]),
+    pageId: z.string().min(1).default("home"),
     updates: z.record(z.string(), z.string().trim().max(2000)),
   })
   .strip();

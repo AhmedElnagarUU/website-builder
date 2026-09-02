@@ -56,7 +56,15 @@ export default async function DashboardPage({
         <h1 className="vexa-display text-5xl font-bold leading-none tracking-tight text-ink">
           {t("headline")}
         </h1>
-        {cards.length > 0 && <CreateSiteButton />}
+        <div className="flex items-center gap-3">
+          <a
+            href={`/${locale}/dashboard/templates`}
+            className="vexa-display inline-flex items-center gap-1 rounded-full border-2 border-ink px-4 py-2 text-lg font-semibold text-ink transition-colors hover:bg-ink hover:text-paper"
+          >
+            {t("browse_templates")}
+          </a>
+          {cards.length > 0 && <CreateSiteButton />}
+        </div>
       </div>
 
       {cards.length === 0 ? (

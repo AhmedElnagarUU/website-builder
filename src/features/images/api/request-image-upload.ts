@@ -19,10 +19,12 @@ export type RequestImageUploadResult =
   | { ok: false; error: "unauthorized" | "not_found" | "unknown_slot" | "unsupported_format" | "config_error" };
 
 export function slotExistsInTemplate(
-  template: { sections: { images?: { slotId: string }[] }[] },
+  template: { pages: { sections: { images?: { slotId: string }[] }[] }[] },
   slotId: string
 ): boolean {
-  return template.sections.some((s) => (s.images ?? []).some((img) => img.slotId === slotId));
+  return template.pages.some((page) =>
+    page.sections.some((s) => (s.images ?? []).some((img) => img.slotId === slotId))
+  );
 }
 
 export async function requestImageUpload(

@@ -1,4 +1,4 @@
-import type { TemplateDefinition, TemplateField } from "@/features/templates/types";
+import type { TemplateField, TemplateSection } from "@/features/templates/types";
 import type { Locale } from "@/features/sites/types";
 import type { ParsedFields } from "../types";
 import { buildPlaceholder, kindForFieldKey } from "./placeholders";
@@ -42,12 +42,12 @@ export function describeLimit(field: TemplateField): string {
 
 export async function validateAndSanitize(
   fields: ParsedFields,
-  template: TemplateDefinition,
+  sections: TemplateSection[],
   ctx: ValidationContext
 ): Promise<FieldResult[]> {
   const results: FieldResult[] = [];
 
-  for (const section of template.sections) {
+  for (const section of sections) {
     for (const fieldDef of section.fields) {
       const raw = fields[fieldDef.key];
       const value = typeof raw === "string" ? raw.trim() : "";

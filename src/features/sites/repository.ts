@@ -1,5 +1,6 @@
 import { ObjectId } from "mongodb";
 import { getDb } from "@/shared/db/database";
+import { isLegacyFlatContent, migrateFlatContent } from "./lib/migrate-content";
 import type {
   CreateSiteInput,
   Site,
@@ -11,6 +12,16 @@ const COLLECTION = "sites";
 
 function toObjectId(id: string): ObjectId {
   return new ObjectId(id);
+}
+
+async function maybeMigrateContent(site: Site): Promise<Site> {
+  if (!isLegacyFlatContent(site.content)) return site;
+  const content = migrateFlatContent(site.content);
+  const db = await getDb();
+  await db
+    .collection<Site>(COLLECTION)
+    .updateOne({ _id: site._id }, { $set: { content, updatedAt: new Date() } });
+  return { ...site, content };
 }
 
 export function toSiteDTO(site: Site): SiteDTO {
@@ -62,7 +73,7 @@ export async function getSiteById(id: string): Promise<Site | null> {
   const db = await getDb();
   const _id = toObjectId(id);
   const doc = await db.collection<Site>(COLLECTION).findOne({ _id });
-  return doc;
+  return doc ? maybeMigrateContent(doc) : null;
 }
 
 export async function getSiteForOwner(
@@ -73,12 +84,13 @@ export async function getSiteForOwner(
   const _id = toObjectId(id);
   const ownerOid = toObjectId(ownerId);
   const doc = await db.collection<Site>(COLLECTION).findOne({ _id, ownerId: ownerOid });
-  return doc;
+  return doc ? maybeMigrateContent(doc) : null;
 }
 
 export async function getSiteBySlug(slug: string): Promise<Site | null> {
   const db = await getDb();
-  return db.collection<Site>(COLLECTION).findOne({ slug });
+  const doc = await db.collection<Site>(COLLECTION).findOne({ slug });
+  return doc ? maybeMigrateContent(doc) : null;
 }
 
 export async function updateSite(
@@ -106,7 +118,7 @@ export async function listSitesByOwner(ownerId: string): Promise<Site[]> {
     .collection<Site>(COLLECTION)
     .find({ ownerId: ownerOid })
     .toArray();
-  return docs;
+  return Promise.all(docs.map((doc) => maybeMigrateContent(doc)));
 }
 
 export async function deleteSite(id: string): Promise<boolean> {

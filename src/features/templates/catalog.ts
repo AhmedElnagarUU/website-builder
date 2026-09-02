@@ -1,375 +1,474 @@
 import type {
   TemplateDefinition,
+  TemplatePage,
   TemplateSection,
   TemplateField,
   ImageSlot,
+  BilingualText,
+  TemplateStyle,
 } from "./types";
 
-// Semantic Key Registry constraints (single source of truth)
-const REGISTRY: Record<string, Record<string, number>> = {
-  nav: { nav_home: 2, nav_services: 2, nav_about: 2, nav_contact: 2 },
-  hero: { hero_headline: 10, hero_subline: 20 },
-  about: { about_title: 6, about_body: 600 },
-  services: { services_title: 5 },
-  testimonials: { testimonial_1_quote: 220, testimonial_1_author: 40, testimonial_2_quote: 220, testimonial_2_author: 40 },
-  cta: { cta_headline: 8, cta_button_label: 3 },
-  contact: { contact_heading: 4, contact_body: 200 },
-  footer: { footer_text: 140 },
+// Semantic Key Registry (single source of truth, max length per key)
+const REGISTRY = {
+  nav: { maxWords: 2 },
+  hero_headline: { maxWords: 10 },
+  hero_subline: { maxWords: 20 },
+  about_title: { maxWords: 6 },
+  about_body: { maxChars: 600 },
+  services_title: { maxWords: 5 },
+  service_title: { maxWords: 6 },
+  service_desc: { maxChars: 280 },
+  testimonial_quote: { maxChars: 220 },
+  testimonial_author: { maxChars: 40 },
+  cta_headline: { maxWords: 8 },
+  cta_button_label: { maxWords: 3 },
+  contact_heading: { maxWords: 4 },
+  contact_body: { maxChars: 200 },
+  footer_text: { maxChars: 140 },
+  menu_title: { maxWords: 6 },
+  menu_item_name: { maxWords: 5 },
+  menu_item_desc: { maxChars: 140 },
+  menu_item_price: { maxChars: 12 },
+  gallery_title: { maxWords: 6 },
+  faq_title: { maxWords: 6 },
+  faq_question: { maxWords: 14 },
+  faq_answer: { maxChars: 260 },
+  hours_title: { maxWords: 6 },
+  hours_day: { maxChars: 24 },
+  pricing_title: { maxWords: 6 },
+  plan_name: { maxWords: 4 },
+  plan_price: { maxChars: 14 },
+  plan_desc: { maxChars: 140 },
+  team_title: { maxWords: 6 },
+  team_name: { maxWords: 3 },
+  team_role: { maxWords: 4 },
+} as const;
+
+function field(
+  key: string,
+  purpose: string,
+  limit: { maxWords?: number; maxChars?: number },
+  required = true
+): TemplateField {
+  return { key, purpose, constraint: limit, required };
+}
+
+const NAMES: Record<string, BilingualText> = {
+  home: { en: "Home", ar: "الرئيسية" },
+  about: { en: "About", ar: "من نحن" },
+  services: { en: "Services", ar: "خدماتنا" },
+  contact: { en: "Contact", ar: "تواصل معنا" },
+  menu: { en: "Menu", ar: "القائمة" },
+  gallery: { en: "Gallery", ar: "المعرض" },
+  faq: { en: "FAQ", ar: "الأسئلة الشائعة" },
+  hours: { en: "Hours", ar: "ساعات العمل" },
+  pricing: { en: "Pricing", ar: "الأسعار" },
+  team: { en: "Team", ar: "الفريق" },
 };
 
-function buildHeaderSection(id: string): TemplateSection {
+let _sectionCounter = 0;
+function secId(): string {
+  _sectionCounter += 1;
+  return `s${_sectionCounter}`;
+}
+
+function slot(slotId: string, aspect: "1:1" | "16:9" | "4:3", minW: number, minH: number, category: string, file: string): ImageSlot {
   return {
-    id,
-    type: "header",
-    fields: [
-      { key: "nav_home", purpose: "Navigation link label for the home/top of page.", constraint: { maxWords: REGISTRY.nav.nav_home }, required: true },
-      { key: "nav_services", purpose: "Navigation link label for the services section.", constraint: { maxWords: REGISTRY.nav.nav_services }, required: true },
-      { key: "nav_about", purpose: "Navigation link label for the about section.", constraint: { maxWords: REGISTRY.nav.nav_about }, required: true },
-      { key: "nav_contact", purpose: "Navigation link label for the contact section.", constraint: { maxWords: REGISTRY.nav.nav_contact }, required: true },
-    ],
+    slotId,
+    aspectRatio: aspect,
+    minWidth: minW,
+    minHeight: minH,
+    defaultAsset: `/templates/real/${category}/${file}`,
   };
 }
 
-function buildHeroSection(id: string, imageSlots: ImageSlot[]): TemplateSection {
+function buildHeader(pageIds: string[]): TemplateSection {
+  const fields: TemplateField[] = [];
+  fields.push(field("nav_home", "Navigation link label for the home page.", REGISTRY.nav));
+  for (const id of pageIds) {
+    fields.push(field(`nav_${id}`, `Navigation link label for the ${id} page.`, REGISTRY.nav));
+  }
+  return { id: secId(), type: "header", fields };
+}
+
+function buildHero(category: string): TemplateSection {
   return {
-    id,
+    id: secId(),
     type: "hero",
     fields: [
-      { key: "hero_headline", purpose: "Short hero headline stating the main offer to the visitor.", constraint: { maxWords: REGISTRY.hero.hero_headline }, required: true },
-      { key: "hero_subline", purpose: "One-sentence supporting description under the hero headline.", constraint: { maxWords: REGISTRY.hero.hero_subline }, required: true },
+      field("hero_headline", "Short hero headline stating the main offer.", REGISTRY.hero_headline),
+      field("hero_subline", "One-sentence supporting description under the hero headline.", REGISTRY.hero_subline),
     ],
-    images: imageSlots.filter((s) => s.slotId === "logo" || s.slotId === "hero_image"),
+    images: [
+      slot("logo", "1:1", 64, 64, category, "logo.webp"),
+      slot("hero_image", "16:9", 1200, 675, category, "hero.webp"),
+    ],
   };
 }
 
-function buildServicesSection(id: string, svcCount: number): TemplateSection {
+function buildServices(count: number): TemplateSection {
   const fields: TemplateField[] = [
-    { key: "services_title", purpose: "Title that introduces the services list.", constraint: { maxWords: REGISTRY.services.services_title }, required: true },
+    field("services_title", "Title that introduces the services list.", REGISTRY.services_title),
   ];
-  for (let i = 1; i <= svcCount; i++) {
-    fields.push({
-      key: `service_${i}_title`,
-      purpose: `Service #${i} name (short, what the customer gets).`,
-      constraint: { maxWords: 6 },
-      required: true,
-    });
-    fields.push({
-      key: `service_${i}_description`,
-      purpose: `Service #${i} short description (one or two sentences, benefits-focused).`,
-      constraint: { maxChars: 280 },
-      required: true,
-    });
+  for (let i = 1; i <= count; i++) {
+    fields.push(field(`service_${i}_title`, `Service #${i} name.`, REGISTRY.service_title));
+    fields.push(field(`service_${i}_description`, `Service #${i} short description.`, REGISTRY.service_desc));
   }
-  return { id, type: "services", fields, svcCount };
+  return { id: secId(), type: "services", fields, svcCount: count };
 }
 
-function buildAboutSection(id: string): TemplateSection {
+function buildAbout(): TemplateSection {
   return {
-    id,
+    id: secId(),
     type: "about",
     fields: [
-      { key: "about_title", purpose: "Title for the about section.", constraint: { maxWords: REGISTRY.about.about_title }, required: true },
-      { key: "about_body", purpose: "About-us paragraph (who we are, what we stand for).", constraint: { maxChars: REGISTRY.about.about_body }, required: true },
+      field("about_title", "Title for the about section.", REGISTRY.about_title),
+      field("about_body", "About-us paragraph (who we are, what we stand for).", REGISTRY.about_body),
     ],
   };
 }
 
-function buildTestimonialsSection(id: string, count: number): TemplateSection {
-  const fields = [];
+function buildTestimonials(count: number): TemplateSection | null {
+  if (count <= 0) return null;
+  const fields: TemplateField[] = [];
   for (let i = 1; i <= count; i++) {
-    fields.push({
-      key: `testimonial_${i}_quote`,
-      purpose: `Testimonial #${i} sample quote text. NEVER fabricate real customer names — use clearly generic placeholders like "A regular customer".`,
-      constraint: { maxChars: i === 1 ? REGISTRY.testimonials.testimonial_1_quote : REGISTRY.testimonials.testimonial_2_quote },
-      required: true,
-    });
-    fields.push({
-      key: `testimonial_${i}_author`,
-      purpose: `Testimonial #${i} author attribution (generic placeholder only).`,
-      constraint: { maxChars: i === 1 ? REGISTRY.testimonials.testimonial_1_author : REGISTRY.testimonials.testimonial_2_author },
-      required: true,
-    });
+    fields.push(field(`testimonial_${i}_quote`, `Testimonial #${i} quote (generic placeholder, never a real name).`, REGISTRY.testimonial_quote));
+    fields.push(field(`testimonial_${i}_author`, `Testimonial #${i} author attribution (generic placeholder).`, REGISTRY.testimonial_author));
   }
-  return { id, type: "testimonials", fields };
+  return { id: secId(), type: "testimonials", fields };
 }
 
-function buildCtaSection(id: string): TemplateSection {
+function buildCta(): TemplateSection {
   return {
-    id,
+    id: secId(),
     type: "cta",
     fields: [
-      { key: "cta_headline", purpose: "Call-to-action headline that prompts the visitor to act.", constraint: { maxWords: REGISTRY.cta.cta_headline }, required: true },
-      { key: "cta_button_label", purpose: "Short button label for the call-to-action.", constraint: { maxWords: REGISTRY.cta.cta_button_label }, required: true },
+      field("cta_headline", "Call-to-action headline.", REGISTRY.cta_headline),
+      field("cta_button_label", "Short button label for the call-to-action.", REGISTRY.cta_button_label),
     ],
   };
 }
 
-function buildContactSection(id: string): TemplateSection {
+function buildContact(): TemplateSection {
   return {
-    id,
+    id: secId(),
     type: "contact",
     fields: [
-      { key: "contact_heading", purpose: "Heading for the contact section.", constraint: { maxWords: REGISTRY.contact.contact_heading }, required: true },
-      { key: "contact_body", purpose: "Short body text encouraging visitors to get in touch.", constraint: { maxChars: REGISTRY.contact.contact_body }, required: true },
+      field("contact_heading", "Heading for the contact section.", REGISTRY.contact_heading),
+      field("contact_body", "Short body text encouraging visitors to get in touch.", REGISTRY.contact_body),
     ],
   };
 }
 
-function buildFooterSection(id: string): TemplateSection {
+function buildFooter(): TemplateSection {
+  return {
+    id: secId(),
+    type: "footer",
+    fields: [field("footer_text", "Footer copyright/tagline text.", REGISTRY.footer_text)],
+  };
+}
+
+function buildMenu(count: number): TemplatePage {
+  const fields: TemplateField[] = [field("menu_title", "Title that introduces the menu.", REGISTRY.menu_title)];
+  for (let i = 1; i <= count; i++) {
+    fields.push(field(`menu_item_${i}_name`, `Menu item #${i} name.`, REGISTRY.menu_item_name));
+    fields.push(field(`menu_item_${i}_description`, `Menu item #${i} short description.`, REGISTRY.menu_item_desc));
+    fields.push(field(`menu_item_${i}_price`, `Menu item #${i} price.`, REGISTRY.menu_item_price));
+  }
+  return {
+    id: "menu",
+    slug: "menu",
+    name: NAMES.menu,
+    nav: true,
+    sections: [{ id: secId(), type: "menu", fields, itemCount: count }],
+  };
+}
+
+function buildGallery(count: number, category: string): TemplatePage {
+  const imgs = Array.from({ length: count }, (_, i) => slot(`gallery_${i + 1}`, "4:3", 800, 600, category, `gallery_${i + 1}.webp`));
+  return {
+    id: "gallery",
+    slug: "gallery",
+    name: NAMES.gallery,
+    nav: true,
+    sections: [
+      {
+        id: secId(),
+        type: "gallery",
+        fields: [field("gallery_title", "Title that introduces the gallery.", REGISTRY.gallery_title)],
+        images: imgs,
+      },
+    ],
+  };
+}
+
+function buildFaq(count: number): TemplatePage {
+  const fields: TemplateField[] = [field("faq_title", "Title that introduces the FAQ.", REGISTRY.faq_title)];
+  for (let i = 1; i <= count; i++) {
+    fields.push(field(`faq_${i}_question`, `FAQ #${i} question.`, REGISTRY.faq_question));
+    fields.push(field(`faq_${i}_answer`, `FAQ #${i} answer.`, REGISTRY.faq_answer));
+  }
+  return {
+    id: "faq",
+    slug: "faq",
+    name: NAMES.faq,
+    nav: true,
+    sections: [{ id: secId(), type: "faq", fields, faqCount: count }],
+  };
+}
+
+function buildHours(): TemplatePage {
+  return {
+    id: "hours",
+    slug: "hours",
+    name: NAMES.hours,
+    nav: true,
+    sections: [
+      {
+        id: secId(),
+        type: "hours",
+        fields: [
+          field("hours_title", "Title that introduces the opening hours.", REGISTRY.hours_title),
+          ...["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"].map((d) =>
+            field(`hours_${d}`, `Opening hours for ${d}.`, REGISTRY.hours_day)
+          ),
+        ],
+      },
+    ],
+  };
+}
+
+function buildPricing(plans: number): TemplatePage {
+  const fields: TemplateField[] = [field("pricing_title", "Title that introduces the pricing plans.", REGISTRY.pricing_title)];
+  for (let i = 1; i <= plans; i++) {
+    fields.push(field(`plan_${i}_name`, `Plan #${i} name.`, REGISTRY.plan_name));
+    fields.push(field(`plan_${i}_price`, `Plan #${i} price.`, REGISTRY.plan_price));
+    fields.push(field(`plan_${i}_description`, `Plan #${i} short description.`, REGISTRY.plan_desc));
+  }
+  return {
+    id: "pricing",
+    slug: "pricing",
+    name: NAMES.pricing,
+    nav: true,
+    sections: [{ id: secId(), type: "pricing", fields, planCount: plans }],
+  };
+}
+
+function buildTeam(count: number, category: string): TemplatePage {
+  const fields: TemplateField[] = [field("team_title", "Title that introduces the team.", REGISTRY.team_title)];
+  const imgs: ImageSlot[] = [];
+  for (let i = 1; i <= count; i++) {
+    fields.push(field(`team_${i}_name`, `Team member #${i} name.`, REGISTRY.team_name));
+    fields.push(field(`team_${i}_role`, `Team member #${i} role.`, REGISTRY.team_role));
+    imgs.push(slot(`team_${i}_image`, "1:1", 480, 480, category, `team_${i}.webp`));
+  }
+  return {
+    id: "team",
+    slug: "team",
+    name: NAMES.team,
+    nav: true,
+    sections: [{ id: secId(), type: "team", fields, memberCount: count, images: imgs }],
+  };
+}
+
+interface BaseOpts {
+  category: string;
+  svcCount: number;
+  testimonials: number;
+  extras: ExtraSpec;
+}
+
+interface ExtraSpec {
+  menu?: number;
+  gallery?: number;
+  faq?: number;
+  hours?: boolean;
+  pricing?: number;
+  team?: number;
+}
+
+function buildPages(opts: BaseOpts): TemplatePage[] {
+  _sectionCounter = 0;
+  const pages: TemplatePage[] = [];
+
+  const hero = buildHero(opts.category);
+  const testi = buildTestimonials(opts.testimonials);
+  const cta = buildCta();
+  const homeSections: TemplateSection[] = [hero];
+  if (testi) homeSections.push(testi);
+  homeSections.push(cta);
+
+  const extraPages: TemplatePage[] = [];
+  if (opts.extras.menu) extraPages.push(buildMenu(opts.extras.menu));
+  if (opts.extras.gallery) extraPages.push(buildGallery(opts.extras.gallery, opts.category));
+  if (opts.extras.faq) extraPages.push(buildFaq(opts.extras.faq));
+  if (opts.extras.hours) extraPages.push(buildHours());
+  if (opts.extras.pricing) extraPages.push(buildPricing(opts.extras.pricing));
+  if (opts.extras.team) extraPages.push(buildTeam(opts.extras.team, opts.category));
+
+  // Non-home page ids (for header nav labels), excluding home/footer etc.
+  const pageIds = [
+    "about",
+    "services",
+    "contact",
+    ...extraPages.map((p) => p.id),
+  ];
+  const header = buildHeader(pageIds);
+  const footer = buildFooter();
+  homeSections.unshift(header);
+  homeSections.push(footer);
+
+  pages.push({
+    id: "home",
+    slug: "",
+    name: NAMES.home,
+    nav: true,
+    sections: homeSections,
+  });
+  pages.push({
+    id: "about",
+    slug: "about",
+    name: NAMES.about,
+    nav: true,
+    sections: [buildAbout()],
+  });
+  pages.push({
+    id: "services",
+    slug: "services",
+    name: NAMES.services,
+    nav: true,
+    sections: [buildServices(opts.svcCount)],
+  });
+  pages.push({
+    id: "contact",
+    slug: "contact",
+    name: NAMES.contact,
+    nav: true,
+    sections: [buildContact()],
+  });
+  pages.push(...extraPages);
+  return pages;
+}
+
+function def(
+  id: string,
+  name: BilingualText,
+  description: BilingualText,
+  category: "services" | "restaurant" | "retail" | "professional" | "portfolio",
+  style: TemplateStyle,
+  defaultAccent: string,
+  opts: BaseOpts
+): TemplateDefinition {
   return {
     id,
-    type: "footer",
-    fields: [
-      { key: "footer_text", purpose: "Footer copyright/tagline text.", constraint: { maxChars: REGISTRY.footer.footer_text }, required: true },
-    ],
+    name,
+    description,
+    categories: [category],
+    rtlValidated: true,
+    style,
+    colors: { defaultAccent },
+    pages: buildPages(opts),
   };
 }
-
-// Image slot factories
-function logoSlot(category: string): ImageSlot {
-  return {
-    slotId: "logo",
-    aspectRatio: "1:1",
-    minWidth: 64,
-    minHeight: 64,
-    defaultAsset: `/templates/defaults/${category}/logo.svg`,
-  };
-}
-
-function heroImageSlot(category: string): ImageSlot {
-  return {
-    slotId: "hero_image",
-    aspectRatio: "16:9",
-    minWidth: 1200,
-    minHeight: 675,
-    defaultAsset: `/templates/defaults/${category}/hero.svg`,
-  };
-}
-
-function gallerySlot(category: string, n: number): ImageSlot {
-  return {
-    slotId: `gallery_${n}`,
-    aspectRatio: "4:3",
-    minWidth: 800,
-    minHeight: 600,
-    defaultAsset: `/templates/defaults/${category}/gallery_${n}.svg`,
-  };
-}
-
-// 1. classic-services
-const classicServices: TemplateDefinition = {
-  id: "classic-services",
-  name: { en: "Classic Services", ar: "الخدمات الكلاسيكية" },
-  description: { en: "A clean, trustworthy layout for service businesses.", ar: "تصميم نظيف وموثوق للشركات الخدمية." },
-  categories: ["services"],
-  rtlValidated: true,
-  style: { fontPair: "classic", radius: "soft", imagery: "photo" },
-  colors: { defaultAccent: "#1E40AF" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("services"), heroImageSlot("services")]),
-    buildServicesSection("h3", 3),
-    buildAboutSection("h4"),
-    buildTestimonialsSection("h5", 2),
-    buildCtaSection("h6"),
-    buildContactSection("h7"),
-    buildFooterSection("h8"),
-  ],
-};
-
-// 2. modern-studio
-const modernStudio: TemplateDefinition = {
-  id: "modern-studio",
-  name: { en: "Modern Studio", ar: "الاستوديو العصري" },
-  description: { en: "A bold, image-forward layout for creative service studios.", ar: "تصميم جريء يركز على الصور للاستوديوهات الإبداعية." },
-  categories: ["services"],
-  rtlValidated: true,
-  style: { fontPair: "modern", radius: "sharp", imagery: "photo" },
-  colors: { defaultAccent: "#0F172A" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("services"), heroImageSlot("services"), gallerySlot("services", 1), gallerySlot("services", 2)]),
-    buildServicesSection("h3", 4),
-    buildAboutSection("h4"),
-    buildCtaSection("h5"),
-    buildContactSection("h6"),
-    buildFooterSection("h7"),
-  ],
-};
-
-// 3. warm-kitchen
-const warmKitchen: TemplateDefinition = {
-  id: "warm-kitchen",
-  name: { en: "Warm Kitchen", ar: "المطبخ الدافئ" },
-  description: { en: "An inviting, homey layout for restaurants and cafés.", ar: "تصميم دافئ وجذاب للمطاعم والمقاهي." },
-  categories: ["restaurant"],
-  rtlValidated: true,
-  style: { fontPair: "warm", radius: "soft", imagery: "photo" },
-  colors: { defaultAccent: "#B45309" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("restaurant"), heroImageSlot("restaurant"), gallerySlot("restaurant", 1), gallerySlot("restaurant", 2), gallerySlot("restaurant", 3)]),
-    buildServicesSection("h3", 3),
-    buildAboutSection("h4"),
-    buildTestimonialsSection("h5", 1),
-    buildCtaSection("h6"),
-    buildContactSection("h7"),
-    buildFooterSection("h8"),
-  ],
-};
-
-// 4. bistro-menu
-const bistroMenu: TemplateDefinition = {
-  id: "bistro-menu",
-  name: { en: "Bistro Menu", ar: "قائمة البيسترو" },
-  description: { en: "A clean, menu-focused layout for bistros and casual dining.", ar: "تصميم نظيف يركز على القائمة للبيسترو والمطاعم غير الرسمية." },
-  categories: ["restaurant"],
-  rtlValidated: true,
-  style: { fontPair: "classic", radius: "sharp", imagery: "minimal" },
-  colors: { defaultAccent: "#7C2D12" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("restaurant"), heroImageSlot("restaurant")]),
-    buildServicesSection("h3", 4),
-    buildAboutSection("h4"),
-    buildCtaSection("h5"),
-    buildContactSection("h6"),
-    buildFooterSection("h7"),
-  ],
-};
-
-// 5. simple-shop
-const simpleShop: TemplateDefinition = {
-  id: "simple-shop",
-  name: { en: "Simple Shop", ar: "المتجر البسيط" },
-  description: { en: "A product-first layout for small retail shops.", ar: "تصميم يركز على المنتجات للمتاجر الصغيرة." },
-  categories: ["retail"],
-  rtlValidated: true,
-  style: { fontPair: "classic", radius: "soft", imagery: "photo" },
-  colors: { defaultAccent: "#15803D" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("retail"), heroImageSlot("retail"), gallerySlot("retail", 1), gallerySlot("retail", 2), gallerySlot("retail", 3)]),
-    buildServicesSection("h3", 3),
-    buildAboutSection("h4"),
-    buildCtaSection("h5"),
-    buildContactSection("h6"),
-    buildFooterSection("h7"),
-  ],
-};
-
-// 6. product-focus
-const productFocus: TemplateDefinition = {
-  id: "product-focus",
-  name: { en: "Product Focus", ar: "تركيز على المنتج" },
-  description: { en: "A minimalist layout that puts a single product front and center.", ar: "تصميم بسيط يضع منتجاً واحداً في المقدمة." },
-  categories: ["retail"],
-  rtlValidated: true,
-  style: { fontPair: "modern", radius: "sharp", imagery: "minimal" },
-  colors: { defaultAccent: "#0E7490" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("retail"), heroImageSlot("retail")]),
-    buildServicesSection("h3", 2),
-    buildAboutSection("h4"),
-    buildTestimonialsSection("h5", 1),
-    buildCtaSection("h6"),
-    buildContactSection("h7"),
-    buildFooterSection("h8"),
-  ],
-};
-
-// 7. professional-profile
-const professionalProfile: TemplateDefinition = {
-  id: "professional-profile",
-  name: { en: "Professional Profile", ar: "الملف المهني" },
-  description: { en: "A personal-brand layout for professionals and consultants.", ar: "تصميم للعلامة الشخصية للمحترفين والمستشارين." },
-  categories: ["professional"],
-  rtlValidated: true,
-  style: { fontPair: "classic", radius: "soft", imagery: "minimal" },
-  colors: { defaultAccent: "#1F2937" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("professional"), heroImageSlot("professional")]),
-    buildServicesSection("h3", 3),
-    buildAboutSection("h4"),
-    buildTestimonialsSection("h5", 1),
-    buildCtaSection("h6"),
-    buildContactSection("h7"),
-    buildFooterSection("h8"),
-  ],
-};
-
-// 8. consultant-page
-const consultantPage: TemplateDefinition = {
-  id: "consultant-page",
-  name: { en: "Consultant Page", ar: "صفحة المستشار" },
-  description: { en: "A focused, services-led layout for independent consultants.", ar: "تصميم يركز على الخدمات للمستشارين المستقلين." },
-  categories: ["professional"],
-  rtlValidated: true,
-  style: { fontPair: "modern", radius: "sharp", imagery: "minimal" },
-  colors: { defaultAccent: "#4338CA" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("professional"), heroImageSlot("professional")]),
-    buildServicesSection("h3", 4),
-    buildAboutSection("h4"),
-    buildCtaSection("h5"),
-    buildContactSection("h6"),
-    buildFooterSection("h7"),
-  ],
-};
-
-// 9. clean-portfolio
-const cleanPortfolio: TemplateDefinition = {
-  id: "clean-portfolio",
-  name: { en: "Clean Portfolio", ar: "الأعمال النظيفة" },
-  description: { en: "A minimalist gallery layout for creative portfolios.", ar: "تصميم معرض بسيط للأعمال الإبداعية." },
-  categories: ["portfolio"],
-  rtlValidated: true,
-  style: { fontPair: "modern", radius: "sharp", imagery: "photo" },
-  colors: { defaultAccent: "#7C3AED" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("portfolio"), heroImageSlot("portfolio"), gallerySlot("portfolio", 1), gallerySlot("portfolio", 2), gallerySlot("portfolio", 3)]),
-    buildServicesSection("h3", 2),
-    buildAboutSection("h4"),
-    buildCtaSection("h5"),
-    buildContactSection("h6"),
-    buildFooterSection("h7"),
-  ],
-};
-
-// 10. visual-showcase
-const visualShowcase: TemplateDefinition = {
-  id: "visual-showcase",
-  name: { en: "Visual Showcase", ar: "العرض المرئي" },
-  description: { en: "A bold, visual-forward layout for artists and designers.", ar: "تصميم جريء ومرئي للفنانين والمصممين." },
-  categories: ["portfolio"],
-  rtlValidated: true,
-  style: { fontPair: "modern", radius: "soft", imagery: "photo" },
-  colors: { defaultAccent: "#DB2777" },
-  sections: [
-    buildHeaderSection("h1"),
-    buildHeroSection("h2", [logoSlot("portfolio"), heroImageSlot("portfolio")]),
-    buildServicesSection("h3", 3),
-    buildAboutSection("h4"),
-    buildTestimonialsSection("h5", 2),
-    buildCtaSection("h6"),
-    buildContactSection("h7"),
-    buildFooterSection("h8"),
-  ],
-};
 
 export const TEMPLATES: TemplateDefinition[] = [
-  classicServices,
-  modernStudio,
-  warmKitchen,
-  bistroMenu,
-  simpleShop,
-  productFocus,
-  professionalProfile,
-  consultantPage,
-  cleanPortfolio,
-  visualShowcase,
+  def(
+    "classic-services",
+    { en: "Classic Services", ar: "الخدمات الكلاسيكية" },
+    { en: "A clean, trustworthy layout for service businesses.", ar: "تصميم نظيف وموثوق للشركات الخدمية." },
+    "services",
+    { fontPair: "classic", radius: "soft", imagery: "photo" },
+    "#1E40AF",
+    { category: "services", svcCount: 3, testimonials: 2, extras: { gallery: 3, faq: 4 } }
+  ),
+
+  def(
+    "modern-studio",
+    { en: "Modern Studio", ar: "الاستوديو العصري" },
+    { en: "A bold, image-forward layout for creative service studios.", ar: "تصميم جريء يركز على الصور للاستوديوهات الإبداعية." },
+    "services",
+    { fontPair: "modern", radius: "sharp", imagery: "photo" },
+    "#0F172A",
+    { category: "services", svcCount: 4, testimonials: 0, extras: { gallery: 4, team: 3 } }
+  ),
+
+  def(
+    "warm-kitchen",
+    { en: "Warm Kitchen", ar: "المطبخ الدافئ" },
+    { en: "An inviting, homey layout for restaurants and cafés.", ar: "تصميم دافئ وجذاب للمطاعم والمقاهي." },
+    "restaurant",
+    { fontPair: "warm", radius: "soft", imagery: "photo" },
+    "#B45309",
+    { category: "restaurant", svcCount: 3, testimonials: 1, extras: { menu: 6, hours: true, gallery: 3 } }
+  ),
+
+  def(
+    "bistro-menu",
+    { en: "Bistro Menu", ar: "قائمة البيسترو" },
+    { en: "A clean, menu-focused layout for bistros and casual dining.", ar: "تصميم نظيف يركز على القائمة للبيسترو والمطاعم غير الرسمية." },
+    "restaurant",
+    { fontPair: "classic", radius: "sharp", imagery: "minimal" },
+    "#7C2D12",
+    { category: "restaurant", svcCount: 4, testimonials: 0, extras: { menu: 8, hours: true, faq: 5 } }
+  ),
+
+  def(
+    "simple-shop",
+    { en: "Simple Shop", ar: "المتجر البسيط" },
+    { en: "A product-first layout for small retail shops.", ar: "تصميم يركز على المنتجات للمتاجر الصغيرة." },
+    "retail",
+    { fontPair: "classic", radius: "soft", imagery: "photo" },
+    "#15803D",
+    { category: "retail", svcCount: 3, testimonials: 0, extras: { gallery: 3, faq: 4, pricing: 3 } }
+  ),
+
+  def(
+    "product-focus",
+    { en: "Product Focus", ar: "تركيز على المنتج" },
+    { en: "A minimalist layout that puts a single product front and center.", ar: "تصميم بسيط يضع منتجاً واحداً في المقدمة." },
+    "retail",
+    { fontPair: "modern", radius: "sharp", imagery: "minimal" },
+    "#0E7490",
+    { category: "retail", svcCount: 2, testimonials: 1, extras: { gallery: 4, pricing: 3 } }
+  ),
+
+  def(
+    "professional-profile",
+    { en: "Professional Profile", ar: "الملف المهني" },
+    { en: "A personal-brand layout for professionals and consultants.", ar: "تصميم للعلامة الشخصية للمحترفين والمستشارين." },
+    "professional",
+    { fontPair: "classic", radius: "soft", imagery: "minimal" },
+    "#1F2937",
+    { category: "professional", svcCount: 3, testimonials: 1, extras: { pricing: 3, faq: 5, team: 3 } }
+  ),
+
+  def(
+    "consultant-page",
+    { en: "Consultant Page", ar: "صفحة المستشار" },
+    { en: "A focused, services-led layout for independent consultants.", ar: "تصميم يركز على الخدمات للمستشارين المستقلين." },
+    "professional",
+    { fontPair: "modern", radius: "sharp", imagery: "minimal" },
+    "#4338CA",
+    { category: "professional", svcCount: 4, testimonials: 0, extras: { pricing: 4, faq: 4, team: 1 } }
+  ),
+
+  def(
+    "clean-portfolio",
+    { en: "Clean Portfolio", ar: "الأعمال النظيفة" },
+    { en: "A minimalist gallery layout for creative portfolios.", ar: "تصميم معرض بسيط للأعمال الإبداعية." },
+    "portfolio",
+    { fontPair: "modern", radius: "sharp", imagery: "photo" },
+    "#7C3AED",
+    { category: "portfolio", svcCount: 2, testimonials: 0, extras: { gallery: 6, team: 3 } }
+  ),
+
+  def(
+    "visual-showcase",
+    { en: "Visual Showcase", ar: "العرض المرئي" },
+    { en: "A bold, visual-forward layout for artists and designers.", ar: "تصميم جريء ومرئي للفنانين والمصممين." },
+    "portfolio",
+    { fontPair: "modern", radius: "soft", imagery: "photo" },
+    "#DB2777",
+    { category: "portfolio", svcCount: 3, testimonials: 2, extras: { gallery: 6, team: 3 } }
+  ),
 ];

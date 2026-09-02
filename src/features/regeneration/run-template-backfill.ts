@@ -1,12 +1,13 @@
 import { updateSite } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
+import { allSections } from "@/features/templates/pages";
 import { getAiConfig, classifyError } from "@/features/generation/run-generation";
-import { generateFields } from "@/features/generation/lib/ai-client";
 import { buildGenerationMessages } from "@/features/generation/lib/prompt-builder";
 import { validateAndSanitize } from "@/features/generation/lib/field-validation";
 import { mergeGeneratedContent } from "@/features/generation/lib/merge-content";
-import type { Locale, Site, SiteDTO, ContentField } from "@/features/sites/types";
-import type { TemplateDefinition } from "@/features/templates/types";
+import { pageContentOf, setPageContent } from "@/features/sites/lib/content";
+import type { Locale, Site, SiteDTO } from "@/features/sites/types";
+import type { TemplateDefinition, TemplatePage } from "@/features/templates/types";
 
 function missingRequiredKeys(
   currentTemplate: TemplateDefinition | null,
@@ -14,16 +15,20 @@ function missingRequiredKeys(
 ): string[] {
   const currentKeys = new Set(
     currentTemplate
-      ? currentTemplate.sections.flatMap((s) => s.fields.map((f) => f.key))
+      ? allSections(currentTemplate).flatMap((s) => s.fields.map((f) => f.key))
       : []
   );
   const missing: string[] = [];
-  for (const section of newTemplate.sections) {
+  for (const section of allSections(newTemplate)) {
     for (const field of section.fields) {
       if (field.required && !currentKeys.has(field.key)) missing.push(field.key);
     }
   }
   return missing;
+}
+
+function pageForKey(template: TemplateDefinition, key: string): TemplatePage | undefined {
+  return template.pages.find((p) => p.sections.some((s) => s.fields.some((f) => f.key === key)));
 }
 
 export async function runTemplateBackfill(siteId: string, newTemplateId: string): Promise<void> {
@@ -53,36 +58,36 @@ export async function runTemplateBackfill(siteId: string, newTemplateId: string)
     return;
   }
 
-  const subsetSections = newTemplate.sections.filter((s) =>
+  const subsetSections = allSections(newTemplate).filter((s) =>
     s.fields.some((f) => missingSet.has(f.key))
   );
-  const subsetTemplate: TemplateDefinition = { ...newTemplate, sections: subsetSections };
 
   const locales = site.activeLanguages as Locale[];
-  const newContent: SiteDTO["content"] = { ...(site.content as SiteDTO["content"]) };
+  let newContent: SiteDTO["content"] = { ...site.content };
   let lastError: string | null = null;
 
   for (const locale of locales) {
     try {
-      const existingLocale = (site.content[locale] ?? {}) as Record<string, ContentField>;
-      const otherSectionValues: Record<string, string> = {};
-      for (const [key, field] of Object.entries(existingLocale)) {
-        otherSectionValues[key] = field.value;
+      const otherValues: Record<string, string> = {};
+      for (const page of Object.values(newContent)) {
+        for (const [key, field] of Object.entries(page[locale] ?? {})) {
+          otherValues[key] = field.value;
+        }
       }
 
       const messages = buildGenerationMessages({
         businessInfo: site.businessInfo,
-        template: subsetTemplate,
+        sections: subsetSections,
         locale,
-        otherSectionValues,
+        otherSectionValues: otherValues,
       });
 
-      const fields = await generateFields(messages, aiConfig);
-      const results = await validateAndSanitize(fields, subsetTemplate, {
+      const fields = await generateUsing(aiConfig, messages);
+      const results = await validateAndSanitize(fields, subsetSections, {
         businessName: site.businessInfo.name || "Your Business",
         locale,
         aiConfig,
-        retry: async (field, _retryLocale, _businessName) => {
+        retry: async (field) => {
           const limitText =
             field.constraint.maxWords !== undefined
               ? `maximum ${field.constraint.maxWords} words`
@@ -90,7 +95,7 @@ export async function runTemplateBackfill(siteId: string, newTemplateId: string)
           const retryUser = `Rewrite ONLY field "${field.key}" with ${limitText}. Return the same JSON shape: {"fields":{"${field.key}":"<text>"}}.`;
           try {
             const retryMessages = { system: messages.system, user: retryUser };
-            const retryResult = await generateFields(retryMessages, aiConfig);
+            const retryResult = await generateUsing(aiConfig, retryMessages);
             return retryResult[field.key] ?? "";
           } catch (e) {
             console.error("template backfill retry failed", e);
@@ -100,12 +105,20 @@ export async function runTemplateBackfill(siteId: string, newTemplateId: string)
       });
 
       const regenerated = mergeGeneratedContent(results, site.businessInfo);
-      const nextLocale = { ...existingLocale };
       for (const key of missingSet) {
         const genField = regenerated[key];
-        if (genField) nextLocale[key] = genField;
+        if (!genField) continue;
+        const owner = pageForKey(newTemplate, key);
+        if (!owner) continue;
+        const existingPage = pageContentOf(newContent, owner.id);
+        const nextLocaleFields = { ...(existingPage[locale] ?? {}) };
+        if (nextLocaleFields[key]?.edited) continue;
+        nextLocaleFields[key] = genField;
+        newContent = setPageContent(newContent, owner.id, {
+          ...existingPage,
+          [locale]: nextLocaleFields,
+        });
       }
-      newContent[locale] = nextLocale;
       await updateSite(siteId, { content: newContent });
     } catch (e) {
       console.error(`Template backfill failed for locale ${locale}:`, e);
@@ -134,10 +147,19 @@ export async function runTemplateBackfill(siteId: string, newTemplateId: string)
   });
 }
 
+async function generateUsing(
+  aiConfig: ReturnType<typeof getAiConfig>,
+  messages: { system: string; user: string }
+) {
+  const { generateFields } = await import("@/features/generation/lib/ai-client");
+  return generateFields(messages, aiConfig);
+}
+
 export function hasSiteContent(site: Pick<Site, "activeLanguages" | "content">): boolean {
   for (const locale of site.activeLanguages as Locale[]) {
-    const lc = site.content[locale] ?? {};
-    if (Object.keys(lc).length > 0) return true;
+    for (const page of Object.values(site.content)) {
+      if (Object.keys(page[locale] ?? {}).length > 0) return true;
+    }
   }
   return false;
 }

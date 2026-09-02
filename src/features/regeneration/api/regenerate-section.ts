@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { getSiteForOwner, updateSite } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
+import { findSectionInTemplate } from "@/features/templates/pages";
 
 const regenerateSectionSchema = z.object({ sectionId: z.string().min(1) }).strip();
 
@@ -28,7 +29,7 @@ export async function regenerateSection(
 
   const template = site.templateId ? getTemplate(site.templateId) : null;
   if (!template) return { ok: false, error: "not_found" };
-  if (!template.sections.some((s) => s.id === sectionId)) {
+  if (!findSectionInTemplate(template, sectionId)) {
     return { ok: false, error: "unknown_section" };
   }
 

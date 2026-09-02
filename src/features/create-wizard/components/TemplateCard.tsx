@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { TemplateThumbnail } from "@/features/templates/components/TemplateThumbnail";
 import type { TemplateDefinition } from "@/features/templates/types";
 import type { Locale } from "@/features/sites/types";
 
@@ -17,7 +17,6 @@ export function TemplateCard({
   onSelect: () => void;
 }) {
   const t = useTranslations();
-  const [imageError, setImageError] = useState(false);
 
   return (
     <button
@@ -28,21 +27,12 @@ export function TemplateCard({
         selected ? "border-vexa-red ring-2 ring-vexa-red" : ""
       }`}
     >
-      {imageError ? (
-        <div className="flex aspect-[4/5] w-full items-center justify-center rounded-[4px] bg-paper-2 p-4">
-          <p className="vexa-display text-center text-xl font-semibold text-ink">
-            {template.name[locale]}
-          </p>
-        </div>
-      ) : (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={`/templates/${template.id}/preview.svg`}
-          alt={template.name[locale]}
-          className="aspect-[4/5] w-full rounded-[4px] object-cover"
-          onError={() => setImageError(true)}
-        />
-      )}
+      <TemplateThumbnail
+        templateId={template.id}
+        name={template.name[locale]}
+        accent={template.colors.defaultAccent}
+        className="aspect-[4/5]"
+      />
       <div className="flex items-center justify-between gap-2">
         <div className="flex-1">
           <p className="vexa-display text-lg font-semibold text-ink">{template.name[locale]}</p>

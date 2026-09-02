@@ -1,9 +1,9 @@
-import type { TemplateDefinition, TemplateField } from "@/features/templates/types";
+import type { TemplateField, TemplateSection } from "@/features/templates/types";
 import type { SiteBusinessInfo, Locale } from "@/features/sites/types";
 
 export interface GenerationRequest {
   businessInfo: SiteBusinessInfo;
-  template: TemplateDefinition;
+  sections: TemplateSection[];
   locale: Locale;
   otherSectionValues?: Record<string, string>;
 }

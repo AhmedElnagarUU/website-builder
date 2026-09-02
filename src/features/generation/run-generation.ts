@@ -3,8 +3,10 @@ import { getTemplate } from "@/features/templates/api/list-templates";
 import { generateFields } from "./lib/ai-client";
 import { buildGenerationMessages } from "./lib/prompt-builder";
 import { validateAndSanitize } from "./lib/field-validation";
-import { mergeGeneratedContent } from "./lib/merge-content";
-import type { ContentField, Locale, SiteDTO } from "@/features/sites/types";
+import { mergeGeneratedContent, mergePageContent } from "./lib/merge-content";
+import { pageContentOf, setPageContent } from "@/features/sites/lib/content";
+import type { ContentField, Locale, Site } from "@/features/sites/types";
+import type { TemplatePage } from "@/features/templates/types";
 
 export function getAiConfig() {
   const geminiKey = process.env.GEMINI_KEY;
@@ -38,12 +40,63 @@ export function classifyError(e: unknown): "timeout" | "provider_error" | "bad_r
   return "provider_error";
 }
 
-export async function runGeneration(siteId: string): Promise<void> {
+export interface AiConfig {
+  baseUrl: string;
+  apiKey: string;
+  model: string;
+  extraHeaders?: Record<string, string>;
+  useStructuredOutput?: boolean;
+}
+
+export async function generatePage(
+  site: Pick<Site, "businessInfo">,
+  page: TemplatePage,
+  locale: Locale,
+  aiConfig: AiConfig,
+  otherValues?: Record<string, string>
+): Promise<{ content: Record<string, ContentField>; error: string | null }> {
+  try {
+    const messages = buildGenerationMessages({
+      businessInfo: site.businessInfo,
+      sections: page.sections,
+      locale,
+      otherSectionValues: otherValues,
+    });
+
+    const fields = await generateFields(messages, aiConfig);
+
+    const results = await validateAndSanitize(fields, page.sections, {
+      businessName: site.businessInfo.name || "Your Business",
+      locale,
+      aiConfig,
+      retry: async (field) => {
+        const limitText =
+          field.constraint.maxWords !== undefined
+            ? `maximum ${field.constraint.maxWords} words`
+            : `maximum ${field.constraint.maxChars ?? "any"} characters`;
+        const retryUser = `Rewrite ONLY field "${field.key}" with ${limitText}. Return the same JSON shape: {"fields":{"${field.key}":"<text>"}}.`;
+        try {
+          const retryMessages = { system: messages.system, user: retryUser };
+          const retryResult = await generateFields(retryMessages, aiConfig);
+          return retryResult[field.key] ?? "";
+        } catch (e) {
+          console.error("retry failed", e);
+          return "";
+        }
+      },
+    });
+
+    return { content: mergeGeneratedContent(results, site.businessInfo), error: null };
+  } catch (e) {
+    console.error(`Generation failed for page ${page.id} locale ${locale}:`, e);
+    return { content: {}, error: classifyError(e) };
+  }
+}
+
+export async function runGeneration(siteId: string, pageIds?: string[]): Promise<void> {
   const start = Date.now();
   const aiConfig = getAiConfig();
 
-  // Get the current site state via the repository
-  // We need to import here to avoid circular deps
   const { getSiteById } = await import("@/features/sites/repository");
 
   const site = await getSiteById(siteId);
@@ -60,59 +113,40 @@ export async function runGeneration(siteId: string): Promise<void> {
   }
 
   const locales = site.activeLanguages as Locale[];
-  const newContent: SiteDTO["content"] = { ...(site.content as SiteDTO["content"]) };
+  const pages = pageIds
+    ? template.pages.filter((p) => pageIds.includes(p.id))
+    : template.pages;
 
+  let newContent = { ...site.content };
   let lastError: string | null = null;
 
-  for (const locale of locales) {
-    try {
-      const messages = buildGenerationMessages({
-        businessInfo: site.businessInfo,
-        template,
-        locale,
-      });
-      const fields = await generateFields(messages, aiConfig);
-
-      const results = await validateAndSanitize(fields, template, {
-        businessName: site.businessInfo.name || "Your Business",
-        locale,
-        aiConfig,
-        retry: async (field, _retryLocale, _businessName) => {
-          const limitText =
-            field.constraint.maxWords !== undefined
-              ? `maximum ${field.constraint.maxWords} words`
-              : `maximum ${field.constraint.maxChars ?? "any"} characters`;
-          const retryUser = `Rewrite ONLY field "${field.key}" with ${limitText}. Return the same JSON shape: {"fields":{"${field.key}":"<text>"}}.`;
-          try {
-            const retryMessages = {
-              system: messages.system,
-              user: retryUser,
-            };
-            const retryResult = await generateFields(retryMessages, aiConfig);
-            return retryResult[field.key] ?? "";
-          } catch (e) {
-            console.error("retry failed", e);
-            return "";
+  for (const page of pages) {
+    for (const locale of locales) {
+      const otherValues: Record<string, string> = {};
+      for (const p of template.pages) {
+        if (p.id === page.id) continue;
+        for (const s of p.sections) {
+          for (const f of s.fields) {
+            otherValues[f.key] = pageContentOf(newContent, p.id)[locale]?.[f.key]?.value ?? "";
           }
-        },
-      });
+        }
+      }
 
-      const merged: Record<string, ContentField> = mergeGeneratedContent(results, site.businessInfo);
-      newContent[locale] = merged;
-
-      // Persist partial progress after each locale
-      await updateSite(siteId, {
-        content: newContent,
+      const result = await generatePage(site, page, locale, aiConfig, otherValues);
+      if (result.error) {
+        lastError = result.error;
+        break;
+      }
+      const existingPage = pageContentOf(newContent, page.id);
+      newContent = setPageContent(newContent, page.id, {
+        ...existingPage,
+        [locale]: mergePageContent(existingPage[locale] ?? {}, result.content),
       });
-    } catch (e) {
-      console.error(`Generation failed for locale ${locale}:`, e);
-      lastError = classifyError(e);
-      break;
     }
+    if (lastError) break;
   }
 
   if (lastError) {
-    // Mark failed but keep partial content
     await updateSite(siteId, {
       content: newContent,
       generation: {
@@ -125,7 +159,6 @@ export async function runGeneration(siteId: string): Promise<void> {
     return;
   }
 
-  // Success side-effects
   const brandColor = site.brandColor === "" ? template.colors.defaultAccent : site.brandColor;
   const hasUnpublishedChanges = site.publishedSnapshot !== null ? true : site.hasUnpublishedChanges;
 

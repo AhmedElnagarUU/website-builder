@@ -117,14 +117,14 @@
     },
     "langs": {
       "tab": "Two voices",
-      "title": "English. Arabic. <em>The same care for both.</em>",
+      "title": "English and Arabic. <em>One brand, one voice.</em>",
       "en": {
-        "title": "\"Bread that knows your name.\"",
-        "body": "We've been baking at the same corner of Al Malqa since 2014. The saj is the same recipe my mother used."
+        "title": "A story that feels like your business.",
+        "body": "We’ve been serving our community from the same corner since 2014, with the same care and the same recipe that built our reputation."
       },
       "ar": {
-        "title": "«خبز يعرف اسمك»",
-        "body": "نخبز في نفس ركن الملقا منذ 2014. الصاج على وصفة أمي — نفس الوقت، نفس الملح، نفس الحب."
+        "title": "قصة تبدو مثل تجارتك.",
+        "body": "نخدم مجتمعنا من نفس الزاوية منذ 2014، بنفس العناية ونفس الوصفة التي بنت اسمنا."
       }
     },
     "proof": {
@@ -202,7 +202,25 @@
       }
     },
     "languages": "Languages",
-    "updated": "Updated"
+    "updated": "Updated",
+    "browse_templates": "Browse templates",
+    "gallery": {
+      "title": "Template Gallery",
+      "subtitle": "Browse every website style we offer. Each one has a name, a category, and a look — pick what fits your business.",
+      "style": "Style",
+      "font": {
+        "classic": "Classic",
+        "modern": "Modern",
+        "warm": "Warm"
+      },
+      "category": {
+        "services": "Services",
+        "restaurant": "Restaurant",
+        "retail": "Retail",
+        "professional": "Professional",
+        "portfolio": "Portfolio"
+      }
+    }
   },
   "auth": {
     "sign_in": {
@@ -317,11 +335,23 @@
   "editor": {
     "device": {
       "desktop": "Desktop",
+      "tablet": "Tablet",
       "mobile": "Mobile"
     },
     "tab": {
       "editing_en": "Editing: English",
-      "editing_ar": "Editing: Arabic"
+      "editing_ar": "Editing: Arabic",
+      "pages": "Pages"
+    },
+    "nav": {
+      "open": "Open menu",
+      "close": "Close menu",
+      "menu": "Menu"
+    },
+    "live": {
+      "live": "Live",
+      "not_live": "Not live",
+      "hint": "The live URL serves the last published version. Newer edits are not live yet."
     },
     "edit": {
       "save_error": "Couldn't save — try again",
@@ -338,7 +368,21 @@
       "low_res": "This image may look blurry when enlarged.",
       "reposition": "Position",
       "upload_error": "Couldn't upload — try again",
-      "uploading": "Uploading…"
+      "uploading": "Uploading…",
+      "ready": "Ready to upload",
+      "done": "Upload complete",
+      "confirm_upload": "Upload",
+      "cancel": "Cancel",
+      "retry": "Retry",
+      "error": {
+        "network": "Network error — check your connection and try again.",
+        "config_error": "Image storage isn't configured correctly. Contact support.",
+        "unauthorized": "You're not authorized to upload to this slot.",
+        "not_found": "Image slot not found.",
+        "unknown_slot": "Unknown image slot.",
+        "unsupported_format": "This image format isn't supported.",
+        "bucket_rejected": "The image storage server rejected the upload — check storage permissions (CORS)."
+      }
     },
     "regenerate": {
       "site": "Regenerate site",
@@ -350,7 +394,16 @@
       "change": "Change template",
       "notice": "Some content will be rewritten to fit the new design.",
       "apply": "Apply new template",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "current": "Current",
+      "pick_hint": "Pick a style",
+      "confirm_title": "Apply this template?",
+      "confirm_explanation": "Applying this template regenerates your website copy from your business answers. Content you edited yourself will be kept.",
+      "generating": "Applying template…",
+      "progress": "{done} of {total} languages done",
+      "failed": "Something went wrong applying the template.",
+      "retry": "Try again",
+      "close": "Close"
     }
   },
   "publish": {
@@ -365,5 +418,16 @@
     "republish_confirm": "Republish? Your latest edits will replace the live site.",
     "republish_btn": "Republish",
     "updated_at": "Last published"
+  },
+  "site": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ]
   }
 }

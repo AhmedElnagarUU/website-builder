@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 
-export type DeviceMode = "desktop" | "mobile";
+export type DeviceMode = "desktop" | "tablet" | "mobile";
 
 export function DeviceToggle({
   mode,
@@ -14,6 +14,7 @@ export function DeviceToggle({
   const t = useTranslations();
   const options: { value: DeviceMode; key: string }[] = [
     { value: "desktop", key: "editor.device.desktop" },
+    { value: "tablet", key: "editor.device.tablet" },
     { value: "mobile", key: "editor.device.mobile" },
   ];
 

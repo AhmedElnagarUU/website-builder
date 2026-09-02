@@ -1,14 +1,8 @@
-import type { Locale, Site } from "@/features/sites/types";
+import type { Site, Locale } from "@/features/sites/types";
+import { countEditedFieldsInContent } from "@/features/sites/lib/content";
 
 export function countEditedFields(site: Pick<Site, "activeLanguages" | "content">): number {
-  let count = 0;
-  for (const locale of site.activeLanguages as Locale[]) {
-    const localeContent = site.content[locale] ?? {};
-    for (const field of Object.values(localeContent)) {
-      if (field.edited) count++;
-    }
-  }
-  return count;
+  return countEditedFieldsInContent(site.content);
 }
 
 export type RegenerateImpactResult =
