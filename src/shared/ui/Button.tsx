@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { forwardRef, type ButtonHTMLAttributes } from "react";
 
@@ -17,10 +17,10 @@ export const Button = forwardRef<
 
   const variants: Record<Variant, string> = {
     primary:
-      "border-vexa-red bg-vexa-red text-paper hover:border-ink hover:bg-ink",
+      "border-mono-red bg-mono-red text-paper hover:border-ink hover:bg-ink",
     default: "border-ink bg-transparent text-ink hover:bg-ink hover:text-paper",
     ghost:
-      "border-transparent bg-transparent text-ink hover:text-vexa-red",
+      "border-transparent bg-transparent text-ink hover:text-mono-red",
   };
 
   return (

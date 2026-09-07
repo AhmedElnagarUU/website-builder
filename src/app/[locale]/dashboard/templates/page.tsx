@@ -1,4 +1,4 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
+﻿import { getTranslations, setRequestLocale } from "next-intl/server";
 import { requireSession } from "@/features/auth/lib/session";
 import { TemplateGallery } from "@/features/templates/components/TemplateGallery";
 import { isLocale } from "@/shared/i18n/config";
@@ -17,7 +17,7 @@ export default async function DashboardTemplatesPage({
   return (
     <section className="container mx-auto max-w-5xl px-4 py-10 sm:px-6">
       <div className="mb-8">
-        <h1 className="vexa-display text-5xl font-bold leading-none tracking-tight text-ink">
+        <h1 className="mono-display text-5xl font-bold leading-none tracking-tight text-ink">
           {t("title")}
         </h1>
         <p className="font-serif2 mt-3 max-w-xl text-ink-2">{t("subtitle")}</p>

@@ -1,8 +1,8 @@
-# Milestone 05 — Editor Chrome (Vexo style)
+﻿# Milestone 05 — Editor Chrome (Monomastic style)
 
 ## Goal
 
-Restyle the editor experience (built in Epic 04) with the Vexo design language: the `EditorShell` top bar (language tabs, desktop/mobile toggle, saved indicator, brand color control, action area), the preview surface's affordances (empty-placeholder blocks, "AI suggested — review this" badges), and related control surfaces (text-edit popover, image-slot UX). Visual only — the renderer engine (`shared/site-render`) and ALL editor behavior/APIs are untouched. Generated user sites keep their own template styling (EPIC.md out-of-scope: this does NOT restyle end-user sites).
+Restyle the editor experience (built in Epic 04) with the Monomastic design language: the `EditorShell` top bar (language tabs, desktop/mobile toggle, saved indicator, brand color control, action area), the preview surface's affordances (empty-placeholder blocks, "AI suggested — review this" badges), and related control surfaces (text-edit popover, image-slot UX). Visual only — the renderer engine (`shared/site-render`) and ALL editor behavior/APIs are untouched. Generated user sites keep their own template styling (EPIC.md out-of-scope: this does NOT restyle end-user sites).
 
 ## Tasks (execution order)
 

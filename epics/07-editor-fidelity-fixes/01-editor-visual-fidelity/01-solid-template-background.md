@@ -1,4 +1,4 @@
-# Task — Solid, opaque template background (no transparent look)
+﻿# Task — Solid, opaque template background (no transparent look)
 
 ## Title
 Make the template render with a solid opaque background in the editor and live site
@@ -12,7 +12,7 @@ Fix the template background so the rendered site is always visually opaque and s
 ## Technical details
 - File: `src/shared/site-render/SiteRenderer.tsx` (the root `<div>`), plus `src/app/live/[slug]/[lang]/page.tsx` and `src/features/editor/components/EditorShell.tsx` (their wrapper divs).
 - Change the renderer root to render a solid opaque background and a real minimum height (`min-h-screen`-style behavior) rather than depending on a parent height. Keep clipping off so the page can still scroll for long content.
-- In `EditorShell.tsx`, the outer preview frame currently uses `bg-paper/60`; make the template area fully opaque (`bg-background`) so nothing behind it shows through. Do NOT change the vexa page/paper chrome of the app itself — only the template preview surface.
+- In `EditorShell.tsx`, the outer preview frame currently uses `bg-paper/60`; make the template area fully opaque (`bg-background`) so nothing behind it shows through. Do NOT change the monomastic page/paper chrome of the app itself — only the template preview surface.
 - Must behave identically in editMode and live (single `SiteRenderer`).
 
 ## Dependencies

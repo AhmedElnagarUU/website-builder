@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { F, SlotImage } from "../internals";
 import { sectionImages } from "./types";
-import { useSiteNav } from "../context";
+import { useSiteNav, useSiteStyle, useSiteBrand } from "../context";
 import type { SectionRenderProps } from "./types";
 
 function MenuIcon() {
@@ -48,6 +48,9 @@ export function HeaderSection({ section, content, businessInfo, images }: Sectio
   const t = useTranslations();
   const [menuOpen, setMenuOpen] = useState(false);
   const { pages, activePageId, pageBaseHref, onNavigatePage, locale } = useSiteNav();
+  const style = useSiteStyle();
+  const brand = useSiteBrand();
+  const edge = style.theme.accentRole === "edge";
 
   const logoSlot = sectionImages(section).find((s) => s.slotId === "logo");
   const close = () => setMenuOpen(false);
@@ -84,11 +87,27 @@ export function HeaderSection({ section, content, businessInfo, images }: Sectio
     );
   };
 
+  const linkClass = (active: boolean) => {
+    const base = "site-heading-sans relative inline-block py-1 text-sm font-semibold";
+    if (active) {
+      return edge
+        ? `${base} text-foreground`
+        : `${base} text-foreground`;
+    }
+    return `${base} text-muted-foreground transition-colors hover:text-foreground`;
+  };
+
   const renderNavLinks = () =>
     pages.map((page) => {
       const fieldKey = `nav_${page.id}`;
       const fallback = page.name[locale];
       const active = page.id === activePageId;
+      const underline = active ? (
+        <span
+          className="absolute inset-x-0 -bottom-1 h-[3px] rounded-full"
+          style={{ backgroundColor: brand.brandColor }}
+        />
+      ) : null;
       return (
         <a
           key={page.id}
@@ -102,21 +121,18 @@ export function HeaderSection({ section, content, businessInfo, images }: Sectio
                 }
               : close
           }
-          className={`relative inline-block py-1 ${
-            active
-              ? "font-semibold underline underline-offset-4"
-              : "text-muted-foreground hover:text-ink"
-          }`}
+          className={linkClass(active)}
           aria-current={active ? "page" : undefined}
         >
           <F fieldKey={fieldKey} content={content} fallback={fallback} />
+          {underline}
         </a>
       );
     });
 
   return (
     <header className="bg-background">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-5">
         <HomeLink className="flex items-center gap-3">
           {logoSlot && (
             <SlotImage
@@ -127,9 +143,11 @@ export function HeaderSection({ section, content, businessInfo, images }: Sectio
               alt="logo"
             />
           )}
-          <span className="text-lg font-bold">{businessInfo.name}</span>
+          <span className="site-heading-sans text-lg font-bold tracking-tight">
+            {businessInfo.name}
+          </span>
         </HomeLink>
-        <nav className="hidden items-center gap-4 text-sm @3xl:flex">
+        <nav className="hidden items-center gap-6 text-sm @3xl:flex">
           {renderNavLinks()}
         </nav>
         <button
@@ -138,7 +156,7 @@ export function HeaderSection({ section, content, businessInfo, images }: Sectio
           aria-expanded={menuOpen}
           aria-label={menuOpen ? t("editor.nav.close") : t("editor.nav.open")}
           title={t("editor.nav.menu")}
-          className="@3xl:hidden inline-flex h-10 w-10 shrink-0 items-center justify-center rounded border border-input bg-background text-ink"
+          className="@3xl:hidden inline-flex h-10 w-10 shrink-0 items-center justify-center rounded border border-input bg-background text-foreground"
         >
           {menuOpen ? <CloseIcon /> : <MenuIcon />}
         </button>

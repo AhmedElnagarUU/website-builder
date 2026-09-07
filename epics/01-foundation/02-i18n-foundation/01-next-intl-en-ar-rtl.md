@@ -25,7 +25,7 @@ The product serves non-technical business owners in English and Arabic from day 
 
 | Key | en | ar |
 |---|---|---|
-| `app.name` | `SiteCraft` | `سايت كرافت` |
+| `app.name` | `Monomastic` | `Monomastic` |
 | `common.loading` | `Loading…` | `جارٍ التحميل…` |
 | `common.error.generic` | `Something went wrong. Please try again.` | `حدث خطأ ما. حاول مرة أخرى.` |
 | `home.placeholder` | `The website builder starts here.` | `يبدأ من هنا منشئ المواقع.` |

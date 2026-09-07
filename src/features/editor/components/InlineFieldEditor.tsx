@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -56,7 +56,7 @@ export function InlineFieldEditor({
 
   const common =
     "w-full rounded-[2px] border-2 bg-paper px-2 py-1 font-body text-sm text-ink outline-none " +
-    (tooLong ? "border-vexa-red" : "border-vexa-red/70");
+    (tooLong ? "border-mono-red" : "border-mono-red/70");
 
   return (
     <span className="block">
@@ -91,7 +91,7 @@ export function InlineFieldEditor({
         />
       )}
       {tooLong && (
-        <span className="mt-1 block text-xs font-medium text-vexa-red" role="alert">
+        <span className="mt-1 block text-xs font-medium text-mono-red" role="alert">
           {t("editor.edit.field_too_long")}
         </span>
       )}

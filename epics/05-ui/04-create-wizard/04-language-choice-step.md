@@ -1,8 +1,8 @@
-# Task 04 — Language choice step restyle
+﻿# Task 04 — Language choice step restyle
 
 ## Context
 
-Epic 02 built the language-choice screen (EN / AR / Both, with the location-based default suggestion and explicit confirmation). This task restyles its interior to the Vexo language within the shared shell. The two language options become paper `Card`s (mirroring the source's `.lang-card` with its EN/AR pairing — the Arabic card shows the AR serif treatment exactly like the source), the default suggestion is a `StickyNote`/`TapeTag`, and selection state is a clear `red` mark. Behavior untouched.
+Epic 02 built the language-choice screen (EN / AR / Both, with the location-based default suggestion and explicit confirmation). This task restyles its interior to the Monomastic language within the shared shell. The two language options become paper `Card`s (mirroring the source's `.lang-card` with its EN/AR pairing — the Arabic card shows the AR serif treatment exactly like the source), the default suggestion is a `StickyNote`/`TapeTag`, and selection state is a clear `red` mark. Behavior untouched.
 
 ## Scope
 

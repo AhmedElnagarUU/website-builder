@@ -1,4 +1,4 @@
-# COMPACTION1.md — Final
+﻿# COMPACTION1.md — Final
 # (Rewrite reflecting full MVP completion: all 6 epics implemented and verified; publishing/live-serving live)
 
 ## Objective
@@ -24,7 +24,7 @@
 ### M02 — Public Live Renderer (`/live/[slug]`, EN + AR first-class)
 - `src/features/publishing/get-published-site.ts` — `getPublishedSiteBySlug(slug)`: **public (no session)**; `not_found` (unknown slug) / `not_live` (snapshot null OR `status!=="published"`); returns only `{ snapshot, businessInfo, siteId }` — never the editable content.
 - `src/features/sites/repository.ts` — added `getSiteBySlug(slug)` (uses the unique `slug` index).
-- **Root layout refactor (architectural requirement):** added `src/app/layout.tsx` (owns `<html lang="en" dir="ltr" className={fontVariables}>` + `<body>` + `./globals.css`) and refactored `src/app/[locale]/layout.tsx` into a nested layout (moved `lang`/`dir`/`vexa-page` onto a wrapper `<div>`; keeps `NextIntlClientProvider` + `Navbar` + `main` + `Footer`). Required because `/live` sits outside `[locale]` and App Router allows only one html/body (the root).
+- **Root layout refactor (architectural requirement):** added `src/app/layout.tsx` (owns `<html lang="en" dir="ltr" className={fontVariables}>` + `<body>` + `./globals.css`) and refactored `src/app/[locale]/layout.tsx` into a nested layout (moved `lang`/`dir`/`mono-page` onto a wrapper `<div>`; keeps `NextIntlClientProvider` + `Navbar` + `main` + `Footer`). Required because `/live` sits outside `[locale]` and App Router allows only one html/body (the root).
 - `src/app/live/layout.tsx` — minimal public shell (metadata only, NO product auth/nav chrome).
 - `src/app/live/[slug]/page.tsx` — bare URL redirects to `/live/{slug}/en` (default locale); notFound if not live.
 - `src/app/live/[slug]/[lang]/page.tsx` — server page rendering the published snapshot via the single `SiteRenderer` (`editMode={false}`, no edit callbacks) inside a `dir={dirFor(lang)}` wrapper (Arabic RTL first-class). Per-locale `generateMetadata` (title/description from `nav_home`/hero fields, canonical/OG via `nextUrl`). **i18n context fix:** wraps render in `NextIntlClientProvider locale={lang} messages={...}` because `/live` is outside the `[locale]` layout (without it `useTranslations` threw 500 on live pages — a real regression caught during M04 verification).

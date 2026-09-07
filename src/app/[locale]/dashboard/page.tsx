@@ -1,10 +1,13 @@
-import { getTranslations, setRequestLocale } from "next-intl/server";
+﻿import { getTranslations, setRequestLocale } from "next-intl/server";
 import { requireSession } from "@/features/auth/lib/session";
 import { listSitesByOwner, toSiteDTO } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
+import { getSiteAnalytics } from "@/features/analytics/api/get-site-analytics";
 import { CreateSiteButton } from "@/features/dashboard/components/CreateSiteButton";
 import { SiteCard } from "@/features/dashboard/components/SiteCard";
+import { SiteAnalyticsPanel } from "@/features/dashboard/components/SiteAnalyticsPanel";
 import type { SiteDTO, WizardStep } from "@/features/sites/types";
+import type { SiteAnalyticsSummary } from "@/features/analytics/types";
 
 function siteStepHref(locale: string, site: SiteDTO): string {
   const base = `/${locale}/create`;
@@ -50,16 +53,37 @@ export default async function DashboardPage({
     };
   });
 
+  const publishedSites = sites.filter((s) => s.status === "published");
+  const analyticsResults = await Promise.all(
+    publishedSites.map(async (site) => {
+      const result = await getSiteAnalytics(site._id);
+      return { siteId: site._id, templateId: site.templateId, result };
+    })
+  );
+
+  const analyticsMap = new Map<
+    string,
+    { templateId: string | null; data: SiteAnalyticsSummary }
+  >();
+  for (const { siteId, templateId, result } of analyticsResults) {
+    if (result.ok) {
+      analyticsMap.set(siteId, {
+        templateId: templateId ?? null,
+        data: result.data,
+      });
+    }
+  }
+
   return (
     <section className="container mx-auto max-w-5xl px-4 py-10 sm:px-6">
       <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-        <h1 className="vexa-display text-5xl font-bold leading-none tracking-tight text-ink">
+        <h1 className="mono-display text-5xl font-bold leading-none tracking-tight text-ink">
           {t("headline")}
         </h1>
         <div className="flex items-center gap-3">
           <a
             href={`/${locale}/dashboard/templates`}
-            className="vexa-display inline-flex items-center gap-1 rounded-full border-2 border-ink px-4 py-2 text-lg font-semibold text-ink transition-colors hover:bg-ink hover:text-paper"
+            className="mono-display inline-flex items-center gap-1 rounded-full border-2 border-ink px-4 py-2 text-lg font-semibold text-ink transition-colors hover:bg-ink hover:text-paper"
           >
             {t("browse_templates")}
           </a>
@@ -68,8 +92,8 @@ export default async function DashboardPage({
       </div>
 
       {cards.length === 0 ? (
-        <div className="rounded-[4px] border-[1.5px] border-ink bg-paper-2 p-10 text-center shadow-vexa">
-          <p className="vexa-display text-3xl font-bold text-ink">
+        <div className="rounded-[4px] border-[1.5px] border-ink bg-paper-2 p-10 text-center shadow-mono">
+          <p className="mono-display text-3xl font-bold text-ink">
             {t("empty_title")}
           </p>
           <p className="font-serif2 mx-auto mt-3 max-w-md text-ink-2">
@@ -84,6 +108,23 @@ export default async function DashboardPage({
           {cards.map((c) => (
             <SiteCard key={c.site._id} {...c} locale={locale} />
           ))}
+        </div>
+      )}
+
+      {publishedSites.length > 0 && (
+        <div className="mt-10 space-y-6">
+          {publishedSites.map((site) => {
+            const entry = analyticsMap.get(site._id);
+            if (!entry) return null;
+            return (
+              <SiteAnalyticsPanel
+                key={site._id}
+                templateId={entry.templateId}
+                analytics={entry.data}
+                locale={locale}
+              />
+            );
+          })}
         </div>
       )}
     </section>

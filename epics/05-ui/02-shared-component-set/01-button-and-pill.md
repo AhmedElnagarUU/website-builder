@@ -1,4 +1,4 @@
-# Task 01 — Shared button & pill component (Vexo)
+﻿# Task 01 — Shared button & pill component (Monomastic)
 
 ## Context
 
@@ -21,7 +21,7 @@ src/shared/ui/button.css (or tailwind util)  // styling via M01 tokens
 
 Design mapping (bind to source):
 - Base pill: `rounded-[999px]`, `border-2 border-ink`, `px-5 py-2.5`, Caveat/600 font, inline-flex gap-2, transition.
-- Variant `primary`: `bg-vexa-red text-paper border-vexa-red`, hover → `bg-ink border-ink text-paper`.
+- Variant `primary`: `bg-mono-red text-paper border-mono-red`, hover → `bg-ink border-ink text-paper`.
 - Variant `default` (secondary): transparent bg, `text-ink`, hover → `bg-ink text-paper`.
 - Variant `ghost`/`quiet`: no border, ink text, red hover text (mirrors `nav-links a:hover`).
 - `:focus-visible` → `outline-2 outline-red outline-offset-3` (from base layer), reduced-motion handled globally.

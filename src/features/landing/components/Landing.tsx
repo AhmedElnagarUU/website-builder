@@ -6,7 +6,7 @@ import { Proof } from "./Proof";
 import { FinalCta } from "./FinalCta";
 
 /**
- * Public marketing landing page (variant-14 → SiteCraft).
+ * Public marketing landing page (variant-14 → Monomastic).
  * Rendered for logged-out visitors on the home route; signed-in users are
  * redirected to the dashboard by the calling page.
  */

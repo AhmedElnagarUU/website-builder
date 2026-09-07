@@ -1,8 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { rankTemplatesByCategory } from "@/features/templates/api/list-templates";
+import { TemplatePreviewLink } from "@/features/templates/components/TemplatePreviewLink";
 import { TemplateThumbnail } from "@/features/templates/components/TemplateThumbnail";
 import { Button } from "@/shared/ui/Button";
 import { TapeTag } from "@/shared/ui/TapeTag";
@@ -135,10 +136,10 @@ export function ChangeTemplateControl({
     <>
       {(working || generationFailed) && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="vexa-surface flex w-full max-w-sm flex-col items-center gap-4 p-6 text-center">
+          <div className="mono-surface flex w-full max-w-sm flex-col items-center gap-4 p-6 text-center">
             {generationFailed ? (
               <>
-                <p role="alert" className="vexa-display text-lg font-semibold text-ink">
+                <p role="alert" className="mono-display text-lg font-semibold text-ink">
                   {t("editor.template.failed")}
                 </p>
                 <div className="flex gap-2">
@@ -154,9 +155,9 @@ export function ChangeTemplateControl({
               <>
                 <div
                   aria-hidden
-                  className="h-8 w-8 animate-spin rounded-full border-2 border-dashed border-vexa-red"
+                  className="h-8 w-8 animate-spin rounded-full border-2 border-dashed border-mono-red"
                 />
-                <p className="vexa-display text-lg font-semibold text-ink">
+                <p className="mono-display text-lg font-semibold text-ink">
                   {t("editor.template.generating")}
                 </p>
                 {status.localesTotal > 0 && (
@@ -168,7 +169,7 @@ export function ChangeTemplateControl({
                   </p>
                 )}
                 {status.status === "failed" && (
-                  <p role="alert" className="text-sm text-vexa-red">
+                  <p role="alert" className="text-sm text-mono-red">
                     {t("editor.template.failed")}
                   </p>
                 )}
@@ -184,11 +185,11 @@ export function ChangeTemplateControl({
           onClick={() => setPickerOpen(false)}
         >
           <div
-            className="vexa-surface flex max-h-[85vh] w-full max-w-3xl flex-col gap-4 overflow-hidden p-6"
+            className="mono-surface flex max-h-[85vh] w-full max-w-3xl flex-col gap-4 overflow-hidden p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between gap-4">
-              <h2 className="vexa-display text-xl font-semibold text-ink">
+              <h2 className="mono-display text-xl font-semibold text-ink">
                 {t("wizard.templates.title")}
               </h2>
               <TapeTag>{t("editor.template.pick_hint")}</TapeTag>
@@ -197,40 +198,48 @@ export function ChangeTemplateControl({
               {templates.map((tpl) => {
                 const isCurrent = tpl.id === currentTemplateId;
                 return (
-                  <button
+                  <div
                     key={tpl.id}
-                    type="button"
-                    disabled={isCurrent}
-                    onClick={() => applyTemplate(tpl.id)}
-                    className={`group flex flex-col rounded-[4px] border-[1.5px] bg-card p-2 text-start shadow-vexa transition-all hover:-translate-y-0.5 ${
-                      isCurrent ? "border-ink/40 opacity-70" : "border-ink hover:border-vexa-red"
+                    className={`flex flex-col rounded-[4px] border-[1.5px] bg-card p-2 shadow-mono transition-all ${
+                      isCurrent ? "border-ink/40 opacity-70" : "border-ink hover:border-mono-red"
                     }`}
                   >
-                    <TemplateThumbnail
-                      templateId={tpl.id}
-                      name={tpl.name[locale]}
-                      accent={tpl.colors.defaultAccent}
-                      className="aspect-[4/3]"
-                    />
-                    <div className="mt-2 flex items-center justify-between gap-2">
-                      <span className="vexa-display block text-sm font-semibold text-ink">
-                        {tpl.name[locale]}
+                    <button
+                      type="button"
+                      disabled={isCurrent}
+                      onClick={() => applyTemplate(tpl.id)}
+                      className="flex flex-1 flex-col text-start"
+                    >
+                      <TemplateThumbnail
+                        templateId={tpl.id}
+                        name={tpl.name[locale]}
+                        accent={tpl.colors.defaultAccent}
+                        screenshot={tpl.screenshot}
+                        className="aspect-[4/3]"
+                      />
+                      <div className="mt-2 flex items-center justify-between gap-2">
+                        <span className="mono-display block text-sm font-semibold text-ink">
+                          {tpl.name[locale]}
+                        </span>
+                      </div>
+                      <span className="font-serif2 mt-0.5 block text-xs leading-snug text-ink-2">
+                        {tpl.description[locale]}
                       </span>
+                      {isCurrent && (
+                        <span className="mt-2 self-start rounded-full bg-ink px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-paper">
+                          {t("editor.template.current")}
+                        </span>
+                      )}
+                    </button>
+                    <div className="mt-2 border-t-[1.5px] border-dashed border-ink/25 pt-2">
+                      <TemplatePreviewLink template={tpl} />
                     </div>
-                    <span className="font-serif2 mt-0.5 block text-xs leading-snug text-ink-2">
-                      {tpl.description[locale]}
-                    </span>
-                    {isCurrent && (
-                      <span className="mt-2 self-start rounded-full bg-ink px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-paper">
-                        {t("editor.template.current")}
-                      </span>
-                    )}
-                  </button>
+                  </div>
                 );
               })}
             </div>
             {error && (
-              <p role="alert" className="text-sm font-medium text-vexa-red">
+              <p role="alert" className="text-sm font-medium text-mono-red">
                 {error}
               </p>
             )}
@@ -249,10 +258,10 @@ export function ChangeTemplateControl({
           onClick={() => setPendingTemplate(null)}
         >
           <div
-            className="vexa-surface w-full max-w-md p-6"
+            className="mono-surface w-full max-w-md p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="vexa-display text-lg font-semibold text-ink">
+            <h3 className="mono-display text-lg font-semibold text-ink">
               {t("editor.template.confirm_title")}
             </h3>
             {pendingTemplate && (

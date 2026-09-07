@@ -1,10 +1,10 @@
-# Task — Intentional design polish pass
+﻿# Task — Intentional design polish pass
 
 ## Title
 Strengthen each template's visual design so it no longer reads as generic
 
 ## Context
-Templates currently feel basic/templated. Within the shared component system (`src/shared/site-render/sections/*`, vexa design tokens, `template.style: { fontPair, radius, imagery }`, `defaultAccent`), each template should get a deliberate, distinctive visual identity.
+Templates currently feel basic/templated. Within the shared component system (`src/shared/site-render/sections/*`, monomastic design tokens, `template.style: { fontPair, radius, imagery }`, `defaultAccent`), each template should get a deliberate, distinctive visual identity.
 
 ## Scope
 A design-only pass over the templates and their sections: distinctive composition, spacing, imagery treatment, typography pairing, and accent use — per template — without changing the data model or adding structural editing.

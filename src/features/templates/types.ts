@@ -45,10 +45,26 @@ export interface TemplateSection {
   memberCount?: number;
 }
 
+export type ThemeKey =
+  | "corporate"
+  | "bold"
+  | "warm"
+  | "retail"
+  | "creative";
+
+export interface TemplateTheme {
+  key: ThemeKey;
+  surface: "light" | "deep";
+  headingFont: "serif" | "sans";
+  hero: "photo-bleed" | "split-light" | "split-deep";
+  accentRole: "fill" | "edge";
+}
+
 export interface TemplateStyle {
   fontPair: "classic" | "modern" | "warm";
   radius: "sharp" | "soft";
   imagery: "photo" | "minimal";
+  theme: TemplateTheme;
 }
 
 export interface BilingualText {
@@ -73,4 +89,5 @@ export interface TemplateDefinition {
   style: TemplateStyle;
   colors: { defaultAccent: string };
   pages: TemplatePage[];
+  screenshot?: string;
 }

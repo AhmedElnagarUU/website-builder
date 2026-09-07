@@ -1,4 +1,4 @@
-# Milestone 04 — Template Catalog v2: Default Pages, Real Images, Design Polish
+﻿# Milestone 04 — Template Catalog v2: Default Pages, Real Images, Design Polish
 
 ## Goal
 Give every template a meaningful default page set (Home always plus About/Services/Contact and category-specific extras like Menu/Gallery/Pricing/FAQ/Team/Hours), real photographic imagery instead of SVG placeholders, and a distinctive design pass so templates no longer look generic.
@@ -6,7 +6,7 @@ Give every template a meaningful default page set (Home always plus About/Servic
 ## Shared context
 - Existing templates (10) live in `src/features/templates/catalog.ts` with SVG default assets in `public/templates/defaults/<category>/*.svg` (see `logoSlot`/`heroImageSlot`/`gallerySlot`).
 - **Real images:** replace SVG defaults with tasteful real imagery. Self-host under `public/templates/real/<category>/…` (or reference a royalty-free static set). **No new runtime dependency** and no network-dependency at render time (SERVER/CLIENT must not fetch images from a third party at runtime). Keep `minWidth`/`minHeight`/`aspectRatio` per slot.
-- Design pass: distinct visual identity per template (typography via existing `fontPair`, radius, imagery, accent color) — use the repo's vexa design tokens and the `frontend-design` skill.
+- Design pass: distinct visual identity per template (typography via existing `fontPair`, radius, imagery, accent color) — use the repo's monomastic design tokens and the `frontend-design` skill.
 - Both EN/AR first-class and RTL-safe.
 
 ## Tasks

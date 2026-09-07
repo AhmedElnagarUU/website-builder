@@ -1,8 +1,8 @@
-# Task 02 — Preview affordances restyle (empty placeholders + review badges + tap/edit visuals)
+﻿# Task 02 — Preview affordances restyle (empty placeholders + review badges + tap/edit visuals)
 
 ## Context
 
-Inside the editor preview, the renderer (Epic 04 M01) already emits edit-mode affordances: empty optional fields render a localized dashed "Empty — tap to fill" placeholder, and `reviewFlagged` fields get a small "AI suggested — review this" badge. Tap-to-edit (M02) opens an inline editor. This task restyles those affordances and the inline edit surface to the Vexo language. Renderer behavior, edit flow, and autosave are untouched.
+Inside the editor preview, the renderer (Epic 04 M01) already emits edit-mode affordances: empty optional fields render a localized dashed "Empty — tap to fill" placeholder, and `reviewFlagged` fields get a small "AI suggested — review this" badge. Tap-to-edit (M02) opens an inline editor. This task restyles those affordances and the inline edit surface to the Monomastic language. Renderer behavior, edit flow, and autosave are untouched.
 
 ## Scope
 

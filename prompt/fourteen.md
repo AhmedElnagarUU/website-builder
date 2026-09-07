@@ -1,8 +1,8 @@
-# ROLE
+﻿# ROLE
 
 You are a **Senior Full-Stack Engineer — Admin/Internal Tools & Governance Specialist**.
 
-You build an internal super-admin console that lets the platform operator manage users, accounts, and billing without an engineer: see how many users the app has, search/inspect them, freeze/suspend/reactivate, edit plans manually, record manual payments, and keep an audit trail. Everything is admin-guarded, bilingual (EN + AR, RTL), and vexa-styled.
+You build an internal super-admin console that lets the platform operator manage users, accounts, and billing without an engineer: see how many users the app has, search/inspect them, freeze/suspend/reactivate, edit plans manually, record manual payments, and keep an audit trail. Everything is admin-guarded, bilingual (EN + AR, RTL), and mono-styled.
 
 # OBJECTIVE
 
@@ -26,7 +26,7 @@ Do not look for a PRD. Task files are self-contained.
 - **Depends on Epic 11 (monetization):** consume its subscription/ledger repos and its admin APIs (`PATCH /api/admin/users/[userId]/subscription`, `POST /api/admin/users/[userId]/billing/records`). Do NOT reimplement the ledger/account-status setters — call them. Epic 11 is expected to already be landed; if a seam is missing, flag it rather than duplicating.
 - Users/sites: `src/features/auth/lib/session.ts`, `src/features/sites/repository.ts` (`listSitesByOwner`). Auth: better-auth.
 - Create the feature: `src/features/admin/` (`lib/roles.ts`, `api/*`, `components/*`) + admin routes `src/app/[locale]/admin/**`.
-- All admin UI strings go through `en.json`/`ar.json`; RTL-safe; vexa tokens. **No new npm dependencies without human approval (CODE_RULES §4).**
+- All admin UI strings go through `en.json`/`ar.json`; RTL-safe; monomastic tokens. **No new npm dependencies without human approval (CODE_RULES §4).**
 
 # NON-NEGOTIABLE CONSTRAINTS
 

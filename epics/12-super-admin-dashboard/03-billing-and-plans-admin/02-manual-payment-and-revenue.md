@@ -1,4 +1,4 @@
-# Task — Manual payments and revenue overview
+﻿# Task — Manual payments and revenue overview
 
 ## Title
 Admin manual-payment recording and revenue totals
@@ -15,7 +15,7 @@ Admin UI to record a manual payment (or discount/credit) on a user's billing, sh
 - User billing history lists records newest-first with net sum.
 - Overview (admin `/admin` page) shows total revenue, plus monthly revenue if cheap to compute.
 - Every recorded record + any write-off appends an audit entry.
-- Bilingual + RTL; vexa-styled; admin-guarded.
+- Bilingual + RTL; mono-styled; admin-guarded.
 
 ## Dependencies
 - Epic 11 M04 (ledger + admin payment API). Epic 12 M01/M02 (shell, audit, user detail).

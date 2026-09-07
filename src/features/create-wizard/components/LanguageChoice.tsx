@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -7,6 +7,8 @@ import { Button } from "@/shared/ui/Button";
 import { SectionHead } from "@/shared/ui/SectionHead";
 import { Stepper } from "@/shared/ui/Stepper";
 import { TapeTag } from "@/shared/ui/TapeTag";
+import { usePaywall } from "@/features/monetization/components/paywall-context";
+import { paywallFromResponse } from "@/features/monetization/lib/paywall-client";
 import type { Locale } from "@/features/sites/types";
 
 type Choice = "en" | "ar" | "both";
@@ -26,6 +28,7 @@ export function LanguageChoice({
 }) {
   const t = useTranslations();
   const router = useRouter();
+  const { showPaywall } = usePaywall();
   const preselected: Choice | null = initialChoice ?? (suggested === "ar-first" ? "ar" : "en");
   const [selected, setSelected] = useState<Choice | null>(preselected);
   const [isPending, startTransition] = useTransition();
@@ -45,6 +48,11 @@ export function LanguageChoice({
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ languageChoice: selected, advance: true }),
     });
+    const paywall = await paywallFromResponse(res);
+    if (paywall) {
+      showPaywall(paywall);
+      return;
+    }
     if (!res.ok) {
       setError("Could not save");
       return;
@@ -56,7 +64,7 @@ export function LanguageChoice({
   }
 
   return (
-    <div className="vexa-surface mx-auto flex max-w-2xl flex-col gap-6 p-4 md:p-8">
+    <div className="mono-surface mx-auto flex max-w-2xl flex-col gap-6 p-4 md:p-8">
       <div className="flex flex-col gap-4">
         <Stepper
           steps={[
@@ -71,7 +79,7 @@ export function LanguageChoice({
           <SectionHead title={t("wizard.language.title")} />
           <a
             href={`/${locale}/create/templates?site=${siteId}`}
-            className="mt-1 whitespace-nowrap text-sm text-ink-3 underline hover:text-vexa-red"
+            className="mt-1 whitespace-nowrap text-sm text-ink-3 underline hover:text-mono-red"
           >
             {t("wizard.templates.back")}
           </a>
@@ -88,12 +96,12 @@ export function LanguageChoice({
               type="button"
               onClick={() => setSelected(opt)}
               aria-pressed={isSelected}
-              className={`flex flex-col gap-1 rounded-[4px] border-[1.5px] border-ink bg-card p-5 text-start shadow-vexa transition-all ${
-                isSelected ? "border-vexa-red ring-2 ring-vexa-red" : ""
+              className={`flex flex-col gap-1 rounded-[4px] border-[1.5px] border-ink bg-card p-5 text-start shadow-mono transition-all ${
+                isSelected ? "border-mono-red ring-2 ring-mono-red" : ""
               }`}
             >
               <div className="flex items-center justify-between gap-2">
-                <span className="vexa-display text-xl font-semibold text-ink">
+                <span className="mono-display text-xl font-semibold text-ink">
                   {t(`wizard.language.option.${opt}`)}
                 </span>
                 {suggestedTag && (
@@ -111,7 +119,7 @@ export function LanguageChoice({
       </div>
 
       {error && (
-        <p role="alert" className="text-sm font-medium text-vexa-red">
+        <p role="alert" className="text-sm font-medium text-mono-red">
           {error}
         </p>
       )}

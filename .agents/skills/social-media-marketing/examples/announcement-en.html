@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Monomastic — Instagram post (EN)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper:  #f5efdf;
+    --paper-2:#ebe3d0;
+    --ink:    #2a2622;
+    --ink-2:  #5c544a;
+    --ink-3:  #8e8576;
+    --red:    #b23a48;
+    --blue:   #2d5ba8;
+    --yellow: #e8b53c;
+    --green:  #4a6b3d;
+    --line:   #b4c8e8;
+    --rule:   rgba(42,38,34,.2);
+    --shadow: 4px 4px 0 rgba(42,38,34,.08);
+    --radius: 4px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  /* Fixed Instagram square canvas, screenshot-ready: no scroll, nothing overflows. */
+  html, body { height:100%; background:#1a1a1a; }
+  .stage { width:100%; height:100%; display:grid; place-items:center; }
+  .canvas {
+    width:1080px; height:1080px; overflow:hidden; position:relative;
+    background-color:var(--paper);
+    background-image:repeating-linear-gradient(
+      0deg, transparent 0, transparent 31px, var(--line) 31px, var(--line) 32px);
+  }
+  /* vertical red margin line */
+  .canvas::before {
+    content:""; position:absolute; inset-block:0; left:72px; width:1px;
+    background:var(--red); opacity:.5;
+  }
+
+  .inner { position:relative; height:100%; display:flex; flex-direction:column; }
+
+  .topbar {
+    display:flex; align-items:center; gap:10px; padding:44px 84px 0 108px;
+  }
+  .star { color:var(--red); font-size:22px; }
+  .kicker { font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.12em;
+            text-transform:uppercase; color:var(--ink-3); }
+
+  .main { flex:1; display:flex; flex-direction:column; justify-content:center;
+          padding:0 108px 0 108px; }
+
+  .hook { font-family:'Caveat','Comic Sans MS',cursive; color:var(--red);
+          font-size:52px; line-height:1.05; }
+  .headline { font-family:'Merriweather',Georgia,serif; font-weight:700; color:var(--ink);
+              font-size:88px; line-height:1.02; letter-spacing:-.02em; max-width:700px; }
+  .headline em { font-style:normal; color:var(--red);
+                 text-decoration:underline wavy var(--blue);
+                 text-decoration-thickness:4px; text-underline-offset:8px; }
+
+  .rule { width:120px; height:1px; background:var(--ink); margin:34px 0 26px; }
+
+  .support { font-family:'Merriweather',Georgia,serif; font-size:30px; line-height:1.55;
+             color:var(--ink-2); max-width:680px; }
+
+  .signoff { margin-top:52px; font-family:'Caveat',cursive; font-size:38px; color:var(--ink-3); }
+
+  .footer { margin:26px 84px 0 108px; padding:30px 0; border-top:1px dashed var(--rule);
+            display:flex; justify-content:space-between; align-items:center; }
+  .cta {
+    font-family:'IBM Plex Mono',monospace; font-size:20px; letter-spacing:.04em;
+    text-transform:uppercase; color:#f5efdf; background:linear-gradient(180deg,var(--red),#8f2c3a);
+    padding:16px 26px; border-radius:var(--radius); box-shadow:var(--shadow);
+    border:1.5px solid var(--ink);
+  }
+  .domain { font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--ink-3);
+            letter-spacing:.04em; }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="canvas" aria-hidden="true">
+      <div class="inner">
+        <div class="topbar">
+          <span class="star">★</span>
+          <span class="kicker">monomastic · field notebook · obs. № 07</span>
+        </div>
+
+        <div class="main">
+          <div class="hook">you need a website. you don't want to learn how to make one.</div>
+          <div class="headline">A website,<br /><em>written by hand.</em></div>
+          <div class="rule"></div>
+          <div class="support">
+            You answer a few plain questions about your business.
+            Monomastic writes the whole site &mdash; English and Arabic together.
+            You edit what doesn't sound like you, then publish.
+          </div>
+          <div class="signoff">&mdash; signed, monomastic</div>
+        </div>
+
+        <div class="footer">
+          <span class="cta">Start free →</span>
+          <span class="domain">yourname.monomastic.site</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

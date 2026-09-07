@@ -1,4 +1,4 @@
-# Task — Green/red live-status indicator
+﻿# Task — Green/red live-status indicator
 
 ## Title
 Add a green "live" / red "not live" indicator to the editor header
@@ -13,7 +13,7 @@ Add a compact status indicator to the editor top bar: a green pulsing dot + "Liv
 - File: `src/features/editor/components/EditorShell.tsx` header, near `PublishControl`. Add a thin component (e.g. `src/features/editor/components/LiveStatusIndicator.tsx`).
 - Inputs: `status: SiteStatus` and `publishedSnapshot: PublishedSnapshot | null` (already available in `EditorShell`).
 - New i18n keys: `editor.live.live`, `editor.live.not_live`, and a hint string describing "edits since last publish aren't live yet" — in `en.json`/`ar.json`.
-- Style it with the existing vexa design tokens (green `vexa-green`, red `vexa-red`). Must be unmistakable at a glance.
+- Style it with the existing monomastic design tokens (green `mono-green`, red `mono-red`). Must be unmistakable at a glance.
 - The green/red reflects the LIVE state only; do not turn green based on unpublished edits (those are covered by the existing drift indicator).
 
 ## Dependencies

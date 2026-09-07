@@ -27,7 +27,7 @@ export function getAiConfig() {
   const extraHeaders: Record<string, string> = {};
   const referer = process.env.NEXT_PUBLIC_APP_URL;
   if (referer) extraHeaders["HTTP-Referer"] = referer;
-  const appName = process.env.AI_APP_NAME || "SiteCraft";
+  const appName = process.env.AI_APP_NAME || "Monomastic";
   extraHeaders["X-Title"] = appName;
 
   return { baseUrl, apiKey, model, extraHeaders, useStructuredOutput: true };

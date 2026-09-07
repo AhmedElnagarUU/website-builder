@@ -1,8 +1,8 @@
-# Task 03 — Template selection step restyle
+﻿# Task 03 — Template selection step restyle
 
 ## Context
 
-Epic 02 built the template grid (suggested-first ordering, see-all toggle, select-marks-card, image-fallback). This task restyles its interior to the Vexo language within the shared shell: template cards become paper `Card`s with `TapeTag`-style hints, the suggested group gets a `SectionHead` label, and selection state is a clear `red` checkmark. All ordering/toggle/selection behavior is untouched.
+Epic 02 built the template grid (suggested-first ordering, see-all toggle, select-marks-card, image-fallback). This task restyles its interior to the Monomastic language within the shared shell: template cards become paper `Card`s with `TapeTag`-style hints, the suggested group gets a `SectionHead` label, and selection state is a clear `red` checkmark. All ordering/toggle/selection behavior is untouched.
 
 ## Scope
 

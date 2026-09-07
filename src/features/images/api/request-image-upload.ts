@@ -11,6 +11,7 @@ const imageUploadSchema = z
   .object({
     slotId: z.string().min(1),
     mimeType: z.string().min(1),
+    fileSize: z.number().int().positive().optional(),
   })
   .strip();
 

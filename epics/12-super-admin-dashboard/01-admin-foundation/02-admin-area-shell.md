@@ -1,4 +1,4 @@
-# Task — Admin area shell
+﻿# Task — Admin area shell
 
 ## Title
 Create the protected admin area with its own shell and navigation
@@ -12,7 +12,7 @@ Add the admin route(s), an admin-only guard on entry, and an admin shell (layout
 ## Technical details
 - Files: `src/app/[locale]/admin/layout.tsx` (admin shell + `requireAdmin`) and `src/app/[locale]/admin/page.tsx` (Overview placeholder to be filled in M02/M03) plus a `src/features/admin/components/AdminNav.tsx`.
 - Guard: the admin layout calls `requireAdmin(locale)` (non-admin → redirect to `/dashboard` or a 403 page; unauth → sign-in).
-- Shell: admin brand, nav links (Overview, Users, Billing), logout/customer-site link; vexa tokens; bilingual EN + AR (RTL-safe). New i18n keys under `admin.*` in `en.json`/`ar.json`.
+- Shell: admin brand, nav links (Overview, Users, Billing), logout/customer-site link; monomastic tokens; bilingual EN + AR (RTL-safe). New i18n keys under `admin.*` in `en.json`/`ar.json`.
 - Do not place admin links in the public user Navbar (keep it separate; optionally a subtle link only for admins).
 
 ## Dependencies

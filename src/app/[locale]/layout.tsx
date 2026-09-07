@@ -1,10 +1,13 @@
-import { NextIntlClientProvider } from "next-intl";
+﻿import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { locales, isLocale, dirFor } from "@/shared/i18n/config";
 import { getSession } from "@/features/auth/lib/session";
+import { resolveSubscriptionForUser } from "@/features/monetization/repository";
+import { PaywallProvider } from "@/features/monetization/components/paywall-context";
 import { Navbar } from "@/features/shell/components/Navbar";
 import { Footer } from "@/features/shell/components/Footer";
+import type { PlanId } from "@/features/monetization/types";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -28,16 +31,24 @@ export default async function LocaleLayout({
     getSession(),
   ]);
 
+  let planId: PlanId | null = null;
+  if (session) {
+    const subscription = await resolveSubscriptionForUser(session.user.id);
+    planId = subscription.planId;
+  }
+
   return (
     <div
       lang={locale}
       dir={dirFor(locale)}
-      className="vexa-page flex min-h-screen flex-col"
+      className="mono-page flex min-h-screen flex-col"
     >
       <NextIntlClientProvider messages={messages}>
-        <Navbar isSignedIn={!!session} locale={locale} />
-        <main className="relative z-10 flex-1">{children}</main>
-        <Footer />
+        <PaywallProvider>
+          <Navbar isSignedIn={!!session} planId={planId} locale={locale} />
+          <main className="relative z-10 flex-1">{children}</main>
+          <Footer />
+        </PaywallProvider>
       </NextIntlClientProvider>
     </div>
   );

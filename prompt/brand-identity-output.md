@@ -1,4 +1,4 @@
-# Brand Identity Output — AI Website Builder
+﻿# Brand Identity Output — AI Website Builder
 
 ---
 
@@ -8,7 +8,7 @@
 
 | # | Name | Pronunciation | Feel/Tone |
 |---|------|---------------|-----------|
-| 1 | Vexo | VEHK-so | Bold & Techy |
+| 1 | Monomastic | VEHK-so | Bold & Techy |
 | 2 | Nalu | NAH-loo | Warm & Friendly |
 | 3 | Pexa | PEK-sa | Modern & Minimal |
 | 4 | Tiko | TEE-ko | Playful |
@@ -40,7 +40,7 @@
 
 | Name | EN | AR | ES | FR | DE | Verdict |
 |------|----|----|----|----|----|----|
-| Vexo | "vex" exists but obscure | OK | OK | OK | OK | ✅ PASS |
+| Monomastic | "vex" exists but obscure | OK | OK | OK | OK | ✅ PASS |
 | Nalu | Clean | Easy pronunciation | OK | OK | OK | ✅ PASS |
 | Pexa | Clean | "x" slightly awkward | OK | OK | OK | ⚠️ FLAG — Arabic "x" |
 | Tiko | Clean | OK | "tico" = Central American | OK | OK | ⚠️ FLAG — ES association |
@@ -72,7 +72,7 @@
 
 | Rank | Name | Pronunciation | Feel | Why It's Clean |
 |------|------|---------------|------|----------------|
-| **1** | **Vexo** | VEHK-so | Bold & Techy | No meaning in EN/AR/ES/FR/DE. "Vex" exists in English but is obscure. Easy for Arabic speakers. Strong, sharp sound. |
+| **1** | **Monomastic** | VEHK-so | Bold & Techy | No meaning in EN/AR/ES/FR/DE. "Vex" exists in English but is obscure. Easy for Arabic speakers. Strong, sharp sound. |
 | **2** | **Nalu** | NAH-loo | Warm & Friendly | No meaning in any checked language. Soft vowel ending easy for Arabic speakers. Organic, flowing sound. |
 | **3** | **Kodo** | KOH-do | Bold & Techy | No meaning in EN/AR/ES/FR/DE. Strong consonant opening, easy Arabic pronunciation. Memorable repetition. |
 | **4** | **Tova** | TOH-vah | Calm & Trustworthy | No meaning in checked languages. Soft, feminine-leaning but universal. Easy Arabic pronunciation. |
@@ -82,7 +82,7 @@
 
 ## PART 2 — COLOR PALETTES
 
-### 1. Vexo — "Bold & Techy"
+### 1. Monomastic — "Bold & Techy"
 
 | Role | Hex | Reason |
 |------|-----|--------|
@@ -131,7 +131,7 @@
 
 ## PART 3 — LOGO CONCEPTS & IMAGE PROMPTS
 
-### 1. Vexo
+### 1. Monomastic
 
 **Concept A — Wordmark**
 > Image prompt: "Minimal flat vector logo design of the word 'VEXO' in bold geometric sans-serif typography. Electric orange (#FF4D00) text on pure white background. No icons, no decorations. Clean, modern, professional logo. High resolution, centered composition."
@@ -183,7 +183,7 @@
 
 ## PART 4 — FINAL OUTPUT
 
-### 1. Vexo — "VEHK-so"
+### 1. Monomastic — "VEHK-so"
 Feel: Bold & Techy
 Why it's clean: No meaning in EN/AR/ES/FR/DE. Sharp, memorable sound. Easy for Arabic speakers.
 
@@ -260,7 +260,7 @@ Logo Concept B — Icon + Wordmark: [See prompt above]
 
 ## TOP 3 RECOMMENDATIONS
 
-### 🥇 1. Vexo
+### 🥇 1. Monomastic
 **Why it stands out:** The sharpest, most tech-forward name with the highest memorability. The electric orange palette is bold and distinctive — you'll recognize it instantly. Works perfectly for a modern AI product targeting both English and Arabic markets.
 
 ### 🥈 2. Nalu

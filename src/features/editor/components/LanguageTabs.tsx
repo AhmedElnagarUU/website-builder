@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTranslations } from "next-intl";
 import type { Locale } from "@/features/sites/types";
@@ -26,9 +26,9 @@ export function LanguageTabs({
           type="button"
           onClick={() => onChange(lang)}
           aria-pressed={active === lang}
-          className={`vexa-display rounded-full px-3 py-1 text-lg leading-none transition-colors ${
+          className={`mono-display rounded-full px-3 py-1 text-lg leading-none transition-colors ${
             active === lang
-              ? "bg-vexa-red text-paper"
+              ? "bg-mono-red text-paper"
               : "text-ink hover:bg-paper-2"
           }`}
         >

@@ -1,4 +1,4 @@
-# Task 02 — Global base layer + locale typography (EN/AR fonts)
+﻿# Task 02 — Global base layer + locale typography (EN/AR fonts)
 
 ## Context
 
@@ -23,7 +23,7 @@ src/app/[locale]/layout.tsx                      // apply the locale-aware font 
 
 Rules:
 
-- Put the paper pattern and margin line behind a CSS variable / modifier class so M04/M05 can reduce or remove it on dense form/editor surfaces (the design flags call for restraint there). Expose e.g. a `.vexa-surface` utility / a `--vexa-bg` control rather than hardcoding into a single element.
+- Put the paper pattern and margin line behind a CSS variable / modifier class so M04/M05 can reduce or remove it on dense form/editor surfaces (the design flags call for restraint there). Expose e.g. a `.mono-surface` utility / a `--mono-bg` control rather than hardcoding into a single element.
 - Arabic: when locale is `ar`, heading-family resolves to the Arabic serif stack; body uses an Arabic-friendly sans/serif readable stack. Directions are inherited from `<html dir>` (already set by Epic 01) — this task does not change `dir`.
 - RTL: keep all styling LTR-agnostic (logical offsets) so the margin line / backgrounds mirror correctly under RTL via the existing `ms-*`/`ps-*` conventions (CODE_RULES §6). The red margin line should sit on the start side (logical), matching how the source places it on the left.
 - Do not add any npm package. If font loading requires a mechanism the project doesn't yet have, flag it rather than installing (see EPIC.md flags) — prefer the existing `next/font/google`/link path already used, extended with the five families.
@@ -47,7 +47,7 @@ None. This task introduces no user-facing strings.
 
 - [ ] All five families are available in both `en` and `ar` app shells; headings on `/ar/*` render in the Arabic serif stack (never Caveat); Latin pages use Caveat+Inter Tight+Source Serif 4+JetBrains Mono per token intent.
 - [ ] `body` shows the paper background + ruled lines + start-side red margin line on normal pages.
-- [ ] On a representative focused surface (e.g. a form page) the paper pattern is visibly subdued via the `.vexa-surface` modifier, without breaking the token system.
+- [ ] On a representative focused surface (e.g. a form page) the paper pattern is visibly subdued via the `.mono-surface` modifier, without breaking the token system.
 - [ ] `::selection` is yellow/ink; `:focus-visible` is a `2px solid --red` ring with 3px offset; reduced-motion collapses transitions to ~0.
 - [ ] Everything renders correctly under RTL (background/margin mirror logically, no directional utilities leaking).
 - [ ] `npm run lint && npm run typecheck && npm run build` pass.

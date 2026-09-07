@@ -7,6 +7,18 @@ export const FONT_FAMILIES: Record<TemplateStyle["fontPair"], string> = {
   warm: "font-sans",
 };
 
+export function siteBodyClass(_style: TemplateStyle): string {
+  return "site-body";
+}
+
+export function siteHeadingClass(style: TemplateStyle): string {
+  return style.theme.headingFont === "serif" ? "site-heading-serif" : "site-heading-sans";
+}
+
+export function siteSurfaceClass(style: TemplateStyle): string {
+  return style.theme.surface === "deep" ? "site-surface-deep" : "";
+}
+
 export const RADIUS_CLASSES: Record<TemplateStyle["radius"], string> = {
   sharp: "rounded-none",
   soft: "rounded-[12px]",

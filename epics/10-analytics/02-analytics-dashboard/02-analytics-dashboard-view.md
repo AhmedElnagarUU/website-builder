@@ -1,4 +1,4 @@
-# Task — Analytics dashboard view
+﻿# Task — Analytics dashboard view
 
 ## Title
 Render per-site analytics on the dashboard surface (totals, per page, trend)
@@ -14,7 +14,7 @@ A dashboard section (per site card or a dedicated panel) showing: total pageview
 - Resolve page slug → localized page label via `getTemplate(site.templateId).pages` (Epic 08).
 - Small no-dependency bar/sparkline with divs (no chart lib — no new deps).
 - New i18n keys: `analytics.*` (total_views, last_7_days, last_30_days, per_page, trend, empty, note_pageviews_not_visitors) in `en.json` + `ar.json`, RTL-safe.
-- Follow the vexa design tokens.
+- Follow the monomastic design tokens.
 
 ## Dependencies
 - M02 task 01. Epic 08 (page labels). Epic 06 (published sites).

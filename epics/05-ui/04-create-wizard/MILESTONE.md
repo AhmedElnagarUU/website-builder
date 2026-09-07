@@ -1,8 +1,8 @@
-# Milestone 04 — Create Wizard (Vexo style)
+﻿# Milestone 04 — Create Wizard (Monomastic style)
 
 ## Goal
 
-Restyle the four create-wizard steps (business info → templates → language → generating) and their shared shell/stepper with the Vexo design language, so the core "AI builds my site" journey feels like a hand-written field notebook — while keeping these functional forms calm and scannable (EPIC.md flag #2: restraint on dense form surfaces). Visual only; step logic, autosave, APIs, and routing are untouched.
+Restyle the four create-wizard steps (business info → templates → language → generating) and their shared shell/stepper with the Monomastic design language, so the core "AI builds my site" journey feels like a hand-written field notebook — while keeping these functional forms calm and scannable (EPIC.md flag #2: restraint on dense form surfaces). Visual only; step logic, autosave, APIs, and routing are untouched.
 
 ## Tasks (execution order)
 

@@ -2,6 +2,7 @@
 
 import { createContext, useContext, type ReactNode } from "react";
 import type { Locale } from "@/features/sites/types";
+import type { TemplateStyle } from "@/features/templates/types";
 
 export interface SiteEditModeContextValue {
   enabled: boolean;
@@ -60,16 +61,13 @@ export function useSiteNav(): SiteNavContextValue {
   return useContext(SiteNavContext);
 }
 
-export interface SiteStyleContextValue {
-  fontPair: "classic" | "modern" | "warm";
-  radius: "sharp" | "soft";
-  imagery: "photo" | "minimal";
-}
+export type SiteStyleContextValue = TemplateStyle;
 
 export const SiteStyleContext = createContext<SiteStyleContextValue>({
   fontPair: "classic",
   radius: "sharp",
   imagery: "photo",
+  theme: { key: "corporate", surface: "light", headingFont: "sans", hero: "split-light", accentRole: "edge" },
 });
 
 export function useSiteStyle(): SiteStyleContextValue {

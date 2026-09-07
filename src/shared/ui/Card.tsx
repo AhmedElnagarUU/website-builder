@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { forwardRef, type HTMLAttributes } from "react";
 
@@ -12,7 +12,7 @@ export const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className = "", children, ...props }, ref) => (
     <div
       ref={ref}
-      className={`rounded-[4px] border-[1.5px] border-ink bg-card text-card-foreground shadow-vexa ${className}`}
+      className={`rounded-[4px] border-[1.5px] border-ink bg-card text-card-foreground shadow-mono ${className}`}
       {...props}
     >
       {children}

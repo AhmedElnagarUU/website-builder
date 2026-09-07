@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 /*
  * RTL safety (CODE_RULES §6):
@@ -10,16 +10,16 @@
  */
 
 /* =====================================================================
- * Vexo design tokens (source: design/landingPage/variant-14/index.html)
+ * Monomastic design tokens (source: design/landingPage/variant-14/index.html)
  *
  * The shared semantic variables map 1:1 onto the source palette so existing
  * shadcn-style utilities (bg-background, text-muted-foreground, border-input,
- * bg-primary, ring-ring, ...) pick the Vexo look with zero call-site changes.
- * New, source-named tokens (vexa-*) power the hand-crafted primitives.
+ * bg-primary, ring-ring, ...) pick the Monomastic look with zero call-site changes.
+ * New, source-named tokens (mono-*) power the hand-crafted primitives.
  * ===================================================================== */
 
 :root {
-  /* semantic → Vexo */
+  /* semantic → Monomastic */
   --background: #f5efdf; /* --paper   */
   --foreground: #2a2622; /* --ink     */
   --card: #ebe3d0; /* --paper-2 */
@@ -33,38 +33,38 @@
   --input: #c9bba0; /* warm line */
   --ring: #b23a48; /* --red     */
 
-  /* source-named Vexo tokens */
-  --vexa-paper: #f5efdf;
-  --vexa-paper-2: #ebe3d0;
-  --vexa-line: #b4c8e8; /* ruled-line blue */
-  --vexa-ink: #2a2622;
-  --vexa-ink-2: #5c544a;
-  --vexa-ink-3: #8e8576;
-  --vexa-red: #b23a48;
-  --vexa-blue: #2d5ba8;
-  --vexa-yellow: #e8b53c;
-  --vexa-green: #4a6b3d;
-  --vexa-rule: rgba(42, 38, 34, 0.2);
-  --vexa-tape: rgba(232, 181, 60, 0.55);
+  /* source-named Monomastic tokens */
+  --mono-paper: #f5efdf;
+  --mono-paper-2: #ebe3d0;
+  --mono-line: #b4c8e8; /* ruled-line blue */
+  --mono-ink: #2a2622;
+  --mono-ink-2: #5c544a;
+  --mono-ink-3: #8e8576;
+  --mono-red: #b23a48;
+  --mono-blue: #2d5ba8;
+  --mono-yellow: #e8b53c;
+  --mono-green: #4a6b3d;
+  --mono-rule: rgba(42, 38, 34, 0.2);
+  --mono-tape: rgba(232, 181, 60, 0.55);
 
-  --vexa-shadow: 4px 4px 0 rgba(42, 38, 34, 0.08);
-  --vexa-radius: 4px;
+  --mono-shadow: 4px 4px 0 rgba(42, 38, 34, 0.08);
+  --mono-radius: 4px;
 }
 
 /* Tailwind v4 theme hooks */
 @theme inline {
-  --color-paper: var(--vexa-paper);
-  --color-paper-2: var(--vexa-paper-2);
-  --color-line-color: var(--vexa-line);
-  --color-ink: var(--vexa-ink);
-  --color-ink-2: var(--vexa-ink-2);
-  --color-ink-3: var(--vexa-ink-3);
-  --color-vexa-red: var(--vexa-red);
-  --color-vexa-blue: var(--vexa-blue);
-  --color-vexa-yellow: var(--vexa-yellow);
-  --color-vexa-green: var(--vexa-green);
-  --color-vexa-rule: var(--vexa-rule);
-  --color-vexa-tape: var(--vexa-tape);
+  --color-paper: var(--mono-paper);
+  --color-paper-2: var(--mono-paper-2);
+  --color-line-color: var(--mono-line);
+  --color-ink: var(--mono-ink);
+  --color-ink-2: var(--mono-ink-2);
+  --color-ink-3: var(--mono-ink-3);
+  --color-mono-red: var(--mono-red);
+  --color-mono-blue: var(--mono-blue);
+  --color-mono-yellow: var(--mono-yellow);
+  --color-mono-green: var(--mono-green);
+  --color-mono-rule: var(--mono-rule);
+  --color-mono-tape: var(--mono-tape);
 
   --font-display: var(--font-display);
   --font-body: var(--font-body);
@@ -73,8 +73,8 @@
   --font-ar-serif: var(--font-ar-serif);
   --font-ar-sans: var(--font-ar-sans);
 
-  --shadow-vexa: var(--vexa-shadow);
-  --radius-vexa: var(--vexa-radius);
+  --shadow-mono: var(--mono-shadow);
+  --radius-mono: var(--mono-radius);
 }
 
 /* ============================ Base layer ============================ */
@@ -98,7 +98,7 @@ body {
 
 /* Display/headline writing = Caveat (matching variant-14 .brand, headline,
    .title, .feature h3, etc.) */
-.vexa-display {
+.mono-display {
   font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
 }
 
@@ -109,20 +109,20 @@ body {
 :lang(ar) h1,
 :lang(ar) h2,
 :lang(ar) h3,
-:lang(ar) .vexa-display {
+:lang(ar) .mono-display {
   font-family: var(--font-ar-serif), var(--font-ar-sans), serif;
 }
 
-/* ============== Vexo notebook backdrop (source body) ============== */
-.vexa-page {
+/* ============== Monomastic notebook backdrop (source body) ============== */
+.mono-page {
   background-color: var(--background);
   background-image:
     repeating-linear-gradient(
       0deg,
       transparent 0,
       transparent 31px,
-      var(--line, var(--vexa-line)) 31px,
-      var(--line, var(--vexa-line)) 32px
+      var(--line, var(--mono-line)) 31px,
+      var(--line, var(--mono-line)) 32px
     ),
     radial-gradient(circle at 50% 100%, rgba(178, 58, 72, 0.04) 0 4px, transparent 5px);
   background-size: 100% 32px, 100px 100px;
@@ -132,63 +132,98 @@ body {
 }
 
 /* vertical red margin line (start side) */
-.vexa-page::before {
+.mono-page::before {
   content: "";
   position: fixed;
   top: 0;
   bottom: 0;
   inset-inline-start: 80px;
   width: 1px;
-  background: var(--vexa-red);
+  background: var(--mono-red);
   opacity: 0.5;
   pointer-events: none;
   z-index: 1;
 }
 @media (max-width: 700px) {
-  .vexa-page::before {
+  .mono-page::before {
     inset-inline-start: 28px;
   }
 }
 
 /* Subdued surface for dense/functional pages (EPIC 05 flag #2) */
-.vexa-surface,
-.vexa-surface body {
+.mono-surface,
+.mono-surface body {
   background-image: none;
 }
 
 /* Ruled band used by landing "how it works" section (source .how) */
-.vexo-band {
+.mono-band {
   background-image: repeating-linear-gradient(
     0deg,
     transparent 0,
     transparent 31px,
-    var(--line, var(--vexa-line)) 31px,
-    var(--line, var(--vexa-line)) 32px
+    var(--line, var(--mono-line)) 31px,
+    var(--line, var(--mono-line)) 32px
   );
 }
 
 /* Landing content container (source .container: max-width 1180px, pad 120px).
    Uses logical padding so the inline-start margin line clearance flips in RTL. */
-.vexo-container {
+.mono-container {
   max-width: 1180px;
   margin-inline: auto;
   padding-inline: 120px;
 }
 @media (max-width: 900px) {
-  .vexo-container {
+  .mono-container {
     padding-inline: 60px;
   }
 }
 @media (max-width: 700px) {
-  .vexo-container {
+  .mono-container {
     padding-inline-start: 48px;
     padding-inline-end: 24px;
   }
 }
 
+/* ============== Site-render typography & surface (Epic 14) ============== */
+/* Section-level families that respect the :lang(ar) swap. Sections never set
+   a font-family utility directly; they use these classes (see M02/MILESTONE). */
+.site-heading-serif {
+  font-family: var(--font-serif2), var(--font-body), system-ui, sans-serif;
+}
+.site-heading-sans {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+.site-body {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+:lang(ar) .site-heading-serif,
+:lang(ar) .site-heading-sans {
+  font-family: var(--font-ar-serif), var(--font-ar-sans), serif;
+}
+:lang(ar) .site-body {
+  font-family: var(--font-ar-sans), var(--font-body), system-ui, sans-serif;
+}
+
+/* Deep surface for deep-theme sites: overrides the semantic CSS vars inside
+   the SiteRenderer subtree so bg-background/bg-card/text-* all adapt. */
+.site-surface-deep {
+  --background: #0f1115;
+  --card: #171a20;
+  --muted: #1e2229;
+  --muted-foreground: #9aa1ac;
+  --foreground: #f2f3f5;
+  --input: #2a2f38;
+  --border: #2a2f38;
+  --ring: var(--brand);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
 ::selection {
-  background: var(--vexa-yellow);
-  color: var(--ink, var(--vexa-ink));
+  background: var(--mono-yellow);
+  color: var(--ink, var(--mono-ink));
 }
 
 a:focus-visible,
@@ -196,7 +231,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid var(--vexa-red);
+  outline: 2px solid var(--mono-red);
   outline-offset: 3px;
 }
 

@@ -1,8 +1,8 @@
-# Task 02 — Sign-up page restyle
+﻿# Task 02 — Sign-up page restyle
 
 ## Context
 
-Epic 01 built the sign-up page with default styling. This task restyles it to match the sign-in page and the overall Vexo language, so both auth screens read as one product.
+Epic 01 built the sign-up page with default styling. This task restyles it to match the sign-in page and the overall Monomastic language, so both auth screens read as one product.
 
 ## Scope
 
@@ -33,7 +33,7 @@ Mapping: identical surface system to Task 01 (Card panel, SectionHead, brand + r
 ## Acceptance criteria
 
 - [ ] Sign-up renders as a centered paper panel styled identically to sign-in; brand shows Caveat + red `✱`.
-- [ ] Fields, red error handling, and primary CTA match the Vexo language; existing `auth.*` strings unchanged.
+- [ ] Fields, red error handling, and primary CTA match the Monomastic language; existing `auth.*` strings unchanged.
 - [ ] Functionally identical to before (same submit flow, same messages).
 - [ ] Usable at 375px; RTL-correct in `/ar/*`; Arabic uses AR stack.
 - [ ] `npm run lint && npm run typecheck && npm run build` pass.

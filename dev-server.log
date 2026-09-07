@@ -1,4 +1,3 @@
-Starting Next.js dev server...
 
 > website-version2@0.1.0 dev
 > next dev
@@ -9,152 +8,188 @@ Starting Next.js dev server...
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 7.6s
+ ✓ Ready in 10s
  ○ Compiling /api/health ...
- ✓ Compiled /api/health in 10.3s (366 modules)
- GET /api/health 200 in 131ms
+ ✓ Compiled /api/health in 5.7s (366 modules)
+ GET /api/health 200 in 7702ms
  ○ Compiling /middleware ...
- ✓ Compiled /middleware in 2.5s (127 modules)
+ ✓ Compiled /middleware in 785ms (127 modules)
+ ○ Compiling /live/[slug]/[lang] ...
+ ✓ Compiled /live/[slug]/[lang] in 6s (990 modules)
+ GET /live/pharamcy-0581e0/en 200 in 10310ms
+ GET /live/does-not-exist-xyz/en 404 in 213ms
+ GET /live/pharamcy-0581e0/en 200 in 652ms
  ○ Compiling /[locale] ...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 1/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
-
-
-Retrying 2/3...
- ✓ Compiled /[locale] in 25.5s (1594 modules)
- GET /en 200 in 28650ms
- GET /en 200 in 410ms
- GET /en 200 in 370ms
- ✓ Compiled in 1579ms (393 modules)
- ✓ Compiled in 1152ms (393 modules)
- ✓ Compiled in 1088ms (393 modules)
- ✓ Compiled in 1212ms (393 modules)
- ✓ Compiled in 874ms (393 modules)
- GET /en 200 in 545ms
- GET /en 200 in 311ms
- GET /en 200 in 341ms
- GET /en 200 in 443ms
+ ✓ Compiled /live/[slug]/[lang]/[pageSlug] in 28.6s (1642 modules)
+ GET /live/pharamcy-0581e0/ar/about 200 in 32405ms
+ GET /en 307 in 38121ms
+ ○ Compiling /[locale]/dashboard ...
+ ✓ Compiled /[locale]/dashboard in 3.8s (1639 modules)
+ GET /en/dashboard 200 in 12810ms
+ GET /favicon.ico 404 in 539ms
+ ✓ Compiled in 2.4s (423 modules)
+ GET /en/dashboard 200 in 887ms
+ ○ Compiling /[locale]/dashboard/templates ...
+ ✓ Compiled /[locale]/dashboard/templates in 2.8s (1551 modules)
+ GET /en/dashboard/templates 200 in 8444ms
+ GET /en/dashboard 200 in 1842ms
+ ○ Compiling /api/sites ...
+ ✓ Compiled /api/sites in 4s (1570 modules)
+ POST /api/sites 201 in 9227ms
+ ○ Compiling /[locale]/create/business-info ...
+ ✓ Compiled /[locale]/create/business-info in 5.8s (1594 modules)
+ GET /en/create/business-info?site=6a994a1e959a07b37277cc6e 200 in 11461ms
+ GET /en/create/business-info?site=6a994a1e959a07b37277cc6e 200 in 143ms
+ ○ Compiling /api/sites/[siteId]/business-info ...
+ ✓ Compiled /api/sites/[siteId]/business-info in 1591ms (1597 modules)
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 4389ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 5493ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 48ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 31ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 40ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 32ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 43ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 32ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 125ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 34ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 28ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 52ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 33ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 31ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 44ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 40ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 27ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 38ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 87ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 32ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 29ms
+ ○ Compiling /[locale]/create/templates ...
+ ✓ Compiled /[locale]/create/templates in 3.5s (1606 modules)
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 3103ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 3964ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 39ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 52ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 63ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 46ms
+ GET /en/create/templates?site=6a994a1e959a07b37277cc6e 200 in 9348ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 155ms
+ GET /en/create/templates?site=6a994a1e959a07b37277cc6e 200 in 272ms
+ ○ Compiling /api/sites/[siteId]/template ...
+ ✓ Compiled /api/sites/[siteId]/template in 1366ms (1609 modules)
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/template 200 in 5312ms
+ ○ Compiling /[locale]/create/language ...
+ ✓ Compiled /[locale]/create/language in 1604ms (1618 modules)
+ GET /en/create/language?site=6a994a1e959a07b37277cc6e 200 in 6661ms
+ GET /en/create/language?site=6a994a1e959a07b37277cc6e 200 in 143ms
+ ○ Compiling /api/sites/[siteId]/languages ...
+ ✓ Compiled /api/sites/[siteId]/languages in 2.1s (1621 modules)
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/languages 200 in 5733ms
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/languages 200 in 2935ms
+ ○ Compiling /[locale]/create/generating ...
+ ✓ Compiled /[locale]/create/generating in 1844ms (1633 modules)
+ GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 6424ms
+ GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 99ms
+ GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 101ms
+ GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 84ms
+ ○ Compiling /api/sites/[siteId]/generation-status ...
+ ✓ Compiled /api/sites/[siteId]/generation-status in 6.5s (1647 modules)
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 9794ms
+ POST /api/sites/6a994a1e959a07b37277cc6e/generate 202 in 9906ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 184ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 80ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 26ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 38ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 33ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 38ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 60ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 43ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 38ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 85ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 60ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 54ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 45ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 37ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 37ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 61ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 40ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 35ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 37ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 78ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 35ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 58ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 58ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 44ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 876ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 44ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 54ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 42ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 33ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 52ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 60ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 45ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 54ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 29ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 39ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 53ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 27ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 28ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 42ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 47ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 81ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 41ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 42ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 49ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 35ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 43ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 52ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 45ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 53ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 51ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 42ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 51ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 40ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 62ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 48ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 34ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 51ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 47ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 48ms
+ GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 2364ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 738ms
+ POST /api/sites/6a994a1e959a07b37277cc6e/generate 409 in 79ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 92ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 173ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 75ms
+runGeneration: site 6a994a1e959a07b37277cc6e completed in 169971ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 67ms
+ GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 33ms
+ ○ Compiling /[locale]/sites/[siteId]/editor ...
+ ✓ Compiled /[locale]/sites/[siteId]/editor in 33.7s (1877 modules)
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 49214ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 336ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 415ms
+ ○ Compiling /api/sites/[siteId]/content ...
+ ✓ Compiled /api/sites/[siteId]/content in 6s (1861 modules)
+ PATCH /api/sites/6a994a1e959a07b37277cc6e/content 200 in 11758ms
+ ○ Compiling /api/sites/[siteId]/publish ...
+ ✓ Compiled /api/sites/[siteId]/publish in 7.8s (1877 modules)
+ ✓ Compiled in 3.5s (560 modules)
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 1757ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 169ms
+ POST /api/sites/6a994a1e959a07b37277cc6e/publish 200 in 14924ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 126ms
+ ○ Compiling /live/[slug]/[lang] ...
+ ✓ Compiled /live/[slug]/[lang] in 2.2s (1378 modules)
+ GET /live/digitel-produc-creation-eb9051/localhost:3000 404 in 3393ms
+ ○ Compiling /live/[slug] ...
+ ✓ Compiled /live/[slug] in 4.9s (1910 modules)
+ GET /live/digitel-produc-creation-eb9051/localhost:3000 200 in 694ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 2901ms
+ GET /live/digitel-produc-creation-eb9051 307 in 6521ms
+ GET /live/digitel-produc-creation-eb9051/en 200 in 628ms

@@ -1,4 +1,4 @@
-# Task — Manual subscription editor
+﻿# Task — Manual subscription editor
 
 ## Title
 Admin UI to view and change a user's plan/subscription
@@ -13,7 +13,7 @@ Admin UI on the user detail to edit the subscription: plan (Free/Pro), status (a
 - Files: `src/features/admin/components/SubscriptionEditor.tsx` wired into `UserDetail`; consumes the Epic 11 admin subscription API; validation via zod (plan ids, enum statuses, dates, cancel-at-period-end boolean).
 - Current subscription shown (plan, status, period, accountStatus); edits save and reflect in `getSubscriptionForUser` immediately.
 - Submit appends an audit entry (action `set_subscription`/`set_plan`).
-- Confirm dialog for non-obvious changes; bilingual + RTL; vexa-styled.
+- Confirm dialog for non-obvious changes; bilingual + RTL; mono-styled.
 - Money fields (if any shown) are minor units/currency.
 
 ## Dependencies

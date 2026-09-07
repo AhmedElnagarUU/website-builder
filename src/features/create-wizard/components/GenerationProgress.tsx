@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -67,10 +67,10 @@ export function GenerationProgress({
 
   if (status.status === "failed" || startError === "stuck") {
     return (
-      <div className="vexa-surface mx-auto flex max-w-md flex-col items-center gap-8 p-8 text-center">
+      <div className="mono-surface mx-auto flex max-w-md flex-col items-center gap-8 p-8 text-center">
         {stepper}
         <div className="flex flex-col items-center gap-4">
-          <h1 className="vexa-display text-2xl font-bold text-ink">
+          <h1 className="mono-display text-2xl font-bold text-ink">
             {t("wizard.generating.failed_title")}
           </h1>
           <Button type="button" onClick={retry} disabled={isPending}>
@@ -82,17 +82,17 @@ export function GenerationProgress({
   }
 
   return (
-    <div className="vexa-surface mx-auto flex max-w-md flex-col items-center gap-8 p-8 text-center">
+    <div className="mono-surface mx-auto flex max-w-md flex-col items-center gap-8 p-8 text-center">
       {stepper}
       <div
         aria-hidden
-        className="h-9 w-9 animate-spin rounded-full border-2 border-dashed border-vexa-red"
+        className="h-9 w-9 animate-spin rounded-full border-2 border-dashed border-mono-red"
       />
-      <h1 className="vexa-display text-2xl font-bold text-ink">
+      <h1 className="mono-display text-2xl font-bold text-ink">
         {t("wizard.generating.title")}
       </h1>
       <StickyNote>
-        <p className="vexa-display text-xl leading-tight text-ink" aria-live="polite">
+        <p className="mono-display text-xl leading-tight text-ink" aria-live="polite">
           {t(`wizard.generating.msg.${MESSAGE_KEYS[msgIndex]}`)}
         </p>
       </StickyNote>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -221,9 +221,9 @@ function EditorContent({
   return (
     <div className="flex min-h-screen flex-col">
       <header className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-ink bg-paper-2 px-4 py-3">
-        <span className="vexa-display flex items-baseline gap-1.5 truncate text-2xl font-bold text-ink">
+        <span className="mono-display flex items-baseline gap-1.5 truncate text-2xl font-bold text-ink">
           {businessInfo.name}
-          <span className="vexa-display text-sm text-vexa-red">✱</span>
+          <span className="mono-display text-sm text-mono-red">✱</span>
         </span>
         <div className="flex flex-wrap items-center gap-3">
           <PageTabs
@@ -233,8 +233,8 @@ function EditorContent({
             appLocale={appLocale}
           />
           {showSaved && (
-            <span className="flex items-center gap-1.5 text-xs font-medium text-vexa-green">
-              <span className="h-2 w-2 rounded-full bg-vexa-green" />
+            <span className="flex items-center gap-1.5 text-xs font-medium text-mono-green">
+              <span className="h-2 w-2 rounded-full bg-mono-green" />
               {t("common.saved")}
             </span>
           )}
@@ -264,11 +264,11 @@ function EditorContent({
         </div>
       </header>
       <div
-        className="vexa-surface flex flex-1 justify-center overflow-auto bg-background p-4"
+        className="mono-surface flex flex-1 justify-center overflow-auto bg-background p-4"
         dir={previewDir}
       >
         <div
-          className={`rounded-[4px] border-[1.5px] border-ink bg-background shadow-vexa ${
+          className={`rounded-[4px] border-[1.5px] border-ink bg-background shadow-mono ${
             device === "desktop"
               ? "w-full max-w-5xl"
               : `w-full overflow-x-hidden overflow-y-auto max-h-[calc(100vh-8rem)] ${

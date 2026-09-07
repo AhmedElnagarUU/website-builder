@@ -1,4 +1,4 @@
-# Task 01 — Wizard shell & stepper (shared across the four steps)
+﻿# Task 01 — Wizard shell & stepper (shared across the four steps)
 
 ## Context
 
@@ -22,7 +22,7 @@ src/app/[locale]/create/generating/page.tsx              // wrap in shell
 ```
 
 Design mapping:
-- Shell background = notebook (M01 base) with start-side red margin line + subdued `.vexa-surface` treatment on the content column.
+- Shell background = notebook (M01 base) with start-side red margin line + subdued `.mono-surface` treatment on the content column.
 - Header: brand (Caveat + red `✱`) + `Stepper` (M02) with the four steps; current step highlighted.
 - `Stepper` reflects `currentStep` from the site (business-info/templates/language/generating) — read from the same data the steps already use; do not invent new state.
 

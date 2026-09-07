@@ -1,8 +1,8 @@
-# Milestone 03 — Auth Pages (Vexo style)
+﻿# Milestone 03 — Auth Pages (Monomastic style)
 
 ## Goal
 
-Restyle the sign-in and sign-up screens (built in Epic 01) with the Vexo design language so the auth experience matches the landing page's promise from the first interaction. Visual only — auth behavior, validation, and API wiring are untouched.
+Restyle the sign-in and sign-up screens (built in Epic 01) with the Monomastic design language so the auth experience matches the landing page's promise from the first interaction. Visual only — auth behavior, validation, and API wiring are untouched.
 
 ## Tasks (execution order)
 

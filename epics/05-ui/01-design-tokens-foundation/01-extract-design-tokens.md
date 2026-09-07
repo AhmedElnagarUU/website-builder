@@ -1,4 +1,4 @@
-# Task 01 — Extract Variant 14 design tokens into the Tailwind theme
+﻿# Task 01 — Extract Variant 14 design tokens into the Tailwind theme
 
 ## Context
 
@@ -14,7 +14,7 @@
 Files:
 
 ```
-tailwind.config.ts                 // extend theme with Vexo tokens
+tailwind.config.ts                 // extend theme with Monomastic tokens
 ```
 
 Token mapping (bind every value to the source's CSS variables — see MILESTONE.md "Shared context"):
@@ -38,7 +38,7 @@ Keep the tokens flat and boring (CODE_RULES §1): prefer named single-purpose to
 ## Acceptance criteria
 
 - [ ] `tailwind.config.ts` exposes every token listed in the MILESTONE "Shared context"; each maps to the source value exactly (spot-check `--paper`→`#F5EFDF`, `--red`→`#B23A48`, radius 4px, hard-shadow `4px 4px 0 rgba(42,38,34,0.08)`).
-- [ ] Utilities resolve: `bg-paper`, `text-ink`, `border-ink`, `bg-red-?` (the `red` brand token, distinct from Tailwind's built-in `red-*`), `shadow-vexa` (the hard offset shadow) etc. actually compile and apply.
+- [ ] Utilities resolve: `bg-paper`, `text-ink`, `border-ink`, `bg-red-?` (the `red` brand token, distinct from Tailwind's built-in `red-*`), `shadow-monomastic` (the hard offset shadow) etc. actually compile and apply.
 - [ ] No component file in `src/` was modified by this task.
 - [ ] Existing screens build and render unchanged.
 - [ ] `npm run lint && npm run typecheck && npm run build` pass.

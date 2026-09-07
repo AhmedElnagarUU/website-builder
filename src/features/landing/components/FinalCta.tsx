@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from "next-intl";
+﻿import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/shared/ui/Button";
 
 export function FinalCta() {
@@ -6,14 +6,14 @@ export function FinalCta() {
   const locale = useLocale();
   return (
     <section className="py-24 text-center lg:py-28">
-      <div className="vexo-container">
-        <span className="vexa-display inline-block -rotate-2 rounded-[4px] bg-vexa-yellow px-6 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink shadow-[2px_3px_0_rgba(0,0,0,0.08)]">
+      <div className="mono-container">
+        <span className="mono-display inline-block -rotate-2 rounded-[4px] bg-mono-yellow px-6 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-ink shadow-[2px_3px_0_rgba(0,0,0,0.08)]">
           {t("tape")}
         </span>
-        <h2 className="vexa-display mt-8 text-[clamp(48px,7.6vw,124px)] font-bold leading-[0.95] tracking-tight text-ink">
+        <h2 className="mono-display mt-8 text-[clamp(48px,7.6vw,124px)] font-bold leading-[0.95] tracking-tight text-ink">
           {t.rich("headline", {
             em: (chunks) => (
-              <em className="not-italic text-vexa-red underline decoration-wavy decoration-vexa-blue underline-offset-4">
+              <em className="not-italic text-mono-red underline decoration-wavy decoration-mono-blue underline-offset-4">
                 {chunks}
               </em>
             ),
@@ -30,7 +30,7 @@ export function FinalCta() {
           </a>
           <Button variant="default">{t("talk")}</Button>
         </div>
-        <div className="vexa-display mt-8 text-2xl text-ink-2">{t("signoff")}</div>
+        <div className="mono-display mt-8 text-2xl text-ink-2">{t("signoff")}</div>
         <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-3">
           {t("assure")}
         </div>

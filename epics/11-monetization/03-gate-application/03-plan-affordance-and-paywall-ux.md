@@ -1,4 +1,4 @@
-# Task — Plan affordance and paywall UX
+﻿# Task — Plan affordance and paywall UX
 
 ## Title
 Show a "Current plan" notice and bilingual paywall prompts when a limit is hit
@@ -13,7 +13,7 @@ A small "Current plan" affordance and a reusable bilingual paywall/upgrade promp
 - Files: `src/features/monetization/components/PlanBadge.tsx` (nav/header/badge showing Free/Pro; for authenticated users only) and `PaywallPrompt.tsx` (modal rendering on 402/403 with `limitKey` → human message + upgrade note).
 - Wire the shell `Navbar` (`src/features/shell/components/Navbar.tsx`) to show the plan badge when signed in.
 - Add i18n keys under `plan.*` / `paywall.*` in `en.json`/`ar.json` (current_plan, free, pro, limit_reached, requires_upgrade, account_frozen, account_suspended, upgrade_hint).
-- RTL-safe; vexa tokens.
+- RTL-safe; monomastic tokens.
 - Optimistic: on a 402/403 response in guarded actions (create site, publish, change language, regenerate, image upload), show the PaywallPrompt with the returned `limitKey`.
 - No checkout/upgrade flow yet — the prompt just explains and points "coming soon" (or to the future upgrade surface).
 

@@ -1,4 +1,4 @@
-# Epic 06 — Publishing & Live Serving
+﻿# Epic 06 — Publishing & Live Serving
 
 **One-line purpose:** Let the business owner take the finished, edited site and publish it as a read-only public website served at a system URL (`/live/[slug]`), where editing and publishing stay strictly separate, and English + Arabic are both served first-class.
 
@@ -12,7 +12,7 @@ This epic is the final product gap identified in `COMPACTION1.md` (project root)
 - The established auth + ownership pattern (`getSession()` + `getSiteForOwner`) used by every `[siteId]` route.
 - The unique `slug` index already declared in `src/shared/db/indexes.ts`.
 - The `NEXT_PUBLIC_SITES_DOMAIN` env var (declared in `.env.example`).
-- The Vexo UI foundation from Epic 05 for the Publish control's styling.
+- The Monomastic UI foundation from Epic 05 for the Publish control's styling.
 
 ## Why this epic matters for the MVP
 
@@ -61,7 +61,7 @@ Per the epic-structuring instructions, the following were explicitly checked and
 - **Epic 01** — better-auth session (`getSession`), db singleton, i18n message infrastructure.
 - **Epic 02** — `Site` model (`publishedSnapshot`, `slug`, `status`, `hasUnpublishedChanges`), repository, zod schemas, template catalog (template resolution by `templateId`).
 - **Epics 03/04** — content/images/brand/template exist and are editable; `SiteRenderer` (Epic 04 M01) is the live renderer.
-- **Epic 05** — Vexo UI tokens/components for styling the Publish control (additive only).
+- **Epic 05** — Monomastic UI tokens/components for styling the Publish control (additive only).
 - Executes **after** all of 01–05 (they are complete per `COMPACTION1.md`).
 
 ## Acceptance criteria (epic-wide)

@@ -1,7 +1,8 @@
-"use client";
+﻿"use client";
 
 import { useTranslations } from "next-intl";
 import { TEMPLATES } from "../catalog";
+import { TemplatePreviewLink } from "./TemplatePreviewLink";
 import { TemplateThumbnail } from "./TemplateThumbnail";
 import type { TemplateDefinition } from "../types";
 import type { CategoryId, Locale } from "@/features/sites/types";
@@ -42,16 +43,17 @@ function TemplateGalleryCard({
   const styleLabel = t(`dashboard.gallery.font.${template.style.fontPair}`);
 
   return (
-    <div className="flex flex-col rounded-[4px] border-[1.5px] border-ink bg-card p-3 shadow-vexa transition-transform hover:-translate-y-0.5">
+    <div className="flex flex-col rounded-[4px] border-[1.5px] border-ink bg-card p-3 shadow-mono transition-transform hover:-translate-y-0.5">
       <TemplateThumbnail
         templateId={template.id}
         name={template.name[locale]}
         accent={template.colors.defaultAccent}
+        screenshot={template.screenshot}
         className="aspect-[4/5]"
       />
       <div className="mt-3 flex items-center justify-between gap-2">
         <div className="flex-1">
-          <h3 className="vexa-display text-lg font-semibold text-ink">
+          <h3 className="mono-display text-lg font-semibold text-ink">
             {template.name[locale]}
           </h3>
           <p className="font-serif2 mt-0.5 text-xs leading-snug text-ink-2">
@@ -70,6 +72,9 @@ function TemplateGalleryCard({
         </span>
         <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-ink-3">
           {t("dashboard.gallery.style")}: {styleLabel}
+        </span>
+        <span className="ms-auto">
+          <TemplatePreviewLink template={template} />
         </span>
       </div>
     </div>

@@ -1,8 +1,8 @@
-# Task 01 — Sign-in page restyle
+﻿# Task 01 — Sign-in page restyle
 
 ## Context
 
-Epic 01 built the sign-in page with default styling. This task restyles it to the Vexo language so the first screen a user meets (or returns to) feels like the product its landing page describes.
+Epic 01 built the sign-in page with default styling. This task restyles it to the Monomastic language so the first screen a user meets (or returns to) feels like the product its landing page describes.
 
 ## Scope
 
@@ -39,7 +39,7 @@ No string changes: reuse existing `auth.*` keys verbatim.
 ## Acceptance criteria
 
 - [ ] Sign-in renders as a centered paper panel over the notebook background; brand shows Caveat + red `✱`.
-- [ ] Fields, error message (red), and primary CTA use the Vexo styling from M02; all existing `auth.*` strings appear unchanged.
+- [ ] Fields, error message (red), and primary CTA use the Monomastic styling from M02; all existing `auth.*` strings appear unchanged.
 - [ ] Functionally identical: submitting still calls the same flow; errors still show the same messages.
 - [ ] Usable at 375px; RTL-correct in `/ar/*` (form/panel mirror correctly, Arabic uses AR stack).
 - [ ] `npm run lint && npm run typecheck && npm run build` pass.

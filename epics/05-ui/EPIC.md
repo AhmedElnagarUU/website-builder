@@ -1,4 +1,4 @@
-# Epic 05 — UI Epic: The "Vexo" Design Language
+﻿# Epic 05 — UI Epic: The "Monomastic" Design Language
 
 **One-line purpose:** Turn the visual language established in `design/landingPage/variant-14/index.html` into a reusable design-token + component foundation, then apply it to every real product screen (auth, app shell, create wizard, editor chrome) so the whole application feels like the same handmade, notebook-like product that the landing page promises.
 
@@ -10,7 +10,7 @@
 
 ## Why this epic matters for the MVP
 
-Epics 01–04 built the screens and their logic inside a plain/default Tailwind shell. The product's differentiating promise is a warm, human, "written by hand" feel (the whole marketing concept of Vexo). If the app UI reads as generic, the product under-delivers on the promise its landing page already makes. This epic closes that gap by (a) extracting Variant 14 into a token + component foundation once, and (b) restyling each real screen group against it — without touching site behavior or data.
+Epics 01–04 built the screens and their logic inside a plain/default Tailwind shell. The product's differentiating promise is a warm, human, "written by hand" feel (the whole marketing concept of Monomastic). If the app UI reads as generic, the product under-delivers on the promise its landing page already makes. This epic closes that gap by (a) extracting Variant 14 into a token + component foundation once, and (b) restyling each real screen group against it — without touching site behavior or data.
 
 ## Scope boundaries
 
@@ -52,7 +52,7 @@ Depends on ALL of Epic 01 (scaffold, Tailwind theme, i18n/RTL, app shell) and th
 
 ## Acceptance criteria (epic-wide)
 
-- Every product screen listed in M03–M05 reads as "Vexo" (notebook palette + type) while remaining legible and usable at 375px width.
+- Every product screen listed in M03–M05 reads as "Monomastic" (notebook palette + type) while remaining legible and usable at 375px width.
 - All styling is RTL-correct in `/ar/*` (logical properties only; no mis-mirroring).
 - No hardcoded user-facing strings; no new dependencies; no changes to data/API/behavior contracts.
 - `npm run lint && npm run typecheck && npm run build` pass.

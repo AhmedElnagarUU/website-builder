@@ -1,4 +1,4 @@
-export type StepperStep = {
+﻿export type StepperStep = {
   key: string;
   label: string;
 };
@@ -36,9 +36,9 @@ export function Stepper({
               <span aria-hidden className="h-px w-4 border-t-2 border-dashed border-ink/30" />
             )}
             <span
-              className={`vexa-display inline-flex items-center gap-1.5 whitespace-nowrap text-lg leading-none ${
+              className={`mono-display inline-flex items-center gap-1.5 whitespace-nowrap text-lg leading-none ${
                 isCurrent
-                  ? "text-vexa-red"
+                  ? "text-mono-red"
                   : isDone
                     ? "text-ink"
                     : "text-ink-3"
@@ -47,7 +47,7 @@ export function Stepper({
               <span
                 className={`inline-grid h-6 w-6 place-items-center rounded-full border-2 ${
                   isCurrent
-                    ? "border-vexa-red bg-vexa-red text-paper"
+                    ? "border-mono-red bg-mono-red text-paper"
                     : isDone
                       ? "border-ink bg-ink text-paper"
                       : "border-ink/40 text-ink-3"

@@ -1,4 +1,4 @@
-# Task — Dashboard template gallery page
+﻿# Task — Dashboard template gallery page
 
 ## Title
 Add a dashboard page listing every template with metadata and a visual thumbnail
@@ -14,7 +14,7 @@ A new authenticated page on the dashboard listing all templates from the catalog
 - Source: import the `TEMPLATES` catalog and `rankTemplatesByCategory`/`getTemplate` helpers from `src/features/templates/api/list-templates.ts`.
 - Group or tag by category; sort sensibly (suggested first per the owner's category if in a creation context).
 - New i18n keys under `templates.*` / `gallery.*` in `en.json` + `ar.json`.
-- RTL-safe layout and vexa styling.
+- RTL-safe layout and monomastic styling.
 
 ## Dependencies
 - Epic 08 (templates have richer metadata + real images). Auth/session + dashboard already exist.

@@ -1,4 +1,4 @@
-# Task 02 — Shared card / paper panel / sticky-note components
+﻿# Task 02 — Shared card / paper panel / sticky-note components
 
 ## Context
 
@@ -20,7 +20,7 @@ src/shared/ui/StickyNote.tsx       // annotation/sticky-note
 ```
 
 Design mapping (bind to source):
-- Card: `bg-paper-2`, `border-[1.5px] border-ink`, `rounded`, `shadow-vexa` (the `4px 4px 0 rgba(42,38,34,0.08)` token), `relative`.
+- Card: `bg-paper-2`, `border-[1.5px] border-ink`, `rounded`, `shadow-monomastic` (the `4px 4px 0 rgba(42,38,34,0.08)` token), `relative`.
 - Corner index: absolute square (Caveat glyph) in `--ink`, alternating `--red` for even positions — keep as an optional prop (`index?: string`, `tone?: 'ink'|'red'`).
 - Rotation: optional `rotate` prop (small degrees) so callers can add the subtle hand-made tilt without hardcoding.
 - StickyNote: paper bg, `1.5px ink` border, hard shadow, start-side red `✱`, optional start-side placement; rotate by default.

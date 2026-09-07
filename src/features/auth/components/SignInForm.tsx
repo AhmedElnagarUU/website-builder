@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -39,11 +39,11 @@ export function SignInForm({ locale }: { locale: string }) {
   }
 
   return (
-    <Card className="vexa-surface w-full max-w-md bg-card/95 shadow-vexa">
+    <Card className="mono-surface w-full max-w-md bg-card/95 shadow-mono">
       <div className="flex flex-col gap-6 p-8">
-        <div className="vexa-display flex items-baseline gap-1.5 text-3xl font-bold text-ink">
+        <div className="mono-display flex items-baseline gap-1.5 text-3xl font-bold text-ink">
           <span>{t("app.name")}</span>
-          <span className="vexa-display text-lg text-vexa-red">✱</span>
+          <span className="mono-display text-lg text-mono-red">✱</span>
         </div>
         <SectionHead title={t("auth.sign_in.title")} />
         <form onSubmit={onSubmit} className="flex flex-col gap-4">
@@ -72,7 +72,7 @@ export function SignInForm({ locale }: { locale: string }) {
             />
           </div>
           {error && (
-            <p role="alert" className="text-sm font-medium text-vexa-red">
+            <p role="alert" className="text-sm font-medium text-mono-red">
               {error}
             </p>
           )}
@@ -80,7 +80,7 @@ export function SignInForm({ locale }: { locale: string }) {
             {loading ? t("common.loading") : t("auth.action.sign_in")}
           </Button>
           <p className="text-center text-sm text-ink-3">
-            <a href={`/${locale}/auth/sign-up`} className="underline hover:text-vexa-red">
+            <a href={`/${locale}/auth/sign-up`} className="underline hover:text-mono-red">
               {t("auth.link.to_sign_up")}
             </a>
           </p>

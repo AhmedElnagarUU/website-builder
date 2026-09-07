@@ -1,4 +1,4 @@
-# Milestone 02 — Shared UI Component Set (Vexo primitives)
+﻿# Milestone 02 — Shared UI Component Set (Monomastic primitives)
 
 ## Goal
 

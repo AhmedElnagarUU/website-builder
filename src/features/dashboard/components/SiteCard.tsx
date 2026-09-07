@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+﻿import { getTranslations } from "next-intl/server";
 import { TapeTag } from "@/shared/ui/TapeTag";
 import type { SiteDTO, WizardStep, Locale } from "@/features/sites/types";
 
@@ -44,7 +44,7 @@ export async function SiteCard({
   return (
     <a
       href={href}
-      className="group relative flex flex-col rounded-[4px] border-[1.5px] border-ink bg-paper-2 p-6 shadow-vexa transition-colors hover:bg-paper"
+      className="group relative flex flex-col rounded-[4px] border-[1.5px] border-ink bg-paper-2 p-6 shadow-mono transition-colors hover:bg-paper"
     >
       <div className="flex items-center justify-between">
         <span
@@ -55,12 +55,12 @@ export async function SiteCard({
         <TapeTag>{tag}</TapeTag>
       </div>
 
-      <h2 className="vexa-display mt-4 text-[30px] font-bold leading-tight tracking-tight text-ink group-hover:text-vexa-red">
+      <h2 className="mono-display mt-4 text-[30px] font-bold leading-tight tracking-tight text-ink group-hover:text-mono-red">
         {name}
       </h2>
 
       {templateName && !site.businessInfo.name && (
-        <p className="vexa-display mt-0.5 text-lg text-ink-2">{templateName}</p>
+        <p className="mono-display mt-0.5 text-lg text-ink-2">{templateName}</p>
       )}
 
       <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-t-[1.5px] border-dashed border-ink/30 pt-3 font-mono text-[11px] uppercase tracking-[0.06em] text-ink-3">
@@ -72,7 +72,7 @@ export async function SiteCard({
         <span className="whitespace-nowrap">{updated}</span>
       </div>
 
-      <span className="vexa-display mt-4 inline-flex items-center gap-1 text-lg text-ink">
+      <span className="mono-display mt-4 inline-flex items-center gap-1 text-lg text-ink">
         {t("continue")}{" "}
         <span className="transition-transform group-hover:translate-x-1 rtl:rotate-180">
           →

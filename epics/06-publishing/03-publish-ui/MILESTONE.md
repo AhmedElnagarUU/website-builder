@@ -1,8 +1,8 @@
-# Milestone 03 — Publish UI in the Editor
+﻿# Milestone 03 — Publish UI in the Editor
 
 ## Goal
 
-Surface publishing as a **genuine, separate action** in the editor, clearly distinct from inline editing/autosave. The owner sees a dedicated Publish control, a confirmation step, the resulting live URL, and a clear "you have unpublished changes" state that invites an explicit re-publish. Visual styling uses the Vexo foundation (Epic 05) as an additive layer; behavior is additive only.
+Surface publishing as a **genuine, separate action** in the editor, clearly distinct from inline editing/autosave. The owner sees a dedicated Publish control, a confirmation step, the resulting live URL, and a clear "you have unpublished changes" state that invites an explicit re-publish. Visual styling uses the Monomastic foundation (Epic 05) as an additive layer; behavior is additive only.
 
 ## Tasks (execution order)
 
@@ -28,4 +28,4 @@ All new user-facing strings come from next-intl. Add each key to **BOTH** `src/m
 
 ## Definition of Done (shared)
 
-Acceptance criteria pass; `npm run lint && npm run typecheck && npm run build` green; behavior additive + separate from editing; Vexo-styled; RTL-correct; no structural editing controls; no new deps.
+Acceptance criteria pass; `npm run lint && npm run typecheck && npm run build` green; behavior additive + separate from editing; Monomastic-styled; RTL-correct; no structural editing controls; no new deps.

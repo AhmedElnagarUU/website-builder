@@ -368,6 +368,7 @@ function def(
     style,
     colors: { defaultAccent },
     pages: buildPages(opts),
+    screenshot: `/templates/${id}/screenshot.png`,
   };
 }
 
@@ -377,7 +378,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Classic Services", ar: "الخدمات الكلاسيكية" },
     { en: "A clean, trustworthy layout for service businesses.", ar: "تصميم نظيف وموثوق للشركات الخدمية." },
     "services",
-    { fontPair: "classic", radius: "soft", imagery: "photo" },
+    {
+      fontPair: "classic",
+      radius: "soft",
+      imagery: "photo",
+      theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "fill" },
+    },
     "#1E40AF",
     { category: "services", svcCount: 3, testimonials: 2, extras: { gallery: 3, faq: 4 } }
   ),
@@ -387,7 +393,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Modern Studio", ar: "الاستوديو العصري" },
     { en: "A bold, image-forward layout for creative service studios.", ar: "تصميم جريء يركز على الصور للاستوديوهات الإبداعية." },
     "services",
-    { fontPair: "modern", radius: "sharp", imagery: "photo" },
+    {
+      fontPair: "modern",
+      radius: "sharp",
+      imagery: "photo",
+      theme: { key: "bold", surface: "deep", headingFont: "sans", hero: "split-deep", accentRole: "edge" },
+    },
     "#0F172A",
     { category: "services", svcCount: 4, testimonials: 0, extras: { gallery: 4, team: 3 } }
   ),
@@ -397,7 +408,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Warm Kitchen", ar: "المطبخ الدافئ" },
     { en: "An inviting, homey layout for restaurants and cafés.", ar: "تصميم دافئ وجذاب للمطاعم والمقاهي." },
     "restaurant",
-    { fontPair: "warm", radius: "soft", imagery: "photo" },
+    {
+      fontPair: "warm",
+      radius: "soft",
+      imagery: "photo",
+      theme: { key: "warm", surface: "light", headingFont: "serif", hero: "photo-bleed", accentRole: "fill" },
+    },
     "#B45309",
     { category: "restaurant", svcCount: 3, testimonials: 1, extras: { menu: 6, hours: true, gallery: 3 } }
   ),
@@ -407,7 +423,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Bistro Menu", ar: "قائمة البيسترو" },
     { en: "A clean, menu-focused layout for bistros and casual dining.", ar: "تصميم نظيف يركز على القائمة للبيسترو والمطاعم غير الرسمية." },
     "restaurant",
-    { fontPair: "classic", radius: "sharp", imagery: "minimal" },
+    {
+      fontPair: "classic",
+      radius: "sharp",
+      imagery: "minimal",
+      theme: { key: "warm", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "edge" },
+    },
     "#7C2D12",
     { category: "restaurant", svcCount: 4, testimonials: 0, extras: { menu: 8, hours: true, faq: 5 } }
   ),
@@ -417,7 +438,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Simple Shop", ar: "المتجر البسيط" },
     { en: "A product-first layout for small retail shops.", ar: "تصميم يركز على المنتجات للمتاجر الصغيرة." },
     "retail",
-    { fontPair: "classic", radius: "soft", imagery: "photo" },
+    {
+      fontPair: "classic",
+      radius: "soft",
+      imagery: "photo",
+      theme: { key: "retail", surface: "light", headingFont: "sans", hero: "split-light", accentRole: "fill" },
+    },
     "#15803D",
     { category: "retail", svcCount: 3, testimonials: 0, extras: { gallery: 3, faq: 4, pricing: 3 } }
   ),
@@ -427,7 +453,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Product Focus", ar: "تركيز على المنتج" },
     { en: "A minimalist layout that puts a single product front and center.", ar: "تصميم بسيط يضع منتجاً واحداً في المقدمة." },
     "retail",
-    { fontPair: "modern", radius: "sharp", imagery: "minimal" },
+    {
+      fontPair: "modern",
+      radius: "sharp",
+      imagery: "minimal",
+      theme: { key: "retail", surface: "light", headingFont: "sans", hero: "photo-bleed", accentRole: "edge" },
+    },
     "#0E7490",
     { category: "retail", svcCount: 2, testimonials: 1, extras: { gallery: 4, pricing: 3 } }
   ),
@@ -437,7 +468,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Professional Profile", ar: "الملف المهني" },
     { en: "A personal-brand layout for professionals and consultants.", ar: "تصميم للعلامة الشخصية للمحترفين والمستشارين." },
     "professional",
-    { fontPair: "classic", radius: "soft", imagery: "minimal" },
+    {
+      fontPair: "classic",
+      radius: "soft",
+      imagery: "minimal",
+      theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "edge" },
+    },
     "#1F2937",
     { category: "professional", svcCount: 3, testimonials: 1, extras: { pricing: 3, faq: 5, team: 3 } }
   ),
@@ -447,7 +483,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Consultant Page", ar: "صفحة المستشار" },
     { en: "A focused, services-led layout for independent consultants.", ar: "تصميم يركز على الخدمات للمستشارين المستقلين." },
     "professional",
-    { fontPair: "modern", radius: "sharp", imagery: "minimal" },
+    {
+      fontPair: "modern",
+      radius: "sharp",
+      imagery: "minimal",
+      theme: { key: "bold", surface: "deep", headingFont: "sans", hero: "split-deep", accentRole: "fill" },
+    },
     "#4338CA",
     { category: "professional", svcCount: 4, testimonials: 0, extras: { pricing: 4, faq: 4, team: 1 } }
   ),
@@ -457,7 +498,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Clean Portfolio", ar: "الأعمال النظيفة" },
     { en: "A minimalist gallery layout for creative portfolios.", ar: "تصميم معرض بسيط للأعمال الإبداعية." },
     "portfolio",
-    { fontPair: "modern", radius: "sharp", imagery: "photo" },
+    {
+      fontPair: "modern",
+      radius: "sharp",
+      imagery: "photo",
+      theme: { key: "creative", surface: "light", headingFont: "sans", hero: "split-light", accentRole: "edge" },
+    },
     "#7C3AED",
     { category: "portfolio", svcCount: 2, testimonials: 0, extras: { gallery: 6, team: 3 } }
   ),
@@ -467,7 +513,12 @@ export const TEMPLATES: TemplateDefinition[] = [
     { en: "Visual Showcase", ar: "العرض المرئي" },
     { en: "A bold, visual-forward layout for artists and designers.", ar: "تصميم جريء ومرئي للفنانين والمصممين." },
     "portfolio",
-    { fontPair: "modern", radius: "soft", imagery: "photo" },
+    {
+      fontPair: "modern",
+      radius: "soft",
+      imagery: "photo",
+      theme: { key: "creative", surface: "deep", headingFont: "sans", hero: "photo-bleed", accentRole: "fill" },
+    },
     "#DB2777",
     { category: "portfolio", svcCount: 3, testimonials: 2, extras: { gallery: 6, team: 3 } }
   ),

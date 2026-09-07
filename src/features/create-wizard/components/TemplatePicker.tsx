@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -50,7 +50,7 @@ export function TemplatePicker({
   }
 
   return (
-    <div className="vexa-surface mx-auto flex max-w-5xl flex-col gap-6 p-4 md:p-8">
+    <div className="mono-surface mx-auto flex max-w-5xl flex-col gap-6 p-4 md:p-8">
       <div className="flex flex-col gap-4">
         <Stepper
           steps={[
@@ -65,7 +65,7 @@ export function TemplatePicker({
           <SectionHead title={t("wizard.templates.title")} />
           <a
             href={`/${locale}/create/business-info?site=${siteId}`}
-            className="mt-1 whitespace-nowrap text-sm text-ink-3 underline hover:text-vexa-red"
+            className="mt-1 whitespace-nowrap text-sm text-ink-3 underline hover:text-mono-red"
           >
             {t("wizard.templates.back")}
           </a>
@@ -115,7 +115,7 @@ export function TemplatePicker({
       )}
 
       {error && (
-        <p role="alert" className="text-sm font-medium text-vexa-red">
+        <p role="alert" className="text-sm font-medium text-mono-red">
           {error}
         </p>
       )}

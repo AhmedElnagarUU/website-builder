@@ -14,7 +14,7 @@ export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const firstSegment = pathname.split("/")[1];
 
-  if (firstSegment === "live") {
+  if (firstSegment === "live" || firstSegment === "preview") {
     return NextResponse.next();
   }
 

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -31,7 +31,7 @@ export function LanguageSwitcher({ currentLocale }: { currentLocale: Locale }) {
       type="button"
       onClick={onClick}
       aria-label={t("nav.language_switch_label")}
-      className="vexa-display rounded-full border-2 border-ink px-3 py-1 text-lg leading-none text-ink transition-colors hover:bg-ink hover:text-paper"
+      className="mono-display rounded-full border-2 border-ink px-3 py-1 text-lg leading-none text-ink transition-colors hover:bg-ink hover:text-paper"
     >
       {otherLabel}
     </button>

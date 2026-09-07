@@ -1,8 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { usePaywall } from "@/features/monetization/components/paywall-context";
+import { paywallFromResponse } from "@/features/monetization/lib/paywall-client";
 import type { PublishedSnapshot } from "@/features/sites/types";
 
 interface PublishControlProps {
@@ -22,6 +24,7 @@ export function PublishControl({
 }: PublishControlProps) {
   const t = useTranslations();
   const router = useRouter();
+  const { showPaywall } = usePaywall();
   const [showConfirm, setShowConfirm] = useState(false);
   const [working, setWorking] = useState(false);
   const [liveUrl, setLiveUrl] = useState<string | null>(null);
@@ -50,6 +53,11 @@ export function PublishControl({
         headers: { "Content-Type": "application/json" },
       });
       const data = await res.json().catch(() => ({}));
+      const paywall = await paywallFromResponse(res);
+      if (paywall) {
+        showPaywall(paywall);
+        return;
+      }
       if (res.ok && data.liveUrl) {
         setLiveUrl(String(data.liveUrl));
         setDirty(false);
@@ -73,12 +81,12 @@ export function PublishControl({
           onClick={() => setShowConfirm(false)}
         >
           <div
-            className="vexa-surface w-full max-w-sm p-6"
+            className="mono-surface w-full max-w-sm p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <p className="mb-4 text-start text-sm text-ink">{confirmText}</p>
             {error && (
-              <p role="alert" className="mb-4 text-sm font-medium text-vexa-red">
+              <p role="alert" className="mb-4 text-sm font-medium text-mono-red">
                 {error}
               </p>
             )}
@@ -104,7 +112,7 @@ export function PublishControl({
       )}
 
       {error && !showConfirm && (
-        <span role="alert" className="text-xs font-medium text-vexa-red">
+        <span role="alert" className="text-xs font-medium text-mono-red">
           {error}
         </span>
       )}
@@ -116,7 +124,7 @@ export function PublishControl({
       )}
 
       {liveUrl && (
-        <span className="flex items-center gap-2 text-xs font-medium text-vexa-green">
+        <span className="flex items-center gap-2 text-xs font-medium text-mono-green">
           {t("publish.success")}
           <a
             href={liveUrl}

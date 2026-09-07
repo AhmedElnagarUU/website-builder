@@ -1,8 +1,8 @@
-# Task 01 — Editor top bar / chrome restyle
+﻿# Task 01 — Editor top bar / chrome restyle
 
 ## Context
 
-Epic 04's editor is wrapped in an `EditorShell` top bar (language tabs, desktop/mobile preview toggle, saved indicator, brand-color control, and an action area), sitting above the live-rendered preview. This task restyles that chrome to the Vexo language, keeping it calm and functional (EPIC.md flag #2). All behavior is untouched.
+Epic 04's editor is wrapped in an `EditorShell` top bar (language tabs, desktop/mobile preview toggle, saved indicator, brand-color control, and an action area), sitting above the live-rendered preview. This task restyles that chrome to the Monomastic language, keeping it calm and functional (EPIC.md flag #2). All behavior is untouched.
 
 ## Scope
 
@@ -38,7 +38,7 @@ Mapping:
 
 ## Acceptance criteria
 
-- [ ] Top bar reads as a Vexo chrome strip (brand + red ✱ + ink rule); language tabs, toggle, saved indicator, and color swatches all styled and clearly legible.
+- [ ] Top bar reads as a Monomastic chrome strip (brand + red ✱ + ink rule); language tabs, toggle, saved indicator, and color swatches all styled and clearly legible.
 - [ ] Active/selected states are unmistakable in both locales.
 - [ ] All editor behavior (tab switching, toggle, autosave-saved state, color PATCH) unchanged.
 - [ ] RTL-correct in `/ar/*`; usable at 375px (top bar wraps without horizontal scroll).

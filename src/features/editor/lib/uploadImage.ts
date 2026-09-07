@@ -2,12 +2,17 @@
 
 import { MIME_EXT, MAX_IMAGE_BYTES } from "@/shared/lib/image-upload";
 import type { SiteImage } from "@/features/sites/types";
+import type { PaywallInfo } from "@/features/monetization/lib/paywall-client";
 
 export type ImageFileError = "unsupported" | "too_large";
 
 export type UploadErrorKind =
   | "unsupported"
   | "too_large"
+  | "limit_reached"
+  | "requires_upgrade"
+  | "account_frozen"
+  | "account_suspended"
   | "unauthorized"
   | "not_found"
   | "unknown_slot"
@@ -19,9 +24,11 @@ export type UploadErrorKind =
 
 export class UploadFlowError extends Error {
   readonly kind: UploadErrorKind;
-  constructor(kind: UploadErrorKind) {
+  readonly paywall?: PaywallInfo;
+  constructor(kind: UploadErrorKind, paywall?: PaywallInfo) {
     super(kind);
     this.kind = kind;
+    this.paywall = paywall;
   }
 }
 
@@ -44,7 +51,16 @@ function measureImage(src: string): Promise<{ width: number; height: number }> {
 }
 
 function mapApiError(status: number, body: { error?: string } | null): UploadErrorKind {
-  if (status === 401 || status === 403) return "unauthorized";
+  if (status === 401) return "unauthorized";
+  if (status === 403) {
+    if (body?.error === "account_frozen") return "account_frozen";
+    if (body?.error === "account_suspended") return "account_suspended";
+    return "unauthorized";
+  }
+  if (status === 402) {
+    if (body?.error === "requires_upgrade") return "requires_upgrade";
+    return "limit_reached";
+  }
   if (status === 404) return "not_found";
   switch (body?.error) {
     case "unknown_slot":
@@ -56,6 +72,27 @@ function mapApiError(status: number, body: { error?: string } | null): UploadErr
     default:
       return "unknown";
   }
+}
+
+function paywallFromBody(
+  status: number,
+  body: { error?: string; plan?: string; limitKey?: string } | null
+): PaywallInfo | null {
+  if (status !== 402 && status !== 403) return null;
+  if (!body?.error) return null;
+  if (
+    body.error !== "limit_reached" &&
+    body.error !== "requires_upgrade" &&
+    body.error !== "account_frozen" &&
+    body.error !== "account_suspended"
+  ) {
+    return null;
+  }
+  return {
+    reason: body.error,
+    plan: body.plan === "pro" ? "pro" : "free",
+    limitKey: typeof body.limitKey === "string" ? body.limitKey : "",
+  };
 }
 
 export async function uploadImage(
@@ -72,13 +109,16 @@ export async function uploadImage(
     const res = await fetch(`/api/sites/${siteId}/image-upload`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ slotId, mimeType: mime }),
+      body: JSON.stringify({ slotId, mimeType: mime, fileSize: file.size }),
     });
-    const body = await res.json().catch(() => null);
+    const body = (await res.json().catch(() => null)) as
+      | { uploadUrl?: string; s3Key?: string; error?: string; plan?: string; limitKey?: string }
+      | null;
     if (!res.ok || !body?.uploadUrl || !body?.s3Key) {
-      throw new UploadFlowError(mapApiError(res.status, body));
+      const paywall = paywallFromBody(res.status, body);
+      throw new UploadFlowError(mapApiError(res.status, body), paywall ?? undefined);
     }
-    ticket = body;
+    ticket = { uploadUrl: body.uploadUrl, s3Key: body.s3Key };
   } catch (e) {
     if (e instanceof UploadFlowError) throw e;
     throw new UploadFlowError("network");

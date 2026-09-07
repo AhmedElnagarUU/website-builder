@@ -1,19 +1,19 @@
-# Task — Pick any template with a visual preview, in the project style
+﻿# Task — Pick any template with a visual preview, in the project style
 
 ## Title
-Restyle the editor template picker with visual previews and vexa design
+Restyle the editor template picker with visual previews and monomastic design
 
 ## Context
-The editor's "Change template" picker is a bare list of template names in a plain modal, which does not match the product's visual language and doesn't show what the user is choosing. It must present each template with a real visual preview, styled with the vexa design tokens, and make selection obvious.
+The editor's "Change template" picker is a bare list of template names in a plain modal, which does not match the product's visual language and doesn't show what the user is choosing. It must present each template with a real visual preview, styled with the monomastic design tokens, and make selection obvious.
 
 ## Scope
-Redesign `ChangeTemplateControl`'s picker modal: vexa-styled surface/typography, each template as a rich card with a preview thumbnail (reusing M01 task 02), name + description in the current locale, and a clear "current" indicator. Keep the existing switch-generation axios/fetch flow intact.
+Redesign `ChangeTemplateControl`'s picker modal: mono-styled surface/typography, each template as a rich card with a preview thumbnail (reusing M01 task 02), name + description in the current locale, and a clear "current" indicator. Keep the existing switch-generation axios/fetch flow intact.
 
 ## Technical details
 - Files: `src/features/editor/components/ChangeTemplateControl.tsx` (and shared `TemplateGalleryItem`/thumbnail component).
 - Reuse the thumbnail component from Epic 09 M01 task 02.
 - Add i18n keys (e.g. `editor.template.change`, `editor.template.preview`, `editor.template.current`, `editor.template.pick`) in `en.json`/`ar.json`.
-- RTL-safe; consistent with `vexa-surface`, `vexa-display`, `vexa-red` tokens.
+- RTL-safe; consistent with `mono-surface`, `mono-display`, `mono-red` tokens.
 - No new dependencies.
 
 ## Dependencies

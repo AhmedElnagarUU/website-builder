@@ -1,4 +1,4 @@
-# Task — Upload popup: file preview and clear steps
+﻿# Task — Upload popup: file preview and clear steps
 
 ## Title
 Show a live preview of the selected file and a clear upload state in the image popup
@@ -14,7 +14,7 @@ Upgrade `ImageSlotEditor`'s modal: after choosing a file, show a local preview (
 - Use `URL.createObjectURL(file)` for the local preview (revoke on cleanup), or the existing uploaded image via `s3Key`.
 - Keep `validateImageFile` + `uploadImage` from `src/features/editor/lib/uploadImage.ts` (no backend change).
 - Add phase copy and aria states; new i18n keys for phases in `en.json`/`ar.json`.
-- RTL-safe layout; matches vexa tokens.
+- RTL-safe layout; matches monomastic tokens.
 
 ## Dependencies
 - Epic 07 (solid preview surface). Existing `uploadImage` client helper.

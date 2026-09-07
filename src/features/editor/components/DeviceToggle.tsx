@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTranslations } from "next-intl";
 
@@ -26,9 +26,9 @@ export function DeviceToggle({
           type="button"
           onClick={() => onChange(opt.value)}
           aria-pressed={mode === opt.value}
-          className={`vexa-display rounded-full px-3 py-1 text-lg leading-none transition-colors ${
+          className={`mono-display rounded-full px-3 py-1 text-lg leading-none transition-colors ${
             mode === opt.value
-              ? "bg-vexa-red text-paper"
+              ? "bg-mono-red text-paper"
               : "text-ink hover:bg-paper-2"
           }`}
         >

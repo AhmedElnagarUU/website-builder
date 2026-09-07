@@ -1,4 +1,4 @@
-# Task — User list, search, and detail view
+﻿# Task — User list, search, and detail view
 
 ## Title
 Admin Users page: list/search users and view a user's full profile
@@ -13,7 +13,7 @@ An admin Users list with count + search/sort, and a user detail view combining p
 - Files: admin area `src/app/[locale]/admin/users` page + `src/features/admin/components/UserTable.tsx`, `UserDetail.tsx`; admin read APIs `src/features/admin/api/list-users.ts`, `get-user.ts` + routes `GET /api/admin/users` and `GET /api/admin/users/[userId]`.
 - Read APIs are admin-guarded (M01). List supports `?q` (search by name/email), sort by created/updated, pagination or cursor.
 - Detail composes: user profile (name/email/role), subscription (plan/status/period/accountStatus), sites (via `listSitesByOwner` → count + published), billing (via Epic 11 ledger `listBillingForUser` + `sumBillingForUser`).
-- New i18n keys under `admin.users.*` in `en.json`/`ar.json`; vexa-styled; RTL-safe.
+- New i18n keys under `admin.users.*` in `en.json`/`ar.json`; mono-styled; RTL-safe.
 - Total-user count shown (the headline metric the admin asked for).
 
 ## Dependencies

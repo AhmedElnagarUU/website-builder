@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { usePaywall } from "@/features/monetization/components/paywall-context";
+import { paywallFromResponse } from "@/features/monetization/lib/paywall-client";
 
 export type GenerationStatus = "idle" | "queued" | "running" | "complete" | "failed";
 
@@ -37,6 +39,7 @@ export function useGenerationPolling(
   const [retryNonce, setRetryNonce] = useState(0);
   const startedRef = useRef(false);
   const runningSinceRef = useRef<number | null>(null);
+  const { showPaywall } = usePaywall();
 
   const pollOnce = useCallback(async () => {
     try {
@@ -58,12 +61,17 @@ export function useGenerationPolling(
     try {
       const res = await fetch(`/api/sites/${siteId}/generate`, { method: "POST" });
       if (res.status === 202) return { ok: true };
+      const paywall = await paywallFromResponse(res);
+      if (paywall) {
+        showPaywall(paywall);
+        return { ok: false, code: res.status, error: paywall.reason };
+      }
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       return { ok: false, code: res.status, error: data.error ?? "unknown" };
     } catch {
       return { ok: false, code: 0, error: "network" };
     }
-  }, [siteId]);
+  }, [siteId, showPaywall]);
 
   const retry = useCallback(() => {
     setStartError(null);

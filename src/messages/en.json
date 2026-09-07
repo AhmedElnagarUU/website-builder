@@ -1,6 +1,6 @@
-{
+﻿{
   "app": {
-    "name": "SiteCraft"
+    "name": "Monomastic"
   },
   "common": {
     "loading": "Loading…",
@@ -18,20 +18,20 @@
     },
     "hero": {
       "meta": {
-        "kicker": "SiteCraft · Field Notebook",
+        "kicker": "Monomastic · Field Notebook",
         "note": "observations on small business sites"
       },
       "headline": {
         "line1": "A website,",
         "line2": "written",
         "line3": "by hand.",
-        "small": "obs. № 03 · a website that sounds like you, because SiteCraft listens first"
+        "small": "obs. № 03 · a website that sounds like you, because Monomastic listens first"
       },
       "note": {
         "body": "P.S. — you don't need to know any of this. You just need to know your business.",
-        "signoff": "— signed, sitecraft"
+        "signoff": "— signed, monomastic"
       },
-      "deck": "You answer a <b>few questions</b> about your business over coffee. SiteCraft writes the rest — the words, the structure, the Arabic if you need it. You change what <u>doesn't sound like you</u>. You publish.",
+      "deck": "You answer a <b>few questions</b> about your business over coffee. Monomastic writes the rest — the words, the structure, the Arabic if you need it. You change what <u>doesn't sound like you</u>. You publish.",
       "cta": {
         "start": "Start free",
         "example": "See example",
@@ -44,7 +44,7 @@
       "copy": {
         "tag": "note to self",
         "title": "Real <em>copy,</em> not lorem ipsum.",
-        "body": "SiteCraft writes every page in your voice — your story, menu, contact note — then you edit it like a Word doc."
+        "body": "Monomastic writes every page in your voice — your story, menu, contact note — then you edit it like a Word doc."
       },
       "belongs": {
         "tag": "true",
@@ -63,7 +63,7 @@
       },
       "hosted": {
         "tag": "live",
-        "title": "Hosted at <em>yourname</em>.sitecraft.site.",
+        "title": "Hosted at <em>yourname</em>.monomastic.site.",
         "body": "Fast, on a real domain, ready when your customer searches for you tonight. SSL, mobile, search basics."
       },
       "keep": {
@@ -90,7 +90,7 @@
       },
       "two": {
         "ch": "step 02",
-        "title": "SiteCraft writes the site.",
+        "title": "Monomastic writes the site.",
         "body": "Every page, in both languages if you want, with your tone and your details already in place.",
         "detail": {
           "time_label": "Time:",
@@ -111,7 +111,7 @@
           "see_label": "Hosting:",
           "see": "included",
           "can_label": "Domain:",
-          "can": "sitecraft.site or your own"
+          "can": "monomastic.site or your own"
         }
       }
     },
@@ -156,9 +156,9 @@
       "assure": "Free to try · No card · Content stays yours · EN · AR"
     },
     "footer": {
-      "about_label": "sitecraft",
+      "about_label": "monomastic",
       "about": "A website builder for people who <b>didn't want</b> to learn how to build a website. Field-tested with small businesses in the Gulf and beyond.",
-      "sign": "— sitecraft · 2026",
+      "sign": "— monomastic · 2026",
       "product": "Product",
       "product_links": {
         "how": "how?",
@@ -187,7 +187,7 @@
     "new_site": "Create a new site",
     "creating": "Creating…",
     "empty_title": "No sites yet.",
-    "empty_body": "Start with one short conversation and SiteCraft writes the site for you.",
+    "empty_body": "Start with one short conversation and Monomastic writes the site for you.",
     "empty_cta": "Create your first site",
     "continue": "Continue",
     "status": {
@@ -258,6 +258,22 @@
     "sign_up": "Create account",
     "sign_out": "Sign out",
     "language_switch_label": "Switch language"
+  },
+  "plan": {
+    "current_plan": "Plan",
+    "free": "Free",
+    "pro": "Pro"
+  },
+  "paywall": {
+    "limit_reached": "You've reached the limit for this action on your current plan.",
+    "requires_upgrade": "This action requires the Pro plan.",
+    "account_frozen": "Your account is temporarily frozen. Some actions are paused.",
+    "account_suspended": "Your account has been suspended.",
+    "account_hint": "If you believe this is a mistake, please contact support.",
+    "upgrade_hint": "Upgrade to Pro to unlock more — coming soon.",
+    "plan_free": "Current plan: Free",
+    "plan_pro": "Current plan: Pro",
+    "close": "Close"
   },
   "wizard": {
     "business": {
@@ -406,6 +422,12 @@
       "close": "Close"
     }
   },
+  "preview": {
+    "view": "View template",
+    "open_new_tab": "Open template preview in a new tab",
+    "demo_badge": "Demo preview",
+    "back": "Back to templates"
+  },
   "publish": {
     "action": "Publish",
     "confirm": "Publish your site now? The current version goes live.",
@@ -419,6 +441,17 @@
     "republish_btn": "Republish",
     "updated_at": "Last published"
   },
+  "analytics": {
+    "title": "Site analytics",
+    "note": "These are raw pageview counts, not unique visitors.",
+    "empty": "No pageviews yet.",
+    "total_views": "Total pageviews",
+    "last_7_days": "Last 7 days",
+    "last_30_days": "Last 30 days",
+    "per_page": "Per page",
+    "trend": "30-day trend",
+    "home_page": "Home"
+  },
   "site": {
     "days": [
       "Monday",
@@ -428,6 +461,11 @@
       "Friday",
       "Saturday",
       "Sunday"
-    ]
+    ],
+    "labels": {
+      "tel": "Tel",
+      "email": "Email",
+      "address": "Address"
+    }
   }
 }

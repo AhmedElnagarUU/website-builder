@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { Button } from "@/shared/ui/Button";
+import { usePaywall } from "@/features/monetization/components/paywall-context";
+import { paywallFromResponse } from "@/features/monetization/lib/paywall-client";
 
 export function CreateSiteButton({
   ariaLabel,
@@ -13,6 +15,7 @@ export function CreateSiteButton({
   const t = useTranslations("dashboard");
   const locale = useLocale();
   const router = useRouter();
+  const { showPaywall } = usePaywall();
   const [loading, setLoading] = useState(false);
 
   async function onCreate() {
@@ -21,6 +24,12 @@ export function CreateSiteButton({
     try {
       const res = await fetch("/api/sites", { method: "POST" });
       const body = await res.json().catch(() => null);
+      const paywall = await paywallFromResponse(res);
+      if (paywall) {
+        showPaywall(paywall);
+        setLoading(false);
+        return;
+      }
       if (!res.ok || !body?._id) {
         throw new Error("create failed");
       }

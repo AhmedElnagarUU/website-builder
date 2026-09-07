@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { getPublishedSiteBySlug } from "@/features/publishing/get-published-site";
+import { recordPageview } from "@/features/analytics/repository";
 import {
   LiveSitePage,
   livePageMetadata,
@@ -28,6 +30,16 @@ export default async function LiveHomePage({ params }: LiveHomeProps) {
   const result = await getPublishedSiteBySlug(slug);
   if (!result.ok) notFound();
   if (!result.snapshot.activeLanguages.includes(lang)) notFound();
+
+  const h = await headers();
+  const ua = h.get("user-agent")?.toLowerCase() ?? "";
+  if (!/bot|crawler|spider|slurp|mediapartners|preview/i.test(ua)) {
+    recordPageview({
+      siteId: result.siteId,
+      page: "home",
+      locale: lang as "en" | "ar",
+    }).catch(() => {});
+  }
 
   return (
     <LiveSitePage

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTranslations } from "next-intl";
 import type { PublishedSnapshot, SiteStatus } from "@/features/sites/types";
@@ -20,7 +20,7 @@ export function LiveStatusIndicator({
     >
       <span
         className={`h-2 w-2 rounded-full ${
-          live ? "animate-pulse bg-vexa-green" : "bg-vexa-red"
+          live ? "animate-pulse bg-mono-green" : "bg-mono-red"
         }`}
       />
       {live ? t("editor.live.live") : t("editor.live.not_live")}

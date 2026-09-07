@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTranslations } from "next-intl";
 import type { TemplateDefinition } from "@/features/templates/types";
@@ -21,7 +21,7 @@ export function PageTabs({
 
   return (
     <div className="flex items-center gap-2">
-      <span className="vexa-display text-sm font-semibold text-ink/70">{t("editor.tab.pages")}</span>
+      <span className="mono-display text-sm font-semibold text-ink/70">{t("editor.tab.pages")}</span>
       <div className="inline-flex items-center gap-1 rounded-full border-2 border-ink bg-paper p-1">
         {pages.map((page) => (
           <button
@@ -29,9 +29,9 @@ export function PageTabs({
             type="button"
             onClick={() => onChange(page.id)}
             aria-pressed={activePageId === page.id}
-            className={`vexa-display rounded-full px-3 py-1 text-sm leading-none transition-colors ${
+            className={`mono-display rounded-full px-3 py-1 text-sm leading-none transition-colors ${
               activePageId === page.id
-                ? "bg-vexa-red text-paper"
+                ? "bg-mono-red text-paper"
                 : "text-ink hover:bg-paper-2"
             }`}
           >

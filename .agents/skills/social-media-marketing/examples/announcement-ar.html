@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Monomastic — منشور إنستغرام (عربي)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper:  #f5efdf;
+    --paper-2:#ebe3d0;
+    --ink:    #2a2622;
+    --ink-2:  #5c544a;
+    --ink-3:  #8e8576;
+    --red:    #b23a48;
+    --blue:   #2d5ba8;
+    --yellow: #e8b53c;
+    --line:   #b4c8e8;
+    --rule:   rgba(42,38,34,.2);
+    --shadow: 4px 4px 0 rgba(42,38,34,.08);
+    --radius: 4px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html, body { height:100%; background:#1a1a1a; }
+  .stage { width:100%; height:100%; display:grid; place-items:center; }
+  .canvas {
+    width:1080px; height:1080px; overflow:hidden; position:relative;
+    background-color:var(--paper);
+    background-image:repeating-linear-gradient(
+      0deg, transparent 0, transparent 31px, var(--line) 31px, var(--line) 32px);
+  }
+  /* RTL: vertical red margin line sits on the START (right) side */
+  .canvas::before {
+    content:""; position:absolute; inset-block:0; inset-inline-start:72px;
+    width:1px; background:var(--red); opacity:.5;
+  }
+
+  .inner { position:relative; height:100%; display:flex; flex-direction:column; }
+
+  .topbar { display:flex; align-items:center; gap:10px; padding:44px 108px 0 84px; }
+  .star { color:var(--red); font-size:22px; }
+  .kicker { font-family:'IBM Plex Mono',monospace; font-size:15px; letter-spacing:.12em;
+            text-transform:uppercase; color:var(--ink-3); }
+
+  .main { flex:1; display:flex; flex-direction:column; justify-content:center;
+          padding:0 108px; }
+
+  .hook { font-family:'Noto Naskh Arabic',serif; color:var(--red);
+          font-size:46px; line-height:1.5; }
+  .headline { font-family:'Amiri','Noto Naskh Arabic',serif; font-weight:700; color:var(--ink);
+              font-size:76px; line-height:1.6; /* generous line-height for Arabic descenders */ }
+  .headline em { font-style:normal; color:var(--red);
+                 text-decoration:underline wavy var(--blue);
+                 text-decoration-thickness:4px; text-underline-offset:8px; }
+
+  .rule { width:120px; height:1px; background:var(--ink); margin:34px 0 26px; }
+
+  .support { font-family:'Noto Naskh Arabic',serif; font-size:30px; line-height:1.9;
+             color:var(--ink-2); }
+
+  .signoff { margin-top:52px; font-family:'Noto Naskh Arabic',serif; font-size:34px; color:var(--ink-3); }
+
+  .footer { margin:26px 108px 0 84px; padding:30px 0; border-top:1px dashed var(--rule);
+            display:flex; justify-content:space-between; align-items:center; }
+  .cta {
+    font-family:'IBM Plex Mono',monospace; font-size:20px; letter-spacing:.04em;
+    text-transform:uppercase; color:#f5efdf; background:linear-gradient(180deg,var(--red),#8f2c3a);
+    padding:16px 26px; border-radius:var(--radius); box-shadow:var(--shadow);
+    border:1.5px solid var(--ink);
+  }
+  .domain { font-family:'IBM Plex Mono',monospace; font-size:16px; color:var(--ink-3);
+            letter-spacing:.04em; }
+
+  /* Arrow flips for RTL (points left, the direction of reading/expansion) */
+  .cta .arrow { display:inline-block; transform:scaleX(-1); }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="canvas" aria-hidden="true">
+      <div class="inner">
+        <div class="topbar">
+          <span class="kicker">مونوماستيك · دفتر ميداني · ملاحظة رقم ٠٧</span>
+          <span class="star">★</span>
+        </div>
+
+        <div class="main">
+          <div class="hook">تحتاج موقعًا إلكترونيًا… ولا تريد أن تتعلم كيف تصنعه.</div>
+          <div class="headline">موقع،<br /><em>مكتوب لك بحرفية.</em></div>
+          <div class="rule"></div>
+          <div class="support">
+            تجاوب عن أسئلة بسيطة عن مشروعك، ومونوماستيك يكتب لك الموقع كاملًا —
+            بالإنجليزية والعربية معًا. ثم تعدّل ما لا يشبهك، وتنشر.
+          </div>
+          <div class="signoff">— مونوماستيك</div>
+        </div>
+
+        <div class="footer">
+          <span class="cta"><span class="arrow">→</span> ابدأ مجانًا</span>
+          <span class="domain">yourname.monomastic.site</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { uploadImage, validateImageFile, type UploadErrorKind } from "../lib/uploadImage";
+import { uploadImage, validateImageFile, UploadFlowError, type UploadErrorKind } from "../lib/uploadImage";
 import { Button } from "@/shared/ui/Button";
+import { usePaywall } from "@/features/monetization/components/paywall-context";
 import type { ImageSlot } from "@/features/templates/types";
 import type { SiteImage, Position9 } from "@/features/sites/types";
 
@@ -43,6 +44,7 @@ export function ImageSlotEditor({
   s3PublicBaseUrl?: string;
 }) {
   const t = useTranslations();
+  const { showPaywall } = usePaywall();
   const inputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<UploadErrorKind | null>(null);
   const [phase, setPhase] = useState<Phase>("idle");
@@ -92,6 +94,10 @@ export function ImageSlotEditor({
       onChanged(image);
     } catch (err) {
       setPhase("idle");
+      if (err instanceof UploadFlowError && err.paywall) {
+        showPaywall(err.paywall);
+        return;
+      }
       setError(err instanceof Error && "kind" in err ? (err as { kind: UploadErrorKind }).kind : "unknown");
     }
   };
@@ -132,6 +138,14 @@ export function ImageSlotEditor({
         return t("editor.image.unsupported");
       case "too_large":
         return t("editor.image.too_large");
+      case "limit_reached":
+        return t("paywall.limit_reached");
+      case "requires_upgrade":
+        return t("paywall.requires_upgrade");
+      case "account_frozen":
+        return t("paywall.account_frozen");
+      case "account_suspended":
+        return t("paywall.account_suspended");
       case "unauthorized":
         return t("editor.image.error.unauthorized");
       case "not_found":
@@ -157,10 +171,10 @@ export function ImageSlotEditor({
       onClick={onClose}
     >
       <div
-        className="vexa-surface w-full max-w-md p-6"
+        className="mono-surface w-full max-w-md p-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="vexa-display mb-4 text-lg font-semibold text-ink">{selectText}</div>
+        <div className="mono-display mb-4 text-lg font-semibold text-ink">{selectText}</div>
 
         <input
           ref={inputRef}
@@ -211,7 +225,7 @@ export function ImageSlotEditor({
           <div className="flex flex-col items-center gap-3 py-6 text-center">
             <div
               aria-hidden
-              className="h-8 w-8 animate-spin rounded-full border-2 border-dashed border-vexa-red"
+              className="h-8 w-8 animate-spin rounded-full border-2 border-dashed border-mono-red"
             />
             <p className="text-sm text-ink">{t("editor.image.uploading")}</p>
           </div>
@@ -247,7 +261,7 @@ export function ImageSlotEditor({
                     onClick={() => setPosition(pos)}
                     className={`aspect-square rounded border-[1.5px] ${
                       uploadedImage.position === pos
-                        ? "border-vexa-red bg-vexa-red/10"
+                        ? "border-mono-red bg-mono-red/10"
                         : "border-ink/40"
                     }`}
                   />
@@ -263,15 +277,15 @@ export function ImageSlotEditor({
         )}
 
         {error && (
-          <div className="mt-3 flex items-start justify-between gap-3 rounded-[4px] border-[1.5px] border-vexa-red/40 bg-vexa-red/5 p-3">
-            <p role="alert" className="text-start text-sm text-vexa-red">
+          <div className="mt-3 flex items-start justify-between gap-3 rounded-[4px] border-[1.5px] border-mono-red/40 bg-mono-red/5 p-3">
+            <p role="alert" className="text-start text-sm text-mono-red">
               {errorMessage(error)}
             </p>
             {file && phase === "idle" && (
               <button
                 type="button"
                 onClick={runUpload}
-                className="shrink-0 rounded-full border-2 border-ink bg-ink px-3 py-1 text-xs font-semibold text-paper hover:bg-vexa-red hover:border-vexa-red"
+                className="shrink-0 rounded-full border-2 border-ink bg-ink px-3 py-1 text-xs font-semibold text-paper hover:bg-mono-red hover:border-mono-red"
               >
                 {t("editor.image.retry")}
               </button>

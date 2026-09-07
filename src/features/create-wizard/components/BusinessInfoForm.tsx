@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -141,7 +141,7 @@ export function BusinessInfoForm({
   }
 
   return (
-    <div className="vexa-surface mx-auto flex max-w-2xl flex-col gap-6 p-4 md:p-8">
+    <div className="mono-surface mx-auto flex max-w-2xl flex-col gap-6 p-4 md:p-8">
       <div className="flex flex-col gap-4">
         <Stepper
           steps={[
@@ -175,7 +175,7 @@ export function BusinessInfoForm({
               aria-invalid={nameError}
             />
             {nameError && (
-              <p role="alert" className="text-sm text-vexa-red">
+              <p role="alert" className="text-sm text-mono-red">
                 {t("wizard.business.error.name_required")}
               </p>
             )}
@@ -207,12 +207,12 @@ export function BusinessInfoForm({
                 aria-invalid={categoryError}
               />
               {showCategoryList && filteredCategories.length > 0 && (
-                <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-[4px] border-2 border-ink bg-paper shadow-vexa">
+                <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-[4px] border-2 border-ink bg-paper shadow-mono">
                   {filteredCategories.map((c) => (
                     <li key={c.id}>
                       <button
                         type="button"
-                        className="block w-full px-3 py-2 text-start font-body text-sm text-ink hover:bg-vexa-yellow/30"
+                        className="block w-full px-3 py-2 text-start font-body text-sm text-ink hover:bg-mono-yellow/30"
                         onMouseDown={(e) => {
                           e.preventDefault();
                           setValues({ category: c.id });
@@ -228,7 +228,7 @@ export function BusinessInfoForm({
               )}
             </div>
             {categoryError && (
-              <p role="alert" className="text-sm text-vexa-red">
+              <p role="alert" className="text-sm text-mono-red">
                 {t("wizard.business.error.category_required")}
               </p>
             )}

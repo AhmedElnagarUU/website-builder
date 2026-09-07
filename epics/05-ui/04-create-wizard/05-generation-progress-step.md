@@ -1,8 +1,8 @@
-# Task 05 — Generation progress step restyle
+﻿# Task 05 — Generation progress step restyle
 
 ## Context
 
-Epic 03 built the Step-4 "Writing your website…" screen (rotating status messages, polling, retry on failure, stuck-run detection). This task restyles its interior to the Vexo language within the shared shell: a calm, reassuring notebook-style waiting surface — the brand + a paper "writing" motif, rotating friendly messages as hand-note callouts, a low-key progress indicator, and a clear primary Retry button on failure. All polling/status/retry logic is untouched.
+Epic 03 built the Step-4 "Writing your website…" screen (rotating status messages, polling, retry on failure, stuck-run detection). This task restyles its interior to the Monomastic language within the shared shell: a calm, reassuring notebook-style waiting surface — the brand + a paper "writing" motif, rotating friendly messages as hand-note callouts, a low-key progress indicator, and a clear primary Retry button on failure. All polling/status/retry logic is untouched.
 
 ## Scope
 
@@ -35,7 +35,7 @@ Mapping:
 ## Acceptance criteria
 
 - [ ] Progress surface reads as a calm notebook waiting state; brand + one rotating message at a time; indicator is low-key and respects reduced motion.
-- [ ] On failure, `failed_title` + Retry (primary button) match the Vexo styling; retry/stuck logic unchanged.
+- [ ] On failure, `failed_title` + Retry (primary button) match the Monomastic styling; retry/stuck logic unchanged.
 - [ ] RTL-correct in `/ar/*`; usable at 375px.
 - [ ] `npm run lint && npm run typecheck && npm run build` pass.
 

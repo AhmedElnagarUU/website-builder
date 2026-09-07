@@ -1,4 +1,4 @@
-# Epic 12 — Super Admin Dashboard
+﻿# Epic 12 — Super Admin Dashboard
 
 ## Purpose (one line)
 Build an internal, admin-only console where the site's operator can see how many users the app has, manage them (search, view, freeze/suspend accounts), edit billing manually (set plans, record payments manually), and keep an audit trail — so the business can run without engineering involvement.
@@ -14,7 +14,7 @@ The product needs operator control before it grows: the admin must see the user 
 - **User management**: search/list users, view a user's profile, sites, subscription, billing history; **freeze** / **suspend** / **reactivate** an account (accountStatus).
 - **Manual billing**: set a user's plan/subscription and **record a manual payment** (consume Epic 11 M04 admin APIs).
 - A lightweight **audit log** of admin actions (who did what/when) for accountability.
-- Bilingual EN + AR, RTL-safe, vexa-styled.
+- Bilingual EN + AR, RTL-safe, mono-styled.
 
 **Out (future):**
 - Real payment gateway + checkout (future epic; Epic 11 M04 leaves the seam).

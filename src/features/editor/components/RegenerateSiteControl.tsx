@@ -1,7 +1,9 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { usePaywall } from "@/features/monetization/components/paywall-context";
+import { paywallFromResponse } from "@/features/monetization/lib/paywall-client";
 
 interface StatusData {
   status: "idle" | "queued" | "running" | "complete" | "failed";
@@ -17,6 +19,7 @@ export function RegenerateSiteControl({
   onDone: () => void;
 }) {
   const t = useTranslations();
+  const { showPaywall } = usePaywall();
   const [showConfirm, setShowConfirm] = useState(false);
   const [working, setWorking] = useState(false);
   const statusRef = useRef<StatusData>({ status: "idle", localesDone: 0, localesTotal: 0 });
@@ -29,6 +32,12 @@ export function RegenerateSiteControl({
       headers: { "Content-Type": "application/json" },
       body: withConfirm ? JSON.stringify({ confirm: true }) : undefined,
     });
+    const paywall = await paywallFromResponse(res);
+    if (paywall) {
+      showPaywall(paywall);
+      setWorking(false);
+      return;
+    }
     if (res.status === 202) {
       setWorking(true);
     }
@@ -85,10 +94,10 @@ export function RegenerateSiteControl({
     <>
       {working && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-          <div className="vexa-surface flex w-full max-w-sm flex-col items-center gap-4 p-6 text-center">
+          <div className="mono-surface flex w-full max-w-sm flex-col items-center gap-4 p-6 text-center">
             <div
               aria-hidden
-              className="h-8 w-8 animate-spin rounded-full border-2 border-dashed border-vexa-red"
+              className="h-8 w-8 animate-spin rounded-full border-2 border-dashed border-mono-red"
             />
             <p className="text-sm text-ink">
               {status.localesTotal > 0
@@ -105,7 +114,7 @@ export function RegenerateSiteControl({
           onClick={() => setShowConfirm(false)}
         >
           <div
-            className="vexa-surface w-full max-w-sm p-6"
+            className="mono-surface w-full max-w-sm p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <p className="mb-4 text-start text-sm text-ink">{t("editor.regenerate.confirm")}</p>
@@ -120,7 +129,7 @@ export function RegenerateSiteControl({
               <button
                 type="button"
                 onClick={() => launch(true)}
-                className="rounded bg-vexa-red px-3 py-2 text-sm text-white"
+                className="rounded bg-mono-red px-3 py-2 text-sm text-white"
               >
                 {t("editor.regenerate.confirm_btn")}
               </button>

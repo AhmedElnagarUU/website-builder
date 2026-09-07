@@ -1,4 +1,4 @@
-# Task 01 — Publish control in the editor (separate from editing/autosave)
+﻿# Task 01 — Publish control in the editor (separate from editing/autosave)
 
 ## Context
 
@@ -21,7 +21,7 @@ Component behavior:
 - Reuse the `live-url`/slug from the response; do not reconstruct URLs client-side from env alone.
 
 Placement/styling:
-- Add it to the `EditorShell` action area using Epic 05 Vexo primitives (`Button`, paper/tag styling) — additive styling only; do not disturb the existing language tabs/saved-state/color controls.
+- Add it to the `EditorShell` action area using Epic 05 Monomastic primitives (`Button`, paper/tag styling) — additive styling only; do not disturb the existing language tabs/saved-state/color controls.
 - The control must read as **a different, deliberate action** from inline text editing and from autosave's saved/unsaved indicator (visual separation: primary/accent button vs. the muted saved-state pill).
 
 Strings (`publish.*` in BOTH messages files):
@@ -35,7 +35,7 @@ Strings (`publish.*` in BOTH messages files):
 
 ## Dependencies
 
-- M01 (`POST /api/sites/[siteId]/publish`), the editor shell (`src/features/editor/components/EditorShell.tsx`), Epic 05 Vexo primitives.
+- M01 (`POST /api/sites/[siteId]/publish`), the editor shell (`src/features/editor/components/EditorShell.tsx`), Epic 05 Monomastic primitives.
 - M04 Task 01 (unpublish) is not needed for this task.
 
 ## Out of scope
@@ -50,7 +50,7 @@ Strings (`publish.*` in BOTH messages files):
 - [ ] Clicking Publish shows confirmation; confirming calls `POST /api/sites/[siteId]/publish`; success shows the live URL from the response.
 - [ ] Publish never fires from autosave or any editing action (verified: no coupling with content PATCH / saved state).
 - [ ] Error responses are surfaced without breaking the editor.
-- [ ] Vexo-styled and RTL-correct in `/ar/*`; usable at 375px.
+- [ ] Monomastic-styled and RTL-correct in `/ar/*`; usable at 375px.
 - [ ] All strings come from `en.json` + `ar.json` (values above).
 - [ ] `npm run lint && npm run typecheck && npm run build` pass.
 

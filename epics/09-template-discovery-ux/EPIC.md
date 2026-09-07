@@ -1,4 +1,4 @@
-# Epic 09 — Template Discovery & Selection UX
+﻿# Epic 09 — Template Discovery & Selection UX
 
 ## Purpose (one line)
 Make choosing a template delightful and unambiguous: a browsable dashboard gallery of every template with real visual previews, a redesigned editor template picker in the project's visual style that shows the actual template when selecting, and a clearer image-upload popup.
@@ -9,9 +9,9 @@ The template picker is currently a plain list of names — users cannot see what
 ## Scope boundaries
 **In:**
 - A dashboard page/gallery that lists ALL template variants with rendered **live previews** and metadata (name, category, style), letting the owner browse before choosing/creating.
-- Redesign `ChangeTemplateControl` (the editor "change template" picker) to the project (vexa) style, showing an actual rendered preview of each template on selection and confirming before applying.
+- Redesign `ChangeTemplateControl` (the editor "change template" picker) to the project (monomastic) style, showing an actual rendered preview of each template on selection and confirming before applying.
 - Redesign the image-upload popup (`ImageSlotEditor`) for clearer UX and better error surfaces (including surfacing S3/bucket upload failures gracefully).
-- All new UI bilingual EN + AR, RTL-correct, using the vexa design tokens.
+- All new UI bilingual EN + AR, RTL-correct, using the monomastic design tokens.
 
 **Out (handled elsewhere):**
 - Multi-page template model, real default images, and design polish → Epic 08.
@@ -20,7 +20,7 @@ The template picker is currently a plain list of names — users cannot see what
 
 ## Milestones (in order)
 1. **01-dashboard-template-gallery** — a "Templates" view on the dashboard showing every template with previews and metadata.
-2. **02-editor-template-picker-redesign** — redesign the change/choose-template control with visual previews in vexa style.
+2. **02-editor-template-picker-redesign** — redesign the change/choose-template control with visual previews in monomastic style.
 3. **03-image-upload-popup-redesign** — clearer upload popup with staged preview and better errors.
 
 ## Cross-epic dependencies

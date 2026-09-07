@@ -1,4 +1,4 @@
-# Task 02 — "Unpublished changes" indicator + re-publish affordance
+﻿# Task 02 — "Unpublished changes" indicator + re-publish affordance
 
 ## Context
 
@@ -12,7 +12,7 @@ Once a site is published, any later edit (content, image, brand, template, regen
 ## Technical details
 
 Indicator:
-- Read `site.hasUnpublishedChanges` from the editor's existing site DTO (no new endpoint). Show a small notice/text near the Publish control only when `hasUnpublishedChanges === true` AND the site is already published (`publishedSnapshot != null`), e.g. "You have unpublished changes — the live site is behind." Style it as a muted tag (Vexo), clearly different from the autosave "Saved/unsaved" pill (that pill reports autosave write status; this reports publish drift).
+- Read `site.hasUnpublishedChanges` from the editor's existing site DTO (no new endpoint). Show a small notice/text near the Publish control only when `hasUnpublishedChanges === true` AND the site is already published (`publishedSnapshot != null`), e.g. "You have unpublished changes — the live site is behind." Style it as a muted tag (Monomastic), clearly different from the autosave "Saved/unsaved" pill (that pill reports autosave write status; this reports publish drift).
 
 Re-publish (extends Task 01's Publish control):
 - The same Publish control, when `hasUnpublishedChanges === true`, uses a confirmation that explicitly states the live version will be replaced by the current edits (do not overwrite the previous confirm; use a stronger message).
@@ -40,7 +40,7 @@ Strings (`publish.*` in BOTH messages files):
 - [ ] The indicator appears only when `hasUnpublishedChanges && publishedSnapshot != null`; it is visually distinct from the autosave saved/unsaved pill.
 - [ ] Re-publishing from the indicator uses an explicit confirm stating the live version will be replaced, then calls `POST /api/sites/[siteId]/publish`, clears the indicator, and refreshes `publishedAt`/live URL.
 - [ ] The indicator never auto-publishes and never changes on its own due to a timer/autosave.
-- [ ] RTL-correct in `/ar/*`; Vexo-styled; all strings from `en.json` + `ar.json` (values above).
+- [ ] RTL-correct in `/ar/*`; Monomastic-styled; all strings from `en.json` + `ar.json` (values above).
 - [ ] `npm run lint && npm run typecheck && npm run build` pass.
 
 ## Definition of Done

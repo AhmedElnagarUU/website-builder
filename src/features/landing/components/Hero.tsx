@@ -1,4 +1,4 @@
-import { useLocale, useTranslations } from "next-intl";
+﻿import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/shared/ui/Button";
 import { StickyNote } from "@/shared/ui/StickyNote";
 
@@ -6,9 +6,9 @@ export function Hero() {
   const t = useTranslations("landing.hero");
   const locale = useLocale();
   return (
-    <section className="vexo-container pt-10 pb-16">
+    <section className="mono-container pt-10 pb-16">
       <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.1em] text-ink-3">
-        <span className="vexa-display text-xl leading-none text-vexa-red">★</span>
+        <span className="mono-display text-xl leading-none text-mono-red">★</span>
         <span className="font-semibold text-ink">{t("meta.kicker")}</span>
         <span aria-hidden className="hidden sm:inline">
           —
@@ -17,14 +17,14 @@ export function Hero() {
       </div>
 
       <div className="mt-8 grid items-end gap-8 lg:grid-cols-[7fr_5fr]">
-        <h1 className="vexa-display text-[clamp(48px,7.6vw,112px)] font-bold leading-[0.96] tracking-tight text-ink">
+        <h1 className="mono-display text-[clamp(48px,7.6vw,112px)] font-bold leading-[0.96] tracking-tight text-ink">
           {t("headline.line1")}
           <br />
-          <em className="not-italic text-vexa-red underline decoration-wavy decoration-vexa-blue underline-offset-4">
+          <em className="not-italic text-mono-red underline decoration-wavy decoration-mono-blue underline-offset-4">
             {t("headline.line2")}
           </em>
           <br />
-          <span className="text-vexa-blue underline decoration-3 underline-offset-4">
+          <span className="text-mono-blue underline decoration-3 underline-offset-4">
             {t("headline.line3")}
           </span>
           <span className="font-body mt-5 block font-mono text-sm font-normal italic tracking-[0.04em] text-ink-2">
@@ -34,7 +34,7 @@ export function Hero() {
 
         <div className="hidden lg:block">
           <StickyNote>
-            <p className="vexa-display text-xl leading-snug text-ink">
+            <p className="mono-display text-xl leading-snug text-ink">
               {t("note.body")}
             </p>
             <p className="mt-2 text-start text-base text-ink-3">
@@ -49,7 +49,7 @@ export function Hero() {
           {t.rich("deck", {
             b: (chunks) => <strong className="font-bold text-ink">{chunks}</strong>,
             u: (chunks) => (
-              <span className="bg-[linear-gradient(transparent_60%,var(--vexa-yellow)_60%)] px-0.5">
+              <span className="bg-[linear-gradient(transparent_60%,var(--mono-yellow)_60%)] px-0.5">
                 {chunks}
               </span>
             ),

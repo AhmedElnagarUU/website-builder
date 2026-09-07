@@ -1,11 +1,11 @@
-# Milestone 03 — Billing & Plans Admin
+﻿# Milestone 03 — Billing & Plans Admin
 
 ## Goal
 Give the admin full manual control over a user's billing: set/change their plan and subscription, and record manual payments/discounts/credits, with revenue totals and an audit trail — no engineer needed.
 
 ## Shared context
 - Consumes the **Epic 11 M04 admin APIs** (set subscription; record manual payment/credit) and the ledger reading helpers. This milestone is the UI layer over them.
-- The same admin-guard, bilingual/AR, vexa conventions apply.
+- The same admin-guard, bilingual/AR, monomastic conventions apply.
 - Revenue = `sumBillingForUser` across all users (or a ledger-wide revenue query) — show a total on the Overview.
 - **Audit:** billing actions (set plan, record payment, write-off/credit) log an admin_audit entry (reuse M02 audit helper).
 

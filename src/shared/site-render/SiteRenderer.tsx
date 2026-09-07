@@ -8,7 +8,7 @@ import {
   SiteStyleContext,
   type NavPage,
 } from "./context";
-import { FONT_FAMILIES, RADIUS_CLASSES, textOnBrand } from "./tokens";
+import { FONT_FAMILIES, RADIUS_CLASSES, textOnBrand, siteBodyClass, siteSurfaceClass } from "./tokens";
 import { HeaderSection } from "./sections/HeaderSection";
 import { HeroSection } from "./sections/HeroSection";
 import { ServicesSection } from "./sections/ServicesSection";
@@ -147,7 +147,7 @@ export function SiteRenderer({
         >
           <SiteStyleContext.Provider value={template.style}>
             <div
-              className={`@container min-h-screen bg-background text-foreground ${fontClass} ${radiusClass}`}
+              className={`@container min-h-screen bg-background text-foreground ${siteBodyClass(template.style)} ${siteSurfaceClass(template.style)} ${fontClass} ${radiusClass}`}
               style={{ ["--brand" as string]: brandColor }}
               dir="inherit"
             >

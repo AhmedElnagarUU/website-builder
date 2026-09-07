@@ -1,8 +1,8 @@
-# Task 02 — Business-info step restyle
+﻿# Task 02 — Business-info step restyle
 
 ## Context
 
-Epic 02 built the business-info form (grouped fields, autosave, searchable category select, Continue gating). This task restyles its interior to the Vexo language within the shared wizard shell (Task 01). The grouped sections and their titles become the "field-note" headings; the fields use the M02 restyled form primitives. All behavior (autosave, validation, advance) is untouched.
+Epic 02 built the business-info form (grouped fields, autosave, searchable category select, Continue gating). This task restyles its interior to the Monomastic language within the shared wizard shell (Task 01). The grouped sections and their titles become the "field-note" headings; the fields use the M02 restyled form primitives. All behavior (autosave, validation, advance) is untouched.
 
 ## Scope
 
@@ -35,7 +35,7 @@ Design mapping:
 
 ## Acceptance criteria
 
-- [ ] Grouped sections render with hand-note headings; fields use the Vexo form primitives; searchable Select behaves as before (only restyled).
+- [ ] Grouped sections render with hand-note headings; fields use the Monomastic form primitives; searchable Select behaves as before (only restyled).
 - [ ] Name + category required affordance stays prominent and Continue stays gated identically.
 - [ ] Autosave still runs as before (no timing/behaviour change).
 - [ ] RTL-correct in `/ar/*`; usable at 375px; paper kept subdued on this dense form.

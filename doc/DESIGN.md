@@ -1,4 +1,4 @@
-# loom — Landing Page Design Spec
+# monomastic — Landing Page Design Spec
 
 > Locked visual spec for the loom marketing landing page.
 > One design direction, re-skinned in a single accent system (Orange → Red).
