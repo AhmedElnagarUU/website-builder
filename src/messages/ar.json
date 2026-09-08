@@ -465,7 +465,11 @@
     "labels": {
       "tel": "هاتف",
       "email": "البريد",
-      "address": "العنوان"
+      "address": "العنوان",
+      "most_popular": "الأكثر شعبية",
+      "contact": "تواصل معنا",
+      "trusted_clients": "موثوق من أكثر من ٥٠٠ عميل",
+      "testimonials": "آراء العملاء"
     }
   }
 }

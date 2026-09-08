@@ -2,6 +2,6 @@ Error: ENVIRONMENT_FALLBACK
     at <unknown> (C:\Users\ahmed\OneDrive\Desktop\website-version2\.next\server\chunks\1535.js:3:5250)
     at ep (C:\Users\ahmed\OneDrive\Desktop\website-version2\.next\server\chunks\1535.js:3:6832)
     at <unknown> (C:\Users\ahmed\OneDrive\Desktop\website-version2\.next\server\chunks\1535.js:3:9110)
-    at f (C:\Users\ahmed\OneDrive\Desktop\website-version2\.next\server\app\preview\[templateId]\[[...slug]]\page.js:1:36895) {
+    at w (C:\Users\ahmed\OneDrive\Desktop\website-version2\.next\server\app\preview\[templateId]\[[...slug]]\page.js:1:71954) {
   code: 'ENVIRONMENT_FALLBACK'
 }

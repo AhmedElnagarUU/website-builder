@@ -9,22 +9,60 @@ Starting Next.js dev server...
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 7.3s
+ ✓ Ready in 11.5s
  ○ Compiling /api/health ...
- ✓ Compiled /api/health in 9.2s (366 modules)
- GET /api/health 200 in 655ms
+ ✓ Compiled /api/health in 11.3s (366 modules)
+ GET /api/health 200 in 5653ms
+ GET /api/health 200 in 72ms
  ○ Compiling /middleware ...
- ✓ Compiled /middleware in 1838ms (127 modules)
- ○ Compiling /preview/[templateId]/[[...slug]] ...
- ✓ Compiled /preview/[templateId]/[[...slug]] in 16.8s (1005 modules)
- GET /preview/classic-services 200 in 21920ms
- GET /api/health 200 in 79ms
+ ✓ Compiled /middleware in 6.3s (127 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 42.7s (1585 modules)
+ GET /en 307 in 56281ms
+ ○ Compiling /[locale]/dashboard ...
+ ✓ Compiled /[locale]/dashboard in 3.8s (1536 modules)
+ GET /en/dashboard 200 in 11056ms
+ GET /en/dashboard 200 in 2373ms
+ ✓ Compiled in 6.6s (399 modules)
+ ✓ Compiled in 2.8s (399 modules)
+ GET /en/dashboard 200 in 895ms
+ ✓ Compiled in 1918ms (399 modules)
+ GET /en/dashboard 200 in 203ms
+ GET /en/dashboard 200 in 156ms
+ ✓ Compiled in 1439ms (399 modules)
+ GET /en/dashboard 200 in 198ms
+ ✓ Compiled in 1074ms (399 modules)
  ○ Compiling /[locale]/dashboard/templates ...
- ✓ Compiled /[locale]/dashboard/templates in 53.6s (1559 modules)
+ ✓ Compiled /[locale]/dashboard/templates in 4s (1536 modules)
+ ✓ Compiled in 3.4s (404 modules)
+ GET /en/dashboard/templates 200 in 20723ms
+ GET /en/dashboard/templates 200 in 1488ms
  ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 18s (1549 modules)
- GET /en/dashboard/templates 404 in 75936ms
- GET /_next/static/css/app/layout.css?v=1788791286983 404 in 1208ms
- GET /_next/static/chunks/main-app.js?v=1788791286983 404 in 716ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 1407ms
-[?25h
+ ✓ Compiled /_not-found in 18.2s (1554 modules)
+ GET /templates/bistro-menu/screenshot.png 404 in 22957ms
+ GET /templates/product-focus/screenshot.png 404 in 22951ms
+ GET /templates/consultant-page/screenshot.png 404 in 22788ms
+ GET /templates/classic-services/screenshot.png 404 in 23489ms
+ GET /templates/modern-studio/screenshot.png 404 in 22798ms
+ GET /templates/clean-portfolio/screenshot.png 404 in 22805ms
+ GET /templates/professional-profile/screenshot.png 404 in 956ms
+ GET /templates/simple-shop/screenshot.png 404 in 953ms
+ GET /templates/visual-showcase/screenshot.png 404 in 950ms
+ GET /templates/warm-kitchen/screenshot.png 404 in 948ms
+ ○ Compiling /preview/[templateId]/[[...slug]] ...
+ ✓ Compiled /preview/[templateId]/[[...slug]] in 14.6s (1667 modules)
+ GET /preview/bistro-menu 200 in 22638ms
+ GET /templates/bistro-menu/screenshot.png 404 in 713ms
+ GET /templates/consultant-page/screenshot.png 404 in 679ms
+ GET /templates/classic-services/screenshot.png 404 in 686ms
+ GET /templates/modern-studio/screenshot.png 404 in 690ms
+ GET /templates/product-focus/screenshot.png 404 in 704ms
+ GET /templates/clean-portfolio/screenshot.png 404 in 711ms
+ GET /templates/professional-profile/screenshot.png 404 in 536ms
+ GET /templates/warm-kitchen/screenshot.png 404 in 489ms
+ GET /templates/visual-showcase/screenshot.png 404 in 489ms
+ GET /templates/simple-shop/screenshot.png 404 in 471ms
+ GET /preview/bistro-menu/contact 200 in 582ms
+ GET /preview/clean-portfolio 200 in 350ms
+ GET /preview/clean-portfolio/contact 200 in 313ms
+ GET /preview/clean-portfolio/gallery 200 in 300ms

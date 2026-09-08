@@ -1,10 +1,11 @@
 "use client";
 
+import type React from "react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { F, SlotImage } from "../internals";
 import { sectionImages } from "./types";
-import { useSiteNav, useSiteStyle, useSiteBrand } from "../context";
+import { useSiteNav, useSiteBrand } from "../context";
 import type { SectionRenderProps } from "./types";
 
 function MenuIcon() {
@@ -48,9 +49,7 @@ export function HeaderSection({ section, content, businessInfo, images }: Sectio
   const t = useTranslations();
   const [menuOpen, setMenuOpen] = useState(false);
   const { pages, activePageId, pageBaseHref, onNavigatePage, locale } = useSiteNav();
-  const style = useSiteStyle();
   const brand = useSiteBrand();
-  const edge = style.theme.accentRole === "edge";
 
   const logoSlot = sectionImages(section).find((s) => s.slotId === "logo");
   const close = () => setMenuOpen(false);
@@ -88,11 +87,9 @@ export function HeaderSection({ section, content, businessInfo, images }: Sectio
   };
 
   const linkClass = (active: boolean) => {
-    const base = "site-heading-sans relative inline-block py-1 text-sm font-semibold";
+    const base = "site-body relative inline-block py-1 text-sm font-semibold";
     if (active) {
-      return edge
-        ? `${base} text-foreground`
-        : `${base} text-foreground`;
+      return `${base} text-foreground`;
     }
     return `${base} text-muted-foreground transition-colors hover:text-foreground`;
   };
@@ -143,7 +140,7 @@ export function HeaderSection({ section, content, businessInfo, images }: Sectio
               alt="logo"
             />
           )}
-          <span className="site-heading-sans text-lg font-bold tracking-tight">
+          <span className="site-body text-lg font-bold tracking-tight">
             {businessInfo.name}
           </span>
         </HomeLink>

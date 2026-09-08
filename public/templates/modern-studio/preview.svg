@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
-  <rect width="400" height="500" fill="#FFFFFF"/>
-  <rect x="0" y="0" width="400" height="60" fill="#0F172A"/>
-  <text x="20" y="38" font-family="sans-serif" font-size="16" font-weight="bold" fill="#FFFFFF">Modern Studio</text>
-  <text x="300" y="38" font-family="sans-serif" font-size="12" fill="#FFFFFF">Menu</text>
-  <rect x="20" y="80" width="360" height="80" rx="6" fill="#F8FAFC"/>
-  <text x="30" y="110" font-family="sans-serif" font-size="18" font-weight="bold" fill="#0F172A">Creative Studio</text>
-  <text x="30" y="135" font-family="sans-serif" font-size="12" fill="#475569">Category: services</text>
-  <rect x="20" y="180" width="360" height="32" rx="4" fill="#F1F5F9"/><text x="30" y="200" font-family="sans-serif" font-size="13" fill="#1E293B">Brand Identity</text><rect x="20" y="220" width="360" height="32" rx="4" fill="#F1F5F9"/><text x="30" y="240" font-family="sans-serif" font-size="13" fill="#1E293B">Web Design</text><rect x="20" y="260" width="360" height="32" rx="4" fill="#F1F5F9"/><text x="30" y="280" font-family="sans-serif" font-size="13" fill="#1E293B">Photography</text>
-  <rect x="0" y="460" width="400" height="40" fill="#F1F5F9"/>
-  <text x="200" y="485" font-family="sans-serif" font-size="11" fill="#64748B" text-anchor="middle">modern-studio</text>
+  <rect width="400" height="500" fill="#0F1115"/>
+  <rect width="400" height="56" fill="#0F1115"/>
+  <rect x="0" y="56" width="400" height="1.5" fill="#23272F"/>
+  <rect x="20" y="17" width="22" height="22" rx="2" fill="#0F172A"/>
+  <rect x="20" y="17" width="22" height="5" fill="#7C8798"/>
+  <circle cx="312" cy="28" r="3.5" fill="#3A3F49"/>
+  <circle cx="330" cy="28" r="3.5" fill="#3A3F49"/>
+  <circle cx="348" cy="28" r="3.5" fill="#3A3F49"/>
+  <rect x="20" y="100" width="300" height="34" rx="4" fill="#1A1E26"/>
+  <rect x="20" y="100" width="6" height="34" fill="#0F172A"/>
+  <rect x="20" y="152" width="210" height="34" rx="4" fill="#1A1E26"/>
+  <rect x="20" y="152" width="6" height="34" fill="#0F172A"/>
+  <rect x="20" y="204" width="164" height="34" rx="4" fill="#1A1E26"/>
+  <rect x="20" y="204" width="6" height="34" fill="#0F172A"/>
+  <rect x="298" y="100" width="82" height="138" rx="6" fill="#14171D"/>
+  <rect x="298" y="100" width="82" height="138" rx="6" fill="none" stroke="#2A2F38" stroke-width="1.5"/>
+  <rect x="298" y="120" width="82" height="72" fill="#1E2229"/>
+  <rect x="20" y="276" width="360" height="1" fill="#23272F"/>
+  <rect x="20" y="292" width="52" height="52" rx="4" fill="#171A20"/>
+  <rect x="20" y="300" width="36" height="8" rx="2" fill="#3A3F49"/>
+  <rect x="152" y="292" width="52" height="52" rx="4" fill="#171A20"/>
+  <rect x="152" y="300" width="36" height="8" rx="2" fill="#3A3F49"/>
+  <rect x="284" y="292" width="52" height="52" rx="4" fill="#171A20"/>
+  <rect x="284" y="300" width="36" height="8" rx="2" fill="#3A3F49"/>
+  <rect x="20" y="366" width="118" height="10" rx="5" fill="#3A3F49"/>
+  <rect x="20" y="384" width="92" height="10" rx="5" fill="#3A3F49"/>
+  <rect x="0" y="436" width="400" height="48" fill="#171A20"/>
+  <rect x="0" y="436" width="400" height="2" fill="#0F172A"/>
+  <rect x="0" y="484" width="400" height="16" fill="#0F1115"/>
+  <text x="200" y="497" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#4A505C" text-anchor="middle">modern-studio</text>
 </svg>

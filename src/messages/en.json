@@ -465,7 +465,11 @@
     "labels": {
       "tel": "Tel",
       "email": "Email",
-      "address": "Address"
+      "address": "Address",
+      "most_popular": "Most popular",
+      "contact": "Contact us",
+      "trusted_clients": "Trusted by 500+ clients",
+      "testimonials": "Testimonials"
     }
   }
 }

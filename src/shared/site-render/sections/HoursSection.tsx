@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { F } from "../internals";
-import { useSiteBrand } from "../context";
+import { useSiteStyle } from "../context";
+import { SectionHead } from "../atoms";
 import type { SectionRenderProps } from "./types";
 
 const DAY_KEYS = [
@@ -15,23 +16,20 @@ const DAY_KEYS = [
 
 export function HoursSection({ content }: SectionRenderProps) {
   const t = useTranslations("site");
-  const { brandColor } = useSiteBrand();
+  const style = useSiteStyle();
+  const { theme } = style;
 
   return (
-    <section id="hours" className="py-16">
+    <section id="hours" className="py-20">
       <div className="mx-auto max-w-2xl px-4">
-        <div className="mb-8 flex flex-col items-center gap-3 text-center">
-          <span
-            className="h-1 w-12 rounded-full"
-            style={{ backgroundColor: brandColor }}
-          />
-          <F fieldKey="hours_title" content={content} as="h2" className="text-3xl font-bold" />
-        </div>
-        <div className="divide-y divide-border">
+        <SectionHead fieldKey="hours_title" content={content} align="centered" />
+        <div
+          className={`divide-y divide-border ${theme.surface === "deep" ? "bg-card" : "bg-background"} rounded-lg border border-foreground/10`}
+        >
           {DAY_KEYS.map((key, i) => (
-            <div key={key} className="flex items-center justify-between gap-4 py-3">
-              <p className="font-medium">{t(`days.${i}`)}</p>
-              <F fieldKey={key} content={content} fallback="—" />
+            <div key={key} className="flex items-center justify-between gap-4 px-5 py-3.5">
+              <p className="site-body font-medium">{t(`days.${i}`)}</p>
+              <F fieldKey={key} content={content} fallback="—" className="site-body" />
             </div>
           ))}
         </div>
