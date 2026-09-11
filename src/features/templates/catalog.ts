@@ -72,13 +72,13 @@ function secId(): string {
   return `s${_sectionCounter}`;
 }
 
-function slot(slotId: string, aspect: "1:1" | "16:9" | "4:3", minW: number, minH: number, category: string, file: string): ImageSlot {
+function slot(slotId: string, aspect: "1:1" | "16:9" | "4:3", minW: number, minH: number, templateId: string, file: string): ImageSlot {
   return {
     slotId,
     aspectRatio: aspect,
     minWidth: minW,
     minHeight: minH,
-    defaultAsset: `/templates/real/${category}/${file}`,
+    defaultAsset: `/templates/real/${templateId}/${file}`,
   };
 }
 
@@ -91,7 +91,7 @@ function buildHeader(pageIds: string[]): TemplateSection {
   return { id: secId(), type: "header", fields };
 }
 
-function buildHero(category: string): TemplateSection {
+function buildHero(templateId: string): TemplateSection {
   return {
     id: secId(),
     type: "hero",
@@ -100,8 +100,8 @@ function buildHero(category: string): TemplateSection {
       field("hero_subline", "One-sentence supporting description under the hero headline.", REGISTRY.hero_subline),
     ],
     images: [
-      slot("logo", "1:1", 64, 64, category, "logo.webp"),
-      slot("hero_image", "16:9", 1200, 675, category, "hero.webp"),
+      slot("logo", "1:1", 64, 64, templateId, "logo.jpg"),
+      slot("hero_image", "16:9", 1200, 675, templateId, "hero_image.jpg"),
     ],
   };
 }
@@ -184,8 +184,8 @@ function buildMenu(count: number): TemplatePage {
   };
 }
 
-function buildGallery(count: number, category: string): TemplatePage {
-  const imgs = Array.from({ length: count }, (_, i) => slot(`gallery_${i + 1}`, "4:3", 800, 600, category, `gallery_${i + 1}.webp`));
+function buildGallery(count: number, templateId: string): TemplatePage {
+  const imgs = Array.from({ length: count }, (_, i) => slot(`gallery_${i + 1}`, "4:3", 800, 600, templateId, `gallery_${i + 1}.jpg`));
   return {
     id: "gallery",
     slug: "gallery",
@@ -254,13 +254,13 @@ function buildPricing(plans: number): TemplatePage {
   };
 }
 
-function buildTeam(count: number, category: string): TemplatePage {
+function buildTeam(count: number, templateId: string): TemplatePage {
   const fields: TemplateField[] = [field("team_title", "Title that introduces the team.", REGISTRY.team_title)];
   const imgs: ImageSlot[] = [];
   for (let i = 1; i <= count; i++) {
     fields.push(field(`team_${i}_name`, `Team member #${i} name.`, REGISTRY.team_name));
     fields.push(field(`team_${i}_role`, `Team member #${i} role.`, REGISTRY.team_role));
-    imgs.push(slot(`team_${i}_image`, "1:1", 480, 480, category, `team_${i}.webp`));
+    imgs.push(slot(`team_${i}_image`, "1:1", 480, 480, templateId, `team_${i}.jpg`));
   }
   return {
     id: "team",
@@ -272,7 +272,6 @@ function buildTeam(count: number, category: string): TemplatePage {
 }
 
 interface BaseOpts {
-  category: string;
   svcCount: number;
   testimonials: number;
   extras: ExtraSpec;
@@ -287,11 +286,11 @@ interface ExtraSpec {
   team?: number;
 }
 
-function buildPages(opts: BaseOpts): TemplatePage[] {
+function buildPages(opts: BaseOpts, templateId: string): TemplatePage[] {
   _sectionCounter = 0;
   const pages: TemplatePage[] = [];
 
-  const hero = buildHero(opts.category);
+  const hero = buildHero(templateId);
   const testi = buildTestimonials(opts.testimonials);
   const cta = buildCta();
   const homeSections: TemplateSection[] = [hero];
@@ -300,11 +299,11 @@ function buildPages(opts: BaseOpts): TemplatePage[] {
 
   const extraPages: TemplatePage[] = [];
   if (opts.extras.menu) extraPages.push(buildMenu(opts.extras.menu));
-  if (opts.extras.gallery) extraPages.push(buildGallery(opts.extras.gallery, opts.category));
+  if (opts.extras.gallery) extraPages.push(buildGallery(opts.extras.gallery, templateId));
   if (opts.extras.faq) extraPages.push(buildFaq(opts.extras.faq));
   if (opts.extras.hours) extraPages.push(buildHours());
   if (opts.extras.pricing) extraPages.push(buildPricing(opts.extras.pricing));
-  if (opts.extras.team) extraPages.push(buildTeam(opts.extras.team, opts.category));
+  if (opts.extras.team) extraPages.push(buildTeam(opts.extras.team, templateId));
 
   // Non-home page ids (for header nav labels), excluding home/footer etc.
   const pageIds = [
@@ -367,7 +366,7 @@ function def(
     rtlValidated: true,
     style,
     colors: { defaultAccent },
-    pages: buildPages(opts),
+    pages: buildPages(opts, id),
     screenshot: `/templates/${id}/screenshot.png`,
   };
 }
@@ -385,7 +384,7 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "fill" },
     },
     "#1E40AF",
-    { category: "services", svcCount: 3, testimonials: 2, extras: { gallery: 3, faq: 4 } }
+    { svcCount: 3, testimonials: 2, extras: { gallery: 3, faq: 4 } }
   ),
 
   def(
@@ -400,7 +399,7 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "bold", surface: "deep", headingFont: "sans", hero: "split-deep", accentRole: "edge" },
     },
     "#0F172A",
-    { category: "services", svcCount: 4, testimonials: 0, extras: { gallery: 4, team: 3 } }
+    { svcCount: 4, testimonials: 0, extras: { gallery: 4, team: 3 } }
   ),
 
   def(
@@ -415,7 +414,7 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "warm", surface: "light", headingFont: "serif", hero: "photo-bleed", accentRole: "fill" },
     },
     "#B45309",
-    { category: "restaurant", svcCount: 3, testimonials: 1, extras: { menu: 6, hours: true, gallery: 3 } }
+    { svcCount: 3, testimonials: 1, extras: { menu: 6, hours: true, gallery: 3 } }
   ),
 
   def(
@@ -430,7 +429,7 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "warm", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "edge" },
     },
     "#7C2D12",
-    { category: "restaurant", svcCount: 4, testimonials: 0, extras: { menu: 8, hours: true, faq: 5 } }
+    { svcCount: 4, testimonials: 0, extras: { menu: 8, hours: true, faq: 5 } }
   ),
 
   def(
@@ -445,7 +444,7 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "retail", surface: "light", headingFont: "sans", hero: "split-light", accentRole: "fill" },
     },
     "#15803D",
-    { category: "retail", svcCount: 3, testimonials: 0, extras: { gallery: 3, faq: 4, pricing: 3 } }
+    { svcCount: 3, testimonials: 0, extras: { gallery: 3, faq: 4, pricing: 3 } }
   ),
 
   def(
@@ -460,7 +459,7 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "retail", surface: "light", headingFont: "sans", hero: "photo-bleed", accentRole: "edge" },
     },
     "#0E7490",
-    { category: "retail", svcCount: 2, testimonials: 1, extras: { gallery: 4, pricing: 3 } }
+    { svcCount: 2, testimonials: 1, extras: { gallery: 4, pricing: 3 } }
   ),
 
   def(
@@ -475,7 +474,7 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "edge" },
     },
     "#1F2937",
-    { category: "professional", svcCount: 3, testimonials: 1, extras: { pricing: 3, faq: 5, team: 3 } }
+    { svcCount: 3, testimonials: 1, extras: { pricing: 3, faq: 5, team: 3 } }
   ),
 
   def(
@@ -490,7 +489,7 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "bold", surface: "deep", headingFont: "sans", hero: "split-deep", accentRole: "fill" },
     },
     "#4338CA",
-    { category: "professional", svcCount: 4, testimonials: 0, extras: { pricing: 4, faq: 4, team: 1 } }
+    { svcCount: 4, testimonials: 0, extras: { pricing: 4, faq: 4, team: 1 } }
   ),
 
   def(
@@ -505,7 +504,7 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "creative", surface: "light", headingFont: "sans", hero: "split-light", accentRole: "edge" },
     },
     "#7C3AED",
-    { category: "portfolio", svcCount: 2, testimonials: 0, extras: { gallery: 6, team: 3 } }
+    { svcCount: 2, testimonials: 0, extras: { gallery: 6, team: 3 } }
   ),
 
   def(
@@ -520,6 +519,6 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "creative", surface: "deep", headingFont: "sans", hero: "photo-bleed", accentRole: "fill" },
     },
     "#DB2777",
-    { category: "portfolio", svcCount: 3, testimonials: 2, extras: { gallery: 6, team: 3 } }
+    { svcCount: 3, testimonials: 2, extras: { gallery: 6, team: 3 } }
   ),
 ];

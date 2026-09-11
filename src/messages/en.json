@@ -471,5 +471,93 @@
       "trusted_clients": "Trusted by 500+ clients",
       "testimonials": "Testimonials"
     }
+  },
+  "admin": {
+    "nav": {
+      "overview": "Overview",
+      "users": "Users",
+      "billing": "Billing"
+    },
+    "overview": {
+      "total_users": "Total Users",
+      "total_sites": "Total Sites",
+      "published_sites": "Published Sites",
+      "active_subscriptions": "Active Subscriptions",
+      "frozen_accounts": "Frozen Accounts",
+      "suspended_accounts": "Suspended Accounts",
+      "revenue": "Revenue ({currency})",
+      "monthly_revenue": "This Month ({currency})"
+    },
+    "users": {
+      "search_placeholder": "Search by email or name…",
+      "search": "Search",
+      "total_count": "{count, plural, =0 {No users} one {# user} other {# users}}",
+      "loading": "Loading…",
+      "load_users": "Load Users",
+      "col_email": "Email",
+      "col_name": "Name",
+      "col_plan": "Plan",
+      "col_status": "Subscription",
+      "col_account_status": "Account Status",
+      "col_role": "Role",
+      "detail": {
+        "loading": "Loading…",
+        "not_found": "User not found.",
+        "profile": "Profile",
+        "field_email": "Email",
+        "field_name": "Name",
+        "field_role": "Role",
+        "field_created": "Created",
+        "field_account_status": "Account Status",
+        "sites_title": "Sites",
+        "sites_count": "{total} total, {published} published",
+        "status_title": "Account Status",
+        "status_active": "Active",
+        "status_frozen": "Frozen",
+        "status_suspended": "Suspended",
+        "confirm_change": "Set status to {status}?",
+        "confirm_yes": "Yes",
+        "confirm_no": "Cancel",
+        "subscription_title": "Subscription",
+        "field_plan": "Plan",
+        "field_sub_status": "Status",
+        "field_amount": "Amount",
+        "field_period_start": "Period Start",
+        "field_period_end": "Period End",
+        "billing_title": "Billing",
+        "billing_total": "{total} {currency}",
+        "billing_empty": "No billing records yet.",
+        "billing_col_date": "Date",
+        "billing_col_kind": "Kind",
+        "billing_col_amount": "Amount",
+        "billing_col_description": "Description",
+        "audit_title": "Audit Log"
+      },
+      "subscription_editor": {
+        "title": "Edit Subscription",
+        "label_plan": "Plan",
+        "label_status": "Status",
+        "label_period_start": "Period Start",
+        "label_period_end": "Period End",
+        "label_cancel_at_end": "Cancel at period end",
+        "save": "Save Changes",
+        "confirm_save": "Confirm Save",
+        "cancel": "Cancel"
+      },
+      "payment_form": {
+        "title": "Record Payment",
+        "label_kind": "Type",
+        "label_amount": "Amount (minor units)",
+        "label_currency": "Currency",
+        "label_description": "Description",
+        "description_placeholder": "Optional note…",
+        "kind_payment": "Payment",
+        "kind_discount": "Discount",
+        "kind_credit": "Credit",
+        "kind_writeoff": "Write-off",
+        "submit": "Record",
+        "error_amount": "Amount must be a non-zero integer."
+      }
+    }
   }
 }

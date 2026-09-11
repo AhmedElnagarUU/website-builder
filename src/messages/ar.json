@@ -471,5 +471,93 @@
       "trusted_clients": "موثوق من أكثر من ٥٠٠ عميل",
       "testimonials": "آراء العملاء"
     }
+  },
+  "admin": {
+    "nav": {
+      "overview": "نظرة عامة",
+      "users": "المستخدمون",
+      "billing": "الفوترة"
+    },
+    "overview": {
+      "total_users": "إجمالي المستخدمين",
+      "total_sites": "إجمالي المواقع",
+      "published_sites": "المواقع المنشورة",
+      "active_subscriptions": "الاشتراكات النشطة",
+      "frozen_accounts": "الحسابات المجمدة",
+      "suspended_accounts": "الحسابات المعلقة",
+      "revenue": "الإيرادات ({currency})",
+      "monthly_revenue": "هذا الشهر ({currency})"
+    },
+    "users": {
+      "search_placeholder": "بحث بالبريد الإلكتروني أو الاسم…",
+      "search": "بحث",
+      "total_count": "{count, plural, =0 {لا يوجد مستخدمون} one {مستخدم واحد} other {# مستخدمون}}",
+      "loading": "جارٍ التحميل…",
+      "load_users": "تحميل المستخدمين",
+      "col_email": "البريد الإلكتروني",
+      "col_name": "الاسم",
+      "col_plan": "الخطة",
+      "col_status": "الاشتراك",
+      "col_account_status": "حالة الحساب",
+      "col_role": "الدور",
+      "detail": {
+        "loading": "جارٍ التحميل…",
+        "not_found": "المستخدم غير موجود.",
+        "profile": "الملف الشخصي",
+        "field_email": "البريد الإلكتروني",
+        "field_name": "الاسم",
+        "field_role": "الدور",
+        "field_created": "تاريخ الإنشاء",
+        "field_account_status": "حالة الحساب",
+        "sites_title": "المواقع",
+        "sites_count": "{total} إجمالي، {published} منشورة",
+        "status_title": "حالة الحساب",
+        "status_active": "نشط",
+        "status_frozen": "مجمد",
+        "status_suspended": "معلق",
+        "confirm_change": "تعيين الحالة إلى {status}؟",
+        "confirm_yes": "نعم",
+        "confirm_no": "إلغاء",
+        "subscription_title": "الاشتراك",
+        "field_plan": "الخطة",
+        "field_sub_status": "الحالة",
+        "field_amount": "المبلغ",
+        "field_period_start": "بداية الفترة",
+        "field_period_end": "نهاية الفترة",
+        "billing_title": "الفوترة",
+        "billing_total": "{total} {currency}",
+        "billing_empty": "لا توجد سجلات فوترة بعد.",
+        "billing_col_date": "التاريخ",
+        "billing_col_kind": "النوع",
+        "billing_col_amount": "المبلغ",
+        "billing_col_description": "الوصف",
+        "audit_title": "سجل التدقيق"
+      },
+      "subscription_editor": {
+        "title": "تعديل الاشتراك",
+        "label_plan": "الخطة",
+        "label_status": "الحالة",
+        "label_period_start": "بداية الفترة",
+        "label_period_end": "نهاية الفترة",
+        "label_cancel_at_end": "إلغاء عند نهاية الفترة",
+        "save": "حفظ التغييرات",
+        "confirm_save": "تأكيد الحفظ",
+        "cancel": "إلغاء"
+      },
+      "payment_form": {
+        "title": "تسجيل دفعة",
+        "label_kind": "النوع",
+        "label_amount": "المبلغ (وحدات فرعية)",
+        "label_currency": "العملة",
+        "label_description": "الوصف",
+        "description_placeholder": "ملاحظة اختيارية…",
+        "kind_payment": "دفعة",
+        "kind_discount": "خصم",
+        "kind_credit": "ائتمان",
+        "kind_writeoff": "شطب",
+        "submit": "تسجيل",
+        "error_amount": "يجب أن يكون المبلغ عددًا صحيحًا غير صفري."
+      }
+    }
   }
 }

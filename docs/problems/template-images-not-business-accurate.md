@@ -1,5 +1,30 @@
 # Problem: Template images are real but not business-accurate (Epic 08, M04 task 02)
 
+## Resolution (2026-09-09)
+
+**Status: RESOLVED.** Template imagery is now Pexels-powered and business-accurate,
+sourced by `scripts/fetch-template-images.mjs` and self-hosted under
+`public/templates/real/<template-id>/` — one folder per template (not per category),
+so each template's personas from the Epic-14 audit get their own matched photos.
+**No network fetch happens at render/SSG time**; images are downloaded once by the
+script and stored in the repo (JPEG, verified ≥ slot minimums on disk).
+
+- Source: Pexels free API (`GET /v1/search`, `Authorization: <key>` header, key from
+  `process.env.PEXELS_API_KEY`, defined in `.env.example` only as a placeholder).
+  License: commercial use allowed; Pexels asks for a prominent link to
+  https://www.pexels.com and photo credit when possible (see
+  https://www.pexels.com/api/documentation/ Guidelines).
+- Layout: per-template folders under `public/templates/real/<template-id>/`
+  (`logo.jpg`, `hero_image.jpg`, `gallery_N.jpg`, `team_N.jpg`). `defaultAsset`
+  literals were updated in `src/features/templates/catalog.ts` (`.webp` → `.jpg`,
+  category folder → template folder). Old category folders and 37 `.webp` files were
+  removed.
+- Re-run the script any time (re-fetches fresh photos): set `PEXELS_API_KEY` and run
+  `node scripts/fetch-template-images.mjs` (add `--dry-run` to preview what it would
+  fetch). Rate limit ~200 req/hour free tier; the script backs off and retries.
+
+---
+
 ## What the epic asked for
 
 Each template should use real, **business-accurate** photos. For example:

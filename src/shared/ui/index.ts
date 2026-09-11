@@ -3,6 +3,7 @@ export { Input } from "./Input";
 export { Textarea } from "./Textarea";
 export { Label } from "./Label";
 export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./Card";
+export { Select } from "./Select";
 export { SectionHead } from "./SectionHead";
 export { TapeTag } from "./TapeTag";
 export { StickyNote } from "./StickyNote";

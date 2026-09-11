@@ -9,60 +9,405 @@ Starting Next.js dev server...
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 11.5s
+ ✓ Ready in 7.1s
  ○ Compiling /api/health ...
- ✓ Compiled /api/health in 11.3s (366 modules)
- GET /api/health 200 in 5653ms
- GET /api/health 200 in 72ms
+ ✓ Compiled /api/health in 7.7s (366 modules)
+ GET /api/health 200 in 10633ms
  ○ Compiling /middleware ...
- ✓ Compiled /middleware in 6.3s (127 modules)
- ○ Compiling /[locale] ...
- ✓ Compiled /[locale] in 42.7s (1585 modules)
- GET /en 307 in 56281ms
- ○ Compiling /[locale]/dashboard ...
- ✓ Compiled /[locale]/dashboard in 3.8s (1536 modules)
- GET /en/dashboard 200 in 11056ms
- GET /en/dashboard 200 in 2373ms
- ✓ Compiled in 6.6s (399 modules)
- ✓ Compiled in 2.8s (399 modules)
- GET /en/dashboard 200 in 895ms
- ✓ Compiled in 1918ms (399 modules)
- GET /en/dashboard 200 in 203ms
- GET /en/dashboard 200 in 156ms
- ✓ Compiled in 1439ms (399 modules)
- GET /en/dashboard 200 in 198ms
- ✓ Compiled in 1074ms (399 modules)
- ○ Compiling /[locale]/dashboard/templates ...
- ✓ Compiled /[locale]/dashboard/templates in 4s (1536 modules)
- ✓ Compiled in 3.4s (404 modules)
- GET /en/dashboard/templates 200 in 20723ms
- GET /en/dashboard/templates 200 in 1488ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 18.2s (1554 modules)
- GET /templates/bistro-menu/screenshot.png 404 in 22957ms
- GET /templates/product-focus/screenshot.png 404 in 22951ms
- GET /templates/consultant-page/screenshot.png 404 in 22788ms
- GET /templates/classic-services/screenshot.png 404 in 23489ms
- GET /templates/modern-studio/screenshot.png 404 in 22798ms
- GET /templates/clean-portfolio/screenshot.png 404 in 22805ms
- GET /templates/professional-profile/screenshot.png 404 in 956ms
- GET /templates/simple-shop/screenshot.png 404 in 953ms
- GET /templates/visual-showcase/screenshot.png 404 in 950ms
- GET /templates/warm-kitchen/screenshot.png 404 in 948ms
+ ✓ Compiled /middleware in 1963ms (127 modules)
  ○ Compiling /preview/[templateId]/[[...slug]] ...
- ✓ Compiled /preview/[templateId]/[[...slug]] in 14.6s (1667 modules)
- GET /preview/bistro-menu 200 in 22638ms
- GET /templates/bistro-menu/screenshot.png 404 in 713ms
- GET /templates/consultant-page/screenshot.png 404 in 679ms
- GET /templates/classic-services/screenshot.png 404 in 686ms
- GET /templates/modern-studio/screenshot.png 404 in 690ms
- GET /templates/product-focus/screenshot.png 404 in 704ms
- GET /templates/clean-portfolio/screenshot.png 404 in 711ms
- GET /templates/professional-profile/screenshot.png 404 in 536ms
- GET /templates/warm-kitchen/screenshot.png 404 in 489ms
- GET /templates/visual-showcase/screenshot.png 404 in 489ms
- GET /templates/simple-shop/screenshot.png 404 in 471ms
- GET /preview/bistro-menu/contact 200 in 582ms
- GET /preview/clean-portfolio 200 in 350ms
- GET /preview/clean-portfolio/contact 200 in 313ms
- GET /preview/clean-portfolio/gallery 200 in 300ms
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 1/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 2/3...
+
+
+Retrying 3/3...
+
+
+Retrying 3/3...
+
+
+Retrying 3/3...
+
+
+Retrying 3/3...
+
+
+Retrying 3/3...
+
+
+Retrying 3/3...
+ ✓ Compiled /preview/[templateId]/[[...slug]] in 15.1s (1007 modules)
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /preview/classic-services 200 in 18775ms
+ GET /preview/modern-studio 200 in 195ms
+ GET /preview/warm-kitchen 200 in 210ms
+ GET /preview/bistro-menu/menu 200 in 258ms
+ GET /preview/simple-shop 200 in 267ms
+ GET /preview/product-focus 200 in 333ms
+ GET /preview/professional-profile 200 in 373ms
+ GET /preview/consultant-page 200 in 295ms
+ GET /preview/clean-portfolio/gallery 200 in 279ms
+ GET /preview/visual-showcase 200 in 308ms
+ GET /preview/visual-showcase 200 in 224ms
+ GET /preview/visual-showcase/gallery 200 in 242ms
+ GET /preview/modern-studio/team 200 in 178ms
+ GET /preview/warm-kitchen/gallery 200 in 167ms
+ GET /preview/consultant-page/gallery 404 in 183ms
+ GET /preview/classic-services 200 in 266ms
+ ○ Compiling /[locale]/dashboard ...
+ ✓ Compiled /[locale]/dashboard in 20.8s (1554 modules)
+ ⨯ [Error: Cannot find module './vendor-chunks/@swc.js'
+Require stack:
+- C:\Users\ahmed\OneDrive\Desktop\website-version2\.next\server\webpack-runtime.js
+- C:\Users\ahmed\OneDrive\Desktop\website-version2\.next\server\app\[locale]\dashboard\page.js
+- C:\Users\ahmed\OneDrive\Desktop\website-version2\node_modules\next\dist\server\require.js
+- C:\Users\ahmed\OneDrive\Desktop\website-version2\node_modules\next\dist\server\load-components.js
+- C:\Users\ahmed\OneDrive\Desktop\website-version2\node_modules\next\dist\build\utils.js
+- C:\Users\ahmed\OneDrive\Desktop\website-version2\node_modules\next\dist\server\dev\static-paths-worker.js
+- C:\Users\ahmed\OneDrive\Desktop\website-version2\node_modules\next\dist\compiled\jest-worker\processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/en/dashboard'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 16.5s (1888 modules)
+ GET /en/dashboard 500 in 47335ms
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 3.7s (1903 modules)
+ GET /favicon.ico 404 in 23652ms
+ GET /en/dashboard 307 in 8226ms
+ ○ Compiling /[locale]/auth/sign-in ...
+ ✓ Compiled /[locale] in 15.7s (1905 modules)
+ ✓ Compiled (1919 modules)
+ ⨯ Failed to generate static paths for /[locale]/dashboard:
+[Error [PageNotFoundError]: Cannot find module for page: /[locale]/dashboard/page] {
+  type: 'PageNotFoundError',
+  code: 'ENOENT'
+}
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 6.5s (1923 modules)
+ ○ Compiling /api/auth/[...all] ...
+ ✓ Compiled /api/auth/[...all] in 5.1s (1458 modules)
+ OPTIONS /api/auth/sign-in/email 204 in 10975ms
+ ✓ Compiled in 13.5s (685 modules)
+ ✓ Compiled in 2.5s (685 modules)
+ ✓ Compiled in 2.1s (685 modules)
+ ✓ Compiled in 12.5s (685 modules)
+ ✓ Compiled in 8.8s (685 modules)
+ ✓ Compiled in 3s (685 modules)
+ ✓ Compiled in 10.1s (894 modules)
+ ✓ Compiled in 15.4s (685 modules)
+ ✓ Compiled in 16.8s (908 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 8.1s (1222 modules)
+ GET /en 200 in 11610ms
+ ○ Compiling /[locale]/auth/sign-in ...
+ ✓ Compiled /[locale]/auth/sign-in in 1628ms (1232 modules)
+ GET /en/auth/sign-in 200 in 11250ms
+ ○ Compiling /api/auth/[...all] ...
+ ✓ Compiled /api/auth/[...all] in 1545ms (1238 modules)
+ POST /api/auth/sign-in/email 200 in 3615ms
+ ○ Compiling /[locale]/dashboard ...
+ ✓ Compiled /[locale]/dashboard in 3.5s (1254 modules)
+ GET /en/dashboard 200 in 13740ms
+ ✓ Compiled in 3.1s (685 modules)
+ GET /en/dashboard 200 in 3205ms
+ GET /en/dashboard 200 in 433ms
+ ○ Compiling /[locale]/dashboard/templates ...
+ ✓ Compiled /[locale]/dashboard/templates in 3.3s (1939 modules)
+ ✓ Compiled in 2.2s (690 modules)
+ ✓ Compiled in 2.7s (690 modules)
+ GET /en/dashboard 200 in 7597ms
+ ✓ Compiled in 3.6s (690 modules)
+ GET /en/dashboard 200 in 3142ms
+ GET /en/dashboard/templates 200 in 19015ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 5.5s (1943 modules)
+ GET /templates/bistro-menu/screenshot.png 404 in 6968ms
+ GET /templates/classic-services/screenshot.png 404 in 6953ms
+ GET /templates/clean-portfolio/screenshot.png 404 in 6848ms
+ GET /templates/consultant-page/screenshot.png 404 in 6790ms
+ GET /templates/modern-studio/screenshot.png 404 in 5379ms
+ GET /templates/product-focus/screenshot.png 404 in 553ms
+ GET /templates/professional-profile/screenshot.png 404 in 550ms
+ GET /templates/simple-shop/screenshot.png 404 in 550ms
+ GET /templates/visual-showcase/screenshot.png 404 in 548ms
+ GET /templates/warm-kitchen/screenshot.png 404 in 269ms
+ ○ Compiling /preview/[templateId]/[[...slug]] ...
+ ✓ Compiled /preview/[templateId]/[[...slug]] in 3.9s (1344 modules)
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /preview/bistro-menu 200 in 6950ms
+ GET /preview/modern-studio 200 in 511ms
+ GET /_next/static/chunks/app/preview/%5BtemplateId%5D/%5B%5B...slug%5D%5D/page.js 404 in 465ms
+ ✓ Compiled in 26.9s (2037 modules)
+ ✓ Compiled in 12.5s (2023 modules)
+ GET /preview/simple-shop 200 in 41415ms
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /_next/static/chunks/app/preview/%5BtemplateId%5D/%5B%5B...slug%5D%5D/page.js 404 in 61152ms
+ GET /en/dashboard/templates 200 in 51763ms
+ GET /preview/modern-studio/services 200 in 33639ms
+ GET /preview/bistro-menu/about 200 in 10544ms
+ GET /preview/simple-shop 200 in 4136ms
+ ✓ Compiled in 22.7s (2017 modules)
+ GET /_next/static/chunks/app/preview/%5BtemplateId%5D/%5B%5B...slug%5D%5D/page.js 404 in 15576ms
+ GET /en/dashboard/templates 200 in 10094ms
+ GET /_next/static/chunks/app/preview/%5BtemplateId%5D/%5B%5B...slug%5D%5D/page.js 404 in 2224ms
+ GET /_next/static/chunks/app/preview/%5BtemplateId%5D/%5B%5B...slug%5D%5D/page.js 404 in 234ms
+ GET /en/dashboard/templates 200 in 213ms
+ ✓ Compiled in 3.1s (690 modules)
+ GET /en/dashboard/templates 200 in 317ms
+ GET /en/dashboard/templates 200 in 137ms
+ ✓ Compiled in 1282ms (690 modules)
+ GET /en/dashboard/templates 200 in 151ms
+ ✓ Compiled in 1698ms (690 modules)
+ GET /en/dashboard/templates 200 in 132ms
+ GET /en/dashboard/templates 200 in 113ms
+ ✓ Compiled in 1272ms (690 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /preview/simple-shop 200 in 1490ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /preview/bistro-menu/about 200 in 1985ms
+ GET /preview/modern-studio/services 200 in 1302ms
+ ○ Compiling /_not-found ...
+ GET /en/dashboard/templates 200 in 2357ms
+ ✓ Compiled /_not-found in 10.4s (2031 modules)
+ GET /_next/static/chunks/app/preview/%5BtemplateId%5D/%5B%5B...slug%5D%5D/page.js 404 in 13518ms
+ GET /_next/static/chunks/app/preview/%5BtemplateId%5D/%5B%5B...slug%5D%5D/page.js 404 in 137ms
+ GET /_next/static/chunks/app/preview/%5BtemplateId%5D/%5B%5B...slug%5D%5D/page.js 404 in 115ms
+ ✓ Compiled in 1264ms (693 modules)
+ ✓ Compiled in 1217ms (693 modules)
+ ✓ Compiled in 1058ms (693 modules)
+ ✓ Compiled in 7.3s (693 modules)
+ ✓ Compiled in 3.9s (2027 modules)
+ ✓ Compiled in 3.8s (2027 modules)
+ ✓ Compiled in 7.1s (690 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 1166ms (690 modules)
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /preview/simple-shop 200 in 2714ms
+ GET /preview/modern-studio/services 200 in 2715ms
+ GET /en/dashboard/templates 200 in 10638ms
+ GET /en/dashboard 200 in 1793ms
