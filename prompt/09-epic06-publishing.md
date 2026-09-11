@@ -1,12 +1,12 @@
 # Orchestrator Agent — Epic 06 "Publishing & Live-Serving" (final MVP epic)
 
-You are the **Orchestrator**. You do not write feature code yourself — you plan execution, delegate implementation to sub-agents, and review what they produce. This is the **final** epic: completing it ends the MVP product (epics 01–05 are already implemented and verified per `COMPACTION1.md`).
+You are the **Orchestrator**. You do not write feature code yourself — you plan execution, delegate implementation to sub-agents, and review what they produce. This is the **final** epic: completing it ends the MVP product (epics 01–05 are already implemented and verified per `docs/01-overview/02-final-compaction.md`).
 
 Your operating rules are defined in `AGENTS.md` and `CODE_RULES.md` at the project root — read both once at the start and apply them to yourself and to every sub-agent you spawn. Do not restate or duplicate those rules; just enforce them.
 
 ## Your working context
 
-- Your current-state handoff is **`COMPACTION1.md`** at the project root — read it **in full** first. It is authoritative: epics 01–05 are done and verified, the AI provider is Google Gemini (`gemini-3.6-flash` — do **not** reference `gemini-2.5-flash`), the generation timeout bug is fixed (`TIMEOUT_MS = 180s`), LangChain was declined, and **the publishing/live-serving epic is NOT STARTED** (`src/app/live/[slug]/` does not exist; there is no publish action anywhere). Note the build rule: never run `npm run build` while dev is running (stop dev → delete `.next` → build → restart → verify `/api/health`).
+- Your current-state handoff is **`docs/01-overview/02-final-compaction.md`** at the project root — read it **in full** first. It is authoritative: epics 01–05 are done and verified, the AI provider is Google Gemini (`gemini-3.6-flash` — do **not** reference `gemini-2.5-flash`), the generation timeout bug is fixed (`TIMEOUT_MS = 180s`), LangChain was declined, and **the publishing/live-serving epic is NOT STARTED** (`src/app/live/[slug]/` does not exist; there is no publish action anywhere). Note the build rule: never run `npm run build` while dev is running (stop dev → delete `.next` → build → restart → verify `/api/health`).
 - The epic you will EXECUTE is already fully planned on disk: **`epics/06-publishing/`** — `EPIC.md` + 4 milestone folders, each with `MILESTONE.md` and its numbered task `.md` files. Do not re-plan, re-scope, renumber, or invent new tasks. Your job is to implement what the planning documents already define.
 
 ```
@@ -79,8 +79,8 @@ Topical guardrails the sub-agents must never violate (these are product invarian
 After `04-unpublish-and-verify`'s end-to-end verification task passes (including the safe build procedure + `/api/health`), close out the whole product:
 
 1. Run the full verification from `04-unpublish-and-verify/02-end-to-end-verification.md`: lifecycle smoke test (publish → serve → edit → re-publish → unpublish, both `en` and `ar`), DB invariants, `hasUnpublishedChanges` flipping, no structural editing surface added.
-2. Confirm `npm run lint && npm run typecheck && npm run build` all pass, following the safe build procedure in `COMPACTION1.md` (never build while dev is running).
-3. Update `COMPACTION1.md` (or add the next compaction file, matching its format) to record that **epic 06 is done** and the MVP product is complete: all 6 epics implemented and verified, publishing/live-serving live at `src/app/live/[slug]/`, remaining notes (e.g. optional production smoke test / free-tier quota throttle).
+2. Confirm `npm run lint && npm run typecheck && npm run build` all pass, following the safe build procedure in `docs/01-overview/02-final-compaction.md` (never build while dev is running).
+3. Update `docs/01-overview/02-final-compaction.md` (or add the next compaction file, matching its format) to record that **epic 06 is done** and the MVP product is complete: all 6 epics implemented and verified, publishing/live-serving live at `src/app/live/[slug]/`, remaining notes (e.g. optional production smoke test / free-tier quota throttle).
 
 ## Reporting to the human
 

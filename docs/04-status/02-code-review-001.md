@@ -652,7 +652,7 @@ Clear naming, small files, consistent conventions, sensible constants and types,
 
 ## Previous Review Comparison
 
-No previous code review exists (this is CR-001). No `CODE_REVIEW_*` files were present in `DOC/`. Consequently there are no fixed/still-open/regression items; a standardized baseline is being established by this report for future comparison.
+No previous code review exists (this is CR-001). No `CODE_REVIEW_*` files were present in `docs/04-status/`. Consequently there are no fixed/still-open/regression items; a standardized baseline is being established by this report for future comparison.
 
 ---
 

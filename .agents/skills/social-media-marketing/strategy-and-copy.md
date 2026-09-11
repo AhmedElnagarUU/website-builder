@@ -52,7 +52,7 @@ Write copy for visual consumption, not a blog article:
 ### Hard rules — never violate
 
 - **Never invent product capabilities.** Every capability you mention must be
-  supported by `DOC/PRD.md` or the live landing copy (`src/messages/en.json` →
+  supported by `docs/01-overview/01-product-requirements.md` or the live landing copy (`src/messages/en.json` →
   `"landing"`). Real, citable capabilities include:
   - AI writes the whole site after a short conversation about the business.
   - English and Arabic written together — a real RTL Arabic version, not a thin

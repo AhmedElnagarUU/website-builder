@@ -6,13 +6,13 @@ M01–M04 M01 build the publish/live-serving machinery across many files. This f
 
 ## Scope
 
-- Build + health verification per `COMPACTION1.md`'s safe procedure.
+- Build + health verification per `docs/01-overview/02-final-compaction.md`'s safe procedure.
 - Lifecycle smoke test: publish → serve → edit → re-publish → unpublish, in both locales.
 - Confirm data/model invariants in the DB.
 
 ## Technical details
 
-Safe build + health (mandatory procedure from `COMPACTION1.md`):
+Safe build + health (mandatory procedure from `docs/01-overview/02-final-compaction.md`):
 1. Stop the dev server (kill the port-3000 process).
 2. Delete `.next`.
 3. Run `npm run lint && npm run typecheck && npm run build`.

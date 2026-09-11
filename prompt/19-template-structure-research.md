@@ -17,7 +17,7 @@ Your only objective in this task is:
 The final output must be a documentation file named:
 
 ```text
-DOC/TEMPLATE_STRUCTURE.md
+docs/03-reference/01-template-structure.md
 ```
 
 If the project already has a different documentation convention, follow the existing convention while preserving the required filename/content.
@@ -771,7 +771,7 @@ The purpose of this task is to create a reliable understanding of the current sy
 
 # 28. Final Document Structure
 
-The final `DOC/TEMPLATE_STRUCTURE.md` should be organized approximately as:
+The final `docs/03-reference/01-template-structure.md` should be organized approximately as:
 
 ```text
 # Template Structure
@@ -881,7 +881,7 @@ Clearly mark assumptions.
 Then produce:
 
 ```text
-DOC/TEMPLATE_STRUCTURE.md
+docs/03-reference/01-template-structure.md
 ```
 
 This document will become the technical foundation for the next phase, where we will redesign the visual quality of each template while preserving compatibility with the existing Template Engine and Renderer.

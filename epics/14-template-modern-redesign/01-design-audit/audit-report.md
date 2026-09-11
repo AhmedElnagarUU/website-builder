@@ -1,7 +1,7 @@
 # Epic 14 — Template Design Audit & Design-Language Plan
 
 **Status:** Binding design source for Milestones 02–06.
-**Author:** Epic-14 execution (prompt/sixteen.md), document-only milestone.
+**Author:** Epic-14 execution (prompt/17-epic14-modern-redesign.md), document-only milestone.
 **Date:** 2026-09-07.
 
 ---

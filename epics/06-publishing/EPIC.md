@@ -4,7 +4,7 @@
 
 ## Source of truth / current state
 
-This epic is the final product gap identified in `COMPACTION1.md` (project root): **the publishing / live-serving epic is NOT STARTED**. There is no publish action anywhere in the codebase, and `src/app/live/[slug]/` does not exist (verified: `Test-Path "src\app\live"` -> False). Everything this epic plans is greenfield, but it MUST build on the real artifacts already in place:
+This epic is the final product gap identified in `docs/01-overview/02-final-compaction.md` (project root): **the publishing / live-serving epic is NOT STARTED**. There is no publish action anywhere in the codebase, and `src/app/live/[slug]/` does not exist (verified: `Test-Path "src\app\live"` -> False). Everything this epic plans is greenfield, but it MUST build on the real artifacts already in place:
 
 - The `PublishedSnapshot` / `Site` / `ContentField` / `SiteImage` / `Locale` types in `src/features/sites/types.ts` (quoted in `01-publish-api/MILESTONE.md` — do not invent a different shape).
 - The site persistence layer `src/features/sites/repository.ts` (`updateSite`, `getSiteForOwner`, `toSiteDTO`).
@@ -47,7 +47,7 @@ The product promise is: AI writes a whole website, the owner lightly edits it, a
 
 Per the epic-structuring instructions, the following were explicitly checked and flagged rather than decided behind the scenes. Defaults chosen are marked; a human should sign off before building.
 
-1. **Serving mechanism — main-app `/live/[slug]`, no separate domain.** The scaffold and `COMPACTION1.md` expect the public live site at `src/app/live/[slug]/`, served on the main app. `NEXT_PUBLIC_SITES_DOMAIN` exists in `.env.example`; this epic treats it as the **canonical public origin** for shareable links and `<link rel="canonical">`/Open Graph URLs, **falling back to the request origin when unset**. It does **not** provision a per-site subdomain or separate hosting. **Decision default: main-app `/live/[slug]`; env var optional override.** Flag for review.
+1. **Serving mechanism — main-app `/live/[slug]`, no separate domain.** The scaffold and `docs/01-overview/02-final-compaction.md` expect the public live site at `src/app/live/[slug]/`, served on the main app. `NEXT_PUBLIC_SITES_DOMAIN` exists in `.env.example`; this epic treats it as the **canonical public origin** for shareable links and `<link rel="canonical">`/Open Graph URLs, **falling back to the request origin when unset**. It does **not** provision a per-site subdomain or separate hosting. **Decision default: main-app `/live/[slug]`; env var optional override.** Flag for review.
 2. **Publish trigger — explicit user action only.** Publishing fires on an explicit Publish button, fully separate from editing/autosave. It never fires on autosave, content PATCH, image upload, regeneration, or template switch (all of those instead set `hasUnpublishedChanges`, which the codebase already does via the `site.publishedSnapshot !== null ? true : …` pattern). This is required by the invariant. Default chosen; no conflict.
 3. **Renderer reuse — confirmed.** The published page reuses the existing `shared/site-render` `SiteRenderer` and only wraps it in an HTML shell (`<html lang dir>`, fonts, page metadata) for a public URL. There is exactly one renderer (never a second divergent implementation), per `04-preview-and-edit/01-site-render`. Default chosen.
 4. **Edited-but-unpublished content.** The live URL always serves `Site.publishedSnapshot` (the last *published* version), never in-progress edits. Editing sets `hasUnpublishedChanges=true` (already true in the codebase once a snapshot exists). Re-publishing overwrites the snapshot as an explicit, confirmed action — never silently. Default chosen; consistent with existing code.
@@ -62,7 +62,7 @@ Per the epic-structuring instructions, the following were explicitly checked and
 - **Epic 02** — `Site` model (`publishedSnapshot`, `slug`, `status`, `hasUnpublishedChanges`), repository, zod schemas, template catalog (template resolution by `templateId`).
 - **Epics 03/04** — content/images/brand/template exist and are editable; `SiteRenderer` (Epic 04 M01) is the live renderer.
 - **Epic 05** — Monomastic UI tokens/components for styling the Publish control (additive only).
-- Executes **after** all of 01–05 (they are complete per `COMPACTION1.md`).
+- Executes **after** all of 01–05 (they are complete per `docs/01-overview/02-final-compaction.md`).
 
 ## Acceptance criteria (epic-wide)
 
@@ -72,4 +72,4 @@ Per the epic-structuring instructions, the following were explicitly checked and
 - Both `/live/[slug]/en` and `/live/[slug]/ar` render correctly with proper `lang`/`dir` (Arabic RTL first-class, not a translation skin).
 - Unpublish makes the URL return a clear "not live" state; re-publish restores it.
 - No structural/drag-and-drop editing surface anywhere; no new npm dependencies; no hardcoded user-facing strings (all through next-intl, `en`/`ar`).
-- `npm run lint && npm run typecheck && npm run build` pass; safe build procedure from `COMPACTION1.md` respected.
+- `npm run lint && npm run typecheck && npm run build` pass; safe build procedure from `docs/01-overview/02-final-compaction.md` respected.

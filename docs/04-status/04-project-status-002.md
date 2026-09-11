@@ -4,12 +4,12 @@
 
 | Field | Value |
 |---|---|
-| Report Type | Incremental delta (supersedes/extends `PROJECT_STATUS_001.md` §Epic 11) |
+| Report Type | Incremental delta (supersedes/extends `03-project-status-001.md` §Epic 11) |
 | Report Sequence | 002 |
 | Generated At | 2026-09-07 |
 | Epic covered | 11 — Monetization: Plans, Subscriptions & Billing Structure |
 
-Scope note: this report records ONLY what was done in this session (Epic 11 implementation). It is not a full-project re-audit. Statuses for all other epics remain as recorded in `PROJECT_STATUS_001.md`.
+Scope note: this report records ONLY what was done in this session (Epic 11 implementation). It is not a full-project re-audit. Statuses for all other epics remain as recorded in `03-project-status-001.md`.
 
 ---
 
@@ -61,7 +61,7 @@ Scope note: this report records ONLY what was done in this session (Epic 11 impl
 
 ## Not committed
 
-- Working tree remains uncommitted (consistent with the pre-session hygiene finding in `PROJECT_STATUS_001.md`).
+- Working tree remains uncommitted (consistent with the pre-session hygiene finding in `03-project-status-001.md`).
 
 ## Next step
 

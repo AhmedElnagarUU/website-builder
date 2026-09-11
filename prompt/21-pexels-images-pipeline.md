@@ -2,7 +2,7 @@
 Senior Solutions Engineer with full-stack and API design expertise. Pragmatic, product-minded, allergic to unwarranted complexity. You care as much about the license and the offline contract of an image pipeline as about the pixels.
 
 # OBJECTIVE
-Fix the problem documented in `docs/problems/template-images-not-business-accurate.md`: template images are real photos but **not business-accurate** (they were sourced from picsum.photos, which cannot search by topic). Switch the way our templates get images from "random photos" to **Pexels-powered, business-accurate imagery**, and make generated sites' images relate to the actual business.
+Fix the problem documented in `docs/05-problems/01-template-images-not-business-accurate.md`: template images are real photos but **not business-accurate** (they were sourced from picsum.photos, which cannot search by topic). Switch the way our templates get images from "random photos" to **Pexels-powered, business-accurate imagery**, and make generated sites' images relate to the actual business.
 
 Two phases:
 - **Phase 1 (mandatory)** — Replace the 37 self-hosted template default images (`public/templates/real/<category>/*.webp`) with curated Pexels photos whose subjects genuinely match each template's business persona (restaurant → food, consultancy → office, shop → products, portfolio → creative work, services → the specific service). Keep the end-state invariant: images are downloaded **once by a script** and self-hosted — **never fetched at render/SSG time**.
@@ -12,7 +12,7 @@ You execute the whole thing yourself in one session; if Phase 2 proves to be an 
 
 # MANDATORY READING (in this order)
 1. `CODE_RULES.md` — read IN FULL before writing or modifying any code. Non-negotiable.
-2. `docs/problems/template-images-not-business-accurate.md` — the problem this prompt resolves, and its invariants (notably: no network fetch or new dependency **at render time**).
+2. `docs/05-problems/01-template-images-not-business-accurate.md` — the problem this prompt resolves, and its invariants (notably: no network fetch or new dependency **at render time**).
 3. `epics/14-template-modern-redesign/01-design-audit/audit-report.md` — the per-template **business personas** (e.g. classic-services = home services firm, warm-kitchen = seasonal home-style restaurant, product-focus = single-product brand, professional-profile = executive coaching, consultant-page = strategy/finance, clean-portfolio/visual-showcase = design/photography). Your search queries are derived from these, not from generic category labels.
 4. **Pexels API docs — RESEARCH FIRST, via web search.** Use web search + WebFetch on the official documentation (https://www.pexels.com/api/documentation/) to learn the real API before writing a single request: the `Authorization` header format, `GET /v1/search` endpoint, response shape (`photos[]` with `src.medium` / `src.large` / `src.original` and URL size/fit/crop query parameters), pagination/`per_page`, rate limits (free default ~200 requests/hour), valid query tips, and the **license terms** (commercial use, attribution requirements or not — record exactly what the docs say).
 
@@ -54,7 +54,7 @@ Do not look for a PRD. This prompt is self-contained; re-read the cited files if
    - Where a generated site has empty image slots, call Pexels search server-side with a query derived from `businessInfo` (category + a couple of keywords from the business name/description), choose the best match per slot type, download/upload to S3 (`sites/{siteId}/{slotId}/pexels/{uuid}.{ext}` key pattern fits the existing convention), and insert the resulting `s3:`/public URL into the site's images so the published site shows business-related photos the owner can still replace.
    - Reuse `src/features/images/` S3 client. Respect rate limits (cache per query; reuse across slots). Keep the existing upload flow untouched.
    - If this requires touching generation orchestration (e.g. `src/features/generation/**`) in a way that can't stay small, DON'T do it — write the design as a short section in the return report (files to touch, API to add, edge cases) instead.
-5. **Close out**: update `docs/problems/template-images-not-business-accurate.md` with a short "Resolution" section at the top (what changed, license, how to re-run the script) so the doc no longer reads as open; keep the gitignored status of `.env` (real key never committed).
+5. **Close out**: update `docs/05-problems/01-template-images-not-business-accurate.md` with a short "Resolution" section at the top (what changed, license, how to re-run the script) so the doc no longer reads as open; keep the gitignored status of `.env` (real key never committed).
 
 # VERIFICATION (run before declaring done)
 1. `npx tsc --noEmit` → exit 0.

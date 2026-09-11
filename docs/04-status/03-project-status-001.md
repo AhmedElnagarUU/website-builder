@@ -139,7 +139,7 @@ The MVP core (Epics 01–06) is **implemented and functional**: authenticated us
 | M01 Publish API | COMPLETE | ~100% | `publishSite` + unique slug + owner-authorized `POST /api/sites/[siteId]/publish`. Snapshot shape is per-page (`SiteContent`, Epic 08) — Epic-06 planning doc contract is stale. |
 | M02 Live Renderer | COMPLETE | ~98% | `/live/[slug]`, `/live/[slug]/[lang]` (en + ar, RTL) read-only via shared renderer; bare slug redirects to first active locale (not hard-coded `/en`); `dir/lang` applied on a wrapper `<div>`, not `<html>`. |
 | M03 Publish UI | COMPLETE | ~100% | `PublishControl` (explicit, confirmed) + "unpublished changes" drift indicator + re-publish. |
-| M04 Unpublish & Verify | NEEDS_REVIEW | ~80% | Unpublish API implemented; in-session drift tracking; **end-to-end verification task has no reproducible artifact in-repo** (only `COMPACTION1.md` claims it passed). |
+| M04 Unpublish & Verify | NEEDS_REVIEW | ~80% | Unpublish API implemented; in-session drift tracking; **end-to-end verification task has no reproducible artifact in-repo** (only `../01-overview/02-final-compaction.md` claims it passed). |
 
 ---
 
@@ -168,7 +168,7 @@ The MVP core (Epics 01–06) is **implemented and functional**: authenticated us
 | M01 Page Data Model | COMPLETE | 100% | `TemplatePage[]` on templates; `SiteContent = Record<pageId, PageContent>`; snapshot per-page. |
 | M02 Content Migration & Routing | COMPLETE | 100% | Idempotent flat→Home migration; per-page generation; `/live/[slug]/[lang]/[pageSlug]` route. |
 | M03 Renderer & Navigation | COMPLETE | 100% | Render-active-page with shared header/footer + active nav; 6 new section types (menu/gallery/faq/hours/pricing/team). |
-| M04 Template Catalog v2 | PARTIAL | ~85% | Per-template page sets + design polish done; **real stock images are NOT business-accurate** (picsum.photos random subjects, e.g. restaurant may show a mountain) — self-documented in `docs/problems/template-images-not-business-accurate.md`. |
+| M04 Template Catalog v2 | PARTIAL | ~85% | Per-template page sets + design polish done; **real stock images are NOT business-accurate** (picsum.photos random subjects, e.g. restaurant may show a mountain) — self-documented in `docs/05-problems/01-template-images-not-business-accurate.md`. |
 | M05 Editor Per-Page | COMPLETE | ~95% | `PageTabs`, per-page save/publish; regeneration is whole-site rather than current-page-only (task wording deviation). |
 
 ---
@@ -336,8 +336,8 @@ Confidence: **HIGH** (based on untracked/modified file evidence + commit history
 
 ### Required Work
 
-1. **Step 0 — Protect existing work (blocking risk):** commit the current working tree in coherent, logical commits (scaffold → creation flow → generation → editor → UI → publishing → fidelity → multi-page → template UX → analytics), ensuring no secrets are committed (check `.env` remains ignored). Then run the safe build (`npm run lint && npx tsc --noEmit`, then stop dev → clear `.next` → `npm run build` → restart) per `COMPACTION1.md`.
-2. **Step 1 — Decision:** resolve the Epic 08 image-accuracy item (keep current photos vs human-provided business-accurate photos) — `docs/problems/template-images-not-business-accurate.md`.
+1. **Step 0 — Protect existing work (blocking risk):** commit the current working tree in coherent, logical commits (scaffold → creation flow → generation → editor → UI → publishing → fidelity → multi-page → template UX → analytics), ensuring no secrets are committed (check `.env` remains ignored). Then run the safe build (`npm run lint && npx tsc --noEmit`, then stop dev → clear `.next` → `npm run build` → restart) per `../01-overview/02-final-compaction.md`.
+2. **Step 1 — Decision:** resolve the Epic 08 image-accuracy item (keep current photos vs human-provided business-accurate photos) — `docs/05-problems/01-template-images-not-business-accurate.md`.
 3. **Step 2 — Begin Epic 11.1.T01:** define `PlanDefinition` (Free default; limits as data: site count, pages/site, languages, custom domain, image size, AI generations/day, published sites), `Subscription` record (status: trialing/active/past_due/canceled/ended; billing period; pricing), `accountStatus` on the user model, and the Free-plan migration/backfill — per `epics/11-monetization/01-plan-and-subscription-model/01-plan-definition-data.md`.
 
 ### Dependencies
@@ -379,15 +379,15 @@ Confidence: **HIGH** (based on untracked/modified file evidence + commit history
 
 # 12. Documentation vs Implementation Differences
 
-1. **`<html lang/dir>` not set (i18n AC).** `epics/01-foundation/02-i18n-foundation/01-next-intl-en-ar-rtl.md` and the scaffold milestone require the rendered `<html>` to carry `lang`/`dir`; `src/app/layout.tsx:10` hardcodes `<html lang="en" dir="ltr">` and `[locale]/layout.tsx` applies locale attrs to an inner `<div>`. `DOC/PRD.md §13.6` (RTL across the site experience) is therefore only partially met at the document level.
+1. **`<html lang/dir>` not set (i18n AC).** `epics/01-foundation/02-i18n-foundation/01-next-intl-en-ar-rtl.md` and the scaffold milestone require the rendered `<html>` to carry `lang`/`dir`; `src/app/layout.tsx:10` hardcodes `<html lang="en" dir="ltr">` and `[locale]/layout.tsx` applies locale attrs to an inner `<div>`. `../01-overview/01-product-requirements.md §13.6` (RTL across the site experience) is therefore only partially met at the document level.
 2. **Root route behavior.** Epic 01 M04 specifies anonymous `/en` → redirect `/auth/sign-in`; implementation serves a marketing Landing page (`src/features/landing/components/Landing.tsx`, wired in `src/app/[locale]/page.tsx`). Likely intended (product landed on marketing), but the task AC was never updated.
 3. **Epic 06 publish snapshot contract is stale.** `epics/06-publishing/01-publish-api/MILESTONE.md` declares `content: Record<Locale, Record<string, ContentField>>`; `publish-site.ts` writes per-page `SiteContent` (Epic 08 model). Code and types are internally consistent; the Epic-06 doc is not the operative shape.
 4. **Full-site regeneration behavior contradicts its AC.** `02-full-site-regeneration.md` AC line 74: on `{confirm:true}` all fields (incl. previously edited) are regenerated. `run-site-regeneration.ts` → `mergePageContent` (merge-content.ts:89–96) preserves `edited:true` fields, so explicit consent never rewrites manual edits.
-5. **`DOC/DESIGN.md` describes the legacy "loom" dark AI/tech landing** (source of truth `design-scratch/landing-variants/1-orange-red.html`); the implemented product landing + design language is the **variant-14 Monomastic notebook** design (`design/landingPage/variant-14/index.html`, `src/features/landing/components/*`, Epic 05). The spec file has not been updated/superseded. (Duplication too: `DOC/DESIGN.md` vs `doc/DESIGN.md`.)
+5. **`../02-design/01-landing-design-spec.md` describes the legacy "loom" dark AI/tech landing** (source of truth `design-scratch/landing-variants/1-orange-red.html`); the implemented product landing + design language is the **variant-14 Monomastic notebook** design (`design/landingPage/variant-14/index.html`, `src/features/landing/components/*`, Epic 05). The spec file has not been updated/superseded. (Duplication too: `../02-design/01-landing-design-spec.md` vs `doc/DESIGN.md`.)
 6. **Canonical settings page missing.** Scaffold MILESTONE declares `sites/[siteId]/settings/page.tsx` as one of "the only page paths the product will ever use"; it does not exist. PRD §13.1 ("language…can be changed later from site settings") is unreachable anywhere in the UI.
 7. **CODE_RULES §6 "no hardcoded user-facing strings" violations in implementation:** hardcoded English strings in `src/features/create-wizard/components/TemplatePicker.tsx:43`, `LanguageChoice.tsx:49`, `src/features/editor/components/ChangeTemplateControl.tsx` (×3). Planning docs mandate all strings via next-intl.
 8. **Epic 05 token location.** Milestone tasks put tokens in `tailwind.config.ts` theme; implementation is in `src/app/globals.css` (Tailwind v4 CSS-first — a legitimate v4 convention, but the doc/names diverge: `mono-red` vs `red`, `shadow-mono` vs `shadow-monomastic`).
-9. **`COMPACTION1.md` "MVP complete + verified e2e" claim** is not independently reproducible: the verification artifact (smoke test/lifecycle script) is not in the repo; only the doc's claim itself.
+9. **`../01-overview/02-final-compaction.md` "MVP complete + verified e2e" claim** is not independently reproducible: the verification artifact (smoke test/lifecycle script) is not in the repo; only the doc's claim itself.
 
 ---
 
@@ -401,8 +401,8 @@ Confidence: **HIGH** (based on untracked/modified file evidence + commit history
 - **Analytics query design:** `getSiteAnalytics` loads all history then filters in JS (ignores from/to); 31-day vs 30-day window inconsistency between stat card and trend.
 - **Dead code/endpoints:** `GET /api/sites/[siteId]/analytics` exists but no client fetches it (dashboard is server-rendered); `src/messages` still unused? No — messages are used; unused asset `public/templates/real/restaurant/menu.webp` (no menu image slot).
 - **Unused UI error path:** `SaveProvider.errors` is never rendered (`editor.edit.save_error` key unused).
-- **Reported DB concerns** (`DOC/CODEQUILTY.md`): fatal connection errors not handled gracefully; potential race when multiple requests hit an uninitialized Django.../Mongo singleton. Current implementation uses `globalThis` caching, but fail-on-missing-DB behavior on the app pages is not verified.
-- **Stale docs:** `DOC/DESIGN.md` (legacy loom spec), Epic 06 milestone contract (pre-Epic-08 shape), `DOC/MODEL.md` (OpenRouter scratch notes), `DOC/NEEDTOLEARN.md`/`NEEDTOCHANGE.md` (scraps instead of architecture docs).
+- **Reported DB concerns** (`../06-notes/01-code-quality-notes.md`): fatal connection errors not handled gracefully; potential race when multiple requests hit an uninitialized Django.../Mongo singleton. Current implementation uses `globalThis` caching, but fail-on-missing-DB behavior on the app pages is not verified.
+- **Stale docs:** `../02-design/01-landing-design-spec.md` (legacy loom spec), Epic 06 milestone contract (pre-Epic-08 shape), `../06-notes/04-model-openrouter-scratch.md` (OpenRouter scratch notes), `../06-notes/02-need-to-learn.md`/`NEEDTOCHANGE.md` (scraps instead of architecture docs).
 
 ---
 
@@ -453,14 +453,14 @@ Good structure and consistent naming; documentation is the weak link (stale/dupl
 - **What is currently in progress?** Effectively nothing new is being authored; the visible activity is planning-file refinement for Epics 11/12 and the uncommitted analytics work.
 - **What is the next task?** Commit+verify current state, then start Epic 11 M01 task 01 (Plan definition data).
 - **Are there blockers?** No technical blocker to Epic 11; however the fully-uncommitted repository is a serious safety blocker, and the stock-imagery item awaits a human decision.
-- **Is the project aligned with its original plan?** Yes on roadmap order and architecture; deviations are documented (landing-on-root, per-page data model merged into Epic 06 scope, Tailwind v4 CSS tokens, full-regen field semantics). The biggest misalignment is **process**, not product: the plan says each task ends with commit-verified, tested work (DoD), yet the repository has 2 commits and zero tests — the "verified" claims in `COMPACTION1.md` are summaries the repo cannot substantiate.
+- **Is the project aligned with its original plan?** Yes on roadmap order and architecture; deviations are documented (landing-on-root, per-page data model merged into Epic 06 scope, Tailwind v4 CSS tokens, full-regen field semantics). The biggest misalignment is **process**, not product: the plan says each task ends with commit-verified, tested work (DoD), yet the repository has 2 commits and zero tests — the "verified" claims in `../01-overview/02-final-compaction.md` are summaries the repo cannot substantiate.
 
 ---
 
 # 17. Evidence Index
 
 - Planning/roadmap: `epics/01-foundation/EPIC.md` … `epics/12-super-admin-dashboard/EPIC.md`, all `epics/<epic>/**/MILESTONE.md` and task `*.md` files
-- Product/spec: `DOC/PRD.md`, `CODE_RULES.md`, `AGENTS.md`, `COMPACTION1.md`, `DOC/DESIGN.md`, `DOC/MODEL.md`, `DOC/CODEQUILTY.md`, `docs/problems/template-images-not-business-accurate.md`
+- Product/spec: `../01-overview/01-product-requirements.md`, `CODE_RULES.md`, `AGENTS.md`, `../01-overview/02-final-compaction.md`, `../02-design/01-landing-design-spec.md`, `../06-notes/04-model-openrouter-scratch.md`, `../06-notes/01-code-quality-notes.md`, `docs/05-problems/01-template-images-not-business-accurate.md`
 - Scaffold/config: `package.json`, `next.config.ts`, `tsconfig.json`, `tailwind.config.ts`, `.env.example`, `.eslintrc.json`, `src/middleware.ts`
 - Auth/db/shared: `src/shared/auth/{server,client}.ts`, `src/features/auth/lib/session.ts`, `src/shared/db/{client,database,indexes}.ts`, `src/shared/i18n/config.ts`, `src/i18n/request.ts`, `src/app/api/health/route.ts`
 - Sites & creation: `src/features/sites/{types,schemas,repository}.ts`, `src/features/sites/api/**`, `src/features/sites/lib/*`, `src/features/create-wizard/**`, `src/features/templates/**`, `src/app/api/sites/**`, `src/app/api/templates/**`
@@ -495,4 +495,4 @@ Good structure and consistent naming; documentation is the weak link (stale/dupl
 
 **Overall planned-epic progress: ~80–85% implemented by milestones; 0% of it (beyond a 2-commit scaffold) safely committed.**
 
-**Confidence levels:** Epic/milestone statuses HIGH (direct file evidence; multiple parallel audits). "COMPLETE = works" ratings MEDIUM for features that rely on live external providers (Mongo/S3/Gemini), since this audit ran static checks (lint/typecheck/build) and did not re-run the full e2e publish lifecycle. The claimed M04 e2e verification in `COMPACTION1.md` could not be reproduced from in-repo artifacts (LOW confidence it is currently verifiable).
+**Confidence levels:** Epic/milestone statuses HIGH (direct file evidence; multiple parallel audits). "COMPLETE = works" ratings MEDIUM for features that rely on live external providers (Mongo/S3/Gemini), since this audit ran static checks (lint/typecheck/build) and did not re-run the full e2e publish lifecycle. The claimed M04 e2e verification in `../01-overview/02-final-compaction.md` could not be reproduced from in-repo artifacts (LOW confidence it is currently verifiable).

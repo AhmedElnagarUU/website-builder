@@ -13,7 +13,7 @@ publication. Fix anything that fails, then deliver. Read this every run.
       belong to any product.
 - [ ] One focused message; no feature-dump.
 - [ ] CTA (if present) fits the objective; no forced CTA.
-- [ ] Every capability cited is supported by `DOC/PRD.md` or live landing copy.
+- [ ] Every capability cited is supported by `docs/01-overview/01-product-requirements.md` or live landing copy.
 - [ ] No fabricated facts (numbers, years, awards, testimonials presented as real).
 - [ ] English and Arabic are both natural versions, not a translation of each other.
 - [ ] The target audience would immediately understand the value.

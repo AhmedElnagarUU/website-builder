@@ -3,7 +3,7 @@
 Read-only audit. Compares what `epics/04-preview-and-edit/` and `epics/05-ui/` planned against what is actually implemented in `src/`.
 Statuses: **COMPLETE / PARTIAL / IN_PROGRESS / NOT_STARTED / NEEDS_REVIEW / BLOCKED**. "Evidence not found" = planned artifact does not exist anywhere in `src/`.
 
-Verification run this session: `npm run typecheck` (tsc --noEmit) — **PASS** · `npm run lint` (next lint) — **0 warnings/errors**. `npm run build` NOT run (build rule in COMPACTION1.md §4: never build while dev server runs; share `.next`). Git: only 2 commits; everything is uncommitted working-tree state.
+Verification run this session: `npm run typecheck` (tsc --noEmit) — **PASS** · `npm run lint` (next lint) — **0 warnings/errors**. `npm run build` NOT run (build rule in ../01-overview/02-final-compaction.md §4: never build while dev server runs; share `.next`). Git: only 2 commits; everything is uncommitted working-tree state.
 
 ---
 
@@ -101,7 +101,7 @@ Gaps:
 - `globals.css` lines 46+ (`@theme` block content, focus-visible / selection / reduced-motion rules) not fully read — token inventory assertion is indirect (classes compile + used widely).
 - `internals.tsx` lines 61+ — SlotImage `objectPosition`/`data-*` mapping for the 9 reposition values.
 - Focus-visible treatment on `Button` (M02-01 AC) unverified.
-- `npm run build` intentionally NOT run (COMPACTION1.md rule: stop dev, delete `.next`, build, restart). Do it before declaring green.
+- `npm run build` intentionally NOT run (../01-overview/02-final-compaction.md rule: stop dev, delete `.next`, build, restart). Do it before declaring green.
 
 ## Summary
 - **Epic 04: COMPLETE** with two PARTIAL notes → (a) full-site regeneration silently preserves edited fields even after confirmation (spec deviation), (b) no visible save-error UI/retry.

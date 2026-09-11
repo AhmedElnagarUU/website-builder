@@ -28,7 +28,7 @@ Do not modify the code unless explicitly instructed.
 
 All review reports MUST be stored inside the existing:
 
-DOC/
+docs/04-status/
 
 directory.
 
@@ -36,7 +36,7 @@ Never create the report somewhere else unless explicitly instructed.
 
 Before starting the review:
 
-1. Inspect the DOC/ directory.
+1. Inspect the docs/04-status/ directory.
 2. Find existing code review reports.
 3. Determine the latest review number.
 4. Create the next sequential review number.
@@ -1370,7 +1370,7 @@ Prioritize correctness, security, maintainability, and code health.
 
 After completing the review:
 
-1. Save the report inside DOC/.
+1. Save the report inside docs/04-status/.
 2. Use the next sequential CODE_REVIEW_NNN.md number.
 3. Never overwrite previous reports.
 4. Include the Git commit hash.

@@ -17,7 +17,7 @@ Close the lifecycle: an explicit Unpublish action, correct handling of unpublish
 
 ## Shared context — `/api/health` and build verification
 
-Referenced by the general orchestration rules: `npm run lint && npm run typecheck && npm run build` must pass, and the safe build procedure from `COMPACTION1.md` must be respected (never `npm run build` while dev is running; stop dev → delete `.next` → build → restart → verify `/api/health`). The verification task uses the existing `/api/health` endpoint as a smoke check after any build.
+Referenced by the general orchestration rules: `npm run lint && npm run typecheck && npm run build` must pass, and the safe build procedure from `docs/01-overview/02-final-compaction.md` must be respected (never `npm run build` while dev is running; stop dev → delete `.next` → build → restart → verify `/api/health`). The verification task uses the existing `/api/health` endpoint as a smoke check after any build.
 
 ## Definition of Done (shared)
 

@@ -23,7 +23,7 @@ You must compare the **planned project** against the **actual implementation**.
 Perform a complete project audit and generate a versioned Markdown report inside:
 
 ```text
-DOC/
+docs/04-status/
 ```
 
 The report must describe the current implementation state of the project.
@@ -75,7 +75,7 @@ config/
 scripts/
 tests/
 docs/
-DOC/
+docs/04-status/
 ```
 
 Also inspect project-level files such as:
@@ -464,13 +464,13 @@ Do NOT:
 * delete files
 * create implementation code
 
-The only file changes you should make are the **status report files inside `DOC/`**.
+The only file changes you should make are the **status report files inside `docs/04-status/`**.
 
 ---
 
 # 14. Report Versioning and File Naming
 
-The `DOC/` directory already exists.
+The `docs/04-status/` directory already exists.
 
 Use it.
 
@@ -479,15 +479,15 @@ Every generated report must have a unique sequential number.
 Use this naming convention:
 
 ```text
-DOC/PROJECT_STATUS_001.md
-DOC/PROJECT_STATUS_002.md
-DOC/PROJECT_STATUS_003.md
+docs/04-status/03-project-status-001.md
+docs/04-status/04-project-status-002.md
+docs/04-status/05-project-status-003.md
 ...
 ```
 
 Before creating a report:
 
-1. Inspect the `DOC/` directory.
+1. Inspect the `docs/04-status/` directory.
 2. Find existing `PROJECT_STATUS_*.md` reports.
 3. Determine the highest existing sequence number.
 4. Increment it by one.
@@ -499,7 +499,7 @@ If the directory contains:
 
 ```text
 PROJECT_STATUS_001.md
-PROJECT_STATUS_002.md
+docs/04-status/04-project-status-002.md
 PROJECT_STATUS_003.md
 ```
 
@@ -1086,14 +1086,14 @@ Explain why it should be next.
 
 ## Phase 7 — Generate Report
 
-Inspect `DOC/`.
+Inspect `docs/04-status/`.
 
 Determine the next report sequence number.
 
 Create:
 
 ```text
-DOC/PROJECT_STATUS_NNN.md
+docs/04-status/NN-project-status-NNN.md
 ```
 
 where `NNN` is the next sequential number.
@@ -1130,7 +1130,7 @@ After creating the report, provide a very short response containing:
 Status report generated successfully.
 
 Report:
-DOC/PROJECT_STATUS_NNN.md
+docs/04-status/NN-project-status-NNN.md
 
 Current position:
 Epic: ...
@@ -1143,4 +1143,4 @@ Next step:
 
 Do not reproduce the entire report in the final response.
 
-The detailed result belongs inside the `DOC/` report.
+The detailed result belongs inside the `docs/04-status/` report.

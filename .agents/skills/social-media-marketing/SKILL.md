@@ -42,7 +42,7 @@ in order as you reach each stage. You do not need to memorize them; read and app
 
 ### 1. Understand the product (mandatory — never assume)
 Read `product-and-brand.md` and follow it. Inspect the requirements document
-(`DOC/PRD.md`) and the production landing page (`src/features/landing/**`) before
+(`docs/01-overview/01-product-requirements.md`) and the production landing page (`src/features/landing/**`) before
 touching any post. Understand what Monomastic actually is, what it does, who it is
 for, its real capabilities, its positioning, and its constraints.
 

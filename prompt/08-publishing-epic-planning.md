@@ -8,7 +8,7 @@ You are the **Epic-Structuring Agent** for a fresh session. You create a NEW epi
 
 This session continues prior work. The single most important file you must read first is:
 
-### `COMPACTION1.md` (project root)
+### `docs/01-overview/02-final-compaction.md` (project root)
 
 Read it **in full** before producing anything. It is the current-state handoff and it is authoritative about what has already been built and what is still pending. From it you must extract, at minimum:
 
@@ -17,18 +17,18 @@ Read it **in full** before producing anything. It is the current-state handoff a
 - **The gap you are planning for:** the **publishing / live-serving epic is NOT STARTED**. There is no publish action anywhere in the codebase yet, and `src/app/live/[slug]/` does not exist.
 - The `PublishedSnapshot` type (defined in `src/features/sites/types.ts`) and the `NEXT_PUBLIC_SITES_DOMAIN` env var that must anchor your epic's data contract.
 
-Do **not** skip or skim `COMPACTION1.md`; your whole epic must be consistent with it.
+Do **not** skip or skim `docs/01-overview/02-final-compaction.md`; your whole epic must be consistent with it.
 
 ## 1. Context to read next (scoped — do not read the whole codebase)
 
-After `COMPACTION1.md`, read only what a planning pass needs:
+After `docs/01-overview/02-final-compaction.md`, read only what a planning pass needs:
 
 - `AGENTS.md` and `CODE_RULES.md` at the project root — the standing rules this new epic's tasks must stay inside (especially: **no structural/drag-and-drop editing surface ever**, **publishing and editing are separate actions**, **manually edited content is never silently overwritten**, **Arabic is a first-class RTL version, never a translation skin**, and **no new npm dependencies without explicit human approval**). Do not restate them; just follow them.
 - `src/features/sites/types.ts` — read the **actual** `PublishedSnapshot`, `Site`, `ContentField`, `SiteImage`, `Locale` and related type definitions so your epic's data-contract tasks match the real code, not an invented shape.
 - `src/features/sites/repository.ts` — how a site (and its `publishedSnapshot`) is currently persisted, so your publish task knows how to write the snapshot and read it back for public serving.
 - The existing epics' `EPIC.md` and each of their `MILESTONE.md` — enough to know what real screens, models, and contracts exist across the product (business-info intake, template selection, AI generation/snapshot, preview/edit, editor save/flush, auth via better-auth, `[siteId]` API routes) so the Publishing epic's milestones map onto real flows instead of invented ones.
 - Open one or two existing task `.md` files anywhere in `epics/` (e.g. `epics/05-ui/...`) purely as a **formatting reference** so your new task files match the existing heading structure, level of detail, and tone. Treat their content as format reference only — not as relevant to publishing.
-- `src/app/live/[slug]/` — confirm whether it exists (per `COMPACTION1.md` it should **not**). If it exists, note its current state; if not, your epic plans to create it.
+- `src/app/live/[slug]/` — confirm whether it exists (per `docs/01-overview/02-final-compaction.md` it should **not**). If it exists, note its current state; if not, your epic plans to create it.
 
 Do **not** read arbitrary application implementation files beyond what is named above; that is implementation-time context, not planning-time context.
 
@@ -66,5 +66,5 @@ Check the existing `epics/` folder (currently `01-foundation` … `05-ui`) and u
 
 ## 6. Before finishing
 
-Summarize back: what you read (including confirming you read `COMPACTION1.md` in full), the epic number and folder name you assigned, any flags raised per Section 2 (the serving mechanism, publish trigger, renderer reuse, unpublished-changes handling, authorization, RTL, S3-vs-DB snapshot storage, and publish UI placement), and the milestone/task breakdown you produced — so a human can review the structure before any sub-agent starts building against it.
+Summarize back: what you read (including confirming you read `docs/01-overview/02-final-compaction.md` in full), the epic number and folder name you assigned, any flags raised per Section 2 (the serving mechanism, publish trigger, renderer reuse, unpublished-changes handling, authorization, RTL, S3-vs-DB snapshot storage, and publish UI placement), and the milestone/task breakdown you produced — so a human can review the structure before any sub-agent starts building against it.
 </content>

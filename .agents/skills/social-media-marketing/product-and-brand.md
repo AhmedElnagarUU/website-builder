@@ -9,7 +9,7 @@ against the actual shipped code.
 
 ## Step 1 — Read the requirements (source of truth)
 
-Open and read `DOC/PRD.md` in full. It defines:
+Open and read `docs/01-overview/01-product-requirements.md` in full. It defines:
 
 - What the product is: an **AI website builder** for non-technical small-business
   owners, freelancers, and local services.
@@ -40,7 +40,7 @@ the layout, EN+AR written together. Use these exact claims; never inflate them.
 Read the landing components under `src/features/landing/components/` (Hero, Features,
 HowItWorks, Languages, Proof, FinalCta) and the landing messages in
 `src/messages/en.json` and `src/messages/ar.json`. This is the shipped, real brand —
-**prefer it over older scratch/spec files** (`prompt/*.md`, `DOC/DESIGN.md`, and
+**prefer it over older scratch/spec files** (`prompt/*.md`, `docs/02-design/01-landing-design-spec.md`, and
 `design-scratch/` are historical or alternative explorations and may describe a
 different look that is no longer live).
 
