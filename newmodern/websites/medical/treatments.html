@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treatments & Services — Clearview Dental, Austin TX</title>
+  <meta name="description" content="Explore our full range of dental treatments: general dentistry, teeth whitening, Invisalign, dental implants, veneers, root canals, crowns, and emergency care.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'clinic-bg': '#FAFBFC',
+          'clinic-text': '#1E293B',
+          'clinic-secondary': '#64748B',
+          'clinic-teal': '#0891B2',
+          'clinic-teal-dark': '#0E7490',
+          'clinic-surface': '#F1F5F9',
+          'clinic-white': '#FFFFFF',
+          'clinic-border': '#E2E8F0',
+          'clinic-green': '#059669',
+        },
+        fontFamily: {
+          display: ['Plus Jakarta Sans', 'sans-serif'],
+          body: ['Source Sans 3', 'sans-serif'],
+        },
+        borderRadius: { 'clinic': '12px' }
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Source Sans 3', sans-serif; color: #1E293B; background: #FAFBFC; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .nav-open { max-height: 400px !important; opacity: 1 !important; }
+    .mobile-nav { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #0891B2; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-primary { transition: all 0.3s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(8,145,178,0.3); }
+    .treatment-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(8,145,178,0.1); }
+    .treatment-card:hover .treatment-icon { background: #0891B2; color: #fff; }
+    .treatment-icon { transition: all 0.3s ease; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-clinic-white/90 backdrop-blur-md border-b border-clinic-border/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-4">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center group-hover:bg-clinic-teal-dark transition-colors">
+            <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+          </div>
+          <span class="font-display font-bold text-xl text-clinic-text">Clearview <span class="text-clinic-teal">Dental</span></span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="treatments.html" class="nav-link font-body font-semibold text-clinic-teal transition-colors">Treatments</a>
+          <a href="doctors.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Our Team</a>
+          <a href="patient-info.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Patient Info</a>
+          <a href="faqs.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal hover:bg-clinic-teal-dark text-white font-display font-semibold px-6 py-2.5 rounded-clinic transition-all hover:shadow-lg hover:shadow-clinic-teal/20">Book Now</a>
+          <a href="contact.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Contact</a>
+        </div>
+        <button id="mobileToggle" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-clinic hover:bg-clinic-surface transition-colors" aria-label="Toggle menu">
+          <iconify-icon id="menuIcon" icon="mdi:menu" class="text-2xl text-clinic-text"></iconify-icon>
+          <iconify-icon id="closeIcon" icon="mdi:close" class="text-2xl text-clinic-text hidden"></iconify-icon>
+        </button>
+      </div>
+      <div id="mobileMenu" class="mobile-nav lg:hidden pb-4">
+        <div class="flex flex-col gap-1">
+          <a href="treatments.html" class="font-body font-semibold text-clinic-teal bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Treatments</a>
+          <a href="doctors.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Our Team</a>
+          <a href="patient-info.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Patient Info</a>
+          <a href="faqs.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal text-white font-display font-semibold px-4 py-3 rounded-clinic text-center mt-2">Book Now</a>
+          <a href="contact.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-clinic-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider reveal">Our Services</span>
+      <h1 class="font-display font-extrabold text-4xl sm:text-5xl text-clinic-text leading-tight mt-3 mb-6 reveal">Comprehensive Dental <span class="text-clinic-teal">Treatments</span></h1>
+      <p class="font-body text-lg text-clinic-secondary max-w-2xl mx-auto reveal">From preventive care to complete smile makeovers, we offer a full range of dental services using the latest techniques and technology.</p>
+    </div>
+  </section>
+
+  <!-- Treatments Grid -->
+  <section class="py-16 bg-clinic-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- General Dentistry -->
+        <a href="treatment-detail.html" class="treatment-card reveal bg-clinic-bg rounded-clinic p-8 border border-clinic-border/50 transition-all duration-300 group">
+          <div class="treatment-icon w-16 h-16 bg-clinic-teal/10 text-clinic-teal rounded-clinic flex items-center justify-center mb-6">
+            <iconify-icon icon="mdi:tooth-outline" class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">General Dentistry</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed mb-4">Comprehensive exams, professional cleanings, digital X-rays, fillings, and preventive treatments. The foundation of a lifetime of healthy smiles.</p>
+          <div class="flex items-center gap-2 text-clinic-teal font-display font-semibold text-sm">
+            Learn More
+            <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </a>
+
+        <!-- Teeth Whitening -->
+        <a href="treatment-detail.html" class="treatment-card reveal bg-clinic-bg rounded-clinic p-8 border border-clinic-border/50 transition-all duration-300 group">
+          <div class="treatment-icon w-16 h-16 bg-clinic-teal/10 text-clinic-teal rounded-clinic flex items-center justify-center mb-6">
+            <iconify-icon icon="mdi:white-balance-sunny" class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Teeth Whitening</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed mb-4">Professional-grade in-office whitening that brightens teeth up to 8 shades in a single visit. Also available as take-home custom trays for your convenience.</p>
+          <div class="flex items-center gap-2 text-clinic-teal font-display font-semibold text-sm">
+            Learn More
+            <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </a>
+
+        <!-- Invisalign -->
+        <a href="treatment-detail.html" class="treatment-card reveal bg-clinic-bg rounded-clinic p-8 border border-clinic-border/50 transition-all duration-300 group">
+          <div class="treatment-icon w-16 h-16 bg-clinic-teal/10 text-clinic-teal rounded-clinic flex items-center justify-center mb-6">
+            <iconify-icon icon="mdi:align-horizontal-distribute-center" class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Invisalign</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed mb-4">Clear aligner therapy for discreet, comfortable teeth straightening. Eat what you want, brush and floss normally, and achieve a beautifully aligned smile.</p>
+          <div class="flex items-center gap-2 text-clinic-teal font-display font-semibold text-sm">
+            Learn More
+            <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </a>
+
+        <!-- Dental Implants -->
+        <a href="treatment-detail.html" class="treatment-card reveal bg-clinic-bg rounded-clinic p-8 border border-clinic-border/50 transition-all duration-300 group">
+          <div class="treatment-icon w-16 h-16 bg-clinic-teal/10 text-clinic-teal rounded-clinic flex items-center justify-center mb-6">
+            <iconify-icon icon="mdi:circle-outline" class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Dental Implants</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed mb-4">Permanent, titanium-rooted tooth replacements that look, feel, and function like natural teeth. Restore your bite, prevent bone loss, and smile with confidence.</p>
+          <div class="flex items-center gap-2 text-clinic-teal font-display font-semibold text-sm">
+            Learn More
+            <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </a>
+
+        <!-- Porcelain Veneers -->
+        <a href="treatment-detail.html" class="treatment-card reveal bg-clinic-bg rounded-clinic p-8 border border-clinic-border/50 transition-all duration-300 group">
+          <div class="treatment-icon w-16 h-16 bg-clinic-teal/10 text-clinic-teal rounded-clinic flex items-center justify-center mb-6">
+            <iconify-icon icon="mdi:auto-fix" class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Porcelain Veneers</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed mb-4">Custom-crafted, wafer-thin porcelain shells that cover chips, gaps, stains, and misalignment. Achieve a Hollywood-worthy smile in just two visits.</p>
+          <div class="flex items-center gap-2 text-clinic-teal font-display font-semibold text-sm">
+            Learn More
+            <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </a>
+
+        <!-- Root Canal Therapy -->
+        <a href="treatment-detail.html" class="treatment-card reveal bg-clinic-bg rounded-clinic p-8 border border-clinic-border/50 transition-all duration-300 group">
+          <div class="treatment-icon w-16 h-16 bg-clinic-teal/10 text-clinic-teal rounded-clinic flex items-center justify-center mb-6">
+            <iconify-icon icon="mdi:medical-bag" class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Root Canal Therapy</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed mb-4">Modern, virtually painless root canal treatment that saves infected teeth. Using advanced techniques, we relieve discomfort and preserve your natural tooth.</p>
+          <div class="flex items-center gap-2 text-clinic-teal font-display font-semibold text-sm">
+            Learn More
+            <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </a>
+
+        <!-- Dental Crowns -->
+        <a href="treatment-detail.html" class="treatment-card reveal bg-clinic-bg rounded-clinic p-8 border border-clinic-border/50 transition-all duration-300 group">
+          <div class="treatment-icon w-16 h-16 bg-clinic-teal/10 text-clinic-teal rounded-clinic flex items-center justify-center mb-6">
+            <iconify-icon icon="mdi:crown" class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Dental Crowns</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed mb-4">Custom porcelain crowns that cap and protect damaged teeth. Same-day CEREC crowns available — no temporary restorations or multiple appointments needed.</p>
+          <div class="flex items-center gap-2 text-clinic-teal font-display font-semibold text-sm">
+            Learn More
+            <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </a>
+
+        <!-- Emergency Care -->
+        <a href="treatment-detail.html" class="treatment-card reveal bg-clinic-bg rounded-clinic p-8 border border-clinic-border/50 transition-all duration-300 group">
+          <div class="treatment-icon w-16 h-16 bg-clinic-teal/10 text-clinic-teal rounded-clinic flex items-center justify-center mb-6">
+            <iconify-icon icon="mdi:ambulance" class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Emergency Dental Care</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed mb-4">Same-day emergency appointments for severe toothaches, broken teeth, knocked-out teeth, and dental trauma. We're here when you need us most.</p>
+          <div class="flex items-center gap-2 text-clinic-teal font-display font-semibold text-sm">
+            Learn More
+            <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </a>
+
+        <!-- Orthodontics -->
+        <a href="treatment-detail.html" class="treatment-card reveal bg-clinic-bg rounded-clinic p-8 border border-clinic-border/50 transition-all duration-300 group">
+          <div class="treatment-icon w-16 h-16 bg-clinic-teal/10 text-clinic-teal rounded-clinic flex items-center justify-center mb-6">
+            <iconify-icon icon="mdi:support" class="text-3xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Orthodontics</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed mb-4">Beyond Invisalign, we offer traditional braces, palate expanders, and bite correction appliances for children, teens, and adults seeking alignment solutions.</p>
+          <div class="flex items-center gap-2 text-clinic-teal font-display font-semibold text-sm">
+            Learn More
+            <iconify-icon icon="mdi:arrow-right" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-20 bg-clinic-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider">How It Works</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-clinic-text mt-3 mb-4">Your Visit, Simplified</h2>
+        <p class="font-body text-lg text-clinic-secondary max-w-2xl mx-auto">We've streamlined the patient experience so you can focus on what matters — your health and your smile.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-8">
+        <div class="text-center reveal">
+          <div class="w-16 h-16 bg-clinic-teal text-white rounded-full flex items-center justify-center mx-auto mb-5 font-display font-extrabold text-2xl">1</div>
+          <h3 class="font-display font-bold text-lg text-clinic-text mb-2">Book Online</h3>
+          <p class="font-body text-clinic-secondary text-sm">Schedule your appointment in 60 seconds through our online booking system or call us directly.</p>
+        </div>
+        <div class="text-center reveal">
+          <div class="w-16 h-16 bg-clinic-teal text-white rounded-full flex items-center justify-center mx-auto mb-5 font-display font-extrabold text-2xl">2</div>
+          <h3 class="font-display font-bold text-lg text-clinic-text mb-2">Comprehensive Exam</h3>
+          <p class="font-body text-clinic-secondary text-sm">Digital X-rays, intraoral photos, and a thorough examination to understand your complete oral health.</p>
+        </div>
+        <div class="text-center reveal">
+          <div class="w-16 h-16 bg-clinic-teal text-white rounded-full flex items-center justify-center mx-auto mb-5 font-display font-extrabold text-2xl">3</div>
+          <h3 class="font-display font-bold text-lg text-clinic-text mb-2">Custom Plan</h3>
+          <p class="font-body text-clinic-secondary text-sm">A personalized treatment plan with transparent pricing, timeline, and options that fit your goals and budget.</p>
+        </div>
+        <div class="text-center reveal">
+          <div class="w-16 h-16 bg-clinic-teal text-white rounded-full flex items-center justify-center mx-auto mb-5 font-display font-extrabold text-2xl">4</div>
+          <h3 class="font-display font-bold text-lg text-clinic-text mb-2">Your Best Smile</h3>
+          <p class="font-body text-clinic-secondary text-sm">Receive gentle, expert treatment and walk out with a healthier, more confident smile every time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-clinic-teal">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-4">Not Sure Which Treatment Is Right for You?</h2>
+      <p class="font-body text-lg text-white/80 mb-8 max-w-xl mx-auto">Schedule a no-pressure consultation. We'll assess your needs, answer your questions, and recommend the best path forward.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="contact.html" class="inline-flex items-center gap-2 bg-white text-clinic-teal font-display font-bold px-8 py-4 rounded-clinic text-lg hover:bg-clinic-bg transition-all hover:shadow-xl">
+          <iconify-icon icon="mdi:calendar-check" class="text-xl"></iconify-icon>
+          Book a Consultation
+        </a>
+        <a href="contact.html" class="inline-flex items-center gap-2 border-2 border-white/30 text-white font-display font-bold px-8 py-4 rounded-clinic text-lg hover:bg-white/10 transition-all">
+          <iconify-icon icon="mdi:phone" class="text-xl"></iconify-icon>
+          Call (512) 555-0147
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-clinic-text pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <a href="index.html" class="flex items-center gap-2.5 mb-5">
+            <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center">
+              <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+            </div>
+            <span class="font-display font-bold text-xl text-white">Clearview <span class="text-clinic-teal">Dental</span></span>
+          </a>
+          <p class="font-body text-slate-400 text-sm leading-relaxed">Modern, compassionate dental care for the whole family. Proudly serving Austin, Texas since 2015.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatments.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Treatments</a></li>
+            <li><a href="doctors.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Our Team</a></li>
+            <li><a href="patient-info.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Patient Info</a></li>
+            <li><a href="faqs.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">FAQs</a></li>
+            <li><a href="about.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">About Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Treatments</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">General Dentistry</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Teeth Whitening</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Invisalign</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Dental Implants</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Porcelain Veneers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="mdi:map-marker" class="text-clinic-teal text-lg mt-0.5"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">1200 Clearview Blvd, Suite 200<br>Austin, TX 78701</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:phone" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">(512) 555-0147</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:email" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">hello@clearviewdental.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body text-slate-500 text-sm">&copy; 2026 Clearview Dental. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Facebook"><iconify-icon icon="mdi:facebook" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Instagram"><iconify-icon icon="mdi:instagram" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Twitter"><iconify-icon icon="mdi:twitter" class="text-white text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('nav-open');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active');
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+
+</body>
+</html>

@@ -204,6 +204,7 @@
     "languages": "Languages",
     "updated": "Updated",
     "browse_templates": "Browse templates",
+    "delete_site": "Delete",
     "gallery": {
       "title": "Template Gallery",
       "subtitle": "Browse every website style we offer. Each one has a name, a category, and a look — pick what fits your business.",
@@ -220,6 +221,46 @@
         "professional": "Professional",
         "portfolio": "Portfolio"
       }
+    }
+  },
+  "delete": {
+    "dialog_title": "Delete this website?",
+    "dialog_body": "Deleting <strong>{siteName}</strong> is permanent and can't be undone. Type the site name below to confirm.",
+    "dialog_placeholder": "Type the site name",
+    "cancel": "Cancel",
+    "confirm": "Delete permanently",
+    "error": "Couldn't delete the site. Please try again."
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "last_updated": "Last updated: September 2026",
+      "s1_title": "What we collect",
+      "s1_body": "When you create an account we collect your email address and name. When you use the builder we store the content you add, the pages you create, and analytics about visitors to your published website.",
+      "s2_title": "How we use it",
+      "s2_body": "We use this information to run the service, save and serve your website, show you analytics, and keep the service secure. We do not sell your data.",
+      "s3_title": "How we store it",
+      "s3_body": "Your data is stored on our servers, hosted securely in the cloud. Site images are stored with a secure object-storage provider.",
+      "s4_title": "Cookies and sessions",
+      "s4_body": "We use a session cookie to keep you signed in. We do not use third-party advertising cookies.",
+      "s5_title": "Contact us",
+      "s5_body": "Questions about this policy? Contact us at support@monomastic.example."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "last_updated": "Last updated: September 2026",
+      "s1_title": "Using the service",
+      "s1_body": "You may use the builder to create and publish websites for lawful purposes. You are responsible for the content you create and for keeping your account credentials safe.",
+      "s2_title": "Your content",
+      "s2_body": "You keep ownership of the content and images you add. You grant us permission to store, process, and display that content so we can run the service, including serving your published website.",
+      "s3_title": "Plans and pricing",
+      "s3_body": "Free usage is subject to the limits shown on the pricing page. Paid features open as they launch, and we will show prices before any charge.",
+      "s4_title": "Acceptable use",
+      "s4_body": "Do not use the service to publish illegal, harmful, or deceptive content, or to abuse the service's systems.",
+      "s5_title": "Limitation of liability",
+      "s5_body": "The service is provided as is, without warranty. To the extent permitted by law, we are not liable for damages arising from your use of the service.",
+      "s6_title": "Changes and contact",
+      "s6_body": "We may update these terms; material changes will be announced in the app. Contact us at support@monomastic.example."
     }
   },
   "auth": {
@@ -257,7 +298,30 @@
     "sign_in": "Sign in",
     "sign_up": "Create account",
     "sign_out": "Sign out",
-    "language_switch_label": "Switch language"
+    "language_switch_label": "Switch language",
+    "upgrade": "Upgrade"
+  },
+  "pricing": {
+    "title": "Pick your plan",
+    "subtitle": "Start free. Upgrade when your business grows.",
+    "current_badge": "Your current plan",
+    "free_title": "Free",
+    "pro_title": "Pro",
+    "features_free": [
+      "1 website",
+      "Up to 4 pages",
+      "1 language",
+      "2 AI generations per day"
+    ],
+    "features_pro": [
+      "Up to 10 websites",
+      "Up to 50 pages",
+      "2 languages (Arabic + English)",
+      "50 AI generations per day",
+      "Custom domain"
+    ],
+    "choose_pro": "Upgrade to Pro",
+    "coming_soon": "Payments open soon — check back shortly for upgrade options."
   },
   "plan": {
     "current_plan": "Plan",
@@ -470,94 +534,6 @@
       "contact": "Contact us",
       "trusted_clients": "Trusted by 500+ clients",
       "testimonials": "Testimonials"
-    }
-  },
-  "admin": {
-    "nav": {
-      "overview": "Overview",
-      "users": "Users",
-      "billing": "Billing"
-    },
-    "overview": {
-      "total_users": "Total Users",
-      "total_sites": "Total Sites",
-      "published_sites": "Published Sites",
-      "active_subscriptions": "Active Subscriptions",
-      "frozen_accounts": "Frozen Accounts",
-      "suspended_accounts": "Suspended Accounts",
-      "revenue": "Revenue ({currency})",
-      "monthly_revenue": "This Month ({currency})"
-    },
-    "users": {
-      "search_placeholder": "Search by email or name…",
-      "search": "Search",
-      "total_count": "{count, plural, =0 {No users} one {# user} other {# users}}",
-      "loading": "Loading…",
-      "load_users": "Load Users",
-      "col_email": "Email",
-      "col_name": "Name",
-      "col_plan": "Plan",
-      "col_status": "Subscription",
-      "col_account_status": "Account Status",
-      "col_role": "Role",
-      "detail": {
-        "loading": "Loading…",
-        "not_found": "User not found.",
-        "profile": "Profile",
-        "field_email": "Email",
-        "field_name": "Name",
-        "field_role": "Role",
-        "field_created": "Created",
-        "field_account_status": "Account Status",
-        "sites_title": "Sites",
-        "sites_count": "{total} total, {published} published",
-        "status_title": "Account Status",
-        "status_active": "Active",
-        "status_frozen": "Frozen",
-        "status_suspended": "Suspended",
-        "confirm_change": "Set status to {status}?",
-        "confirm_yes": "Yes",
-        "confirm_no": "Cancel",
-        "subscription_title": "Subscription",
-        "field_plan": "Plan",
-        "field_sub_status": "Status",
-        "field_amount": "Amount",
-        "field_period_start": "Period Start",
-        "field_period_end": "Period End",
-        "billing_title": "Billing",
-        "billing_total": "{total} {currency}",
-        "billing_empty": "No billing records yet.",
-        "billing_col_date": "Date",
-        "billing_col_kind": "Kind",
-        "billing_col_amount": "Amount",
-        "billing_col_description": "Description",
-        "audit_title": "Audit Log"
-      },
-      "subscription_editor": {
-        "title": "Edit Subscription",
-        "label_plan": "Plan",
-        "label_status": "Status",
-        "label_period_start": "Period Start",
-        "label_period_end": "Period End",
-        "label_cancel_at_end": "Cancel at period end",
-        "save": "Save Changes",
-        "confirm_save": "Confirm Save",
-        "cancel": "Cancel"
-      },
-      "payment_form": {
-        "title": "Record Payment",
-        "label_kind": "Type",
-        "label_amount": "Amount (minor units)",
-        "label_currency": "Currency",
-        "label_description": "Description",
-        "description_placeholder": "Optional note…",
-        "kind_payment": "Payment",
-        "kind_discount": "Discount",
-        "kind_credit": "Credit",
-        "kind_writeoff": "Write-off",
-        "submit": "Record",
-        "error_amount": "Amount must be a non-zero integer."
-      }
     }
   }
 }

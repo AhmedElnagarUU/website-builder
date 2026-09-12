@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio — Atelier Voss</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'warm-bg': '#F5F0EB',
+          'warm-text': '#1A1A1A',
+          'warm-secondary': '#6B6B6B',
+          'warm-accent': '#C4956A',
+          'warm-surface': '#E8E0D8',
+          'warm-border': '#D4CCC4',
+        },
+        fontFamily: {
+          display: ['Playfair Display', 'serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .nav-open .menu-bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-open .menu-bar:nth-child(2) { opacity: 0; }
+    .nav-open .menu-bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  </style>
+</head>
+<body class="bg-warm-bg text-warm-text">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-warm-bg/0">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-display text-2xl font-semibold tracking-tight">AV</span>
+        <span class="hidden sm:inline text-xs tracking-[0.3em] uppercase text-warm-secondary">Atelier Voss</span>
+      </a>
+      <div id="navMenu" class="hidden lg:flex items-center gap-8">
+        <a href="projects.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Projects</a>
+        <a href="studio.html" class="text-xs tracking-[0.15em] uppercase text-warm-accent transition-colors">Studio</a>
+        <a href="services.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Services</a>
+        <a href="process.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Process</a>
+        <a href="journal.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Journal</a>
+        <a href="contact.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Contact</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden flex flex-col gap-1.5 w-7" aria-label="Menu">
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 bg-warm-bg z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Home</a>
+    <a href="projects.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Projects</a>
+    <a href="studio.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Studio</a>
+    <a href="services.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Services</a>
+    <a href="process.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Process</a>
+    <a href="journal.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Journal</a>
+    <a href="contact.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="pt-32 lg:pt-40 pb-16 lg:pb-24 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div class="lg:col-span-5">
+          <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">About Us</p>
+          <h1 class="font-display text-5xl lg:text-7xl font-medium leading-[1.05] reveal reveal-delay-1">
+            The Studio
+          </h1>
+        </div>
+        <div class="lg:col-span-7 lg:pt-4">
+          <p class="text-warm-secondary text-lg lg:text-xl leading-relaxed max-w-2xl reveal reveal-delay-2">
+            Atelier Voss is a New York-based architecture and interior design studio founded in 2009 by Elena Voss and Marcus Voss. We bring together architecture, interiors, and material innovation to create spaces that are both timeless and deeply personal.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Image -->
+  <section class="px-6 lg:px-12 reveal">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="overflow-hidden">
+        <img src="https://images.pexels.com/photos/8837623/pexels-photo-8837623.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+             alt="Atelier Voss team at work" 
+             class="w-full aspect-[16/7] object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <div class="lg:col-span-4">
+          <div class="sticky top-32">
+            <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">Our Story</p>
+            <h2 class="font-display text-3xl lg:text-4xl font-medium reveal reveal-delay-1">Built on belief</h2>
+          </div>
+        </div>
+        <div class="lg:col-span-8">
+          <div class="space-y-8">
+            <div class="reveal">
+              <h3 class="font-display text-xl font-medium mb-4">The Founding Vision</h3>
+              <p class="text-warm-secondary leading-relaxed">
+                In 2009, Elena Voss and Marcus Voss left their positions at Foster + Partners to establish Atelier Voss in Manhattan's Chelsea district. Their shared conviction was simple but ambitious: that architecture and interior design should not exist as separate disciplines, but as a unified practice capable of shaping every dimension of lived experience. The studio began with a single residential project in the West Village — a 1,800-square-foot loft renovation that required complete reimagining of the spatial layout, custom furniture design, and a curated material palette that referenced the neighborhood's industrial heritage.
+              </p>
+            </div>
+            <div class="reveal">
+              <h3 class="font-display text-xl font-medium mb-4">Growth & Recognition</h3>
+              <p class="text-warm-secondary leading-relaxed">
+                By 2014, the studio had grown to twelve architects and designers, completing projects across the northeastern United States. The firm's first major commercial commission — the headquarters for a media company in SoHo — earned an AIA New York Interior Architecture Award and established Atelier Voss as a studio capable of translating residential intimacy to larger scales. The following years brought commissions from hospitality groups, private developers, and cultural institutions, with the studio expanding into international work through projects in London, Tokyo, and Milan.
+              </p>
+            </div>
+            <div class="reveal">
+              <h3 class="font-display text-xl font-medium mb-4">Today</h3>
+              <p class="text-warm-secondary leading-relaxed">
+                Now a team of 24 architects, interior designers, and material specialists, Atelier Voss operates from a converted industrial space in the Meatpacking District. The studio's current body of work spans high-end residential projects across the US and Europe, boutique hospitality interiors, and a growing body of research into sustainable material systems. Every project, regardless of scale, begins with the same principle: architecture should serve the people who inhabit it, not the other way around.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Founders -->
+  <section class="bg-warm-surface py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="text-center mb-16 lg:mb-24">
+        <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">Leadership</p>
+        <h2 class="font-display text-4xl lg:text-5xl font-medium reveal reveal-delay-1">The Founders</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 max-w-5xl mx-auto">
+        <div class="reveal">
+          <div class="overflow-hidden mb-8">
+            <img src="https://images.pexels.com/photos/5582599/pexels-photo-5582599.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                 alt="Elena Voss" 
+                 class="w-full aspect-[3/4] object-cover">
+          </div>
+          <h3 class="font-display text-2xl font-medium">Elena Voss</h3>
+          <p class="text-warm-accent text-sm tracking-[0.1em] uppercase mt-1 mb-4">Principal Architect</p>
+          <p class="text-warm-secondary leading-relaxed text-sm">
+            Elena holds a Master of Architecture from Columbia University and a B.Arch from ETH Zurich. Before co-founding Atelier Voss, she spent six years at Foster + Partners in London, where she led the design of commercial and cultural projects across Europe and the Middle East. Her work has been published in Architectural Digest, Dezeen, and The New York Times. She is a visiting critic at Columbia GSAPP and a registered architect in New York State.
+          </p>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="overflow-hidden mb-8">
+            <img src="https://images.pexels.com/photos/8837623/pexels-photo-8837623.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                 alt="Marcus Voss" 
+                 class="w-full aspect-[3/4] object-cover">
+          </div>
+          <h3 class="font-display text-2xl font-medium">Marcus Voss</h3>
+          <p class="text-warm-accent text-sm tracking-[0.1em] uppercase mt-1 mb-4">Interior Design Director</p>
+          <p class="text-warm-secondary leading-relaxed text-sm">
+            Marcus earned his degree in Interior Architecture from Parsons School of Design, followed by advanced studies in furniture design at the Royal College of Art. His twelve years of practice before Atelier Voss included roles at Roman and Williams and David Collins Studio, where he developed an expertise in hospitality and luxury residential interiors. His approach to material selection and spatial storytelling has been recognized with multiple ASID and IIDA awards.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="text-center mb-16 lg:mb-24">
+        <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">Guiding Principles</p>
+        <h2 class="font-display text-4xl lg:text-5xl font-medium reveal reveal-delay-1">What We Believe</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div class="border-t border-warm-border pt-8 reveal">
+          <iconify-icon icon="ph:compass" class="text-warm-accent text-2xl mb-4"></iconify-icon>
+          <h3 class="font-display text-xl font-medium mb-3">Context Over Style</h3>
+          <p class="text-warm-secondary text-sm leading-relaxed">Every project responds to its specific place, climate, and culture. We don't impose a signature look — we listen to what a site and its inhabitants need, and let the design emerge from those conditions.</p>
+        </div>
+        <div class="border-t border-warm-border pt-8 reveal reveal-delay-1">
+          <iconify-icon icon="ph:layer" class="text-warm-accent text-2xl mb-4"></iconify-icon>
+          <h3 class="font-display text-xl font-medium mb-3">Material Honesty</h3>
+          <p class="text-warm-secondary text-sm leading-relaxed">We believe materials should be expressed truthfully — their texture, weight, and character celebrated rather than concealed. This honesty creates spaces with genuine warmth and lasting integrity.</p>
+        </div>
+        <div class="border-t border-warm-border pt-8 reveal reveal-delay-2">
+          <iconify-icon icon="ph:users" class="text-warm-accent text-2xl mb-4"></iconify-icon>
+          <h3 class="font-display text-xl font-medium mb-3">Human Scale</h3>
+          <p class="text-warm-secondary text-sm leading-relaxed">Architecture exists to serve people. Every proportion, material, and detail is calibrated to the human body and experience. We design for how a space feels to inhabit, not just how it photographs.</p>
+        </div>
+        <div class="border-t border-warm-border pt-8 reveal">
+          <iconify-icon icon="ph:leaf" class="text-warm-accent text-2xl mb-4"></iconify-icon>
+          <h3 class="font-display text-xl font-medium mb-3">Sustainable Practice</h3>
+          <p class="text-warm-secondary text-sm leading-relaxed">Environmental responsibility is integral to our work, not an afterthought. We prioritize passive strategies, locally sourced materials, and lifecycle thinking in every project decision.</p>
+        </div>
+        <div class="border-t border-warm-border pt-8 reveal reveal-delay-1">
+          <iconify-icon icon="ph:puzzle-piece" class="text-warm-accent text-2xl mb-4"></iconify-icon>
+          <h3 class="font-display text-xl font-medium mb-3">Integrated Design</h3>
+          <p class="text-warm-secondary text-sm leading-relaxed">Architecture, interiors, and landscape should speak the same language. Our integrated approach ensures coherence from the building envelope to the smallest hardware detail.</p>
+        </div>
+        <div class="border-t border-warm-border pt-8 reveal reveal-delay-2">
+          <iconify-icon icon="ph:handshake" class="text-warm-accent text-2xl mb-4"></iconify-icon>
+          <h3 class="font-display text-xl font-medium mb-3">Collaborative Process</h3>
+          <p class="text-warm-secondary text-sm leading-relaxed">Great design requires genuine partnership with our clients. We create an environment where ideas are tested, refined, and challenged until the best possible solution emerges.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="bg-warm-surface py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16 lg:mb-24">
+        <div class="reveal">
+          <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4">The Team</p>
+          <h2 class="font-display text-4xl lg:text-5xl font-medium">24 Architects & Designers</h2>
+        </div>
+        <p class="mt-6 lg:mt-0 text-warm-secondary max-w-md text-sm leading-relaxed reveal reveal-delay-1">
+          Our team brings together specialists in architecture, interior design, computational design, material research, and sustainable building systems.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+        <div class="reveal">
+          <div class="aspect-square overflow-hidden mb-4">
+            <img src="https://images.pexels.com/photos/5582599/pexels-photo-5582599.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team member" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+          </div>
+          <h4 class="font-medium text-sm">Sarah Chen</h4>
+          <p class="text-warm-secondary text-xs mt-1">Senior Architect</p>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="aspect-square overflow-hidden mb-4">
+            <img src="https://images.pexels.com/photos/8837623/pexels-photo-8837623.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team member" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+          </div>
+          <h4 class="font-medium text-sm">David Park</h4>
+          <p class="text-warm-secondary text-xs mt-1">Project Architect</p>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="aspect-square overflow-hidden mb-4">
+            <img src="https://images.pexels.com/photos/5582599/pexels-photo-5582599.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team member" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+          </div>
+          <h4 class="font-medium text-sm">Amara Osei</h4>
+          <p class="text-warm-secondary text-xs mt-1">Interior Designer</p>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <div class="aspect-square overflow-hidden mb-4">
+            <img src="https://images.pexels.com/photos/8837623/pexels-photo-8837623.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team member" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+          </div>
+          <h4 class="font-medium text-sm">Luca Moretti</h4>
+          <p class="text-warm-secondary text-xs mt-1">Design Technologist</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-warm-text text-white py-16 lg:py-20 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+        <div class="lg:col-span-4">
+          <span class="font-display text-3xl font-semibold">AV</span>
+          <p class="text-white/50 text-sm mt-4 leading-relaxed max-w-xs">Architecture & Interior Design Studio based in New York. Creating spaces that endure since 2009.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Navigation</h4>
+          <div class="flex flex-col gap-3">
+            <a href="projects.html" class="text-sm text-white/60 hover:text-white transition-colors">Projects</a>
+            <a href="studio.html" class="text-sm text-white/60 hover:text-white transition-colors">Studio</a>
+            <a href="services.html" class="text-sm text-white/60 hover:text-white transition-colors">Services</a>
+            <a href="process.html" class="text-sm text-white/60 hover:text-white transition-colors">Process</a>
+            <a href="journal.html" class="text-sm text-white/60 hover:text-white transition-colors">Journal</a>
+            <a href="contact.html" class="text-sm text-white/60 hover:text-white transition-colors">Contact</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Contact</h4>
+          <div class="flex flex-col gap-3 text-sm text-white/60">
+            <p>245 West 17th Street, Suite 4</p>
+            <p>New York, NY 10011</p>
+            <p class="mt-2">studio@ateliervoss.com</p>
+            <p>+1 (212) 555-0187</p>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Follow</h4>
+          <div class="flex gap-5">
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:instagram-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:linkedin-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:pinterest-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:twitter-x-logo" class="text-xl"></iconify-icon>
+            </a>
+          </div>
+          <div class="mt-8">
+            <a href="contact.html" class="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-warm-accent hover:text-white transition-colors">
+              Start a Project
+              <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/30">&copy; 2026 Atelier Voss. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Privacy Policy</a>
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navbar = document.getElementById('navbar');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuBtn.classList.toggle('nav-open', menuOpen);
+      mobileMenu.classList.toggle('opacity-100', menuOpen);
+      mobileMenu.classList.toggle('pointer-events-auto', menuOpen);
+      mobileMenu.classList.toggle('opacity-0', !menuOpen);
+      mobileMenu.classList.toggle('pointer-events-none', !menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.remove('bg-warm-bg/0');
+      } else {
+        navbar.classList.remove('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.add('bg-warm-bg/0');
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

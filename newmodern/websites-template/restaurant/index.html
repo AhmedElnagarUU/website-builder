@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ember &amp; Oak — Wood-Fired Italian Kitchen, Portland</title>
+  <meta name="description" content="Ember & Oak is a wood-fired Italian kitchen in Portland, OR. Handmade pasta, live-fire cooking, honest trattoria cooking since 2014.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          soot: '#161110', coal: '#201a17', embers: '#df5b32', flame: '#f0a252',
+          crema: '#f2e6d3', herb: '#4a5531', line: '#3b2f27',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-crema overflow-x-hidden bg-soot">
+
+  <!-- NAV -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-2xl lg:text-[1.7rem] tracking-tight">
+        Ember <span class="italic text-flame">&amp;</span> Oak
+      </a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="menu.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Menu</a>
+        <a href="story.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Our Story</a>
+        <a href="private-dining.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Private Dining</a>
+        <a href="journal.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">The Journal</a>
+        <a href="visit.html" class="ml-3 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-5 py-3 hover:bg-flame hover:text-soot transition-colors">Book a Table</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-soot z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="menu.html" class="font-display text-3xl">Menu</a>
+    <a href="story.html" class="font-display text-3xl">Our Story</a>
+    <a href="private-dining.html" class="font-display text-3xl">Private Dining</a>
+    <a href="journal.html" class="font-display text-3xl">The Journal</a>
+    <a href="visit.html" class="mt-4 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-6 py-3">Book a Table</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="relative min-h-screen flex flex-col justify-end overflow-hidden">
+    <img src="https://images.pexels.com/photos/7485011/pexels-photo-7485011.jpeg?auto=compress&cs=tinysrgb&w=2000" alt="Wood-fired oven with bright flames baking pizza" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-soot via-soot/60 to-soot/25"></div>
+
+    <div class="relative z-10 px-6 lg:px-10 pb-16 lg:pb-24 w-full">
+      <div class="max-w-[1320px] mx-auto">
+        <p class="font-mono2 text-[10px] tracking-[0.35em] uppercase text-flame/80 mb-6 reveal">Cucina a fuoco vivo · Est. 2014</p>
+        <h1 class="font-display font-medium leading-[0.92] text-[clamp(3rem,9vw,7.5rem)] max-w-4xl reveal reveal-delay-1">
+          Cooked over<br><span class="italic char">fire</span>, like it<br>always was.
+        </h1>
+        <div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-6 reveal reveal-delay-2">
+          <a href="visit.html" class="inline-flex items-center gap-3 bg-flame text-soot font-mono2 text-[11px] tracking-[0.22em] uppercase px-8 py-4 hover:bg-crema transition-colors">
+            Book a Table
+            <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+          </a>
+          <a href="menu.html" class="inline-flex items-center gap-3 border border-crema/30 text-crema font-mono2 text-[11px] tracking-[0.22em] uppercase px-8 py-4 hover:border-crema transition-colors">
+            See the Menu
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fire readout strip -->
+    <div class="relative z-10 border-t border-crema/10 reveal reveal-delay-3">
+      <div class="max-w-[1320px] mx-auto px-6 lg:px-10 py-4">
+        <div class="fire-read flex items-center justify-between px-5 py-3 text-[10px] tracking-[0.18em] uppercase">
+          <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-flame animate-pulse"></span> Forno live</span>
+          <span class="hidden md:inline">Stone temp <span class="value">412°C</span></span>
+          <span class="hidden md:inline">Beech &amp; oak load <span class="value">0x / 12:45</span></span>
+          <span>Pizza bake <span class="value">45 sec</span></span>
+          <span class="hidden sm:inline">Tonight's <span class="value">Table 14</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIRE MARQUEE -->
+  <div class="bg-coal py-4 overflow-hidden border-y border-line/40">
+    <div class="marquee font-display italic text-lg text-crema/40">
+      <span class="marquee-track">
+        forno &nbsp;<span class="text-flame/50">◇</span>&nbsp; farina &nbsp;<span class="text-flame/50">◇</span>&nbsp; fuoco &nbsp;<span class="text-flame/50">◇</span>&nbsp; pasta fatta a mano &nbsp;<span class="text-flame/50">◇</span>&nbsp; brace &nbsp;<span class="text-flame/50">◇</span>&nbsp; legna &nbsp;<span class="text-flame/50">◇</span>&nbsp; sale &nbsp;<span class="text-flame/50">◇</span>&nbsp; forno &nbsp;<span class="text-flame/50">◇</span>&nbsp; farina &nbsp;<span class="text-flame/50">◇</span>&nbsp; fuoco &nbsp;<span class="text-flame/50">◇</span>&nbsp; pasta fatta a mano &nbsp;<span class="text-flame/50">◇</span>&nbsp; brace &nbsp;<span class="text-flame/50">◇</span>&nbsp; legna &nbsp;<span class="text-flame/50">◇</span>&nbsp; sale &nbsp;<span class="text-flame/50">◇</span>&nbsp;
+      </span>
+    </div>
+  </div>
+
+  <!-- TONIGHT -->
+  <section class="py-24 lg:py-36 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
+        <div class="lg:col-span-5 reveal">
+          <div class="relative">
+            <div class="overflow-hidden aspect-[4/5]">
+              <img src="https://images.pexels.com/photos/29626981/pexels-photo-29626981.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Artisan pizza baking in wood-fired oven with flames" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+            </div>
+            <div class="absolute -top-5 -right-5 reveal reveal-delay-2"><div class="seal">Forza<br>e<br>Sale<br>· MMXXV</div></div>
+          </div>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="font-mono2 text-[10px] tracking-[0.32em] uppercase text-embers mb-5 reveal">Dal forno · Tonight</p>
+          <h2 class="font-display font-medium text-4xl lg:text-6xl leading-[1.02] max-w-xl reveal reveal-delay-1">
+            One thing the oven loves more than us: <span class="italic text-flame">October air</span>.
+          </h2>
+          <p class="text-crema/60 leading-relaxed max-w-lg mt-8 text-lg reveal reveal-delay-2">
+            Comfortable weather is rare in Portland, so we cook to it. Braised lamb shoulder, soft polenta, winter squash from the Fourth Street farm — the menu shifts with what the morning market coughs up.
+          </p>
+          <div class="mt-10 reveal reveal-delay-3">
+            <div class="bg-coal border border-line/40 px-6 py-5 max-w-lg">
+              <div class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-flame mb-3">Tonight's feature</div>
+              <div class="menu-lead text-lg">
+                <span class="font-display italic">Agnolotti dal plin — braised lamb, sage brown butter</span>
+                <span class="dots"></span>
+                <span class="font-mono2 text-sm text-flame">$29</span>
+              </div>
+              <p class="text-crema/50 text-sm mt-3">Wonton-thin hand-pinched pasta, slow-braised lamb, sage from the alley planter, brown butter finished with a spark of lemon.</p>
+            </div>
+          </div>
+          <a href="menu.html" class="mt-8 inline-flex items-center gap-2 font-mono2 text-[11px] tracking-[0.22em] uppercase text-flame hover:text-crema transition-colors reveal reveal-delay-3">
+            View the full carta <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FORNO -->
+  <section class="relative py-24 lg:py-36 px-6 lg:px-10 bg-coal overflow-hidden">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
+        <div class="ember-div mb-6 reveal"><span class="ember-glyph">◆</span></div>
+        <p class="font-mono2 text-[10px] tracking-[0.32em] uppercase text-embers mb-4 reveal">Il forno</p>
+        <h2 class="font-display font-medium text-4xl lg:text-6xl leading-[1.02] reveal reveal-delay-1">
+          Brick, fire, and forty years of patience.
+        </h2>
+        <p class="text-crema/60 text-lg leading-relaxed mt-6 max-w-xl reveal reveal-delay-2">
+          Our oven was built by hand in 2014 from clay and brick salvaged from a demolished bakery our chef's grandfather walked past every childhood evening. It's been lit every day since — nobody here can remember it cold.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div class="relative overflow-hidden group reveal">
+          <img src="https://images.pexels.com/photos/32641697/pexels-photo-32641697.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Traditional wood-fired oven flames" class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-soot/80 to-transparent"></div>
+          <p class="absolute bottom-5 left-5 font-display italic text-lg text-crema">The fire never sleeps</p>
+        </div>
+        <div class="relative overflow-hidden group reveal reveal-delay-1">
+          <img src="https://images.pexels.com/photos/35377953/pexels-photo-35377953.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Hands shaping fresh pasta dough" class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-soot/80 to-transparent"></div>
+          <p class="absolute bottom-5 left-5 font-display italic text-lg text-crema">Rolled by hand, daily</p>
+        </div>
+        <div class="relative overflow-hidden group reveal reveal-delay-2">
+          <img src="https://images.pexels.com/photos/29962487/pexels-photo-29962487.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Warmly lit restaurant tables set for dinner" class="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-soot/80 to-transparent"></div>
+          <p class="absolute bottom-5 left-5 font-display italic text-lg text-crema">Room for forty, plus you</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU PREVIEW -->
+  <section class="py-24 lg:py-36 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+      <div class="lg:col-span-4">
+        <p class="font-mono2 text-[10px] tracking-[0.32em] uppercase text-embers mb-4 reveal">La carta</p>
+        <h2 class="font-display font-medium text-4xl lg:text-5xl leading-[1.05] reveal reveal-delay-1">
+          Short, seasonal,<br><span class="italic text-flame">written in pencil.</span>
+        </h2>
+        <p class="text-crema/60 leading-relaxed max-w-sm mt-6 reveal reveal-delay-2">Forty seats, a single notepad. The menu is short enough to actually read aloud, and it changes whenever the oven has opinions.</p>
+        <a href="menu.html" class="mt-8 inline-flex items-center gap-2 font-mono2 text-[11px] tracking-[0.22em] uppercase text-flame hover:text-crema transition-colors reveal reveal-delay-3">
+          Read the full menu <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+        </a>
+      </div>
+      <div class="lg:col-span-8 space-y-2 reveal reveal-delay-2">
+        <div class="flex gap-6 items-baseline py-3 border-b border-line/40">
+          <span class="font-mono2 text-[10px] text-embers uppercase">Antipasti</span>
+          <div class="menu-lead flex-1 text-base sm:text-lg">
+            <span class="font-display italic">Crostini — pork liver, pickled fennel</span>
+            <span class="dots"></span>
+            <span class="font-mono2 text-xs sm:text-sm text-flame">$14</span>
+          </div>
+        </div>
+        <div class="flex gap-6 items-baseline py-3 border-b border-line/40">
+          <span class="font-mono2 text-[10px] text-embers uppercase">Primi</span>
+          <div class="menu-lead flex-1 text-base sm:text-lg">
+            <span class="font-display italic">Tonarelli — black pepper, pecorino</span>
+            <span class="dots"></span>
+            <span class="font-mono2 text-xs sm:text-sm text-flame">$22</span>
+          </div>
+        </div>
+        <div class="flex gap-6 items-baseline py-3 border-b border-line/40">
+          <span class="font-mono2 text-[10px] text-embers uppercase">Secondi</span>
+          <div class="menu-lead flex-1 text-base sm:text-lg">
+            <span class="font-display italic">Pollo al forno — spatchcocked, lemon, rosemary</span>
+            <span class="dots"></span>
+            <span class="font-mono2 text-xs sm:text-sm text-flame">$34</span>
+          </div>
+        </div>
+        <div class="flex gap-6 items-baseline py-3 border-b border-line/40">
+          <span class="font-mono2 text-[10px] text-embers uppercase">Dolci</span>
+          <div class="menu-lead flex-1 text-base sm:text-lg">
+            <span class="font-display italic">Budino — salted caramel, olive oil</span>
+            <span class="dots"></span>
+            <span class="font-mono2 text-xs sm:text-sm text-flame">$12</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote band -->
+  <section class="py-16 lg:py-20 px-6 text-center border-y border-line/40 bg-coal/60">
+    <div class="max-w-3xl mx-auto">
+      <p class="font-display italic text-2xl lg:text-3xl text-crema/80 leading-snug reveal">
+        "The best Italian food in Portland might be in a room with forty seats and a fire you can feel from the doorway."
+      </p>
+      <p class="font-mono2 text-[10px] tracking-[0.28em] uppercase text-flame/70 mt-6 reveal reveal-delay-1">— Portland Dining Weekly, 2025</p>
+    </div>
+  </section>
+
+  <!-- RESERVE CTA -->
+  <section class="py-28 lg:py-40 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto flex flex-col lg:flex-row items-start justify-between gap-12">
+      <div>
+        <p class="font-mono2 text-[10px] tracking-[0.32em] uppercase text-embers mb-4 reveal">Prenotazione</p>
+        <h2 class="font-display font-medium text-4xl lg:text-6xl leading-[1.0] max-w-lg reveal reveal-delay-1">
+          Table for two,<br><span class="italic char">Thursday at seven?</span>
+        </h2>
+      </div>
+      <div class="max-w-sm reveal reveal-delay-2">
+        <p class="text-crema/60 leading-relaxed mb-8">We hold half of every service for walk-ins — the room is never fully booked. But for Friday or Saturday, book a week out to be safe.</p>
+        <a href="visit.html" class="inline-flex items-center gap-3 bg-flame text-soot font-mono2 text-[11px] tracking-[0.22em] uppercase px-8 py-4 hover:bg-crema transition-colors">
+          Make a Reservation <iconify-icon icon="ph:arrow-right"></iconify-icon>
+        </a>
+        <p class="font-mono2 text-[10px] tracking-[0.18em] uppercase text-crema/40 mt-6">503-555-0170 · Nightly from 5 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-coal border-t border-line/40 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl tracking-tight">Ember <span class="italic text-flame">&amp;</span> Oak</div>
+          <p class="text-crema/50 text-sm leading-relaxed max-w-sm mt-4">Wood-fired Italian kitchen and neighborly trattoria in Southeast Portland. Forty seats, one oven, and a menu written in pencil.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Visit</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="visit.html" class="hover:text-flame transition-colors">Reservations</a>
+            <a href="private-dining.html" class="hover:text-flame transition-colors">Private Dining</a>
+            <a href="visit.html" class="hover:text-flame transition-colors">Hours &amp; Directions</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Kitchen</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="menu.html" class="hover:text-flame transition-colors">Menu</a>
+            <a href="story.html" class="hover:text-flame transition-colors">Our Story</a>
+            <a href="journal.html" class="hover:text-flame transition-colors">The Journal</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Find us</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <p>2114 SE Morrison St.</p>
+            <p>Portland, OR 97214</p>
+            <a href="tel:+15035550170" class="text-flame hover:text-crema transition-colors">503-555-0170</a>
+            <a href="mailto:ciao@emberandoak.com" class="hover:text-flame transition-colors">ciao@emberandoak.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-line/40 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[10px] text-crema/30 tracking-[0.18em] uppercase">&copy; 2026 Ember &amp; Oak. <span class="text-crema/40">Aperti in cucina.</span></p>
+        <div class="flex gap-5">
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

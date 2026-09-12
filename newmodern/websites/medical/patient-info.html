@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Information — Clearview Dental, Austin TX</title>
+  <meta name="description" content="Everything you need for your first visit at Clearview Dental. New patient forms, insurance info, what to expect, and financing options.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'clinic-bg': '#FAFBFC',
+          'clinic-text': '#1E293B',
+          'clinic-secondary': '#64748B',
+          'clinic-teal': '#0891B2',
+          'clinic-teal-dark': '#0E7490',
+          'clinic-surface': '#F1F5F9',
+          'clinic-white': '#FFFFFF',
+          'clinic-border': '#E2E8F0',
+          'clinic-green': '#059669',
+        },
+        fontFamily: {
+          display: ['Plus Jakarta Sans', 'sans-serif'],
+          body: ['Source Sans 3', 'sans-serif'],
+        },
+        borderRadius: { 'clinic': '12px' }
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Source Sans 3', sans-serif; color: #1E293B; background: #FAFBFC; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .nav-open { max-height: 400px !important; opacity: 1 !important; }
+    .mobile-nav { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #0891B2; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-primary { transition: all 0.3s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(8,145,178,0.3); }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .accordion-content.open { max-height: 500px; }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-clinic-white/90 backdrop-blur-md border-b border-clinic-border/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-4">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center group-hover:bg-clinic-teal-dark transition-colors">
+            <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+          </div>
+          <span class="font-display font-bold text-xl text-clinic-text">Clearview <span class="text-clinic-teal">Dental</span></span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="treatments.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Treatments</a>
+          <a href="doctors.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Our Team</a>
+          <a href="patient-info.html" class="nav-link font-body font-semibold text-clinic-teal transition-colors">Patient Info</a>
+          <a href="faqs.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal hover:bg-clinic-teal-dark text-white font-display font-semibold px-6 py-2.5 rounded-clinic transition-all hover:shadow-lg hover:shadow-clinic-teal/20">Book Now</a>
+          <a href="contact.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Contact</a>
+        </div>
+        <button id="mobileToggle" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-clinic hover:bg-clinic-surface transition-colors" aria-label="Toggle menu">
+          <iconify-icon id="menuIcon" icon="mdi:menu" class="text-2xl text-clinic-text"></iconify-icon>
+          <iconify-icon id="closeIcon" icon="mdi:close" class="text-2xl text-clinic-text hidden"></iconify-icon>
+        </button>
+      </div>
+      <div id="mobileMenu" class="mobile-nav lg:hidden pb-4">
+        <div class="flex flex-col gap-1">
+          <a href="treatments.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Treatments</a>
+          <a href="doctors.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Our Team</a>
+          <a href="patient-info.html" class="font-body font-semibold text-clinic-teal bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Patient Info</a>
+          <a href="faqs.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal text-white font-display font-semibold px-4 py-3 rounded-clinic text-center mt-2">Book Now</a>
+          <a href="contact.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-clinic-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider">Patient Information</span>
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl text-clinic-text leading-tight mt-3 mb-6">Your Guide to a <span class="text-clinic-teal">Great Experience</span></h1>
+          <p class="font-body text-lg text-clinic-secondary leading-relaxed">We've prepared everything you need for a smooth, stress-free visit. From insurance questions to what to bring on your first appointment — we've got you covered.</p>
+        </div>
+        <div class="reveal">
+          <img src="https://images.pexels.com/photos/6809658/pexels-photo-6809658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Reception area at Clearview Dental" class="rounded-[20px] w-full h-[350px] object-cover shadow-xl">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Expect -->
+  <section class="py-20 bg-clinic-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider">First Visit</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-clinic-text mt-3 mb-4">What to Expect at Your First Appointment</h2>
+        <p class="font-body text-lg text-clinic-secondary max-w-2xl mx-auto">We want your first visit to be comfortable and informative. Here's a preview of what happens.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="reveal bg-clinic-surface rounded-clinic p-8">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-5">
+            <iconify-icon icon="mdi:clipboard-text-outline" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">1. Check-In & Paperwork</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed">Arrive 15 minutes early to complete new patient forms (or fill them out online beforehand). We'll verify your insurance and gather your medical history.</p>
+        </div>
+        <div class="reveal bg-clinic-surface rounded-clinic p-8">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-5">
+            <iconify-icon icon="mdi:magnify" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">2. Comprehensive Examination</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed">Digital X-rays, intraoral photos, and a thorough oral cancer screening. Your hygienist will perform a detailed cleaning, and your dentist will review all findings with you.</p>
+        </div>
+        <div class="reveal bg-clinic-surface rounded-clinic p-8">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-5">
+            <iconify-icon icon="mdi:message-text-outline" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">3. Consultation & Plan</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed">Your dentist will discuss findings, answer questions, and present a personalized treatment plan. No pressure — just honest recommendations for your oral health.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Bring -->
+  <section class="py-16 bg-clinic-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12">
+        <div class="reveal">
+          <h2 class="font-display font-extrabold text-2xl text-clinic-text mb-6">What to Bring</h2>
+          <div class="space-y-4">
+            <div class="flex items-center gap-4 bg-clinic-white rounded-clinic p-4 border border-clinic-border/50">
+              <iconify-icon icon="mdi:check-circle" class="text-clinic-green text-2xl flex-shrink-0"></iconify-icon>
+              <div>
+                <p class="font-display font-semibold text-clinic-text">Photo ID</p>
+                <p class="font-body text-clinic-secondary text-sm">Driver's license, passport, or state ID</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 bg-clinic-white rounded-clinic p-4 border border-clinic-border/50">
+              <iconify-icon icon="mdi:check-circle" class="text-clinic-green text-2xl flex-shrink-0"></iconify-icon>
+              <div>
+                <p class="font-display font-semibold text-clinic-text">Insurance Card(s)</p>
+                <p class="font-body text-clinic-secondary text-sm">Primary and secondary dental insurance information</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 bg-clinic-white rounded-clinic p-4 border border-clinic-border/50">
+              <iconify-icon icon="mdi:check-circle" class="text-clinic-green text-2xl flex-shrink-0"></iconify-icon>
+              <div>
+                <p class="font-display font-semibold text-clinic-text">Medical History</p>
+                <p class="font-body text-clinic-secondary text-sm">List of current medications, allergies, and medical conditions</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 bg-clinic-white rounded-clinic p-4 border border-clinic-border/50">
+              <iconify-icon icon="mdi:check-circle" class="text-clinic-green text-2xl flex-shrink-0"></iconify-icon>
+              <div>
+                <p class="font-display font-semibold text-clinic-text">Previous Dental Records</p>
+                <p class="font-body text-clinic-secondary text-sm">If available, bring X-rays or records from your previous dentist</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4 bg-clinic-white rounded-clinic p-4 border border-clinic-border/50">
+              <iconify-icon icon="mdi:check-circle" class="text-clinic-green text-2xl flex-shrink-0"></iconify-icon>
+              <div>
+                <p class="font-display font-semibold text-clinic-text">Questions or Concerns</p>
+                <p class="font-body text-clinic-secondary text-sm">Write down anything you'd like to discuss with your dentist</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <h2 class="font-display font-extrabold text-2xl text-clinic-text mb-6">Office Hours</h2>
+          <div class="bg-clinic-white rounded-clinic border border-clinic-border/50 overflow-hidden">
+            <div class="flex justify-between items-center p-4 border-b border-clinic-border/50 bg-clinic-surface">
+              <span class="font-display font-semibold text-clinic-text">Day</span>
+              <span class="font-display font-semibold text-clinic-text">Hours</span>
+            </div>
+            <div class="flex justify-between items-center p-4 border-b border-clinic-border/50">
+              <span class="font-body text-clinic-secondary">Monday</span>
+              <span class="font-body font-semibold text-clinic-text">7:00 AM – 6:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center p-4 border-b border-clinic-border/50">
+              <span class="font-body text-clinic-secondary">Tuesday</span>
+              <span class="font-body font-semibold text-clinic-text">7:00 AM – 6:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center p-4 border-b border-clinic-border/50">
+              <span class="font-body text-clinic-secondary">Wednesday</span>
+              <span class="font-body font-semibold text-clinic-text">7:00 AM – 7:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center p-4 border-b border-clinic-border/50">
+              <span class="font-body text-clinic-secondary">Thursday</span>
+              <span class="font-body font-semibold text-clinic-text">7:00 AM – 6:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center p-4 border-b border-clinic-border/50">
+              <span class="font-body text-clinic-secondary">Friday</span>
+              <span class="font-body font-semibold text-clinic-text">7:00 AM – 5:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center p-4 border-b border-clinic-border/50">
+              <span class="font-body text-clinic-secondary">Saturday</span>
+              <span class="font-body font-semibold text-clinic-text">8:00 AM – 2:00 PM</span>
+            </div>
+            <div class="flex justify-between items-center p-4">
+              <span class="font-body text-clinic-secondary">Sunday</span>
+              <span class="font-body font-semibold text-clinic-text">Closed</span>
+            </div>
+          </div>
+          <p class="font-body text-clinic-secondary text-sm mt-4 flex items-center gap-2">
+            <iconify-icon icon="mdi:information-outline" class="text-clinic-teal"></iconify-icon>
+            Extended hours on Wednesdays for after-work appointments
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insurance -->
+  <section class="py-20 bg-clinic-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider">Insurance & Payment</span>
+          <h2 class="font-display font-extrabold text-3xl text-clinic-text mt-3 mb-6">Making Dental Care Affordable</h2>
+          <div class="font-body text-clinic-secondary leading-relaxed space-y-4">
+            <p>We believe finances shouldn't stand between you and a healthy smile. Clearview Dental is in-network with most major dental insurance plans and offers multiple payment options for out-of-pocket costs.</p>
+            <p>Our knowledgeable insurance coordinator will verify your benefits, explain your coverage, and help maximize your insurance benefits before any treatment begins. No surprises — just transparent, upfront pricing.</p>
+          </div>
+          <div class="grid grid-cols-2 gap-4 mt-8">
+            <div class="bg-clinic-surface rounded-clinic p-4 text-center">
+              <iconify-icon icon="mdi:shield-check" class="text-clinic-teal text-3xl mb-2"></iconify-icon>
+              <p class="font-display font-semibold text-clinic-text text-sm">Delta Dental</p>
+            </div>
+            <div class="bg-clinic-surface rounded-clinic p-4 text-center">
+              <iconify-icon icon="mdi:shield-check" class="text-clinic-teal text-3xl mb-2"></iconify-icon>
+              <p class="font-display font-semibold text-clinic-text text-sm">Cigna</p>
+            </div>
+            <div class="bg-clinic-surface rounded-clinic p-4 text-center">
+              <iconify-icon icon="mdi:shield-check" class="text-clinic-teal text-3xl mb-2"></iconify-icon>
+              <p class="font-display font-semibold text-clinic-text text-sm">Aetna</p>
+            </div>
+            <div class="bg-clinic-surface rounded-clinic p-4 text-center">
+              <iconify-icon icon="mdi:shield-check" class="text-clinic-teal text-3xl mb-2"></iconify-icon>
+              <p class="font-display font-semibold text-clinic-text text-sm">MetLife</p>
+            </div>
+            <div class="bg-clinic-surface rounded-clinic p-4 text-center">
+              <iconify-icon icon="mdi:shield-check" class="text-clinic-teal text-3xl mb-2"></iconify-icon>
+              <p class="font-display font-semibold text-clinic-text text-sm">United Healthcare</p>
+            </div>
+            <div class="bg-clinic-surface rounded-clinic p-4 text-center">
+              <iconify-icon icon="mdi:shield-check" class="text-clinic-teal text-3xl mb-2"></iconify-icon>
+              <p class="font-display font-semibold text-clinic-text text-sm">Guardian</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="bg-clinic-surface rounded-clinic p-8">
+            <h3 class="font-display font-bold text-xl text-clinic-text mb-6">Payment Options</h3>
+            <div class="space-y-4">
+              <div class="flex items-start gap-4">
+                <iconify-icon icon="mdi:credit-card" class="text-clinic-teal text-xl mt-0.5 flex-shrink-0"></iconify-icon>
+                <div>
+                  <p class="font-display font-semibold text-clinic-text">Credit & Debit Cards</p>
+                  <p class="font-body text-clinic-secondary text-sm">Visa, Mastercard, American Express, Discover accepted</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <iconify-icon icon="mdi:bank" class="text-clinic-teal text-xl mt-0.5 flex-shrink-0"></iconify-icon>
+                <div>
+                  <p class="font-display font-semibold text-clinic-text">CareCredit</p>
+                  <p class="font-body text-clinic-secondary text-sm">0% interest financing for 6-24 months for qualified applicants</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <iconify-icon icon="mdi:cash-multiple" class="text-clinic-teal text-xl mt-0.5 flex-shrink-0"></iconify-icon>
+                <div>
+                  <p class="font-display font-semibold text-clinic-text">Lending Club</p>
+                  <p class="font-body text-clinic-secondary text-sm">Flexible monthly payment plans from 24-84 months</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <iconify-icon icon="mdi:wallet" class="text-clinic-teal text-xl mt-0.5 flex-shrink-0"></iconify-icon>
+                <div>
+                  <p class="font-display font-semibold text-clinic-text">In-House Payment Plans</p>
+                  <p class="font-body text-clinic-secondary text-sm">Custom payment arrangements for qualifying treatments</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <iconify-icon icon="mdi:percent" class="text-clinic-teal text-xl mt-0.5 flex-shrink-0"></iconify-icon>
+                <div>
+                  <p class="font-display font-semibold text-clinic-text">Prepay Discount</p>
+                  <p class="font-body text-clinic-secondary text-sm">5% discount when paying for treatment in full before starting</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pre-Visit Checklist Accordion -->
+  <section class="py-16 bg-clinic-surface">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 reveal">
+        <h2 class="font-display font-extrabold text-2xl text-clinic-text">Pre-Visit Checklist</h2>
+      </div>
+      <div class="space-y-3">
+        <div class="bg-clinic-white rounded-clinic border border-clinic-border/50 overflow-hidden reveal">
+          <button class="accordion-toggle w-full flex items-center justify-between p-5 text-left">
+            <span class="font-display font-bold text-clinic-text">Complete new patient forms online</span>
+            <iconify-icon icon="mdi:plus" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+          </button>
+          <div class="accordion-content px-5 pb-5">
+            <p class="font-body text-clinic-secondary leading-relaxed">Save time at your appointment by filling out our digital new patient forms before you arrive. You'll receive a link via email after booking, or you can access them through our patient portal. This includes medical history, dental history, insurance information, and consent forms.</p>
+          </div>
+        </div>
+        <div class="bg-clinic-white rounded-clinic border border-clinic-border/50 overflow-hidden reveal">
+          <button class="accordion-toggle w-full flex items-center justify-between p-5 text-left">
+            <span class="font-display font-bold text-clinic-text">Verify your insurance benefits</span>
+            <iconify-icon icon="mdi:plus" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+          </button>
+          <div class="accordion-content px-5 pb-5">
+            <p class="font-body text-clinic-secondary leading-relaxed">While we handle the verification, it helps to know your plan details. Check your annual maximum, deductible, and whether your plan covers preventive care at 100%. Our team will do a full benefits check before your appointment and let you know exactly what's covered.</p>
+          </div>
+        </div>
+        <div class="bg-clinic-white rounded-clinic border border-clinic-border/50 overflow-hidden reveal">
+          <button class="accordion-toggle w-full flex items-center justify-between p-5 text-left">
+            <span class="font-display font-bold text-clinic-text">Arrive 15 minutes early</span>
+            <iconify-icon icon="mdi:plus" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+          </button>
+          <div class="accordion-content px-5 pb-5">
+            <p class="font-body text-clinic-secondary leading-relaxed">This gives us time to process your paperwork, verify insurance, and get you settled comfortably. If you haven't completed forms online, you'll need this time to fill them out in our waiting area. We provide complimentary coffee, tea, and Wi-Fi.</p>
+          </div>
+        </div>
+        <div class="bg-clinic-white rounded-clinic border border-clinic-border/50 overflow-hidden reveal">
+          <button class="accordion-toggle w-full flex items-center justify-between p-5 text-left">
+            <span class="font-display font-bold text-clinic-text">Bring a list of medications and allergies</span>
+            <iconify-icon icon="mdi:plus" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+          </button>
+          <div class="accordion-content px-5 pb-5">
+            <p class="font-body text-clinic-secondary leading-relaxed">Certain medications can affect dental treatment, especially blood thinners, bisphosphonates, and immunosuppressants. Having an accurate list helps us plan your care safely. Don't forget to include over-the-counter supplements and vitamins.</p>
+          </div>
+        </div>
+        <div class="bg-clinic-white rounded-clinic border border-clinic-border/50 overflow-hidden reveal">
+          <button class="accordion-toggle w-full flex items-center justify-between p-5 text-left">
+            <span class="font-display font-bold text-clinic-text">Prepare your questions</span>
+            <iconify-icon icon="mdi:plus" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+          </button>
+          <div class="accordion-content px-5 pb-5">
+            <p class="font-body text-clinic-secondary leading-relaxed">We encourage you to write down any concerns, questions, or goals you have about your smile. Whether it's about whitening, alignment, pain, or general maintenance — no question is too small. We want to understand what matters most to you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-clinic-teal">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-4">Ready to Get Started?</h2>
+      <p class="font-body text-lg text-white/80 mb-8 max-w-xl mx-auto">Book your first appointment online in 60 seconds. New patients receive a complimentary digital X-ray package.</p>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="contact.html" class="inline-flex items-center gap-2 bg-white text-clinic-teal font-display font-bold px-8 py-4 rounded-clinic text-lg hover:bg-clinic-bg transition-all hover:shadow-xl">
+          <iconify-icon icon="mdi:calendar-check" class="text-xl"></iconify-icon>
+          Book Your First Visit
+        </a>
+        <a href="contact.html" class="inline-flex items-center gap-2 border-2 border-white/30 text-white font-display font-bold px-8 py-4 rounded-clinic text-lg hover:bg-white/10 transition-all">
+          <iconify-icon icon="mdi:phone" class="text-xl"></iconify-icon>
+          Call (512) 555-0147
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-clinic-text pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <a href="index.html" class="flex items-center gap-2.5 mb-5">
+            <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center">
+              <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+            </div>
+            <span class="font-display font-bold text-xl text-white">Clearview <span class="text-clinic-teal">Dental</span></span>
+          </a>
+          <p class="font-body text-slate-400 text-sm leading-relaxed">Modern, compassionate dental care for the whole family. Proudly serving Austin, Texas since 2015.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatments.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Treatments</a></li>
+            <li><a href="doctors.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Our Team</a></li>
+            <li><a href="patient-info.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Patient Info</a></li>
+            <li><a href="faqs.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">FAQs</a></li>
+            <li><a href="about.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">About Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Treatments</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">General Dentistry</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Teeth Whitening</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Invisalign</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Dental Implants</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Porcelain Veneers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="mdi:map-marker" class="text-clinic-teal text-lg mt-0.5"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">1200 Clearview Blvd, Suite 200<br>Austin, TX 78701</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:phone" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">(512) 555-0147</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:email" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">hello@clearviewdental.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body text-slate-500 text-sm">&copy; 2026 Clearview Dental. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Facebook"><iconify-icon icon="mdi:facebook" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Instagram"><iconify-icon icon="mdi:instagram" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Twitter"><iconify-icon icon="mdi:twitter" class="text-white text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('nav-open');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active');
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // Accordion
+    document.querySelectorAll('.accordion-toggle').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const icon = toggle.querySelector('iconify-icon');
+        const isOpen = content.classList.contains('open');
+        document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+        document.querySelectorAll('.accordion-toggle iconify-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+        if (!isOpen) {
+          content.classList.add('open');
+          icon.style.transform = 'rotate(45deg)';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

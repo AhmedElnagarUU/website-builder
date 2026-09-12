@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Atelier Voss</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'warm-bg': '#F5F0EB',
+          'warm-text': '#1A1A1A',
+          'warm-secondary': '#6B6B6B',
+          'warm-accent': '#C4956A',
+          'warm-surface': '#E8E0D8',
+          'warm-border': '#D4CCC4',
+        },
+        fontFamily: {
+          display: ['Playfair Display', 'serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .nav-open .menu-bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-open .menu-bar:nth-child(2) { opacity: 0; }
+    .nav-open .menu-bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  </style>
+</head>
+<body class="bg-warm-bg text-warm-text">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-warm-bg/0">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-display text-2xl font-semibold tracking-tight">AV</span>
+        <span class="hidden sm:inline text-xs tracking-[0.3em] uppercase text-warm-secondary">Atelier Voss</span>
+      </a>
+      <div id="navMenu" class="hidden lg:flex items-center gap-8">
+        <a href="projects.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Projects</a>
+        <a href="studio.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Studio</a>
+        <a href="services.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Services</a>
+        <a href="process.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Process</a>
+        <a href="journal.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Journal</a>
+        <a href="contact.html" class="text-xs tracking-[0.15em] uppercase text-warm-accent transition-colors">Contact</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden flex flex-col gap-1.5 w-7" aria-label="Menu">
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 bg-warm-bg z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Home</a>
+    <a href="projects.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Projects</a>
+    <a href="studio.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Studio</a>
+    <a href="services.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Services</a>
+    <a href="process.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Process</a>
+    <a href="journal.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Journal</a>
+    <a href="contact.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="pt-32 lg:pt-40 pb-16 lg:pb-24 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div class="lg:col-span-6">
+          <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">Contact</p>
+          <h1 class="font-display text-5xl lg:text-7xl font-medium leading-[1.05] reveal reveal-delay-1">
+            Let's talk about your project
+          </h1>
+          <p class="text-warm-secondary text-lg leading-relaxed max-w-xl mt-8 reveal reveal-delay-2">
+            Whether you're planning a new residence, renovating an existing space, or developing a hospitality concept, we'd love to hear from you. Tell us about your project and we'll be in touch within two business days.
+          </p>
+          <div class="mt-12 space-y-6 reveal reveal-delay-3">
+            <a href="mailto:studio@ateliervoss.com" class="flex items-center gap-4 group">
+              <span class="w-12 h-12 border border-warm-border flex items-center justify-center group-hover:border-warm-accent transition-colors">
+                <iconify-icon icon="ph:envelope" class="text-warm-accent text-xl"></iconify-icon>
+              </span>
+              <div>
+                <p class="text-xs tracking-[0.15em] uppercase text-warm-secondary mb-1">Email</p>
+                <p class="font-medium group-hover:text-warm-accent transition-colors">studio@ateliervoss.com</p>
+              </div>
+            </a>
+            <a href="tel:+12125550187" class="flex items-center gap-4 group">
+              <span class="w-12 h-12 border border-warm-border flex items-center justify-center group-hover:border-warm-accent transition-colors">
+                <iconify-icon icon="ph:phone" class="text-warm-accent text-xl"></iconify-icon>
+              </span>
+              <div>
+                <p class="text-xs tracking-[0.15em] uppercase text-warm-secondary mb-1">Phone</p>
+                <p class="font-medium group-hover:text-warm-accent transition-colors">+1 (212) 555-0187</p>
+              </div>
+            </a>
+            <div class="flex items-center gap-4">
+              <span class="w-12 h-12 border border-warm-border flex items-center justify-center">
+                <iconify-icon icon="ph:map-pin" class="text-warm-accent text-xl"></iconify-icon>
+              </span>
+              <div>
+                <p class="text-xs tracking-[0.15em] uppercase text-warm-secondary mb-1">Studio</p>
+                <p class="font-medium">245 West 17th Street, Suite 4, New York, NY 10011</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6">
+          <img src="https://images.pexels.com/photos/8837623/pexels-photo-8837623.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+               alt="Atelier Voss studio" 
+               class="w-full aspect-[4/3] lg:aspect-square object-cover reveal reveal-delay-1">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="py-16 lg:py-24 px-6 lg:px-12 bg-warm-surface">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <div class="lg:col-span-4">
+          <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">Project Inquiry</p>
+          <h2 class="font-display text-3xl lg:text-4xl font-medium mb-6 reveal reveal-delay-1">Tell us about your project</h2>
+          <p class="text-warm-secondary leading-relaxed text-sm reveal reveal-delay-2">
+            The more we know about your project, the better prepared we'll be for our first conversation. Please include details about location, scope, timeline, and budget if you have them.
+          </p>
+          <div class="mt-8 space-y-4 reveal reveal-delay-3">
+            <p class="text-sm text-warm-secondary">Prefer to email your brief directly?</p>
+            <a href="mailto:studio@ateliervoss.com" class="text-sm text-warm-accent underline underline-offset-4 hover:text-warm-text transition-colors">studio@ateliervoss.com</a>
+          </div>
+        </div>
+        <div class="lg:col-span-8">
+          <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-6" onsubmit="event.preventDefault(); document.getElementById('formSuccess').classList.remove('hidden'); this.reset();">
+            <div>
+              <label class="block text-xs tracking-[0.15em] uppercase text-warm-secondary mb-2" for="name">Full Name *</label>
+              <input type="text" id="name" required class="w-full bg-warm-bg border border-warm-border px-5 py-4 text-sm focus:outline-none focus:border-warm-accent transition-colors" placeholder="Jane Smith">
+            </div>
+            <div>
+              <label class="block text-xs tracking-[0.15em] uppercase text-warm-secondary mb-2" for="email">Email *</label>
+              <input type="email" id="email" required class="w-full bg-warm-bg border border-warm-border px-5 py-4 text-sm focus:outline-none focus:border-warm-accent transition-colors" placeholder="jane@example.com">
+            </div>
+            <div>
+              <label class="block text-xs tracking-[0.15em] uppercase text-warm-secondary mb-2" for="phone">Phone</label>
+              <input type="tel" id="phone" class="w-full bg-warm-bg border border-warm-border px-5 py-4 text-sm focus:outline-none focus:border-warm-accent transition-colors" placeholder="+1 (555) 000-0000">
+            </div>
+            <div>
+              <label class="block text-xs tracking-[0.15em] uppercase text-warm-secondary mb-2" for="type">Project Type *</label>
+              <select id="type" required class="w-full bg-warm-bg border border-warm-border px-5 py-4 text-sm focus:outline-none focus:border-warm-accent transition-colors">
+                <option value="" disabled selected>Select project type</option>
+                <option value="residential">Residential</option>
+                <option value="commercial">Commercial</option>
+                <option value="hospitality">Hospitality</option>
+                <option value="interior">Interior Design Only</option>
+                <option value="consultation">Consultation</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs tracking-[0.15em] uppercase text-warm-secondary mb-2" for="location">Location</label>
+              <input type="text" id="location" class="w-full bg-warm-bg border border-warm-border px-5 py-4 text-sm focus:outline-none focus:border-warm-accent transition-colors" placeholder="City, State">
+            </div>
+            <div>
+              <label class="block text-xs tracking-[0.15em] uppercase text-warm-secondary mb-2" for="budget">Budget Range</label>
+              <select id="budget" class="w-full bg-warm-bg border border-warm-border px-5 py-4 text-sm focus:outline-none focus:border-warm-accent transition-colors">
+                <option value="" disabled selected>Select budget range</option>
+                <option value="under-500k">Under $500K</option>
+                <option value="500k-1m">$500K – $1M</option>
+                <option value="1m-5m">$1M – $5M</option>
+                <option value="5m-plus">$5M+</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-xs tracking-[0.15em] uppercase text-warm-secondary mb-2" for="message">Project Details *</label>
+              <textarea id="message" required rows="6" class="w-full bg-warm-bg border border-warm-border px-5 py-4 text-sm focus:outline-none focus:border-warm-accent transition-colors resize-none" placeholder="Tell us about your project — scope, timeline, vision, and anything else we should know..."></textarea>
+            </div>
+            <div class="md:col-span-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <button type="submit" class="w-full sm:w-auto bg-warm-accent text-white px-10 py-4 text-xs tracking-[0.2em] uppercase hover:bg-warm-accent/90 transition-colors">
+                Send Inquiry
+              </button>
+              <p class="text-xs text-warm-secondary">We typically respond within 2 business days.</p>
+            </div>
+          </form>
+          <div id="formSuccess" class="hidden mt-8 bg-warm-bg border border-warm-accent/30 p-6 flex items-center gap-4">
+            <iconify-icon icon="ph:check-circle" class="text-warm-accent text-2xl flex-shrink-0"></iconify-icon>
+            <p class="text-sm">Thank you for your inquiry. A member of our team will be in touch within two business days.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="text-center mb-16">
+        <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">FAQ</p>
+        <h2 class="font-display text-4xl lg:text-5xl font-medium reveal reveal-delay-1">Common Questions</h2>
+      </div>
+      <div class="max-w-3xl mx-auto space-y-6">
+        <details class="group border border-warm-border bg-warm-bg reveal" open>
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+            <h3 class="font-display text-lg font-medium pr-4">How do we get started with a project?</h3>
+            <iconify-icon icon="ph:plus" class="text-warm-accent text-xl flex-shrink-0 group-open:hidden"></iconify-icon>
+            <iconify-icon icon="ph:minus" class="text-warm-accent text-xl flex-shrink-0 hidden group-open:block"></iconify-icon>
+          </summary>
+          <div class="px-6 pb-6 text-warm-secondary text-sm leading-relaxed">
+            <p>The process begins with an introductory consultation — either by phone, video call, or in person at our studio. We'll listen to your goals, answer questions about our services and fees, and discuss a possible timeline. If we both feel it's a good fit, we'll prepare a detailed proposal outlining the scope, schedule, and investment.</p>
+          </div>
+        </details>
+        <details class="group border border-warm-border bg-warm-bg reveal reveal-delay-1">
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+            <h3 class="font-display text-lg font-medium pr-4">What is your typical fee structure?</h3>
+            <iconify-icon icon="ph:plus" class="text-warm-accent text-xl flex-shrink-0 group-open:hidden"></iconify-icon>
+            <iconify-icon icon="ph:minus" class="text-warm-accent text-xl flex-shrink-0 hidden group-open:block"></iconify-icon>
+          </summary>
+          <div class="px-6 pb-6 text-warm-secondary text-sm leading-relaxed">
+            <p>Fees vary based on project scope and complexity. For architecture and interior design services, we typically work on a percentage of construction cost, a fixed fee, or an hourly basis depending on the nature of the engagement. We'll provide a transparent fee proposal during the initial consultation, before any work begins.</p>
+          </div>
+        </details>
+        <details class="group border border-warm-border bg-warm-bg reveal reveal-delay-2">
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+            <h3 class="font-display text-lg font-medium pr-4">Do you work with existing buildings or only new construction?</h3>
+            <iconify-icon icon="ph:plus" class="text-warm-accent text-xl flex-shrink-0 group-open:hidden"></iconify-icon>
+            <iconify-icon icon="ph:minus" class="text-warm-accent text-xl flex-shrink-0 hidden group-open:block"></iconify-icon>
+          </summary>
+          <div class="px-6 pb-6 text-warm-secondary text-sm leading-relaxed">
+            <p>Both. A substantial portion of our work involves renovations, adaptive reuse, and complete interior transformations of existing buildings. In fact, some of our most rewarding projects have been collaborations with historic structures where the challenge is finding new life within old walls.</p>
+          </div>
+        </details>
+        <details class="group border border-warm-border bg-warm-bg reveal reveal-delay-3">
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+            <h3 class="font-display text-lg font-medium pr-4">Can you work with clients outside of New York?</h3>
+            <iconify-icon icon="ph:plus" class="text-warm-accent text-xl flex-shrink-0 group-open:hidden"></iconify-icon>
+            <iconify-icon icon="ph:minus" class="text-warm-accent text-xl flex-shrink-0 hidden group-open:block"></iconify-icon>
+          </summary>
+          <div class="px-6 pb-6 text-warm-secondary text-sm leading-relaxed">
+            <p>Absolutely. Our projects span the United States, Europe, and Asia. For international and remote projects, we use a combination of video conferences, our local partner network, and in-person site visits to ensure the same level of service regardless of distance.</p>
+          </div>
+        </details>
+        <details class="group border border-warm-border bg-warm-bg reveal">
+          <summary class="flex items-center justify-between p-6 cursor-pointer list-none">
+            <h3 class="font-display text-lg font-medium pr-4">How do you approach sustainability?</h3>
+            <iconify-icon icon="ph:plus" class="text-warm-accent text-xl flex-shrink-0 group-open:hidden"></iconify-icon>
+            <iconify-icon icon="ph:minus" class="text-warm-accent text-xl flex-shrink-0 hidden group-open:block"></iconify-icon>
+          </summary>
+          <div class="px-6 pb-6 text-warm-secondary text-sm leading-relaxed">
+            <p>Sustainability is integrated into every project, not treated as an add-on. We begin with passive design strategies — orientation, insulation, glazing, and natural ventilation — before considering active systems. We prioritize durable, locally sourced materials and design for long lifecycles and easy adaptation over time.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map / Direction -->
+  <section class="px-0 py-0">
+    <div class="relative">
+      <img src="https://images.pexels.com/photos/1816030/pexels-photo-1816030.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+           alt="Map to studio" 
+           class="w-full h-[400px] object-cover">
+      <div class="absolute inset-0 bg-warm-text/40 flex items-center justify-center">
+        <div class="bg-warm-bg px-10 py-6 text-center max-w-sm mx-4">
+          <p class="text-xs tracking-[0.3em] uppercase text-warm-accent mb-2">Visit the Studio</p>
+          <p class="font-display text-xl font-medium mb-2">245 West 17th Street</p>
+          <p class="text-sm text-warm-secondary mb-4">Suite 4, New York, NY 10011</p>
+          <p class="text-xs text-warm-secondary">Mon – Fri, 9:00am – 6:00pm</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-warm-text text-white py-16 lg:py-20 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+        <div class="lg:col-span-4">
+          <span class="font-display text-3xl font-semibold">AV</span>
+          <p class="text-white/50 text-sm mt-4 leading-relaxed max-w-xs">Architecture & Interior Design Studio based in New York. Creating spaces that endure since 2009.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Navigation</h4>
+          <div class="flex flex-col gap-3">
+            <a href="projects.html" class="text-sm text-white/60 hover:text-white transition-colors">Projects</a>
+            <a href="studio.html" class="text-sm text-white/60 hover:text-white transition-colors">Studio</a>
+            <a href="services.html" class="text-sm text-white/60 hover:text-white transition-colors">Services</a>
+            <a href="process.html" class="text-sm text-white/60 hover:text-white transition-colors">Process</a>
+            <a href="journal.html" class="text-sm text-white/60 hover:text-white transition-colors">Journal</a>
+            <a href="contact.html" class="text-sm text-white/60 hover:text-white transition-colors">Contact</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Contact</h4>
+          <div class="flex flex-col gap-3 text-sm text-white/60">
+            <p>245 West 17th Street, Suite 4</p>
+            <p>New York, NY 10011</p>
+            <p class="mt-2">studio@ateliervoss.com</p>
+            <p>+1 (212) 555-0187</p>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Follow</h4>
+          <div class="flex gap-5">
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:instagram-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:linkedin-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:pinterest-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:twitter-x-logo" class="text-xl"></iconify-icon>
+            </a>
+          </div>
+          <div class="mt-8">
+            <a href="contact.html" class="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-warm-accent hover:text-white transition-colors">
+              Start a Project
+              <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/30">&copy; 2026 Atelier Voss. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Privacy Policy</a>
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navbar = document.getElementById('navbar');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuBtn.classList.toggle('nav-open', menuOpen);
+      mobileMenu.classList.toggle('opacity-100', menuOpen);
+      mobileMenu.classList.toggle('pointer-events-auto', menuOpen);
+      mobileMenu.classList.toggle('opacity-0', !menuOpen);
+      mobileMenu.classList.toggle('pointer-events-none', !menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.remove('bg-warm-bg/0');
+      } else {
+        navbar.classList.remove('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.add('bg-warm-bg/0');
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

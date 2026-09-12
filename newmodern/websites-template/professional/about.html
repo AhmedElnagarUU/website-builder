@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Firm — Harlan &amp; Co.</title>
+  <meta name="description" content="Fifty years of Harlan & Co. — how a two-man accounting shop on Wacker Drive became the numbers department for Chicago's family businesses.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: '#10232e', paper: '#f4efe3', brass: '#b08d4a', mist: '#5f7d96',
+          line: '#d8cfbb', parchment: '#fbf7ec', coal: '#0b141d',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="antialiased text-navy bg-paper overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-paper/95 backdrop-blur border-b border-line">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-[1.35rem] leading-none tracking-tight">
+        Harlan <span class="text-brass">&amp;</span> Co.
+        <span class="block font-ledger text-[9px] tracking-[0.3em] uppercase text-mist mt-1">Chartered accountants · est. 1974</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="services.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">Services</a>
+        <a href="about.html" class="nav-link active text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">The Firm</a>
+        <a href="team.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">Team</a>
+        <a href="insights.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">Thinking</a>
+        <a href="contact.html" class="ml-4 bg-navy text-paper font-ledger text-[10px] tracking-[0.22em] uppercase px-5 py-3 hover:bg-brass transition-colors">Begin a conversation</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-navy origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-navy transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-navy origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-7 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="services.html" class="font-display text-3xl">Services</a>
+    <a href="about.html" class="font-display text-3xl">The Firm</a>
+    <a href="team.html" class="font-display text-3xl">Team</a>
+    <a href="insights.html" class="font-display text-3xl">Thinking</a>
+    <a href="contact.html" class="mt-4 bg-navy text-paper font-ledger text-[10px] tracking-[0.22em] uppercase px-6 py-3">Begin a conversation</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-40 lg:pt-52 pb-16 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+      <div>
+        <p class="font-ledger text-[11px] tracking-[0.3em] uppercase text-brass mb-6 reveal">The firm · A running balance</p>
+        <h1 class="font-display font-light text-[clamp(2.8rem,7vw,5.2rem)] leading-[0.95] reveal reveal-delay-1">Two men, one<br>desk, 1974.</h1>
+      </div>
+      <p class="text-mist text-base leading-relaxed max-w-sm reveal reveal-delay-2">
+        Edward Harlan opened a two-desk office near the river with a handshake and a sense of clean arithmetic. Fifty years later we still run it like a desk you'd want to sit at.
+      </p>
+    </div>
+  </header>
+
+  <!-- TIMELINE -->
+  <section class="px-6 lg:px-10 pb-24">
+    <div class="max-w-[820px] mx-auto">
+      <div class="ledger reveal">
+        <div class="ledger-head"><span>Chronology</span><span>Balance carried forward</span></div>
+        <div class="px-6 lg:px-9 py-8">
+          <div class="lentry"><div><p class="title">1974 — A desk by the river</p><p class="memo mt-1">Edward Harlan, CPA, hangs a shingle with one junior and a phone on a long cord.</p></div><span class="amt">+52 yrs</span></div>
+          <div class="lentry"><div><p class="title">1983 — The printers call</p><p class="memo mt-1">A typesetters' guild asks us to audit their fund. We never leave trade associations.</p></div><span class="amt">+9 yrs</span></div>
+          <div class="lentry"><div><p class="title">1991 — Second generation</p><p class="memo mt-1">His daughter Anne takes the desk, modernizes the ledger, keeps the patience.</p></div><span class="amt">+17 yrs</span></div>
+          <div class="lentry"><div><p class="title">2004 — The kitchen rule</p><p class="memo mt-1">We codify what we've always done: a partner in the office, on the number, every time.</p></div><span class="amt">+13 yrs</span></div>
+          <div class="lentry"><div><p class="title">2026 — Still on Wacker</p><p class="memo mt-1">Same door, thirty-two people, and the phone number you'd find in the 1974 directory.</p></div><span class="amt">52 yrs</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROSE -->
+  <section class="px-6 lg:px-10 pb-24">
+    <div class="max-w-[720px] mx-auto space-y-6 text-mist text-lg leading-relaxed">
+      <p class="reveal">Edward's original notion was simple, and it's still the whole policy: a client's numbers should make sense to the client. Not to us, not to the IRS — to the person who signs the checks. Everything else — the clean opinions, the quiet tax work, the succession plans nobody wants to think about — is just arithmetic in service of that sentence.</p>
+      <p class="reveal reveal-delay-1">We grew the way Chicago businesses do: slowly, word-of-mouth, one manufacturer and one family restaurant at a time. We've kept the books for refrigerator-repair vans and organ-makers, feed stores and foundries. Each one got the same desk treatment — someone senior, on the actual numbers, with a notepad that doesn't close until the client says the explanation lands.</p>
+      <p class="reveal reveal-delay-2">The firm is now led by the third generation, but the name hasn't changed and neither has the floor. Edward still stops by on Thursdays, mostly to check on the filing. We've stopped pretending he doesn't own the place.</p>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="py-24 lg:py-32 bg-navy text-paper px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
+      <div class="reveal">
+        <p class="font-ledger text-[10px] tracking-[0.25em] uppercase text-brass mb-4">01 · One partner per desk</p>
+        <p class="text-paper/60 text-sm leading-relaxed">Your engagement has a name on it, not a queue. That person answers your phone calls.</p>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="font-ledger text-[10px] tracking-[0.25em] uppercase text-brass mb-4">02 · Figures, explained</p>
+        <p class="text-paper/60 text-sm leading-relaxed">Every closing, every return, every projection comes with the plain-English version attached.</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p class="font-ledger text-[10px] tracking-[0.25em] uppercase text-brass mb-4">03 · The long lease</p>
+        <p class="text-paper/60 text-sm leading-relaxed">We measure success in decades a client stays, not in billable hours in a quarter.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 lg:px-10 py-24">
+    <div class="max-w-[920px] mx-auto text-center reveal">
+      <h2 class="font-display font-light text-3xl lg:text-4xl">Fifty years of the same desk. Two chairs still open.</h2>
+      <a href="team.html" class="inline-flex items-center gap-3 bg-navy text-paper font-ledger text-[11px] tracking-[0.22em] uppercase px-7 py-4 hover:bg-brass transition-colors mt-8">Meet who's at it now</a>
+    </div>
+  </section>
+
+  <footer class="bg-coal text-paper/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl text-paper tracking-tight">Harlan <span class="text-brass">&amp;</span> Co.</div>
+          <p class="font-ledger text-[10px] tracking-[0.25em] uppercase text-mist mt-2 mb-5">Chartered accountants · est. 1974</p>
+          <p class="text-sm leading-relaxed max-w-sm">A full-service accounting and advisory firm for Chicago's family businesses, manufacturers, and the people who run them. Same office since 1974.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-ledger text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Practice</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="services.html" class="hover:text-brass transition-colors">Services</a>
+            <a href="about.html" class="hover:text-brass transition-colors">The Firm</a>
+            <a href="team.html" class="hover:text-brass transition-colors">Team</a>
+            <a href="insights.html" class="hover:text-brass transition-colors">Thinking</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-ledger text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Office</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>1212 Wacker Dr.</p>
+            <p>Suite 900 · Chicago, IL 60606</p>
+            <a href="tel:+13125550174" class="text-stem hover:text-brass transition-colors">312-555-0174</a>
+            <a href="mailto:hello@harlanco.com" class="hover:text-brass transition-colors">hello@harlanco.com</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-ledger text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Hours</h4>
+          <p class="text-sm">Mon – Fri, 8:00 – 18:00<br>Closings by appointment, including the occasional Saturday.</p>
+        </div>
+      </div>
+      <div class="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-ledger text-[10px] text-paper/30">&copy; 2026 Harlan &amp; Co., Chartered Accountants. Figures reconciled monthly.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

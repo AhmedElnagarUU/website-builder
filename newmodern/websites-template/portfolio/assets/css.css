@@ -1,0 +1,48 @@
+body { font-family: 'Archivo', sans-serif; }
+
+.font-display { font-family: 'Archivo', sans-serif; }
+.font-mono2 { font-family: 'JetBrains Mono', monospace; }
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .16s; }
+
+/* Registration marks */
+.regs { position: relative; }
+.regs::before,
+.regs::after {
+  content: ""; position: absolute; width: 14px; height: 14px; z-index: 2; pointer-events: none;
+}
+.regs::before { top: 8px; left: 8px; border-top: 2px solid #a63a2c; border-left: 2px solid #a63a2c; }
+.regs::after { bottom: 8px; right: 8px; border-bottom: 2px solid #a63a2c; border-right: 2px solid #a63a2c; }
+
+/* Broken frame line */
+.frame-line { border: 1px solid #d4cfc2; }
+
+/* Plate label */
+.plate {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .64rem; letter-spacing: .22em; text-transform: uppercase;
+}
+
+/* Contact-sheet thumb */
+.contact {
+  aspect-ratio: 3/4; overflow: hidden; position: relative;
+  border: 1px solid #d4cfc2; background: #e2dfd4;
+}
+.contact img { width: 100%; height: 100%; object-fit: cover; }
+.contact .no {
+  position: absolute; left: 6px; bottom: 6px; z-index: 2;
+  font-family: 'JetBrains Mono', monospace; font-size: .56rem; letter-spacing: .12em;
+  color: #edeae0; background: rgba(23,23,23,.55); padding: 2px 5px;
+}
+
+/* Mobile menu open state (fix) */
+#mobileMenu.open { opacity: 1; pointer-events: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { scroll-behavior: auto !important; }
+}

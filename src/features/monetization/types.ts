@@ -34,8 +34,6 @@ export type PaymentProvider = "manual" | "stripe";
 
 export type AccountStatus = "active" | "suspended" | "frozen";
 
-export type AdminRole = "user" | "super_admin";
-
 export type BillingKind =
   | "manual_payment"
   | "manual_discount"

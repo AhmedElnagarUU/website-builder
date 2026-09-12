@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Ironclad Builders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'iron-black': '#111111',
+          'iron-white': '#F5F5F5',
+          'iron-gray': '#999999',
+          'iron-amber': '#F59E0B',
+          'iron-amber-dark': '#D97706',
+          'iron-surface': '#1A1A1A',
+          'iron-surface-light': '#222222',
+          'iron-border': '#333333',
+          'iron-steel': '#64748B',
+        },
+        fontFamily: {
+          display: ['Barlow Condensed', 'sans-serif'],
+          body: ['IBM Plex Sans', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .hero-bg { background-image: linear-gradient(rgba(17,17,17,0.75), rgba(17,17,17,0.75)), url('https://images.pexels.com/photos/4458205/pexels-photo-4458205.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center; }
+    .service-block:hover { border-color: #F59E0B; }
+    .service-block { transition: border-color 0.3s ease; }
+  </style>
+</head>
+<body class="bg-iron-black text-iron-white font-body">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-iron-black/90 backdrop-blur-md border-b border-iron-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="font-display font-extrabold text-2xl tracking-wider text-iron-amber">IRONCLAD <span class="text-iron-white">BUILDERS</span></a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+          <a href="services.html" class="font-display text-sm tracking-widest uppercase text-iron-amber">Services</a>
+          <a href="projects.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Projects</a>
+          <a href="industries.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+          <a href="sustainability.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+          <a href="contact.html" class="bg-iron-amber hover:bg-iron-amber-dark text-iron-black font-display font-bold text-sm tracking-widest uppercase px-6 py-3 transition-colors">Contact</a>
+        </div>
+        <button id="menuBtn" class="lg:hidden text-iron-white" onclick="toggleMenu()">
+          <iconify-icon icon="lucide:menu" class="text-3xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-[60] bg-iron-black flex flex-col items-center justify-center gap-8 transform translate-x-full transition-transform duration-300">
+    <button class="absolute top-6 right-6 text-iron-white" onclick="toggleMenu()">
+      <iconify-icon icon="lucide:x" class="text-3xl"></iconify-icon>
+    </button>
+    <a href="index.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Home</a>
+    <a href="about.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+    <a href="services.html" class="font-display text-2xl tracking-widest uppercase text-iron-amber">Services</a>
+    <a href="projects.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Projects</a>
+    <a href="industries.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+    <a href="sustainability.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+    <a href="contact.html" class="bg-iron-amber text-iron-black font-display font-bold text-lg tracking-widest uppercase px-8 py-3">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="hero-bg min-h-[60vh] flex items-end">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-3">What We Do</p>
+      <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl uppercase leading-[0.9]">Our <span class="text-iron-amber">Services</span></h1>
+      <p class="text-iron-gray text-lg max-w-xl mt-6">Full-spectrum construction and engineering services delivered with precision, transparency, and an uncompromising commitment to safety.</p>
+    </div>
+  </section>
+
+  <!-- Services List -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-0 divide-y divide-iron-border">
+
+        <!-- General Contracting -->
+        <div class="service-block py-16 grid lg:grid-cols-5 gap-12 items-start border-l-4 border-iron-amber pl-8 reveal">
+          <div class="lg:col-span-2">
+            <iconify-icon icon="lucide:hard-hat" class="text-iron-amber text-5xl mb-4"></iconify-icon>
+            <h2 class="font-display font-extrabold text-3xl uppercase mb-2">General Contracting</h2>
+            <p class="font-display text-iron-amber text-sm tracking-widest uppercase">Full-Service Delivery</p>
+          </div>
+          <div class="lg:col-span-3">
+            <p class="text-iron-gray leading-relaxed mb-4">Ironclad Builders provides comprehensive general contracting services for commercial, institutional, and industrial projects. We manage every aspect of construction from pre-construction planning through final occupancy.</p>
+            <p class="text-iron-gray leading-relaxed mb-6">Our experienced project managers coordinate all trades, subcontractors, and vendors, ensuring each project is delivered on schedule and within budget. We hold relationships with over 200 vetted subcontractors across the Midwest, giving our clients access to the best trades at competitive pricing.</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Subcontractor management</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Schedule control</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Cost management & reporting</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Quality assurance</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Safety compliance</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Client communication</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Design-Build -->
+        <div class="service-block py-16 grid lg:grid-cols-5 gap-12 items-start border-l-4 border-iron-border hover:border-l-iron-amber pl-8 reveal">
+          <div class="lg:col-span-2">
+            <iconify-icon icon="lucide:pencil-ruler" class="text-iron-amber text-5xl mb-4"></iconify-icon>
+            <h2 class="font-display font-extrabold text-3xl uppercase mb-2">Design-Build</h2>
+            <p class="font-display text-iron-amber text-sm tracking-widest uppercase">Integrated Delivery</p>
+          </div>
+          <div class="lg:col-span-3">
+            <p class="text-iron-gray leading-relaxed mb-4">Our design-build service delivers a single-source solution where design and construction are unified under one contract. This streamlined approach eliminates finger-pointing between designer and contractor, reducing costs and accelerating project timelines.</p>
+            <p class="text-iron-gray leading-relaxed mb-6">Ironclad's in-house design team works alongside our construction professionals from day one, ensuring constructability, cost optimization, and code compliance are baked into every design decision. Our design-build projects are delivered 15-20% faster than traditional design-bid-build delivery.</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Single-source accountability</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Faster delivery</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Cost certainty early</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Value engineering</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Construction Management -->
+        <div class="service-block py-16 grid lg:grid-cols-5 gap-12 items-start border-l-4 border-iron-border hover:border-l-iron-amber pl-8 reveal">
+          <div class="lg:col-span-2">
+            <iconify-icon icon="lucide:clipboard-list" class="text-iron-amber text-5xl mb-4"></iconify-icon>
+            <h2 class="font-display font-extrabold text-3xl uppercase mb-2">Construction Management</h2>
+            <p class="font-display text-iron-amber text-sm tracking-widest uppercase">Expert Oversight</p>
+          </div>
+          <div class="lg:col-span-3">
+            <p class="text-iron-gray leading-relaxed mb-4">For complex, multi-phase projects, our construction management service provides expert oversight of schedule, cost, quality, and risk. We act as the owner's representative, managing trade contracts and ensuring project goals are met.</p>
+            <p class="text-iron-gray leading-relaxed mb-6">Our construction managers utilize advanced scheduling tools, real-time cost tracking dashboards, and weekly progress reporting to keep all stakeholders informed. This proactive approach allows us to identify and mitigate issues before they impact schedule or budget.</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">CM-at-Risk delivery</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">CM-Agency delivery</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Real-time cost tracking</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Risk mitigation</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pre-Construction -->
+        <div class="service-block py-16 grid lg:grid-cols-5 gap-12 items-start border-l-4 border-iron-border hover:border-l-iron-amber pl-8 reveal">
+          <div class="lg:col-span-2">
+            <iconify-icon icon="lucide:calculator" class="text-iron-amber text-5xl mb-4"></iconify-icon>
+            <h2 class="font-display font-extrabold text-3xl uppercase mb-2">Pre-Construction</h2>
+            <p class="font-display text-iron-amber text-sm tracking-widest uppercase">Planning & Analysis</p>
+          </div>
+          <div class="lg:col-span-3">
+            <p class="text-iron-gray leading-relaxed mb-4">Success is determined before ground is broken. Our pre-construction services include detailed cost estimating, constructability reviews, scheduling analysis, and value engineering to ensure your project starts on the right foundation.</p>
+            <p class="text-iron-gray leading-relaxed mb-6">Our estimating team uses historical data from hundreds of completed projects to deliver highly accurate budgets. We provide multiple cost scenarios, allowing owners to make informed decisions about scope, materials, and phasing before committing to construction.</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Detailed cost estimating</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Constructability review</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Value engineering</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Schedule optimization</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sustainability Consulting -->
+        <div class="service-block py-16 grid lg:grid-cols-5 gap-12 items-start border-l-4 border-iron-border hover:border-l-iron-amber pl-8 reveal">
+          <div class="lg:col-span-2">
+            <iconify-icon icon="lucide:leaf" class="text-iron-amber text-5xl mb-4"></iconify-icon>
+            <h2 class="font-display font-extrabold text-3xl uppercase mb-2">Sustainability Consulting</h2>
+            <p class="font-display text-iron-amber text-sm tracking-widest uppercase">Green Building</p>
+          </div>
+          <div class="lg:col-span-3">
+            <p class="text-iron-gray leading-relaxed mb-4">Our sustainability team guides clients through the entire green building process, from initial LEED strategy through certification. We help project teams integrate energy-efficient systems, sustainable materials, and water conservation technologies.</p>
+            <p class="text-iron-gray leading-relaxed mb-6">Ironclad Builders has achieved LEED certification on over 40 projects, including LEED Platinum and Gold designations. Our team stays current with evolving green building standards, including WELL, Living Building Challenge, and Net Zero requirements.</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">LEED consulting</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Energy modeling</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Commissioning</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Life cycle analysis</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BIM Services -->
+        <div class="service-block py-16 grid lg:grid-cols-5 gap-12 items-start border-l-4 border-iron-border hover:border-l-iron-amber pl-8 reveal">
+          <div class="lg:col-span-2">
+            <iconify-icon icon="lucide:box" class="text-iron-amber text-5xl mb-4"></iconify-icon>
+            <h2 class="font-display font-extrabold text-3xl uppercase mb-2">BIM Services</h2>
+            <p class="font-display text-iron-amber text-sm tracking-widest uppercase">Digital Construction</p>
+          </div>
+          <div class="lg:col-span-3">
+            <p class="text-iron-gray leading-relaxed mb-4">Building Information Modeling is at the center of how we plan, design, and construct. Our BIM team creates detailed 3D models that enable clash detection, 4D scheduling, 5D cost estimation, and facility management.</p>
+            <p class="text-iron-gray leading-relaxed mb-6">Using Revit, Navisworks, and Trimble technology, we detect coordination issues before they become costly field problems. Our BIM-to-field workflows ensure that what's modeled is what gets built, reducing rework and waste.</p>
+            <div class="grid sm:grid-cols-2 gap-3">
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">3D modeling & visualization</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">Clash detection</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">4D scheduling</span></div>
+              <div class="flex items-center gap-2 text-sm"><iconify-icon icon="lucide:check" class="text-iron-amber"></iconify-icon><span class="text-iron-gray">5D cost integration</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-iron-amber">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <h2 class="font-display font-extrabold text-4xl sm:text-5xl uppercase text-iron-black mb-6">Need a Construction <span class="underline decoration-2">Partner</span>?</h2>
+      <p class="text-iron-black/70 text-lg max-w-2xl mx-auto mb-8">Tell us about your project. We'll match you with the right delivery method and team to achieve your goals.</p>
+      <a href="contact.html" class="inline-flex items-center gap-2 bg-iron-black hover:bg-iron-surface text-iron-white font-display font-bold text-sm tracking-widest uppercase px-8 py-4 transition-colors">Request a Consultation</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-iron-surface border-t border-iron-border pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div>
+          <p class="font-display font-extrabold text-xl tracking-wider text-iron-amber mb-4">IRONCLAD <span class="text-iron-white">BUILDERS</span></p>
+          <p class="text-iron-gray text-sm leading-relaxed">Leading commercial construction and engineering firm based in Chicago, delivering excellence since 1987.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Quick Links</h4>
+          <div class="flex flex-col gap-2">
+            <a href="about.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">About Us</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Services</a>
+            <a href="projects.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Projects</a>
+            <a href="contact.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Services</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">General Contracting</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Design-Build</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Construction Management</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Pre-Construction</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Contact</h4>
+          <div class="flex flex-col gap-2">
+            <p class="text-iron-gray text-sm">200 W Adams Street, Suite 1200</p>
+            <p class="text-iron-gray text-sm">Chicago, IL 60606</p>
+            <p class="text-iron-gray text-sm">info@ironcladbuilders.com</p>
+            <p class="text-iron-gray text-sm">(312) 555-0187</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-iron-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-iron-gray text-xs">&copy; 2024 Ironclad Builders. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:linkedin" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:twitter" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:instagram" class="text-xl"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('translate-x-full');
+    }
+    function reveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+  </script>
+</body>
+</html>

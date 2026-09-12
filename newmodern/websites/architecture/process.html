@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Process — Atelier Voss</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'warm-bg': '#F5F0EB',
+          'warm-text': '#1A1A1A',
+          'warm-secondary': '#6B6B6B',
+          'warm-accent': '#C4956A',
+          'warm-surface': '#E8E0D8',
+          'warm-border': '#D4CCC4',
+        },
+        fontFamily: {
+          display: ['Playfair Display', 'serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .nav-open .menu-bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-open .menu-bar:nth-child(2) { opacity: 0; }
+    .nav-open .menu-bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  </style>
+</head>
+<body class="bg-warm-bg text-warm-text">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-warm-bg/0">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-display text-2xl font-semibold tracking-tight">AV</span>
+        <span class="hidden sm:inline text-xs tracking-[0.3em] uppercase text-warm-secondary">Atelier Voss</span>
+      </a>
+      <div id="navMenu" class="hidden lg:flex items-center gap-8">
+        <a href="projects.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Projects</a>
+        <a href="studio.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Studio</a>
+        <a href="services.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Services</a>
+        <a href="process.html" class="text-xs tracking-[0.15em] uppercase text-warm-accent transition-colors">Process</a>
+        <a href="journal.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Journal</a>
+        <a href="contact.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Contact</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden flex flex-col gap-1.5 w-7" aria-label="Menu">
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 bg-warm-bg z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Home</a>
+    <a href="projects.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Projects</a>
+    <a href="studio.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Studio</a>
+    <a href="services.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Services</a>
+    <a href="process.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Process</a>
+    <a href="journal.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Journal</a>
+    <a href="contact.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="pt-32 lg:pt-40 pb-16 lg:pb-24 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div class="lg:col-span-6">
+          <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">How We Work</p>
+          <h1 class="font-display text-5xl lg:text-7xl font-medium leading-[1.05] reveal reveal-delay-1">
+            Our Design Process
+          </h1>
+          <p class="text-warm-secondary text-lg leading-relaxed max-w-xl mt-8 reveal reveal-delay-2">
+            Architecture is a dialogue — between architect and client, between vision and reality, between the ideal and the achievable. Our process is designed to nurture that dialogue at every stage.
+          </p>
+        </div>
+        <div class="lg:col-span-6">
+          <img src="https://images.pexels.com/photos/6615086/pexels-photo-6615086.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+               alt="Design compass" 
+               class="w-full aspect-[4/3] object-cover reveal reveal-delay-1">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Steps -->
+  <section class="py-16 lg:py-24 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+
+      <!-- Step 1 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-16 lg:py-24 border-t border-warm-border">
+        <div class="lg:col-span-3">
+          <div class="lg:sticky lg:top-32">
+            <div class="flex items-center gap-4 mb-4 reveal">
+              <span class="font-display text-5xl lg:text-6xl text-warm-accent">01</span>
+            </div>
+            <h2 class="font-display text-2xl lg:text-3xl font-medium reveal reveal-delay-1">Discovery</h2>
+            <p class="text-warm-secondary text-sm mt-3 reveal reveal-delay-2">Weeks 1–3</p>
+          </div>
+        </div>
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div>
+              <img src="https://images.pexels.com/photos/9617366/pexels-photo-9617366.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                   alt="Discovery phase" 
+                   class="w-full aspect-[4/3] object-cover reveal">
+            </div>
+            <div class="flex flex-col justify-center">
+              <p class="text-warm-secondary leading-relaxed mb-6 reveal">
+                Every project begins with listening. We spend the first weeks understanding your vision, your lifestyle, your aspirations, and the practical realities of your site and budget. This phase involves extensive conversations, site visits, and research.
+              </p>
+              <ul class="space-y-3 text-warm-secondary text-sm reveal reveal-delay-1">
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Initial consultations and vision workshops
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Site analysis and environmental assessment
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Zoning review and feasibility study
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Program development and spatial requirements
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Budget framework establishment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-16 lg:py-24 border-t border-warm-border">
+        <div class="lg:col-span-3">
+          <div class="lg:sticky lg:top-32">
+            <div class="flex items-center gap-4 mb-4 reveal">
+              <span class="font-display text-5xl lg:text-6xl text-warm-accent">02</span>
+            </div>
+            <h2 class="font-display text-2xl lg:text-3xl font-medium reveal reveal-delay-1">Concept</h2>
+            <p class="text-warm-secondary text-sm mt-3 reveal reveal-delay-2">Weeks 4–8</p>
+          </div>
+        </div>
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div>
+              <img src="https://images.pexels.com/photos/6614835/pexels-photo-6614835.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                   alt="Concept phase" 
+                   class="w-full aspect-[4/3] object-cover reveal">
+            </div>
+            <div class="flex flex-col justify-center">
+              <p class="text-warm-secondary leading-relaxed mb-6 reveal">
+                With a clear understanding of your goals, we begin exploring design directions. This is where ideas take shape — through sketches, 3D models, material studies, and spatial investigations. We typically present two to three distinct concepts, each offering a different interpretation of the brief.
+              </p>
+              <ul class="space-y-3 text-warm-secondary text-sm reveal reveal-delay-1">
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Concept sketches and spatial studies
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  3D visualization and rendering
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Material palette development
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Massing and proportion studies
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Client presentation and feedback
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-16 lg:py-24 border-t border-warm-border">
+        <div class="lg:col-span-3">
+          <div class="lg:sticky lg:top-32">
+            <div class="flex items-center gap-4 mb-4 reveal">
+              <span class="font-display text-5xl lg:text-6xl text-warm-accent">03</span>
+            </div>
+            <h2 class="font-display text-2xl lg:text-3xl font-medium reveal reveal-delay-1">Development</h2>
+            <p class="text-warm-secondary text-sm mt-3 reveal reveal-delay-2">Weeks 9–18</p>
+          </div>
+        </div>
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div>
+              <img src="https://images.pexels.com/photos/34573691/pexels-photo-34573691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                   alt="Development phase" 
+                   class="w-full aspect-[4/3] object-cover reveal">
+            </div>
+            <div class="flex flex-col justify-center">
+              <p class="text-warm-secondary leading-relaxed mb-6 reveal">
+                Once a concept direction is approved, we refine every aspect of the design. This is where the architecture truly comes to life — detailed plans, sections, and elevations are developed, structural systems are coordinated, and every material, fixture, and finish is specified.
+              </p>
+              <ul class="space-y-3 text-warm-secondary text-sm reveal reveal-delay-1">
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Detailed architectural drawings
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Structural and MEP coordination
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Custom furniture and millwork design
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Lighting design development
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Material specification and sampling
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-16 lg:py-24 border-t border-warm-border">
+        <div class="lg:col-span-3">
+          <div class="lg:sticky lg:top-32">
+            <div class="flex items-center gap-4 mb-4 reveal">
+              <span class="font-display text-5xl lg:text-6xl text-warm-accent">04</span>
+            </div>
+            <h2 class="font-display text-2xl lg:text-3xl font-medium reveal reveal-delay-1">Documentation</h2>
+            <p class="text-warm-secondary text-sm mt-3 reveal reveal-delay-2">Weeks 19–28</p>
+          </div>
+        </div>
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div>
+              <img src="https://images.pexels.com/photos/34573691/pexels-photo-34573691.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                   alt="Documentation phase" 
+                   class="w-full aspect-[4/3] object-cover reveal">
+            </div>
+            <div class="flex flex-col justify-center">
+              <p class="text-warm-secondary leading-relaxed mb-6 reveal">
+                The design is translated into comprehensive construction documents — the technical drawings and specifications that allow builders to execute the vision precisely. This phase ensures that every detail, from structural connections to finish transitions, is clearly communicated.
+              </p>
+              <ul class="space-y-3 text-warm-secondary text-sm reveal reveal-delay-1">
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Full construction drawing set
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Detailed specifications
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Permit documentation
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Bid preparation and contractor selection
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Cost reconciliation and value engineering
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-16 lg:py-24 border-t border-warm-border">
+        <div class="lg:col-span-3">
+          <div class="lg:sticky lg:top-32">
+            <div class="flex items-center gap-4 mb-4 reveal">
+              <span class="font-display text-5xl lg:text-6xl text-warm-accent">05</span>
+            </div>
+            <h2 class="font-display text-2xl lg:text-3xl font-medium reveal reveal-delay-1">Construction</h2>
+            <p class="text-warm-secondary text-sm mt-3 reveal reveal-delay-2">Months 8–18+</p>
+          </div>
+        </div>
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div>
+              <img src="https://images.pexels.com/photos/3882638/pexels-photo-3882638.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                   alt="Construction phase" 
+                   class="w-full aspect-[4/3] object-cover reveal">
+            </div>
+            <div class="flex flex-col justify-center">
+              <p class="text-warm-secondary leading-relaxed mb-6 reveal">
+                During construction, we maintain close involvement to ensure the design is executed to the highest standard. Our team conducts regular site visits, reviews submittals, and coordinates with contractors to resolve any issues that arise during building.
+              </p>
+              <ul class="space-y-3 text-warm-secondary text-sm reveal reveal-delay-1">
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Regular site observation and reporting
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Submittal and shop drawing review
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Quality control and craftsmanship oversight
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Schedule and budget tracking
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Punch list and project closeout
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-16 lg:py-24 border-t border-warm-border">
+        <div class="lg:col-span-3">
+          <div class="lg:sticky lg:top-32">
+            <div class="flex items-center gap-4 mb-4 reveal">
+              <span class="font-display text-5xl lg:text-6xl text-warm-accent">06</span>
+            </div>
+            <h2 class="font-display text-2xl lg:text-3xl font-medium reveal reveal-delay-1">Completion</h2>
+            <p class="text-warm-secondary text-sm mt-3 reveal reveal-delay-2">Final Weeks</p>
+          </div>
+        </div>
+        <div class="lg:col-span-9">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <div>
+              <img src="https://images.pexels.com/photos/34133564/pexels-photo-34133564.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                   alt="Completion" 
+                   class="w-full aspect-[4/3] object-cover reveal">
+            </div>
+            <div class="flex flex-col justify-center">
+              <p class="text-warm-secondary leading-relaxed mb-6 reveal">
+                The final phase is about the details that elevate a space from good to exceptional. We oversee furniture installation, art placement, lighting calibration, and landscape finishing to ensure every element works in harmony. The result is a space that feels complete, considered, and ready to be lived in.
+              </p>
+              <ul class="space-y-3 text-warm-secondary text-sm reveal reveal-delay-1">
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Furniture and fixture installation
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Art curation and placement
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Lighting adjustment and calibration
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Styling and final touches
+                </li>
+                <li class="flex items-start gap-3">
+                  <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+                  Client walkthrough and handover
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Timeline Visual -->
+  <section class="bg-warm-surface py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto text-center">
+      <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">Timeline</p>
+      <h2 class="font-display text-4xl lg:text-5xl font-medium mb-16 reveal reveal-delay-1">Typical Project Duration</h2>
+      <div class="max-w-4xl mx-auto">
+        <div class="flex items-center justify-between mb-4 reveal">
+          <span class="text-sm text-warm-secondary">Discovery</span>
+          <span class="text-sm text-warm-secondary">Concept</span>
+          <span class="text-sm text-warm-secondary">Development</span>
+          <span class="text-sm text-warm-secondary">Documentation</span>
+          <span class="text-sm text-warm-secondary">Construction</span>
+        </div>
+        <div class="h-3 bg-warm-border rounded-full overflow-hidden reveal reveal-delay-1">
+          <div class="h-full flex">
+            <div class="bg-warm-accent/40 h-full" style="width: 8%"></div>
+            <div class="bg-warm-accent/60 h-full" style="width: 12%"></div>
+            <div class="bg-warm-accent/70 h-full" style="width: 18%"></div>
+            <div class="bg-warm-accent/80 h-full" style="width: 18%"></div>
+            <div class="bg-warm-accent h-full" style="width: 44%"></div>
+          </div>
+        </div>
+        <div class="flex justify-between mt-3 reveal reveal-delay-2">
+          <span class="text-xs text-warm-accent font-medium">Months 1–3</span>
+          <span class="text-xs text-warm-accent font-medium">Months 3–4</span>
+          <span class="text-xs text-warm-accent font-medium">Months 4–7</span>
+          <span class="text-xs text-warm-accent font-medium">Months 7–10</span>
+          <span class="text-xs text-warm-accent font-medium">Months 10–18+</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto text-center">
+      <h2 class="font-display text-4xl lg:text-5xl font-medium mb-8 reveal">Ready to begin?</h2>
+      <p class="text-warm-secondary max-w-xl mx-auto mb-8 reveal reveal-delay-1">
+        The first step is always a conversation. Tell us about your project, and we'll guide you through the rest.
+      </p>
+      <a href="contact.html" class="inline-flex items-center gap-3 bg-warm-accent text-white px-10 py-5 text-xs tracking-[0.2em] uppercase hover:bg-warm-accent/90 transition-colors reveal reveal-delay-2">
+        Start a Conversation
+        <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-warm-text text-white py-16 lg:py-20 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+        <div class="lg:col-span-4">
+          <span class="font-display text-3xl font-semibold">AV</span>
+          <p class="text-white/50 text-sm mt-4 leading-relaxed max-w-xs">Architecture & Interior Design Studio based in New York. Creating spaces that endure since 2009.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Navigation</h4>
+          <div class="flex flex-col gap-3">
+            <a href="projects.html" class="text-sm text-white/60 hover:text-white transition-colors">Projects</a>
+            <a href="studio.html" class="text-sm text-white/60 hover:text-white transition-colors">Studio</a>
+            <a href="services.html" class="text-sm text-white/60 hover:text-white transition-colors">Services</a>
+            <a href="process.html" class="text-sm text-white/60 hover:text-white transition-colors">Process</a>
+            <a href="journal.html" class="text-sm text-white/60 hover:text-white transition-colors">Journal</a>
+            <a href="contact.html" class="text-sm text-white/60 hover:text-white transition-colors">Contact</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Contact</h4>
+          <div class="flex flex-col gap-3 text-sm text-white/60">
+            <p>245 West 17th Street, Suite 4</p>
+            <p>New York, NY 10011</p>
+            <p class="mt-2">studio@ateliervoss.com</p>
+            <p>+1 (212) 555-0187</p>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Follow</h4>
+          <div class="flex gap-5">
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:instagram-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:linkedin-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:pinterest-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:twitter-x-logo" class="text-xl"></iconify-icon>
+            </a>
+          </div>
+          <div class="mt-8">
+            <a href="contact.html" class="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-warm-accent hover:text-white transition-colors">
+              Start a Project
+              <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/30">&copy; 2026 Atelier Voss. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Privacy Policy</a>
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navbar = document.getElementById('navbar');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuBtn.classList.toggle('nav-open', menuOpen);
+      mobileMenu.classList.toggle('opacity-100', menuOpen);
+      mobileMenu.classList.toggle('pointer-events-auto', menuOpen);
+      mobileMenu.classList.toggle('opacity-0', !menuOpen);
+      mobileMenu.classList.toggle('pointer-events-none', !menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.remove('bg-warm-bg/0');
+      } else {
+        navbar.classList.remove('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.add('bg-warm-bg/0');
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

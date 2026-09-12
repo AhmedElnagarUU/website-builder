@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Atelier Voss</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'warm-bg': '#F5F0EB',
+          'warm-text': '#1A1A1A',
+          'warm-secondary': '#6B6B6B',
+          'warm-accent': '#C4956A',
+          'warm-surface': '#E8E0D8',
+          'warm-border': '#D4CCC4',
+        },
+        fontFamily: {
+          display: ['Playfair Display', 'serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .nav-open .menu-bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-open .menu-bar:nth-child(2) { opacity: 0; }
+    .nav-open .menu-bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  </style>
+</head>
+<body class="bg-warm-bg text-warm-text">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-warm-bg/0">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-display text-2xl font-semibold tracking-tight">AV</span>
+        <span class="hidden sm:inline text-xs tracking-[0.3em] uppercase text-warm-secondary">Atelier Voss</span>
+      </a>
+      <div id="navMenu" class="hidden lg:flex items-center gap-8">
+        <a href="projects.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Projects</a>
+        <a href="studio.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Studio</a>
+        <a href="services.html" class="text-xs tracking-[0.15em] uppercase text-warm-accent transition-colors">Services</a>
+        <a href="process.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Process</a>
+        <a href="journal.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Journal</a>
+        <a href="contact.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Contact</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden flex flex-col gap-1.5 w-7" aria-label="Menu">
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 bg-warm-bg z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Home</a>
+    <a href="projects.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Projects</a>
+    <a href="studio.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Studio</a>
+    <a href="services.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Services</a>
+    <a href="process.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Process</a>
+    <a href="journal.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Journal</a>
+    <a href="contact.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="pt-32 lg:pt-40 pb-16 lg:pb-24 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div class="lg:col-span-6">
+          <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">What We Do</p>
+          <h1 class="font-display text-5xl lg:text-7xl font-medium leading-[1.05] reveal reveal-delay-1">
+            Services
+          </h1>
+          <p class="text-warm-secondary text-lg leading-relaxed max-w-xl mt-8 reveal reveal-delay-2">
+            From initial concept through final installation, we provide comprehensive design services that unify architecture, interiors, and material systems into a single coherent vision.
+          </p>
+        </div>
+        <div class="lg:col-span-6">
+          <img src="https://images.pexels.com/photos/9617366/pexels-photo-9617366.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+               alt="Architecture blueprints" 
+               class="w-full aspect-[4/3] object-cover reveal reveal-delay-1">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-16 lg:py-24 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      
+      <!-- Service 1 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-12 lg:py-20 border-t border-warm-border reveal">
+        <div class="lg:col-span-1">
+          <span class="font-display text-4xl text-warm-accent">01</span>
+        </div>
+        <div class="lg:col-span-4">
+          <iconify-icon icon="ph:building" class="text-warm-accent text-3xl mb-4"></iconify-icon>
+          <h3 class="font-display text-2xl lg:text-3xl font-medium mb-4">Architecture</h3>
+          <p class="text-warm-accent text-xs tracking-[0.15em] uppercase">Residential · Commercial · Cultural</p>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-warm-secondary leading-relaxed mb-6">
+            Our architectural practice encompasses the full spectrum of building design — from single-family residences and multi-unit developments to commercial spaces and cultural institutions. We approach each project with a deep respect for context, proportion, and the lived experience of the people who will inhabit the space.
+          </p>
+          <ul class="space-y-3 text-warm-secondary text-sm">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Concept design and feasibility studies
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Schematic design and design development
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Construction documentation and administration
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Zoning analysis and permit coordination
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Sustainable design and LEED consulting
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-12 lg:py-20 border-t border-warm-border reveal">
+        <div class="lg:col-span-1">
+          <span class="font-display text-4xl text-warm-accent">02</span>
+        </div>
+        <div class="lg:col-span-4">
+          <iconify-icon icon="ph:armchair" class="text-warm-accent text-3xl mb-4"></iconify-icon>
+          <h3 class="font-display text-2xl lg:text-3xl font-medium mb-4">Interior Design</h3>
+          <p class="text-warm-accent text-xs tracking-[0.15em] uppercase">Residential · Hospitality · Commercial</p>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-warm-secondary leading-relaxed mb-6">
+            Our interiors practice creates environments that are both visually compelling and deeply functional. We develop comprehensive design concepts that encompass spatial planning, material palettes, custom furniture, lighting design, and art curation — ensuring every element contributes to a unified atmosphere.
+          </p>
+          <ul class="space-y-3 text-warm-secondary text-sm">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Spatial planning and interior architecture
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Material and finish selection
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Custom furniture and millwork design
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Lighting design and specification
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Art advisory and styling
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-12 lg:py-20 border-t border-warm-border reveal">
+        <div class="lg:col-span-1">
+          <span class="font-display text-4xl text-warm-accent">03</span>
+        </div>
+        <div class="lg:col-span-4">
+          <iconify-icon icon="ph:house" class="text-warm-accent text-3xl mb-4"></iconify-icon>
+          <h3 class="font-display text-2xl lg:text-3xl font-medium mb-4">Residential Design</h3>
+          <p class="text-warm-accent text-xs tracking-[0.15em] uppercase">Private Homes · Penthouses · Estates</p>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-warm-secondary leading-relaxed mb-6">
+            Our residential work is the foundation of the studio. We create homes that reflect the personalities and aspirations of their owners while responding sensitively to their sites and communities. From urban apartments to country estates, every residential project receives the same level of care and attention to detail.
+          </p>
+          <ul class="space-y-3 text-warm-secondary text-sm">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              New construction and major renovations
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Interior architecture and fit-out
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Landscape architecture integration
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Smart home and technology systems
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Full-service project management
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 4 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-12 lg:py-20 border-t border-warm-border reveal">
+        <div class="lg:col-span-1">
+          <span class="font-display text-4xl text-warm-accent">04</span>
+        </div>
+        <div class="lg:col-span-4">
+          <iconify-icon icon="ph:hotel" class="text-warm-accent text-3xl mb-4"></iconify-icon>
+          <h3 class="font-display text-2xl lg:text-3xl font-medium mb-4">Hospitality</h3>
+          <p class="text-warm-accent text-xs tracking-[0.15em] uppercase">Hotels · Restaurants · Private Clubs</p>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-warm-secondary leading-relaxed mb-6">
+            Hospitality design demands a unique sensitivity to atmosphere, brand identity, and the choreography of guest experience. Our hospitality work creates spaces that feel both distinctive and welcoming, balancing visual impact with operational practicality and commercial viability.
+          </p>
+          <ul class="space-y-3 text-warm-secondary text-sm">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Brand-driven concept development
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Guest experience design and flow planning
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Restaurant and bar design
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Spa and wellness environment design
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              FF&E specification and procurement
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 5 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 py-12 lg:py-20 border-t border-warm-border reveal">
+        <div class="lg:col-span-1">
+          <span class="font-display text-4xl text-warm-accent">05</span>
+        </div>
+        <div class="lg:col-span-4">
+          <iconify-icon icon="ph:pencil-ruler" class="text-warm-accent text-3xl mb-4"></iconify-icon>
+          <h3 class="font-display text-2xl lg:text-3xl font-medium mb-4">Custom Fabrication</h3>
+          <p class="text-warm-accent text-xs tracking-[0.15em] uppercase">Furniture · Fixtures · Art Installations</p>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="text-warm-secondary leading-relaxed mb-6">
+            When off-the-shelf solutions won't suffice, our in-house fabrication team designs and oversees the production of custom furniture, architectural fixtures, and art installations. This capability allows us to create truly unique environments where every element is purpose-designed for the project.
+          </p>
+          <ul class="space-y-3 text-warm-secondary text-sm">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Bespoke furniture design and production
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Architectural hardware and fixture design
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Art installation and curation
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Material prototyping and testing
+            </li>
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="ph:check" class="text-warm-accent mt-0.5 flex-shrink-0"></iconify-icon>
+              Workshop and fabrication management
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Approach Banner -->
+  <section class="bg-warm-text text-white py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto text-center">
+      <p class="text-warm-accent text-xs tracking-[0.4em] uppercase mb-6 reveal">Our Approach</p>
+      <h2 class="font-display text-4xl lg:text-6xl font-medium mb-8 reveal reveal-delay-1 max-w-4xl mx-auto">
+        Every project is a unique collaboration between <em>architect</em>, <em>client</em>, and <em>site</em>
+      </h2>
+      <a href="process.html" class="inline-flex items-center gap-3 border border-white/30 text-white px-10 py-5 text-xs tracking-[0.2em] uppercase hover:bg-white/10 transition-colors reveal reveal-delay-2">
+        Our Design Process
+        <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+      </a>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        <div class="lg:col-span-5 reveal">
+          <img src="https://images.pexels.com/photos/5582599/pexels-photo-5582599.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+               alt="Client testimonial" 
+               class="w-full aspect-square object-cover">
+        </div>
+        <div class="lg:col-span-7">
+          <iconify-icon icon="ph:quotes" class="text-warm-accent text-4xl mb-6 reveal"></iconify-icon>
+          <blockquote class="font-display text-2xl lg:text-3xl leading-relaxed mb-8 reveal reveal-delay-1">
+            Atelier Voss didn't just design our home — they understood how we wanted to live and created spaces that made that life possible. The attention to every material, every sightline, every transition between rooms was extraordinary.
+          </blockquote>
+          <div class="reveal reveal-delay-2">
+            <p class="font-medium">Jonathan & Maya Whitfield</p>
+            <p class="text-warm-secondary text-sm mt-1">The Mercer Residence, New York</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-warm-text text-white py-16 lg:py-20 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+        <div class="lg:col-span-4">
+          <span class="font-display text-3xl font-semibold">AV</span>
+          <p class="text-white/50 text-sm mt-4 leading-relaxed max-w-xs">Architecture & Interior Design Studio based in New York. Creating spaces that endure since 2009.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Navigation</h4>
+          <div class="flex flex-col gap-3">
+            <a href="projects.html" class="text-sm text-white/60 hover:text-white transition-colors">Projects</a>
+            <a href="studio.html" class="text-sm text-white/60 hover:text-white transition-colors">Studio</a>
+            <a href="services.html" class="text-sm text-white/60 hover:text-white transition-colors">Services</a>
+            <a href="process.html" class="text-sm text-white/60 hover:text-white transition-colors">Process</a>
+            <a href="journal.html" class="text-sm text-white/60 hover:text-white transition-colors">Journal</a>
+            <a href="contact.html" class="text-sm text-white/60 hover:text-white transition-colors">Contact</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Contact</h4>
+          <div class="flex flex-col gap-3 text-sm text-white/60">
+            <p>245 West 17th Street, Suite 4</p>
+            <p>New York, NY 10011</p>
+            <p class="mt-2">studio@ateliervoss.com</p>
+            <p>+1 (212) 555-0187</p>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Follow</h4>
+          <div class="flex gap-5">
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:instagram-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:linkedin-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:pinterest-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:twitter-x-logo" class="text-xl"></iconify-icon>
+            </a>
+          </div>
+          <div class="mt-8">
+            <a href="contact.html" class="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-warm-accent hover:text-white transition-colors">
+              Start a Project
+              <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/30">&copy; 2026 Atelier Voss. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Privacy Policy</a>
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navbar = document.getElementById('navbar');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuBtn.classList.toggle('nav-open', menuOpen);
+      mobileMenu.classList.toggle('opacity-100', menuOpen);
+      mobileMenu.classList.toggle('pointer-events-auto', menuOpen);
+      mobileMenu.classList.toggle('opacity-0', !menuOpen);
+      mobileMenu.classList.toggle('pointer-events-none', !menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.remove('bg-warm-bg/0');
+      } else {
+        navbar.classList.remove('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.add('bg-warm-bg/0');
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

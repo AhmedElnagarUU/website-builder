@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Mara Ellsworth</title>
+  <meta name="description" content="Commission Mara Ellsworth for documentary and editorial photography work. Tell me the quiet version of your story.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bone: '#edeae0', ink: '#1d1d1d', ash: '#777', red: '#a63a2c', line: '#d4cfc2',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="antialiased text-ink bg-bone overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-bone/95 backdrop-blur border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-[72px]">
+      <a href="index.html" class="font-display font-semibold text-sm tracking-[0.18em] uppercase leading-none">
+        Mara Ellsworth
+        <span class="block font-mono2 text-[8px] tracking-[0.35em] text-ash mt-[3px]">documentary · editorial · est. 2015</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-9">
+        <a href="work.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/60 hover:text-ink transition-colors">Work</a>
+        <a href="series.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/60 hover:text-ink transition-colors">Essays</a>
+        <a href="about.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/60 hover:text-ink transition-colors">About</a>
+        <a href="contact.html" class="ml-3 border border-ink bg-ink text-bone font-mono2 text-[10px] tracking-[0.18em] uppercase px-5 py-3 hover:bg-red hover:border-red transition-colors">Contact</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-bone z-40 flex flex-col items-center justify-center gap-7 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl font-light">Home</a>
+    <a href="work.html" class="font-display text-3xl font-light">Work</a>
+    <a href="series.html" class="font-display text-3xl font-light">Essays</a>
+    <a href="about.html" class="font-display text-3xl font-light">About</a>
+    <a href="contact.html" class="mt-4 border border-ink bg-ink text-bone font-mono2 text-[10px] tracking-[0.18em] uppercase px-6 py-3">Contact</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-32 lg:pt-44 pb-16 px-6 lg:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-red mb-5 reveal">Assignment form · Studio, Portland OR</p>
+      <h1 class="font-display font-light text-[clamp(2.6rem,6.5vw,5.2rem)] leading-[0.96] max-w-[820px] reveal reveal-delay-1">Tell me the quiet<br>version of your story.</h1>
+    </div>
+  </header>
+
+  <!-- FORM + SIDE -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+      <div class="lg:col-span-7 border border-line bg-[#e9e6da] p-8 lg:p-10 reveal">
+        <form class="space-y-7" onsubmit="alert('Thanks — the assignment desk will reply within two business days. (Static demo form.)'); return false;">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-7">
+            <div>
+              <label class="font-mono2 text-[9px] tracking-[0.25em] uppercase text-ash block mb-2">Your name</label>
+              <input type="text" required class="w-full bg-transparent border-b border-ink/30 py-3 text-lg focus:outline-none focus:border-red placeholder:text-ash/50" placeholder="Full name">
+            </div>
+            <div>
+              <label class="font-mono2 text-[9px] tracking-[0.25em] uppercase text-ash block mb-2">Email</label>
+              <input type="email" required class="w-full bg-transparent border-b border-ink/30 py-3 text-lg focus:outline-none focus:border-red placeholder:text-ash/50" placeholder="you@example.com">
+            </div>
+          </div>
+          <div>
+            <label class="font-mono2 text-[9px] tracking-[0.25em] uppercase text-ash block mb-2">The kind of work</label>
+            <select class="w-full bg-transparent border-b border-ink/30 py-3 text-lg focus:outline-none focus:border-red">
+              <option>Documentary essay / long-form</option>
+              <option>Editorial assignment</option>
+              <option>Portrait session</option>
+              <option>Brand / campaign</option>
+              <option>Galleries / prints</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-mono2 text-[9px] tracking-[0.25em] uppercase text-ash block mb-2">The story, quietly</label>
+            <textarea rows="5" class="w-full bg-transparent border-b border-ink/30 py-3 text-lg focus:outline-none focus:border-red placeholder:text-ash/50 resize-none" placeholder="Where is it, who is it about, and why does it need to be photographed by somebody specific?"></textarea>
+          </div>
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 pt-4">
+            <p class="font-mono2 text-[9px] text-ash">Replies within two business days. Longer if I'm on assignment.</p>
+            <button type="submit" class="bg-ink text-bone font-mono2 text-[11px] tracking-[0.22em] uppercase px-8 py-4 hover:bg-red transition-colors shrink-0">Send the note</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="lg:col-span-5 space-y-6">
+        <div class="border border-line bg-[#e9e6da] p-8 reveal">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-5">Studio &amp; representation</p>
+          <div class="space-y-3 text-lg font-display font-light">
+            <p>Portland, OR</p>
+            <a href="mailto:studio@maraellsworth.com" class="hover:text-red transition-colors">studio@maraellsworth.com</a>
+            <p class="text-sm text-ash font-sans font-normal leading-relaxed">New commissions via Lede Agency, NYC.<br>Prints and exhibitions by request.</p>
+          </div>
+        </div>
+
+        <div class="border border-line bg-[#e9e6da] p-8 reveal reveal-delay-1">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-5">Rates &amp; calendar</p>
+          <p class="text-ash text-sm leading-relaxed">Essays are negotiated per story, not per day — I'd rather be useful than fast. A non-refundable deposit books the frame; the story books the time.</p>
+          <p class="font-mono2 text-[10px] text-ash mt-5">Next open window · Spring 2027</p>
+        </div>
+
+        <div class="overflow-hidden aspect-[4/3] frame-line reveal reveal-delay-2">
+          <img src="https://images.pexels.com/photos/18723032/pexels-photo-18723032.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Contact sheet detail of documentary work" class="w-full h-full object-cover">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-ink text-bone/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display font-semibold text-sm tracking-[0.18em] uppercase text-bone">Mara Ellsworth</div>
+          <p class="font-mono2 text-[9px] tracking-[0.3em] uppercase text-ash/50 mt-[5px] mb-5">Documentary &amp; editorial photography</p>
+          <p class="text-sm leading-relaxed max-w-sm">Portland-based. Shoots long-form essays, commissioned editorials, and the occasional branding project that deserves a real camera. Available worldwide with a passport and a good pair of boots.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-bone/30 mb-4">Navigate</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="work.html" class="hover:text-red transition-colors">Work</a>
+            <a href="series.html" class="hover:text-red transition-colors">Essays</a>
+            <a href="about.html" class="hover:text-red transition-colors">About</a>
+            <a href="contact.html" class="hover:text-red transition-colors">Contact</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-bone/30 mb-4">Selected clients</h4>
+          <div class="flex flex-col gap-2 text-sm text-ash">
+            <span>The New York Times</span><span>Harper's</span><span>Dwell</span><span>Patagonia</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-bone/30 mb-4">Contact</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>Portland, OR</p>
+            <a href="mailto:studio@maraellsworth.com" class="hover:text-red transition-colors">studio@maraellsworth.com</a>
+            <p class="text-ash text-xs mt-2">Representation via Lede Agency, NYC</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-bone/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[9px] text-bone/30">&copy; 2026 Mara Ellsworth. Film is dead, long live the grain.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-bone/40 hover:text-red transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-bone/40 hover:text-red transition-colors"><iconify-icon icon="ph:x-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

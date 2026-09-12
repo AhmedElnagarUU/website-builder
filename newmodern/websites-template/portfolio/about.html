@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Mara Ellsworth</title>
+  <meta name="description" content="About Mara Ellsworth — a documentary and editorial photographer based in Portland, Oregon.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bone: '#edeae0', ink: '#1d1d1d', ash: '#777', red: '#a63a2c', line: '#d4cfc2',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="antialiased text-ink bg-bone overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-bone/95 backdrop-blur border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-[72px]">
+      <a href="index.html" class="font-display font-semibold text-sm tracking-[0.18em] uppercase leading-none">
+        Mara Ellsworth
+        <span class="block font-mono2 text-[8px] tracking-[0.35em] text-ash mt-[3px]">documentary · editorial · est. 2015</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-9">
+        <a href="work.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/60 hover:text-ink transition-colors">Work</a>
+        <a href="series.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/60 hover:text-ink transition-colors">Essays</a>
+        <a href="about.html" class="nav-link active text-[11px] tracking-[0.2em] uppercase text-ink/60 hover:text-ink transition-colors">About</a>
+        <a href="contact.html" class="ml-3 border border-ink text-ink font-mono2 text-[10px] tracking-[0.18em] uppercase px-5 py-3 hover:bg-ink hover:text-bone transition-colors">Contact</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-bone z-40 flex flex-col items-center justify-center gap-7 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl font-light">Home</a>
+    <a href="work.html" class="font-display text-3xl font-light">Work</a>
+    <a href="series.html" class="font-display text-3xl font-light">Essays</a>
+    <a href="about.html" class="font-display text-3xl font-light">About</a>
+    <a href="contact.html" class="mt-4 border border-ink text-ink font-mono2 text-[10px] tracking-[0.18em] uppercase px-6 py-3">Contact</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-32 lg:pt-44 pb-16 px-6 lg:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-red mb-5 reveal">About the photographer · CV on file</p>
+      <h1 class="font-display font-light text-[clamp(2.6rem,6.5vw,5.2rem)] leading-[0.96] max-w-[720px] reveal reveal-delay-1">I follow stories<br>that stay put.</h1>
+    </div>
+  </header>
+
+  <!-- BIO -->
+  <section class="px-6 lg:px-10 pb-24">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+      <div class="lg:col-span-5 overflow-hidden aspect-[3/4] frame-line regs reveal">
+        <img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Mara Ellsworth photographing in the field" class="w-full h-full object-cover">
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="text-ash text-lg leading-relaxed space-y-6 reveal reveal-delay-1">
+          <p>I grew up above my grandmother's diner in a town the size of a rumor. Every booth had a story and a regular who'd been telling it for forty years. I started stealing pictures of them with a hand-me-down camera, mostly because they were never in any of the family albums.</p>
+          <p>That's still the whole practice. I spend months — sometimes years — with the people and places worth lingering over: a dying plant town, a diner's night crew, a high-school gymnasium in October. The photographs are the honest footnotes of those long afternoons.</p>
+          <p>I'm based in Portland now, but most of my work happens somewhere you'd have to drive to. My pictures have run in The New York Times, Harper's, Dwell, and a handful of places that printed me first and asked questions never.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div class="border-t-2 border-ink pt-5 reveal">
+            <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-3">Education</p>
+            <p class="text-sm text-ash leading-relaxed">BFA, Documentary Photography<br>Pacific Northwest College of Art</p>
+          </div>
+          <div class="border-t-2 border-ink pt-5 reveal reveal-delay-1">
+            <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-3">Kit</p>
+            <p class="text-sm text-ash leading-relaxed">Whatever's loaded.<br>Two film bodies, one digital, a folding bike. No phone camera.</p>
+          </div>
+          <div class="border-t-2 border-ink pt-5 reveal reveal-delay-2">
+            <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-3">Currently</p>
+            <p class="text-sm text-ash leading-relaxed">Plate 06 in progress — a two-year series on the last drive-in theaters in the Northwest.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CV STRIP -->
+  <section class="px-6 lg:px-10 pb-24">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-t border-line py-10 reveal">
+        <div class="lg:col-span-3 font-mono2 text-[10px] tracking-[0.25em] uppercase text-ash">2019 — 2023</div>
+        <div class="lg:col-span-5"><p class="font-display text-xl">Five essays in national print</p></div>
+        <div class="lg:col-span-4 text-ash text-sm leading-relaxed">Steelcrest, Late Shift, Homecoming, Long Grain, The Commute. Each photographed over at least a full season.</div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-t border-line py-10 reveal">
+        <div class="lg:col-span-3 font-mono2 text-[10px] tracking-[0.25em] uppercase text-ash">2022</div>
+        <div class="lg:col-span-5"><p class="font-display text-xl">Pictures of the Year — Finalist</p></div>
+        <div class="lg:col-span-4 text-ash text-sm leading-relaxed">For "Homecoming," the small-town football series. Lost to the war photo, as usual.</div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-t border-line py-10 reveal reveal-delay-1">
+        <div class="lg:col-span-3 font-mono2 text-[10px] tracking-[0.25em] uppercase text-ash">2020</div>
+        <div class="lg:col-span-5"><p class="font-display text-xl">Solo show — "Late Shift"</p></div>
+        <div class="lg:col-span-4 text-ash text-sm leading-relaxed">Blue-hour work printed large at the Vernada Gallery, Portland. Twelve prints, one all-nighter.</div>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-t border-line py-10 reveal reveal-delay-2">
+        <div class="lg:col-span-3 font-mono2 text-[10px] tracking-[0.25em] uppercase text-ash">2015</div>
+        <div class="lg:col-span-5"><p class="font-display text-xl">First published assignment</p></div>
+        <div class="lg:col-span-4 text-ash text-sm leading-relaxed">A diner review column that needed pictures. I brought forty rolls. We used three.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[920px] mx-auto bg-ink text-bone p-10 lg:p-14 reveal">
+      <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-red mb-5">Commission work</p>
+      <h2 class="font-display font-light text-3xl lg:text-4xl leading-tight">Essays, editorials, and the rare brand that wants to be looked at honestly.</h2>
+      <a href="contact.html" class="inline-flex items-center gap-3 bg-bone text-ink font-mono2 text-[11px] tracking-[0.22em] uppercase px-7 py-4 hover:bg-red hover:text-bone transition-colors mt-8">Check my availability <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon></a>
+    </div>
+  </section>
+
+  <footer class="bg-ink text-bone/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display font-semibold text-sm tracking-[0.18em] uppercase text-bone">Mara Ellsworth</div>
+          <p class="font-mono2 text-[9px] tracking-[0.3em] uppercase text-ash/50 mt-[5px] mb-5">Documentary &amp; editorial photography</p>
+          <p class="text-sm leading-relaxed max-w-sm">Portland-based. Shoots long-form essays, commissioned editorials, and the occasional branding project that deserves a real camera. Available worldwide with a passport and a good pair of boots.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-bone/30 mb-4">Navigate</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="work.html" class="hover:text-red transition-colors">Work</a>
+            <a href="series.html" class="hover:text-red transition-colors">Essays</a>
+            <a href="about.html" class="hover:text-red transition-colors">About</a>
+            <a href="contact.html" class="hover:text-red transition-colors">Contact</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-bone/30 mb-4">Selected clients</h4>
+          <div class="flex flex-col gap-2 text-sm text-ash">
+            <span>The New York Times</span><span>Harper's</span><span>Dwell</span><span>Patagonia</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-bone/30 mb-4">Contact</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>Portland, OR</p>
+            <a href="mailto:studio@maraellsworth.com" class="hover:text-red transition-colors">studio@maraellsworth.com</a>
+            <p class="text-ash text-xs mt-2">Representation via Lede Agency, NYC</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-bone/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[9px] text-bone/30">&copy; 2026 Mara Ellsworth. Film is dead, long live the grain.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-bone/40 hover:text-red transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-bone/40 hover:text-red transition-colors"><iconify-icon icon="ph:x-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

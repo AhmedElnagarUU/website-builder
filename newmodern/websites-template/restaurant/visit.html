@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visit &amp; Reservations — Ember &amp; Oak</title>
+  <meta name="description" content="Hours, directions, and reservations at Ember & Oak — 2114 SE Morrison St, Portland. Nightly from 5 PM, half the room held for walk-ins.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          soot: '#161110', coal: '#201a17', embers: '#df5b32', flame: '#f0a252',
+          crema: '#f2e6d3', herb: '#4a5531', line: '#3b2f27',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-crema overflow-x-hidden bg-soot">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 border-b border-line/30 bg-soot/95 backdrop-blur">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-2xl lg:text-[1.7rem] tracking-tight">Ember <span class="italic text-flame">&amp;</span> Oak</a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="menu.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Menu</a>
+        <a href="story.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Our Story</a>
+        <a href="private-dining.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Private Dining</a>
+        <a href="journal.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">The Journal</a>
+        <a href="visit.html" class="ml-3 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-5 py-3 hover:bg-flame hover:text-soot transition-colors">Book a Table</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-soot z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="menu.html" class="font-display text-3xl">Menu</a>
+    <a href="story.html" class="font-display text-3xl">Our Story</a>
+    <a href="private-dining.html" class="font-display text-3xl">Private Dining</a>
+    <a href="journal.html" class="font-display text-3xl">The Journal</a>
+    <a href="visit.html" class="mt-4 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-6 py-3">Book a Table</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-40 lg:pt-52 pb-14 lg:pb-20 px-6 lg:px-10">
+    <div class="max-w-[880px] mx-auto text-center">
+      <div class="ember-div mb-8 reveal"><span class="ember-glyph">◆</span></div>
+      <p class="font-mono2 text-[10px] tracking-[0.35em] uppercase text-embers mb-5 reveal">Visitare · Prenotazione</p>
+      <h1 class="font-display font-medium text-4xl lg:text-6xl leading-[1.0] reveal reveal-delay-1">Come hungry.<br><span class="italic text-flame">Come early.</span></h1>
+      <p class="text-crema/50 text-sm leading-relaxed max-w-md mx-auto mt-6 reveal reveal-delay-2">Half the room is held for walk-ins every night. If it's a special occasion or a weekend, book ahead — the rest of the city knows about us by now.</p>
+    </div>
+  </header>
+
+  <!-- RESERVATION FORM + INFO -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+      <div class="lg:col-span-7 reveal">
+        <form action="#" method="post" class="bg-coal border border-line/50 p-8 lg:p-10">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-flame mb-8">Reservation request</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="rname" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Name</label>
+              <input id="rname" name="rname" type="text" required class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="Your name">
+            </div>
+            <div>
+              <label for="rphone" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Phone</label>
+              <input id="rphone" name="rphone" type="tel" required class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="(503) 555-0100">
+            </div>
+            <div>
+              <label for="rdate" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Date</label>
+              <input id="rdate" name="rdate" type="text" required class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="e.g. Thursday, September 24">
+            </div>
+            <div>
+              <label for="rtime" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Time</label>
+              <select id="rtime" name="rtime" class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none text-crema">
+                <option class="bg-coal">5:00 PM</option>
+                <option class="bg-coal">5:30 PM</option>
+                <option class="bg-coal">6:15 PM</option>
+                <option class="bg-coal">7:00 PM</option>
+                <option class="bg-coal">7:45 PM</option>
+                <option class="bg-coal">8:30 PM</option>
+                <option class="bg-coal">9:15 PM</option>
+              </select>
+            </div>
+            <div>
+              <label for="rparty" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Party size</label>
+              <input id="rparty" name="rparty" type="number" min="1" max="10" required class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="2">
+            </div>
+            <div>
+              <label for="roccasion" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Occasion?</label>
+              <input id="roccasion" name="roccasion" type="text" class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="Anniversary, birthday, none">
+            </div>
+          </div>
+          <button type="submit" class="inline-flex items-center gap-3 bg-flame text-soot font-mono2 text-[11px] tracking-[0.22em] uppercase px-8 py-4 hover:bg-crema transition-colors">
+            Request Reservation <iconify-icon icon="ph:arrow-right"></iconify-icon>
+          </button>
+          <p class="font-mono2 text-[10px] text-crema/40 mt-4">We confirm within a few hours during service. For same-day tables or groups over ten, please call.</p>
+        </form>
+      </div>
+
+      <div class="lg:col-span-5 space-y-8">
+        <div class="reveal">
+          <p class="font-mono2 text-[10px] tracking-[0.28em] uppercase text-embers mb-4">Hours</p>
+          <div class="font-mono2 text-sm space-y-3">
+            <div class="flex justify-between border-b border-line/40 pb-2"><span>Mon – Tue</span><span class="text-flame">Closed · family night</span></div>
+            <div class="flex justify-between border-b border-line/40 pb-2"><span>Wed – Thu</span><span class="text-crema/80">5:00 PM – 10:00 PM</span></div>
+            <div class="flex justify-between border-b border-line/40 pb-2"><span>Fri – Sat</span><span class="text-crema/80">5:00 PM – 11:00 PM</span></div>
+            <div class="flex justify-between"><span>Sunday</span><span class="text-crema/80">4:00 PM – 9:00 PM</span></div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <p class="font-mono2 text-[10px] tracking-[0.28em] uppercase text-embers mb-4">Find us</p>
+          <div class="text-base leading-relaxed text-crema/70">
+            <p class="text-crema">2114 SE Morrison St.</p>
+            <p>Portland, OR 97214</p>
+            <p class="mt-3">Street parking after 6. The #15 bus stops two blocks away. Bicycle racks out front, and the door's unlocked from 5.</p>
+          </div>
+          <a href="tel:+15035550170" class="inline-flex items-center gap-2 font-mono2 text-[11px] tracking-[0.22em] uppercase text-flame mt-6 hover:text-crema transition-colors">503-555-0170 <iconify-icon icon="ph:phone"></iconify-icon></a>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <p class="font-mono2 text-[10px] tracking-[0.28em] uppercase text-embers mb-4">Good to know</p>
+          <ul class="space-y-3 text-sm text-crema/60">
+            <li class="flex gap-3"><iconify-icon icon="ph:leaf" class="text-flame shrink-0 mt-0.5"></iconify-icon><span>A largely gluten-friendly menu; pasta is made with heritage flours but not exclusively in-house. Just tell us.</span></li>
+            <li class="flex gap-3"><iconify-icon icon="ph:wine" class="text-flame shrink-0 mt-0.5"></iconify-icon><span>Bringing a bottle? Corkage is $25, and welcome — share a glass with the kitchen if you're feeling generous.</span></li>
+            <li class="flex gap-3"><iconify-icon icon="ph:users-three" class="text-flame shrink-0 mt-0.5"></iconify-icon><span>Parties of seven or more go to our <a href="private-dining.html" class="text-flame underline underline-offset-4 hover:text-crema transition-colors">private dining</a> menu.</span></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MAP IMAGE -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[1320px] mx-auto overflow-hidden aspect-[21/9] reveal">
+      <img src="https://images.pexels.com/photos/36396941/pexels-photo-36396941.jpeg?auto=compress&cs=tinysrgb&w=2000" alt="Rustic outdoor Italian dining street scene" class="w-full h-full object-cover">
+    </div>
+  </section>
+
+  <footer class="bg-coal border-t border-line/40 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl tracking-tight">Ember <span class="italic text-flame">&amp;</span> Oak</div>
+          <p class="text-crema/50 text-sm leading-relaxed max-w-sm mt-4">Wood-fired Italian kitchen and neighborly trattoria in Southeast Portland. Forty seats, one oven, and a menu written in pencil.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Visit</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="visit.html" class="hover:text-flame transition-colors">Reservations</a>
+            <a href="private-dining.html" class="hover:text-flame transition-colors">Private Dining</a>
+            <a href="visit.html" class="hover:text-flame transition-colors">Hours &amp; Directions</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Kitchen</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="menu.html" class="hover:text-flame transition-colors">Menu</a>
+            <a href="story.html" class="hover:text-flame transition-colors">Our Story</a>
+            <a href="journal.html" class="hover:text-flame transition-colors">The Journal</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Find us</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <p>2114 SE Morrison St.</p>
+            <p>Portland, OR 97214</p>
+            <a href="tel:+15035550170" class="text-flame hover:text-crema transition-colors">503-555-0170</a>
+            <a href="mailto:ciao@emberandoak.com" class="hover:text-flame transition-colors">ciao@emberandoak.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-line/40 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[10px] text-crema/30 tracking-[0.18em] uppercase">&copy; 2026 Ember &amp; Oak. <span class="text-crema/40">Aperti in cucina.</span></p>
+        <div class="flex gap-5">
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

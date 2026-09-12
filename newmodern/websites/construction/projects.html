@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects | Ironclad Builders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'iron-black': '#111111',
+          'iron-white': '#F5F5F5',
+          'iron-gray': '#999999',
+          'iron-amber': '#F59E0B',
+          'iron-amber-dark': '#D97706',
+          'iron-surface': '#1A1A1A',
+          'iron-surface-light': '#222222',
+          'iron-border': '#333333',
+          'iron-steel': '#64748B',
+        },
+        fontFamily: {
+          display: ['Barlow Condensed', 'sans-serif'],
+          body: ['IBM Plex Sans', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .hero-bg { background-image: linear-gradient(rgba(17,17,17,0.75), rgba(17,17,17,0.75)), url('https://images.pexels.com/photos/39345876/pexels-photo-39345876.png?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center; }
+    .filter-btn.active { background-color: #F59E0B; color: #111111; }
+    .filter-btn { transition: background-color 0.3s ease, color 0.3s ease; }
+    .project-card.hidden { display: none; }
+    .project-card { transition: opacity 0.4s ease; }
+  </style>
+</head>
+<body class="bg-iron-black text-iron-white font-body">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-iron-black/90 backdrop-blur-md border-b border-iron-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="font-display font-extrabold text-2xl tracking-wider text-iron-amber">IRONCLAD <span class="text-iron-white">BUILDERS</span></a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+          <a href="services.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+          <a href="projects.html" class="font-display text-sm tracking-widest uppercase text-iron-amber">Projects</a>
+          <a href="industries.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+          <a href="sustainability.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+          <a href="contact.html" class="bg-iron-amber hover:bg-iron-amber-dark text-iron-black font-display font-bold text-sm tracking-widest uppercase px-6 py-3 transition-colors">Contact</a>
+        </div>
+        <button id="menuBtn" class="lg:hidden text-iron-white" onclick="toggleMenu()">
+          <iconify-icon icon="lucide:menu" class="text-3xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-[60] bg-iron-black flex flex-col items-center justify-center gap-8 transform translate-x-full transition-transform duration-300">
+    <button class="absolute top-6 right-6 text-iron-white" onclick="toggleMenu()">
+      <iconify-icon icon="lucide:x" class="text-3xl"></iconify-icon>
+    </button>
+    <a href="index.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Home</a>
+    <a href="about.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+    <a href="services.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+    <a href="projects.html" class="font-display text-2xl tracking-widest uppercase text-iron-amber">Projects</a>
+    <a href="industries.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+    <a href="sustainability.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+    <a href="contact.html" class="bg-iron-amber text-iron-black font-display font-bold text-lg tracking-widest uppercase px-8 py-3">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="hero-bg min-h-[60vh] flex items-end">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-3">Our Work</p>
+      <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl uppercase leading-[0.9]">Project <span class="text-iron-amber">Gallery</span></h1>
+      <p class="text-iron-gray text-lg max-w-xl mt-6">Explore our portfolio of completed projects spanning commercial, industrial, infrastructure, and institutional sectors.</p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="bg-iron-surface border-y border-iron-border sticky top-20 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-wrap gap-3" id="filterBar">
+        <button class="filter-btn active font-display text-xs tracking-widest uppercase px-5 py-2 border border-iron-border rounded-none" data-filter="all">All Projects</button>
+        <button class="filter-btn font-display text-xs tracking-widest uppercase px-5 py-2 border border-iron-border rounded-none text-iron-gray hover:border-iron-amber" data-filter="commercial">Commercial</button>
+        <button class="filter-btn font-display text-xs tracking-widest uppercase px-5 py-2 border border-iron-border rounded-none text-iron-gray hover:border-iron-amber" data-filter="industrial">Industrial</button>
+        <button class="filter-btn font-display text-xs tracking-widest uppercase px-5 py-2 border border-iron-border rounded-none text-iron-gray hover:border-iron-amber" data-filter="infrastructure">Infrastructure</button>
+        <button class="filter-btn font-display text-xs tracking-widest uppercase px-5 py-2 border border-iron-border rounded-none text-iron-gray hover:border-iron-amber" data-filter="healthcare">Healthcare</button>
+        <button class="filter-btn font-display text-xs tracking-widest uppercase px-5 py-2 border border-iron-border rounded-none text-iron-gray hover:border-iron-amber" data-filter="education">Education</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsGrid">
+
+        <!-- Project 1 -->
+        <a href="project-detail.html" class="project-card group relative overflow-hidden h-80 reveal" data-category="healthcare">
+          <img src="https://images.pexels.com/photos/7108785/pexels-photo-7108785.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Lakefront Medical Center" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-iron-amber text-xs tracking-[0.2em] uppercase mb-1">Healthcare</p>
+            <h3 class="font-display font-bold text-xl uppercase">Lakefront Medical Center</h3>
+            <p class="text-iron-gray text-sm mt-1">Chicago, IL — $180M</p>
+          </div>
+        </a>
+
+        <!-- Project 2 -->
+        <a href="project-detail.html" class="project-card group relative overflow-hidden h-80 reveal" data-category="infrastructure">
+          <img src="https://images.pexels.com/photos/12048916/pexels-photo-12048916.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Riverside Bridge" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-iron-amber text-xs tracking-[0.2em] uppercase mb-1">Infrastructure</p>
+            <h3 class="font-display font-bold text-xl uppercase">Riverside Bridge Overhaul</h3>
+            <p class="text-iron-gray text-sm mt-1">Joliet, IL — $95M</p>
+          </div>
+        </a>
+
+        <!-- Project 3 -->
+        <a href="project-detail.html" class="project-card group relative overflow-hidden h-80 reveal" data-category="industrial">
+          <img src="https://images.pexels.com/photos/24304413/pexels-photo-24304413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Midwest Distribution Hub" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-iron-amber text-xs tracking-[0.2em] uppercase mb-1">Industrial</p>
+            <h3 class="font-display font-bold text-xl uppercase">Midwest Distribution Hub</h3>
+            <p class="text-iron-gray text-sm mt-1">Rockford, IL — $62M</p>
+          </div>
+        </a>
+
+        <!-- Project 4 -->
+        <a href="project-detail.html" class="project-card group relative overflow-hidden h-80 reveal" data-category="commercial">
+          <img src="https://images.pexels.com/photos/7108784/pexels-photo-7108784.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Gateway Tower" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-iron-amber text-xs tracking-[0.2em] uppercase mb-1">Commercial</p>
+            <h3 class="font-display font-bold text-xl uppercase">Gateway Tower</h3>
+            <p class="text-iron-gray text-sm mt-1">Naperville, IL — $125M</p>
+          </div>
+        </a>
+
+        <!-- Project 5 -->
+        <a href="project-detail.html" class="project-card group relative overflow-hidden h-80 reveal" data-category="education">
+          <img src="https://images.pexels.com/photos/18078304/pexels-photo-18078304.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Northern Illinois STEM Campus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-iron-amber text-xs tracking-[0.2em] uppercase mb-1">Education</p>
+            <h3 class="font-display font-bold text-xl uppercase">NIU STEM Campus Addition</h3>
+            <p class="text-iron-gray text-sm mt-1">DeKalb, IL — $88M</p>
+          </div>
+        </a>
+
+        <!-- Project 6 -->
+        <a href="project-detail.html" class="project-card group relative overflow-hidden h-80 reveal" data-category="commercial">
+          <img src="https://images.pexels.com/photos/17297091/pexels-photo-17297091.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Lincoln Park Mixed-Use" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-iron-amber text-xs tracking-[0.2em] uppercase mb-1">Commercial</p>
+            <h3 class="font-display font-bold text-xl uppercase">Lincoln Park Mixed-Use</h3>
+            <p class="text-iron-gray text-sm mt-1">Chicago, IL — $142M</p>
+          </div>
+        </a>
+
+        <!-- Project 7 -->
+        <a href="project-detail.html" class="project-card group relative overflow-hidden h-80 reveal" data-category="infrastructure">
+          <img src="https://images.pexels.com/photos/9304988/pexels-photo-9304988.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="I-55 Corridor Improvement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-iron-amber text-xs tracking-[0.2em] uppercase mb-1">Infrastructure</p>
+            <h3 class="font-display font-bold text-xl uppercase">I-55 Corridor Improvement</h3>
+            <p class="text-iron-gray text-sm mt-1">Will County, IL — $210M</p>
+          </div>
+        </a>
+
+        <!-- Project 8 -->
+        <a href="project-detail.html" class="project-card group relative overflow-hidden h-80 reveal" data-category="healthcare">
+          <img src="https://images.pexels.com/photos/5504388/pexels-photo-5504388.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Advocate Children's Hospital" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-iron-amber text-xs tracking-[0.2em] uppercase mb-1">Healthcare</p>
+            <h3 class="font-display font-bold text-xl uppercase">Advocate Children's Wing</h3>
+            <p class="text-iron-gray text-sm mt-1">Oak Lawn, IL — $75M</p>
+          </div>
+        </a>
+
+        <!-- Project 9 -->
+        <a href="project-detail.html" class="project-card group relative overflow-hidden h-80 reveal" data-category="industrial">
+          <img src="https://images.pexels.com/photos/3862377/pexels-photo-3862377.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Caterpillar Parts Facility" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6">
+            <p class="font-display text-iron-amber text-xs tracking-[0.2em] uppercase mb-1">Industrial</p>
+            <h3 class="font-display font-bold text-xl uppercase">Caterpillar Parts Facility</h3>
+            <p class="text-iron-gray text-sm mt-1">Aurora, IL — $94M</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-iron-surface border-t border-iron-border pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div>
+          <p class="font-display font-extrabold text-xl tracking-wider text-iron-amber mb-4">IRONCLAD <span class="text-iron-white">BUILDERS</span></p>
+          <p class="text-iron-gray text-sm leading-relaxed">Leading commercial construction and engineering firm based in Chicago, delivering excellence since 1987.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Quick Links</h4>
+          <div class="flex flex-col gap-2">
+            <a href="about.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">About Us</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Services</a>
+            <a href="projects.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Projects</a>
+            <a href="contact.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Services</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">General Contracting</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Design-Build</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Construction Management</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Pre-Construction</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Contact</h4>
+          <div class="flex flex-col gap-2">
+            <p class="text-iron-gray text-sm">200 W Adams Street, Suite 1200</p>
+            <p class="text-iron-gray text-sm">Chicago, IL 60606</p>
+            <p class="text-iron-gray text-sm">info@ironcladbuilders.com</p>
+            <p class="text-iron-gray text-sm">(312) 555-0187</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-iron-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-iron-gray text-xs">&copy; 2024 Ironclad Builders. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:linkedin" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:twitter" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:instagram" class="text-xl"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('translate-x-full');
+    }
+
+    // Scroll Reveal
+    function reveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+
+    // Project Filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        filterButtons.forEach(b => {
+          b.classList.remove('active');
+          b.classList.add('text-iron-gray');
+        });
+        btn.classList.add('active');
+        btn.classList.remove('text-iron-gray');
+
+        const filter = btn.dataset.filter;
+
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.classList.remove('hidden');
+            card.style.opacity = '0';
+            setTimeout(() => {
+              card.style.opacity = '1';
+            }, 50);
+          } else {
+            card.style.opacity = '0';
+            setTimeout(() => {
+              card.classList.add('hidden');
+            }, 300);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

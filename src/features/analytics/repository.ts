@@ -41,3 +41,9 @@ export async function listSitePageviewDays(
   const query = hasDateRange ? { siteId: oid, date: dateRange } : { siteId: oid };
   return db.collection<PageviewDay>(COLLECTION).find(query).toArray();
 }
+
+export async function deleteSitePageviews(siteId: string): Promise<void> {
+  const db = await getDb();
+  const oid = toObjectId(siteId);
+  await db.collection<PageviewDay>(COLLECTION).deleteMany({ siteId: oid });
+}

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industries | Ironclad Builders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'iron-black': '#111111',
+          'iron-white': '#F5F5F5',
+          'iron-gray': '#999999',
+          'iron-amber': '#F59E0B',
+          'iron-amber-dark': '#D97706',
+          'iron-surface': '#1A1A1A',
+          'iron-surface-light': '#222222',
+          'iron-border': '#333333',
+          'iron-steel': '#64748B',
+        },
+        fontFamily: {
+          display: ['Barlow Condensed', 'sans-serif'],
+          body: ['IBM Plex Sans', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .hero-bg { background-image: linear-gradient(rgba(17,17,17,0.75), rgba(17,17,17,0.75)), url('https://images.pexels.com/photos/1009926/pexels-photo-1009926.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center; }
+    .industry-section:nth-child(even) { background-color: #1A1A1A; }
+    .industry-section:nth-child(odd) { background-color: #111111; }
+  </style>
+</head>
+<body class="bg-iron-black text-iron-white font-body">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-iron-black/90 backdrop-blur-md border-b border-iron-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="font-display font-extrabold text-2xl tracking-wider text-iron-amber">IRONCLAD <span class="text-iron-white">BUILDERS</span></a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+          <a href="services.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+          <a href="projects.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Projects</a>
+          <a href="industries.html" class="font-display text-sm tracking-widest uppercase text-iron-amber">Industries</a>
+          <a href="sustainability.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+          <a href="contact.html" class="bg-iron-amber hover:bg-iron-amber-dark text-iron-black font-display font-bold text-sm tracking-widest uppercase px-6 py-3 transition-colors">Contact</a>
+        </div>
+        <button id="menuBtn" class="lg:hidden text-iron-white" onclick="toggleMenu()">
+          <iconify-icon icon="lucide:menu" class="text-3xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-[60] bg-iron-black flex flex-col items-center justify-center gap-8 transform translate-x-full transition-transform duration-300">
+    <button class="absolute top-6 right-6 text-iron-white" onclick="toggleMenu()">
+      <iconify-icon icon="lucide:x" class="text-3xl"></iconify-icon>
+    </button>
+    <a href="index.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Home</a>
+    <a href="about.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+    <a href="services.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+    <a href="projects.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Projects</a>
+    <a href="industries.html" class="font-display text-2xl tracking-widest uppercase text-iron-amber">Industries</a>
+    <a href="sustainability.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+    <a href="contact.html" class="bg-iron-amber text-iron-black font-display font-bold text-lg tracking-widest uppercase px-8 py-3">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="hero-bg min-h-[60vh] flex items-end">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-3">Expertise Across Sectors</p>
+      <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl uppercase leading-[0.9]">Industries <span class="text-iron-amber">Served</span></h1>
+      <p class="text-iron-gray text-lg max-w-xl mt-6">Deep sector knowledge across six core industries means we understand your unique requirements, regulations, and operational needs.</p>
+    </div>
+  </section>
+
+  <!-- Healthcare -->
+  <section class="industry-section py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-2">01</p>
+          <h2 class="font-display font-extrabold text-4xl uppercase mb-4">Healthcare</h2>
+          <p class="text-iron-gray leading-relaxed mb-4">Healthcare construction demands specialized expertise in infection control, medical gas systems, and regulatory compliance. Ironclad Builders has delivered over $500 million in healthcare facilities, including acute care hospitals, ambulatory surgery centers, and specialty clinics.</p>
+          <p class="text-iron-gray leading-relaxed mb-6">Our team understands the critical nature of minimizing disruption to active healthcare operations. We employ ICRA protocols, maintain strict clean-to-dirty workflows, and coordinate around the clock to keep your facility operational during construction.</p>
+          <div class="flex flex-wrap gap-4 mb-6">
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber">$500M+</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Completed</p>
+            </div>
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber counter" data-target="15">0</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Projects</p>
+            </div>
+          </div>
+          <a href="projects.html" class="inline-flex items-center gap-2 text-iron-amber font-display font-bold text-sm tracking-widest uppercase hover:text-iron-amber-dark transition-colors">View Projects <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon></a>
+        </div>
+        <div class="reveal">
+          <img src="https://images.pexels.com/photos/5504388/pexels-photo-5504388.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Healthcare facility" class="w-full h-[450px] object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="industry-section py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal order-2 lg:order-1">
+          <img src="https://images.pexels.com/photos/18078304/pexels-photo-18078304.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Educational campus" class="w-full h-[450px] object-cover">
+        </div>
+        <div class="reveal order-1 lg:order-2">
+          <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-2">02</p>
+          <h2 class="font-display font-extrabold text-4xl uppercase mb-4">Education</h2>
+          <p class="text-iron-gray leading-relaxed mb-4">From K-12 schools to university research facilities, Ironclad Builders understands the unique challenges of educational construction. Tight academic calendars, occupied campus environments, and strict budget constraints require a contractor who knows the sector.</p>
+          <p class="text-iron-gray leading-relaxed mb-6">We work closely with school districts and university planning teams to schedule construction during summer breaks and coordinate phasing to minimize disruption to classes. Our experience includes STEM labs, libraries, residence halls, and athletic facilities.</p>
+          <div class="flex flex-wrap gap-4 mb-6">
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber">$380M+</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Completed</p>
+            </div>
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber counter" data-target="22">0</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Projects</p>
+            </div>
+          </div>
+          <a href="projects.html" class="inline-flex items-center gap-2 text-iron-amber font-display font-bold text-sm tracking-widest uppercase hover:text-iron-amber-dark transition-colors">View Projects <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commercial -->
+  <section class="industry-section py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-2">03</p>
+          <h2 class="font-display font-extrabold text-4xl uppercase mb-4">Commercial</h2>
+          <p class="text-iron-gray leading-relaxed mb-4">Commercial construction is the foundation of Ironclad Builders. We build office towers, retail centers, hospitality venues, and mixed-use developments that drive economic growth in communities across the Midwest.</p>
+          <p class="text-iron-gray leading-relaxed mb-6">Our commercial team brings deep expertise in tenant fit-out, core and shell construction, and fast-track delivery methods. We understand that commercial projects demand aggressive schedules and tight budgets, and we deliver on both.</p>
+          <div class="flex flex-wrap gap-4 mb-6">
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber">$850M+</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Completed</p>
+            </div>
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber counter" data-target="45">0</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Projects</p>
+            </div>
+          </div>
+          <a href="projects.html" class="inline-flex items-center gap-2 text-iron-amber font-display font-bold text-sm tracking-widest uppercase hover:text-iron-amber-dark transition-colors">View Projects <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon></a>
+        </div>
+        <div class="reveal">
+          <img src="https://images.pexels.com/photos/7108785/pexels-photo-7108785.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Commercial building" class="w-full h-[450px] object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industrial -->
+  <section class="industry-section py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal order-2 lg:order-1">
+          <img src="https://images.pexels.com/photos/24304413/pexels-photo-24304413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Industrial facility" class="w-full h-[450px] object-cover">
+        </div>
+        <div class="reveal order-1 lg:order-2">
+          <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-2">04</p>
+          <h2 class="font-display font-extrabold text-4xl uppercase mb-4">Industrial</h2>
+          <p class="text-iron-gray leading-relaxed mb-4">Industrial construction requires precision engineering, heavy structural systems, and deep knowledge of manufacturing processes. Ironclad has built distribution centers, manufacturing plants, cold storage facilities, and data centers for major industrial clients.</p>
+          <p class="text-iron-gray leading-relaxed mb-6">Our industrial team works alongside plant engineers and operations managers to ensure new facilities integrate seamlessly with existing production lines. We understand the importance of minimizing downtime and delivering facilities that perform from day one.</p>
+          <div class="flex flex-wrap gap-4 mb-6">
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber">$420M+</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Completed</p>
+            </div>
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber counter" data-target="18">0</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Projects</p>
+            </div>
+          </div>
+          <a href="projects.html" class="inline-flex items-center gap-2 text-iron-amber font-display font-bold text-sm tracking-widest uppercase hover:text-iron-amber-dark transition-colors">View Projects <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Infrastructure -->
+  <section class="industry-section py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-2">05</p>
+          <h2 class="font-display font-extrabold text-4xl uppercase mb-4">Infrastructure</h2>
+          <p class="text-iron-gray leading-relaxed mb-4">Infrastructure projects form the backbone of communities, and Ironclad Builders has been a trusted partner for public and private infrastructure work for over three decades. Our projects include bridges, highways, water treatment facilities, and utility systems.</p>
+          <p class="text-iron-gray leading-relaxed mb-6">We hold DOT pre-qualification in Illinois, Indiana, and Wisconsin, and our civil engineering team manages projects ranging from roadway reconstruction to complex bridge rehabilitations. Our commitment to safety and quality has earned us repeat contracts with IDOT, Cook County, and the City of Chicago.</p>
+          <div class="flex flex-wrap gap-4 mb-6">
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber">$620M+</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Completed</p>
+            </div>
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber counter" data-target="30">0</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Projects</p>
+            </div>
+          </div>
+          <a href="projects.html" class="inline-flex items-center gap-2 text-iron-amber font-display font-bold text-sm tracking-widest uppercase hover:text-iron-amber-dark transition-colors">View Projects <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon></a>
+        </div>
+        <div class="reveal">
+          <img src="https://images.pexels.com/photos/12048916/pexels-photo-12048916.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bridge infrastructure" class="w-full h-[450px] object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mixed-Use -->
+  <section class="industry-section py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal order-2 lg:order-1">
+          <img src="https://images.pexels.com/photos/17297091/pexels-photo-17297091.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Mixed-use development" class="w-full h-[450px] object-cover">
+        </div>
+        <div class="reveal order-1 lg:order-2">
+          <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-2">06</p>
+          <h2 class="font-display font-extrabold text-4xl uppercase mb-4">Mixed-Use</h2>
+          <p class="text-iron-gray leading-relaxed mb-4">Mixed-use developments are among the most complex projects in construction, combining residential, commercial, retail, and sometimes industrial uses in a single structure. Ironclad Builders has delivered over $700 million in mixed-use projects in the Chicago metropolitan area.</p>
+          <p class="text-iron-gray leading-relaxed mb-6">Our experience includes podium construction, high-rise residential towers with ground-floor retail, adaptive reuse of historic buildings, and transit-oriented developments. We navigate the complexities of multiple building codes, HOA requirements, and phasing strategies that these projects demand.</p>
+          <div class="flex flex-wrap gap-4 mb-6">
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber">$700M+</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Completed</p>
+            </div>
+            <div class="bg-iron-surface-light px-4 py-2">
+              <p class="font-display font-extrabold text-2xl text-iron-amber counter" data-target="28">0</p>
+              <p class="font-display text-xs tracking-widest uppercase text-iron-gray">Projects</p>
+            </div>
+          </div>
+          <a href="projects.html" class="inline-flex items-center gap-2 text-iron-amber font-display font-bold text-sm tracking-widest uppercase hover:text-iron-amber-dark transition-colors">View Projects <iconify-icon icon="lucide:arrow-right" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-iron-amber">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <h2 class="font-display font-extrabold text-4xl sm:text-5xl uppercase text-iron-black mb-6">Your Industry. <span class="underline decoration-2">Our Expertise.</span></h2>
+      <p class="text-iron-black/70 text-lg max-w-2xl mx-auto mb-8">No matter your sector, Ironclad Builders has the specialized knowledge to deliver your project safely, on time, and within budget.</p>
+      <a href="contact.html" class="inline-flex items-center gap-2 bg-iron-black hover:bg-iron-surface text-iron-white font-display font-bold text-sm tracking-widest uppercase px-8 py-4 transition-colors">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-iron-surface border-t border-iron-border pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div>
+          <p class="font-display font-extrabold text-xl tracking-wider text-iron-amber mb-4">IRONCLAD <span class="text-iron-white">BUILDERS</span></p>
+          <p class="text-iron-gray text-sm leading-relaxed">Leading commercial construction and engineering firm based in Chicago, delivering excellence since 1987.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Quick Links</h4>
+          <div class="flex flex-col gap-2">
+            <a href="about.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">About Us</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Services</a>
+            <a href="projects.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Projects</a>
+            <a href="contact.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Services</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">General Contracting</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Design-Build</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Construction Management</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Pre-Construction</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Contact</h4>
+          <div class="flex flex-col gap-2">
+            <p class="text-iron-gray text-sm">200 W Adams Street, Suite 1200</p>
+            <p class="text-iron-gray text-sm">Chicago, IL 60606</p>
+            <p class="text-iron-gray text-sm">info@ironcladbuilders.com</p>
+            <p class="text-iron-gray text-sm">(312) 555-0187</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-iron-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-iron-gray text-xs">&copy; 2024 Ironclad Builders. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:linkedin" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:twitter" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:instagram" class="text-xl"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('translate-x-full');
+    }
+    function reveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+    function animateCounters() {
+      document.querySelectorAll('.counter').forEach(counter => {
+        if (counter.dataset.animated) return;
+        const rect = counter.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          counter.dataset.animated = 'true';
+          const target = +counter.dataset.target;
+          const duration = 2000;
+          const start = performance.now();
+          function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = Math.floor(target * eased) + '+';
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+        }
+      });
+    }
+    window.addEventListener('scroll', animateCounters);
+    window.addEventListener('load', animateCounters);
+  </script>
+</body>
+</html>

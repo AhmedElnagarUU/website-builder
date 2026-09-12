@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio — Volatile Studios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'vol-black': '#0A0A0A',
+          'vol-white': '#F5F5F5',
+          'vol-gray': '#888888',
+          'vol-accent': '#E8FF00',
+          'vol-accent-hover': '#CCFF00',
+          'vol-surface': '#141414',
+          'vol-surface-light': '#1A1A1A',
+          'vol-border': '#2A2A2A',
+        },
+        fontFamily: {
+          display: ['Space Grotesk', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0A0A0A; color: #F5F5F5; overflow-x: hidden; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .section-title { font-size: clamp(2.5rem, 7vw, 6rem); line-height: 1; letter-spacing: -0.02em; }
+    .hero-title { font-size: clamp(3rem, 10vw, 9rem); line-height: 0.95; letter-spacing: -0.03em; }
+    .text-stroke { -webkit-text-stroke: 1.5px #F5F5F5; color: transparent; }
+    .text-stroke-accent { -webkit-text-stroke: 1.5px #E8FF00; color: transparent; }
+    .img-hover { overflow: hidden; border-radius: 8px; }
+    .img-hover img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .img-hover:hover img { transform: scale(1.05); }
+    .line-accent { position: relative; }
+    .line-accent::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 3px; background: #E8FF00; transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .line-accent:hover::after { transform: scaleX(1); transform-origin: left; }
+    .custom-cursor { width: 16px; height: 16px; border: 2px solid #E8FF00; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: width 0.3s, height 0.3s, border-color 0.3s; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+    .custom-cursor.hover { width: 48px; height: 48px; border-color: #CCFF00; }
+    .nav-open { transform: translateY(0) !important; }
+    .nav-open-body { overflow: hidden; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #E8FF00; color: #0A0A0A; font-weight: 600; font-family: 'Space Grotesk', sans-serif; border-radius: 100px; transition: background 0.3s, transform 0.3s; }
+    .btn-primary:hover { background: #CCFF00; transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; border: 1px solid #2A2A2A; color: #F5F5F5; font-weight: 500; font-family: 'Space Grotesk', sans-serif; border-radius: 100px; transition: border-color 0.3s, color 0.3s; }
+    .btn-outline:hover { border-color: #E8FF00; color: #E8FF00; }
+    .team-card { position: relative; overflow: hidden; border-radius: 8px; }
+    .team-card img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .team-card:hover img { transform: scale(1.05); }
+    @media (max-width: 768px) { .custom-cursor { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 w-full z-50 mix-blend-difference">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" class="font-display font-bold text-2xl tracking-tight text-vol-white">VOLATILE</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="work.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Work</a>
+        <a href="services.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Services</a>
+        <a href="about.html" class="font-display text-sm font-medium text-vol-accent transition-colors line-accent">Studio</a>
+        <a href="process.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Process</a>
+        <a href="insights.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Insights</a>
+        <a href="contact.html" class="btn-primary text-sm py-2.5 px-5">Contact</a>
+      </div>
+      <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 z-[60]">
+        <span class="block w-7 h-[2px] bg-vol-white transition-all" id="bar1"></span>
+        <span class="block w-5 h-[2px] bg-vol-accent transition-all" id="bar2"></span>
+        <span class="block w-7 h-[2px] bg-vol-white transition-all" id="bar3"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 z-[55] bg-vol-black flex flex-col items-center justify-center gap-8 transform -translate-y-full transition-transform duration-500 md:hidden">
+    <a href="work.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Work</a>
+    <a href="services.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Services</a>
+    <a href="about.html" class="font-display text-4xl font-bold text-vol-accent transition-colors">Studio</a>
+    <a href="process.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Process</a>
+    <a href="insights.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Insights</a>
+    <a href="contact.html" class="font-display text-4xl font-bold text-vol-accent hover:text-vol-accent-hover transition-colors">Contact</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="min-h-[70vh] flex flex-col justify-end px-6 md:px-10 pt-32 pb-16">
+    <div class="max-w-[1400px] mx-auto w-full">
+      <p class="text-vol-accent font-display text-sm font-medium tracking-widest uppercase mb-4 reveal">The Studio</p>
+      <h1 class="hero-title font-display font-bold text-vol-white reveal" style="transition-delay: 0.1s">
+        18 creatives.<br>
+        <span class="text-stroke-accent">One vision.</span><br>
+        <span class="text-vol-accent">No limits.</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="py-24 md:py-32 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div class="reveal">
+          <h2 class="section-title font-display font-bold mb-8">Born in the chaos. Built for <span class="text-vol-accent">impact.</span></h2>
+          <p class="font-body text-vol-gray text-lg leading-relaxed mb-6">
+            Volatile Studios launched in 2018 in a converted warehouse in Downtown Los Angeles. What started as three freelancers with a shared love for bold design grew into an 18-person creative powerhouse serving some of the most ambitious brands in the country.
+          </p>
+          <p class="font-body text-vol-gray text-lg leading-relaxed mb-6">
+            We chose the name "Volatile" on purpose. We wanted a brand that implied energy, unpredictability, and the kind of creative spark that can't be contained. We don't follow trends — we start them.
+          </p>
+          <p class="font-body text-vol-gray text-lg leading-relaxed">
+            Our work lives at the intersection of strategy and aesthetics. We believe every brand deserves to be felt, not just seen. That belief has driven over 120 successful projects across industries.
+          </p>
+        </div>
+        <div class="space-y-6 reveal" style="transition-delay: 0.2s">
+          <div class="img-hover">
+            <img src="https://images.pexels.com/photos/19400118/pexels-photo-19400118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Creative Office" class="w-full aspect-[4/3] object-cover rounded-lg">
+          </div>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="img-hover">
+              <img src="https://images.pexels.com/photos/8367791/pexels-photo-8367791.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Workspace" class="w-full aspect-square object-cover rounded-lg">
+            </div>
+            <div class="img-hover">
+              <img src="https://images.pexels.com/photos/7302076/pexels-photo-7302076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Team" class="w-full aspect-square object-cover rounded-lg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section class="py-24 md:py-32 bg-vol-surface px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="mb-16 reveal">
+        <p class="text-vol-accent font-display text-sm font-medium tracking-widest uppercase mb-4">Our Values</p>
+        <h2 class="section-title font-display font-bold">What drives every pixel.</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="p-8 border border-vol-border rounded-lg hover:border-vol-accent transition-colors group reveal">
+          <div class="w-14 h-14 bg-vol-accent/10 rounded-lg flex items-center justify-center mb-6">
+            <iconify-icon icon="ph:lightning-bold" width="28" class="text-vol-accent"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3 group-hover:text-vol-accent transition-colors">Fearless Creativity</h3>
+          <p class="font-body text-vol-gray leading-relaxed">We never play it safe. Every project is a chance to push boundaries, break conventions, and create something the world hasn't seen before.</p>
+        </div>
+        <div class="p-8 border border-vol-border rounded-lg hover:border-vol-accent transition-colors group reveal" style="transition-delay: 0.1s">
+          <div class="w-14 h-14 bg-vol-accent/10 rounded-lg flex items-center justify-center mb-6">
+            <iconify-icon icon="ph:strategy-bold" width="28" class="text-vol-accent"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3 group-hover:text-vol-accent transition-colors">Strategy First</h3>
+          <p class="font-body text-vol-gray leading-relaxed">Beauty without purpose is decoration. We start every engagement with deep research, audience insight, and a clear strategic direction.</p>
+        </div>
+        <div class="p-8 border border-vol-border rounded-lg hover:border-vol-accent transition-colors group reveal" style="transition-delay: 0.2s">
+          <div class="w-14 h-14 bg-vol-accent/10 rounded-lg flex items-center justify-center mb-6">
+            <iconify-icon icon="ph:heart-bold" width="28" class="text-vol-accent"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl mb-3 group-hover:text-vol-accent transition-colors">Obsessive Craft</h3>
+          <p class="font-body text-vol-gray leading-relaxed">The details are the brand. We obsess over every kerning choice, every color, every micro-interaction because excellence lives in the margins.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="py-24 md:py-32 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="mb-16 reveal">
+        <p class="text-vol-accent font-display text-sm font-medium tracking-widest uppercase mb-4">The Team</p>
+        <h2 class="section-title font-display font-bold">The people behind<br>the <span class="text-stroke-accent">pixels.</span></h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="team-card reveal">
+          <img src="https://images.pexels.com/photos/6925033/pexels-photo-6925033.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Marcus Webb" class="w-full aspect-[3/4] object-cover">
+          <div class="mt-4">
+            <h3 class="font-display font-bold text-lg">Marcus Webb</h3>
+            <p class="font-body text-vol-gray text-sm">Founder & Creative Director</p>
+          </div>
+        </div>
+        <div class="team-card reveal" style="transition-delay: 0.1s">
+          <img src="https://images.pexels.com/photos/36730527/pexels-photo-36730527.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Anika Patel" class="w-full aspect-[3/4] object-cover">
+          <div class="mt-4">
+            <h3 class="font-display font-bold text-lg">Anika Patel</h3>
+            <p class="font-body text-vol-gray text-sm">Head of Strategy</p>
+          </div>
+        </div>
+        <div class="team-card reveal" style="transition-delay: 0.2s">
+          <img src="https://images.pexels.com/photos/6580554/pexels-photo-6580554.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Jordan Lee" class="w-full aspect-[3/4] object-cover">
+          <div class="mt-4">
+            <h3 class="font-display font-bold text-lg">Jordan Lee</h3>
+            <p class="font-body text-vol-gray text-sm">Design Lead</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients Marquee -->
+  <div class="py-6 border-y border-vol-border">
+    <div class="marquee-container">
+      <div class="marquee-track" style="display:inline-flex; animation: marquee 20s linear infinite;">
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Neon Athletics</span>
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Prism Cosmetics</span>
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Elevate Coffee</span>
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Flux Music Festival</span>
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Urban Nomad Apparel</span>
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Neon Athletics</span>
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Prism Cosmetics</span>
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Elevate Coffee</span>
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Flux Music Festival</span>
+        <span class="font-display text-3xl md:text-5xl font-bold text-vol-white mx-8 opacity-30">Urban Nomad Apparel</span>
+      </div>
+    </div>
+  </div>
+  <style>@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }</style>
+
+  <!-- CTA -->
+  <section class="py-24 md:py-32 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto text-center">
+      <h2 class="section-title font-display font-bold mb-6 reveal">
+        Want to join the <span class="text-vol-accent">volatile</span> team?
+      </h2>
+      <p class="font-body text-vol-gray text-lg mb-10 max-w-[500px] mx-auto reveal" style="transition-delay: 0.1s">
+        We're always looking for talent that refuses to be ordinary. If you're bold, ambitious, and obsessed with craft — let's talk.
+      </p>
+      <a href="contact.html" class="btn-primary reveal" style="transition-delay: 0.2s">
+        Get in Touch
+        <iconify-icon icon="ph:arrow-right-bold" width="18"></iconify-icon>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-vol-border py-16 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-10 mb-16">
+        <div>
+          <p class="text-vol-gray text-sm font-body mb-2">Let's Talk</p>
+          <a href="contact.html" class="font-display font-bold text-4xl md:text-6xl lg:text-7xl text-vol-white hover:text-vol-accent transition-colors">hello@volatilestudios.com</a>
+        </div>
+        <div class="flex gap-4">
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:instagram-logo" width="20"></iconify-icon></a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:twitter-logo" width="20"></iconify-icon></a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:linkedin-logo" width="20"></iconify-icon></a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:dribbble-logo" width="20"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-vol-border">
+        <p class="font-body text-vol-gray text-xs">&copy; 2026 Volatile Studios. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="font-body text-vol-gray text-xs hover:text-vol-white transition-colors">Privacy</a>
+          <a href="#" class="font-body text-vol-gray text-xs hover:text-vol-white transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('nav-open');
+      document.body.classList.toggle('nav-open-body');
+      bar1.style.transform = menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '';
+      bar2.style.opacity = menuOpen ? '0' : '1';
+      bar3.style.transform = menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : '';
+    });
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+    document.querySelectorAll('a, button, .team-card, .btn-primary, .btn-outline').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

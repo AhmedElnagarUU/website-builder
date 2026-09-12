@@ -11,7 +11,7 @@ export function LanguageSwitcher({ currentLocale }: { currentLocale: Locale }) {
   const searchParams = useSearchParams();
 
   const otherLocale: Locale = currentLocale === "en" ? "ar" : "en";
-  const otherLabel = otherLocale === "ar" ? "العربية" : "English";
+  const otherLabel = otherLocale;
 
   function onClick() {
     const segments = pathname.split("/");

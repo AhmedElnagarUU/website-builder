@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infinity Villa — The Meridian, Santorini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'navy': '#0D1B2A',
+        'navy-light': '#1B2D45',
+        'navy-border': '#2A3F5F',
+        'cream': '#F0E6D3',
+        'cream-light': '#FAF8F5',
+        'gold': '#C8A96E',
+        'gold-muted': '#A09880',
+      },
+      fontFamily: {
+        display: ['Cormorant Garamond', 'serif'],
+        body: ['Lato', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lato', sans-serif; background: #0D1B2A; color: #F0E6D3; }
+  .gold-line { width: 60px; height: 1px; background: #C8A96E; }
+  .gold-line-wide { width: 100px; height: 1px; background: #C8A96E; }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #C8A96E; transition: width 0.3s ease; }
+  .nav-link:hover::after { width: 100%; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  .mobile-menu { transform: translateX(100%); transition: transform 0.4s ease; }
+  .mobile-menu.open { transform: translateX(0); }
+  .overlay { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+  .overlay.open { opacity: 1; pointer-events: all; }
+  .lightbox { display: none; }
+  .lightbox.active { display: flex; }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="mainNav">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="rooms.html" class="nav-link text-gold text-sm tracking-widest uppercase font-body">Stay</a>
+      <a href="dining.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Dining</a>
+      <a href="experiences.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Experiences</a>
+    </div>
+    <a href="index.html" class="font-display text-2xl md:text-3xl tracking-[0.3em] text-cream font-light">THE MERIDIAN</a>
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="gallery.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Gallery</a>
+      <a href="about.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">About</a>
+      <a href="contact.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Contact</a>
+    </div>
+    <button id="menuBtn" class="lg:hidden text-cream">
+      <iconify-icon icon="heroicons:bars-3" width="28"></iconify-icon>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="overlay fixed inset-0 bg-black/60 z-50" id="overlay"></div>
+<div class="mobile-menu fixed top-0 right-0 w-80 h-full bg-navy-light z-50 flex flex-col justify-center items-center space-y-8" id="mobileMenu">
+  <button id="closeMenu" class="absolute top-6 right-6 text-cream">
+    <iconify-icon icon="heroicons:x-mark" width="28"></iconify-icon>
+  </button>
+  <a href="index.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">HOME</a>
+  <a href="rooms.html" class="font-display text-xl tracking-[0.2em] text-gold">STAY</a>
+  <a href="dining.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">DINING</a>
+  <a href="experiences.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">EXPERIENCES</a>
+  <a href="gallery.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">GALLERY</a>
+  <a href="about.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">ABOUT</a>
+  <a href="contact.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">CONTACT</a>
+</div>
+
+<!-- Breadcrumb -->
+<section class="pt-24 pb-6 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex items-center text-cream/40 font-body text-sm space-x-2">
+      <a href="index.html" class="hover:text-cream transition-colors">Home</a>
+      <span>/</span>
+      <a href="rooms.html" class="hover:text-cream transition-colors">Suites & Villas</a>
+      <span>/</span>
+      <span class="text-cream">Infinity Villa</span>
+    </div>
+  </div>
+</section>
+
+<!-- Image Gallery -->
+<section class="bg-navy">
+  <div class="max-w-7xl mx-auto px-6 pb-8">
+    <div class="grid grid-cols-4 gap-2 h-[500px]">
+      <div class="col-span-4 md:col-span-2 row-span-2 overflow-hidden cursor-pointer" onclick="openLightbox(0)">
+        <img src="https://images.pexels.com/photos/34496702/pexels-photo-34496702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Infinity Villa" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="overflow-hidden cursor-pointer" onclick="openLightbox(1)">
+        <img src="https://images.pexels.com/photos/34496715/pexels-photo-34496715.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Villa Interior" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="overflow-hidden cursor-pointer" onclick="openLightbox(2)">
+        <img src="https://images.pexels.com/photos/18161061/pexels-photo-18161061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Villa Bathroom" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="overflow-hidden cursor-pointer" onclick="openLightbox(3)">
+        <img src="https://images.pexels.com/photos/2259226/pexels-photo-2259226.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Villa Pool" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="overflow-hidden cursor-pointer" onclick="openLightbox(4)">
+        <img src="https://images.pexels.com/photos/2222614/pexels-photo-2222614.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Villa Terrace" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Room Info -->
+<section class="py-16 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-16">
+      <div class="md:col-span-2 reveal">
+        <div class="flex items-center space-x-4 mb-4">
+          <span class="bg-gold/10 text-gold text-xs tracking-[0.2em] uppercase px-4 py-2 font-body">Signature Villa</span>
+          <span class="text-gold-muted text-xs tracking-[0.2em] uppercase font-body">120 sqm</span>
+        </div>
+        <h1 class="font-display text-4xl md:text-5xl text-cream mb-6">Infinity Villa</h1>
+        <div class="gold-line mb-8"></div>
+        <p class="text-cream/70 font-body text-lg leading-relaxed mb-6">The Infinity Villa represents the ultimate expression of luxury at The Meridian. Perched at the highest point of our property, this two-level villa offers an unparalleled living experience where indoor and outdoor spaces flow seamlessly into one another, all framed by the most breathtaking caldera views in Santorini.</p>
+        <p class="text-cream/70 font-body text-lg leading-relaxed mb-8">The ground floor features a spacious living area with floor-to-ceiling windows, a fully equipped kitchenette, and direct access to the heated infinity pool that appears to cascade into the Aegean below. Upstairs, the master bedroom suite is a sanctuary of calm with a king-size bed, walk-in closet, and a private balcony perfectly positioned for sunrise views.</p>
+
+        <h2 class="font-display text-2xl text-cream mb-6">Highlights</h2>
+        <div class="grid md:grid-cols-2 gap-4 mb-10">
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Heated private infinity pool
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Panoramic caldera & volcano views
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Two-level layout with private garden
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Dedicated butler service
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Outdoor dining area with BBQ
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            ESPA bath amenities
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Bang & Olufsen sound system
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Complimentary minibar & wine
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Nespresso machine & tea selection
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            24-hour room service
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Daily housekeeping & turndown
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Smart home controls
+          </div>
+        </div>
+
+        <h2 class="font-display text-2xl text-cream mb-6">Room Layout</h2>
+        <div class="grid md:grid-cols-3 gap-6 mb-10">
+          <div class="border border-navy-border p-6 text-center">
+            <iconify-icon icon="mdi:sofa" width="28" class="text-gold mx-auto mb-3"></iconify-icon>
+            <p class="text-cream font-display text-lg mb-1">Living Room</p>
+            <p class="text-cream/50 font-body text-sm">Open-plan with panoramic windows</p>
+          </div>
+          <div class="border border-navy-border p-6 text-center">
+            <iconify-icon icon="mdi:bed-king" width="28" class="text-gold mx-auto mb-3"></iconify-icon>
+            <p class="text-cream font-display text-lg mb-1">Master Bedroom</p>
+            <p class="text-cream/50 font-body text-sm">King bed with private balcony</p>
+          </div>
+          <div class="border border-navy-border p-6 text-center">
+            <iconify-icon icon="mdi:pool" width="28" class="text-gold mx-auto mb-3"></iconify-icon>
+            <p class="text-cream font-display text-lg mb-1">Infinity Pool</p>
+            <p class="text-cream/50 font-body text-sm">Heated, 12m with caldera views</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Booking -->
+      <div class="reveal">
+        <div class="bg-navy-light border border-navy-border p-8 sticky top-24">
+          <div class="text-center mb-8">
+            <p class="text-gold-muted text-xs tracking-[0.2em] uppercase font-body mb-2">Starting from</p>
+            <p class="font-display text-4xl text-cream">€1,450</p>
+            <p class="text-cream/50 font-body text-sm">per night</p>
+          </div>
+          <div class="gold-line-wide mx-auto mb-8"></div>
+          <div class="space-y-4 mb-8">
+            <div>
+              <label class="text-cream/60 font-body text-xs tracking-widest uppercase block mb-2">Check-in</label>
+              <input type="date" class="w-full bg-navy border border-navy-border px-4 py-3 text-cream font-body text-sm focus:outline-none focus:border-gold transition-colors">
+            </div>
+            <div>
+              <label class="text-cream/60 font-body text-xs tracking-widest uppercase block mb-2">Check-out</label>
+              <input type="date" class="w-full bg-navy border border-navy-border px-4 py-3 text-cream font-body text-sm focus:outline-none focus:border-gold transition-colors">
+            </div>
+            <div>
+              <label class="text-cream/60 font-body text-xs tracking-widest uppercase block mb-2">Guests</label>
+              <select class="w-full bg-navy border border-navy-border px-4 py-3 text-cream font-body text-sm focus:outline-none focus:border-gold transition-colors">
+                <option>1 Guest</option>
+                <option>2 Guests</option>
+                <option>3 Guests</option>
+                <option>4 Guests</option>
+              </select>
+            </div>
+          </div>
+          <a href="contact.html" class="block w-full bg-gold text-navy text-center py-4 text-sm tracking-[0.2em] uppercase font-body hover:bg-gold-muted transition-colors mb-4">Check Availability</a>
+          <p class="text-cream/40 font-body text-xs text-center">Best rate guarantee • Free cancellation</p>
+          <div class="border-t border-navy-border mt-6 pt-6 space-y-3">
+            <div class="flex items-center text-cream/50 font-body text-sm">
+              <iconify-icon icon="heroicons:check" width="14" class="text-gold mr-2"></iconify-icon>
+              Breakfast included
+            </div>
+            <div class="flex items-center text-cream/50 font-body text-sm">
+              <iconify-icon icon="heroicons:check" width="14" class="text-gold mr-2"></iconify-icon>
+              Airport transfer available
+            </div>
+            <div class="flex items-center text-cream/50 font-body text-sm">
+              <iconify-icon icon="heroicons:check" width="14" class="text-gold mr-2"></iconify-icon>
+              Spa credit included
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- More Room Photos -->
+<section class="py-16 bg-navy-light">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-12 reveal">
+      <h2 class="font-display text-3xl text-cream">In Every Detail</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+      <div class="overflow-hidden aspect-square cursor-pointer" onclick="openLightbox(5)">
+        <img src="https://images.pexels.com/photos/14011664/pexels-photo-14011664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Villa detail" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+      </div>
+      <div class="overflow-hidden aspect-square cursor-pointer" onclick="openLightbox(6)">
+        <img src="https://images.pexels.com/photos/6634828/pexels-photo-6634828.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Villa detail" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+      </div>
+      <div class="overflow-hidden aspect-square cursor-pointer" onclick="openLightbox(7)">
+        <img src="https://images.pexels.com/photos/13871291/pexels-photo-13871291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Villa detail" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+      </div>
+      <div class="overflow-hidden aspect-square cursor-pointer" onclick="openLightbox(8)">
+        <img src="https://images.pexels.com/photos/10611880/pexels-photo-10611880.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Villa detail" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Policies -->
+<section class="py-16 bg-navy">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8 text-center reveal">
+      <div>
+        <iconify-icon icon="heroicons:clock" width="28" class="text-gold mx-auto mb-4"></iconify-icon>
+        <h3 class="font-display text-lg text-cream mb-2">Check-in / Check-out</h3>
+        <p class="text-cream/50 font-body text-sm">Check-in from 15:00<br>Check-out by 11:00</p>
+      </div>
+      <div>
+        <iconify-icon icon="heroicons:heart" width="28" class="text-gold mx-auto mb-4"></iconify-icon>
+        <h3 class="font-display text-lg text-cream mb-2">Cancellation Policy</h3>
+        <p class="text-cream/50 font-body text-sm">Free cancellation up to 72 hours before arrival</p>
+      </div>
+      <div>
+        <iconify-icon icon="mdi:dog" width="28" class="text-gold mx-auto mb-4"></iconify-icon>
+        <h3 class="font-display text-lg text-cream mb-2">Pet Policy</h3>
+        <p class="text-cream/50 font-body text-sm">Small pets welcome in select villas with advance notice</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-navy border-t border-navy-border">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-4 gap-12">
+      <div>
+        <h4 class="font-display text-xl tracking-[0.2em] text-cream mb-6">THE MERIDIAN</h4>
+        <p class="text-cream/50 font-body text-sm leading-relaxed mb-6">An exclusive luxury beachfront resort overlooking the caldera in Santorini, Greece.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:instagram" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:facebook" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:twitter" width="18" class="text-gold"></iconify-icon>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Quick Links</h5>
+        <ul class="space-y-3">
+          <li><a href="rooms.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Dining</a></li>
+          <li><a href="experiences.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Experiences</a></li>
+          <li><a href="gallery.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Gallery</a></li>
+          <li><a href="about.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Contact</h5>
+        <ul class="space-y-3">
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:map-pin" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            Oia, Santorini 847 02, Greece
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:phone" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            +30 22860 71234
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:envelope" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            reservations@themeridian.gr
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Newsletter</h5>
+        <p class="text-cream/50 font-body text-sm mb-4">Subscribe for exclusive offers and updates.</p>
+        <div class="flex">
+          <input type="email" placeholder="Your email" class="bg-navy border border-navy-border px-4 py-3 text-cream text-sm font-body focus:outline-none focus:border-gold transition-colors w-full">
+          <button class="bg-gold text-navy px-4 py-3 hover:bg-gold-muted transition-colors">
+            <iconify-icon icon="heroicons:paper-airplane" width="16"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-navy-border mt-12 pt-8 text-center">
+      <p class="text-cream/30 font-body text-xs">© 2026 The Meridian. All rights reserved. | Oia, Santorini, Greece</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox fixed inset-0 bg-black/95 z-[60] items-center justify-center flex-col p-4">
+  <button onclick="closeLightbox()" class="absolute top-6 right-6 text-cream/60 hover:text-cream z-10">
+    <iconify-icon icon="heroicons:x-mark" width="32"></iconify-icon>
+  </button>
+  <button onclick="prevImage()" class="absolute left-4 md:left-8 text-cream/60 hover:text-cream z-10">
+    <iconify-icon icon="heroicons:chevron-left" width="40"></iconify-icon>
+  </button>
+  <button onclick="nextImage()" class="absolute right-4 md:right-8 text-cream/60 hover:text-cream z-10">
+    <iconify-icon icon="heroicons:chevron-right" width="40"></iconify-icon>
+  </button>
+  <img id="lightboxImg" src="" alt="" class="max-w-full max-h-[85vh] object-contain">
+  <p id="lightboxCaption" class="text-cream/50 font-body text-sm mt-4"></p>
+</div>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const closeMenu = document.getElementById('closeMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+const overlay = document.getElementById('overlay');
+menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); overlay.classList.add('open'); });
+closeMenu.addEventListener('click', () => { mobileMenu.classList.remove('open'); overlay.classList.remove('open'); });
+overlay.addEventListener('click', () => { mobileMenu.classList.remove('open'); overlay.classList.remove('open'); });
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 50) { nav.style.background = 'rgba(13, 27, 42, 0.95)'; nav.style.backdropFilter = 'blur(10px)'; }
+  else { nav.style.background = 'transparent'; nav.style.backdropFilter = 'none'; }
+});
+const reveals = document.querySelectorAll('.reveal');
+const revealOnScroll = () => { reveals.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); }); };
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+
+// Lightbox
+const images = [
+  { src: 'https://images.pexels.com/photos/34496702/pexels-photo-34496702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', caption: 'Infinity Villa — Main Living Area' },
+  { src: 'https://images.pexels.com/photos/34496715/pexels-photo-34496715.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', caption: 'Master Bedroom with Caldera Views' },
+  { src: 'https://images.pexels.com/photos/18161061/pexels-photo-18161061.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', caption: 'Spa-Inspired Bathroom' },
+  { src: 'https://images.pexels.com/photos/2259226/pexels-photo-2259226.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', caption: 'Private Infinity Pool' },
+  { src: 'https://images.pexels.com/photos/2222614/pexels-photo-2222614.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', caption: 'Sunset Terrace' },
+  { src: 'https://images.pexels.com/photos/14011664/pexels-photo-14011664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', caption: 'Interior Details' },
+  { src: 'https://images.pexels.com/photos/6634828/pexels-photo-6634828.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', caption: 'Spa Amenities' },
+  { src: 'https://images.pexels.com/photos/13871291/pexels-photo-13871291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', caption: 'Breakfast Service' },
+  { src: 'https://images.pexels.com/photos/10611880/pexels-photo-10611880.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940', caption: 'Santorini Landscape' },
+];
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function nextImage() { currentIndex = (currentIndex + 1) % images.length; updateLightbox(); }
+function prevImage() { currentIndex = (currentIndex - 1 + images.length) % images.length; updateLightbox(); }
+function updateLightbox() {
+  document.getElementById('lightboxImg').src = images[currentIndex].src;
+  document.getElementById('lightboxCaption').textContent = images[currentIndex].caption;
+}
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') nextImage();
+  if (e.key === 'ArrowLeft') prevImage();
+});
+</script>
+</body>
+</html>

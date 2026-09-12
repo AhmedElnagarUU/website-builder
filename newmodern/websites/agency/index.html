@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volatile Studios — Bold Creative Agency Los Angeles</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'vol-black': '#0A0A0A',
+          'vol-white': '#F5F5F5',
+          'vol-gray': '#888888',
+          'vol-accent': '#E8FF00',
+          'vol-accent-hover': '#CCFF00',
+          'vol-surface': '#141414',
+          'vol-surface-light': '#1A1A1A',
+          'vol-border': '#2A2A2A',
+        },
+        fontFamily: {
+          display: ['Space Grotesk', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0A0A0A; color: #F5F5F5; overflow-x: hidden; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+    .marquee-container { overflow: hidden; white-space: nowrap; }
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 25s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .hero-title { font-size: clamp(3rem, 10vw, 9rem); line-height: 0.95; letter-spacing: -0.03em; }
+    .section-title { font-size: clamp(2.5rem, 7vw, 6rem); line-height: 1; letter-spacing: -0.02em; }
+
+    .img-hover { overflow: hidden; }
+    .img-hover img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .img-hover:hover img { transform: scale(1.05); }
+
+    .line-accent { position: relative; }
+    .line-accent::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 100%; height: 3px;
+      background: #E8FF00;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .line-accent:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    .custom-cursor {
+      width: 16px; height: 16px;
+      border: 2px solid #E8FF00;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: width 0.3s, height 0.3s, border-color 0.3s;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: difference;
+    }
+    .custom-cursor.hover {
+      width: 48px; height: 48px;
+      border-color: #CCFF00;
+    }
+
+    .nav-open { transform: translateY(0) !important; }
+    .nav-open-body { overflow: hidden; }
+
+    .work-card { position: relative; overflow: hidden; border-radius: 8px; }
+    .work-card img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s; }
+    .work-card:hover img { transform: scale(1.08); filter: brightness(0.4); }
+    .work-card .overlay {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2rem;
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .work-card:hover .overlay { opacity: 1; }
+
+    .stat-number { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 1rem 2rem;
+      background: #E8FF00; color: #0A0A0A;
+      font-weight: 600; font-family: 'Space Grotesk', sans-serif;
+      border-radius: 100px;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .btn-primary:hover { background: #CCFF00; transform: translateY(-2px); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 1rem 2rem;
+      border: 1px solid #2A2A2A; color: #F5F5F5;
+      font-weight: 500; font-family: 'Space Grotesk', sans-serif;
+      border-radius: 100px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { border-color: #E8FF00; color: #E8FF00; }
+
+    .text-stroke {
+      -webkit-text-stroke: 1.5px #F5F5F5;
+      color: transparent;
+    }
+    .text-stroke-accent {
+      -webkit-text-stroke: 1.5px #E8FF00;
+      color: transparent;
+    }
+
+    @media (max-width: 768px) {
+      .custom-cursor { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 w-full z-50 mix-blend-difference">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" class="font-display font-bold text-2xl tracking-tight text-vol-white">VOLATILE</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="work.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Work</a>
+        <a href="services.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Services</a>
+        <a href="about.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Studio</a>
+        <a href="process.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Process</a>
+        <a href="insights.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Insights</a>
+        <a href="contact.html" class="btn-primary text-sm py-2.5 px-5">Contact</a>
+      </div>
+      <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 z-[60]">
+        <span class="block w-7 h-[2px] bg-vol-white transition-all" id="bar1"></span>
+        <span class="block w-5 h-[2px] bg-vol-accent transition-all" id="bar2"></span>
+        <span class="block w-7 h-[2px] bg-vol-white transition-all" id="bar3"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-[55] bg-vol-black flex flex-col items-center justify-center gap-8 transform -translate-y-full transition-transform duration-500 md:hidden">
+    <a href="work.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Work</a>
+    <a href="services.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Services</a>
+    <a href="about.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Studio</a>
+    <a href="process.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Process</a>
+    <a href="insights.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Insights</a>
+    <a href="contact.html" class="font-display text-4xl font-bold text-vol-accent hover:text-vol-accent-hover transition-colors">Contact</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex flex-col justify-center px-6 md:px-10 pt-24 pb-16 relative">
+    <div class="max-w-[1400px] mx-auto w-full">
+      <div class="reveal">
+        <p class="font-display text-vol-accent text-sm md:text-base font-medium tracking-widest uppercase mb-6">Los Angeles Creative Agency — Est. 2018</p>
+      </div>
+      <h1 class="hero-title font-display font-bold text-vol-white reveal" style="transition-delay: 0.1s">
+        We create<br>
+        <span class="text-stroke-accent">brands that</span><br>
+        <span class="text-vol-accent">refuse to</span><br>
+        <span class="text-stroke">blend in.</span>
+      </h1>
+      <div class="mt-10 md:mt-14 flex flex-wrap gap-4 reveal" style="transition-delay: 0.3s">
+        <a href="work.html" class="btn-primary">
+          View Our Work
+          <iconify-icon icon="ph:arrow-right-bold" width="18"></iconify-icon>
+        </a>
+        <a href="contact.html" class="btn-outline">Start a Project</a>
+      </div>
+    </div>
+    <div class="absolute bottom-10 right-10 hidden md:block reveal" style="transition-delay: 0.5s">
+      <p class="font-body text-vol-gray text-sm max-w-[200px]">18 creatives. Endless ambition. One mission — make you unforgettable.</p>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <div class="py-6 border-y border-vol-border marquee-container">
+    <div class="marquee-track">
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Branding</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Digital Marketing</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Creative Direction</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Social Media</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Content Production</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Web Design</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <!-- duplicate for seamless loop -->
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Branding</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Digital Marketing</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Creative Direction</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Social Media</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Content Production</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-white mx-4">Web Design</span>
+      <span class="font-display text-5xl md:text-7xl font-bold text-vol-accent mx-4">✦</span>
+    </div>
+  </div>
+
+  <!-- Selected Work -->
+  <section class="py-24 md:py-32 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="flex items-end justify-between mb-16 reveal">
+        <h2 class="section-title font-display font-bold">Selected Work</h2>
+        <a href="work.html" class="hidden md:flex items-center gap-2 text-vol-accent font-display font-medium hover:gap-4 transition-all">
+          View All Projects
+          <iconify-icon icon="ph:arrow-right-bold" width="20"></iconify-icon>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <a href="case-study.html" class="work-card aspect-[4/3] reveal cursor-pointer group" style="transition-delay: 0.1s">
+          <img src="https://images.pexels.com/photos/7661590/pexels-photo-7661590.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Neon Athletics" class="w-full h-full object-cover">
+          <div class="overlay bg-gradient-to-t from-black/80 to-transparent">
+            <span class="text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Branding & Identity</span>
+            <h3 class="font-display font-bold text-2xl md:text-3xl text-vol-white">Neon Athletics</h3>
+            <p class="font-body text-vol-gray text-sm mt-1">Brand identity & digital campaign for a fitness brand</p>
+          </div>
+        </a>
+        <a href="case-study.html" class="work-card aspect-[4/3] reveal cursor-pointer group" style="transition-delay: 0.2s">
+          <img src="https://images.pexels.com/photos/7598007/pexels-photo-7598007.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Prism Cosmetics" class="w-full h-full object-cover">
+          <div class="overlay bg-gradient-to-t from-black/80 to-transparent">
+            <span class="text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Digital Marketing</span>
+            <h3 class="font-display font-bold text-2xl md:text-3xl text-vol-white">Prism Cosmetics</h3>
+            <p class="font-body text-vol-gray text-sm mt-1">Full-funnel marketing strategy & social content</p>
+          </div>
+        </a>
+        <a href="case-study.html" class="work-card aspect-[4/3] reveal cursor-pointer group" style="transition-delay: 0.3s">
+          <img src="https://images.pexels.com/photos/6231/marketing-color-colors-wheel.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Flux Music Festival" class="w-full h-full object-cover">
+          <div class="overlay bg-gradient-to-t from-black/80 to-transparent">
+            <span class="text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Creative Direction</span>
+            <h3 class="font-display font-bold text-2xl md:text-3xl text-vol-white">Flux Music Festival</h3>
+            <p class="font-body text-vol-gray text-sm mt-1">Creative direction & visual identity for a major festival</p>
+          </div>
+        </a>
+        <a href="case-study.html" class="work-card aspect-[4/3] reveal cursor-pointer group" style="transition-delay: 0.4s">
+          <img src="https://images.pexels.com/photos/32417522/pexels-photo-32417522.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Elevate Coffee" class="w-full h-full object-cover">
+          <div class="overlay bg-gradient-to-t from-black/80 to-transparent">
+            <span class="text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Social Media Strategy</span>
+            <h3 class="font-display font-bold text-2xl md:text-3xl text-vol-white">Elevate Coffee</h3>
+            <p class="font-body text-vol-gray text-sm mt-1">Social strategy & content production</p>
+          </div>
+        </a>
+      </div>
+
+      <a href="work.html" class="md:hidden flex items-center justify-center gap-2 text-vol-accent font-display font-medium mt-10">
+        View All Projects
+        <iconify-icon icon="ph:arrow-right-bold" width="20"></iconify-icon>
+      </a>
+    </div>
+  </section>
+
+  <!-- About Snippet -->
+  <section class="py-24 md:py-32 bg-vol-surface px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div class="reveal">
+          <p class="text-vol-accent font-display text-sm font-medium tracking-widest uppercase mb-4">Who We Are</p>
+          <h2 class="section-title font-display font-bold mb-6">We don't do safe. We do <span class="text-vol-accent">volatile.</span></h2>
+          <p class="font-body text-vol-gray text-lg leading-relaxed mb-8">Volatile Studios was born in 2018 with one belief: bold brands win. We're 18 creatives — strategists, designers, filmmakers, and marketers — united by an obsession with craft and a refusal to blend into the noise.</p>
+          <p class="font-body text-vol-gray text-lg leading-relaxed mb-10">From our studio in Los Angeles, we've delivered 120+ projects for brands that want to leave a mark, not just make a splash.</p>
+          <a href="about.html" class="btn-primary">
+            Meet the Studio
+            <iconify-icon icon="ph:arrow-right-bold" width="18"></iconify-icon>
+          </a>
+        </div>
+        <div class="relative reveal" style="transition-delay: 0.2s">
+          <div class="img-hover rounded-lg overflow-hidden">
+            <img src="https://images.pexels.com/photos/6044300/pexels-photo-6044300.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Volatile Studios Team" class="w-full aspect-[4/3] object-cover">
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-vol-accent text-vol-black font-display font-bold px-6 py-4 rounded-lg hidden md:block">
+            <span class="text-3xl font-bold">120+</span>
+            <p class="text-sm font-medium">Projects Delivered</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-24 md:py-32 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div class="reveal">
+          <div class="stat-number font-display text-vol-accent">120+</div>
+          <p class="font-body text-vol-gray mt-2 text-sm">Projects Delivered</p>
+        </div>
+        <div class="reveal" style="transition-delay: 0.1s">
+          <div class="stat-number font-display text-vol-white">18</div>
+          <p class="font-body text-vol-gray mt-2 text-sm">Creatives on Staff</p>
+        </div>
+        <div class="reveal" style="transition-delay: 0.2s">
+          <div class="stat-number font-display text-vol-white">45+</div>
+          <p class="font-body text-vol-gray mt-2 text-sm">Happy Clients</p>
+        </div>
+        <div class="reveal" style="transition-delay: 0.3s">
+          <div class="stat-number font-display text-vol-white">7</div>
+          <p class="font-body text-vol-gray mt-2 text-sm">Years of Chaos</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview -->
+  <section class="py-24 md:py-32 bg-vol-surface px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="mb-16 reveal">
+        <p class="text-vol-accent font-display text-sm font-medium tracking-widest uppercase mb-4">What We Do</p>
+        <h2 class="section-title font-display font-bold">Services that <span class="text-stroke-accent">fuel growth.</span></h2>
+      </div>
+
+      <div class="space-y-0">
+        <div class="flex items-center justify-between py-8 border-b border-vol-border group cursor-pointer reveal" onclick="location.href='services.html'">
+          <div class="flex items-center gap-6">
+            <span class="font-display text-vol-gray text-lg md:text-2xl w-12">01</span>
+            <h3 class="font-display font-bold text-xl md:text-3xl text-vol-white group-hover:text-vol-accent transition-colors">Brand Identity</h3>
+          </div>
+          <iconify-icon icon="ph:arrow-right-bold" width="24" class="text-vol-gray group-hover:text-vol-accent transition-colors"></iconify-icon>
+        </div>
+        <div class="flex items-center justify-between py-8 border-b border-vol-border group cursor-pointer reveal" onclick="location.href='services.html'">
+          <div class="flex items-center gap-6">
+            <span class="font-display text-vol-gray text-lg md:text-2xl w-12">02</span>
+            <h3 class="font-display font-bold text-xl md:text-3xl text-vol-white group-hover:text-vol-accent transition-colors">Digital Marketing</h3>
+          </div>
+          <iconify-icon icon="ph:arrow-right-bold" width="24" class="text-vol-gray group-hover:text-vol-accent transition-colors"></iconify-icon>
+        </div>
+        <div class="flex items-center justify-between py-8 border-b border-vol-border group cursor-pointer reveal" onclick="location.href='services.html'">
+          <div class="flex items-center gap-6">
+            <span class="font-display text-vol-gray text-lg md:text-2xl w-12">03</span>
+            <h3 class="font-display font-bold text-xl md:text-3xl text-vol-white group-hover:text-vol-accent transition-colors">Creative Direction</h3>
+          </div>
+          <iconify-icon icon="ph:arrow-right-bold" width="24" class="text-vol-gray group-hover:text-vol-accent transition-colors"></iconify-icon>
+        </div>
+        <div class="flex items-center justify-between py-8 border-b border-vol-border group cursor-pointer reveal" onclick="location.href='services.html'">
+          <div class="flex items-center gap-6">
+            <span class="font-display text-vol-gray text-lg md:text-2xl w-12">04</span>
+            <h3 class="font-display font-bold text-xl md:text-3xl text-vol-white group-hover:text-vol-accent transition-colors">Social Media Strategy</h3>
+          </div>
+          <iconify-icon icon="ph:arrow-right-bold" width="24" class="text-vol-gray group-hover:text-vol-accent transition-colors"></iconify-icon>
+        </div>
+        <div class="flex items-center justify-between py-8 border-b border-vol-border group cursor-pointer reveal" onclick="location.href='services.html'">
+          <div class="flex items-center gap-6">
+            <span class="font-display text-vol-gray text-lg md:text-2xl w-12">05</span>
+            <h3 class="font-display font-bold text-xl md:text-3xl text-vol-white group-hover:text-vol-accent transition-colors">Content Production</h3>
+          </div>
+          <iconify-icon icon="ph:arrow-right-bold" width="24" class="text-vol-gray group-hover:text-vol-accent transition-colors"></iconify-icon>
+        </div>
+        <div class="flex items-center justify-between py-8 border-b border-vol-border group cursor-pointer reveal" onclick="location.href='services.html'">
+          <div class="flex items-center gap-6">
+            <span class="font-display text-vol-gray text-lg md:text-2xl w-12">06</span>
+            <h3 class="font-display font-bold text-xl md:text-3xl text-vol-white group-hover:text-vol-accent transition-colors">Web Design</h3>
+          </div>
+          <iconify-icon icon="ph:arrow-right-bold" width="24" class="text-vol-gray group-hover:text-vol-accent transition-colors"></iconify-icon>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="py-24 md:py-32 px-6 md:px-10">
+    <div class="max-w-[800px] mx-auto text-center reveal">
+      <iconify-icon icon="ph:quotes-fill" width="48" class="text-vol-accent mx-auto mb-8"></iconify-icon>
+      <blockquote class="font-display text-2xl md:text-4xl font-bold leading-snug mb-8">
+        "Volatile Studios didn't just build our brand — they gave us an identity that's impossible to ignore. Our revenue tripled in the first year."
+      </blockquote>
+      <div>
+        <p class="font-display font-medium text-vol-white">Sarah Chen</p>
+        <p class="font-body text-vol-gray text-sm">CMO, Neon Athletics</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 md:py-32 bg-vol-surface px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto text-center">
+      <h2 class="section-title font-display font-bold mb-6 reveal">
+        Ready to make<br>something <span class="text-vol-accent">volatile?</span>
+      </h2>
+      <p class="font-body text-vol-gray text-lg mb-10 max-w-[500px] mx-auto reveal" style="transition-delay: 0.1s">
+        Let's skip the small talk. Tell us about your brand and we'll tell you how we can make it unforgettable.
+      </p>
+      <a href="contact.html" class="btn-primary reveal" style="transition-delay: 0.2s">
+        Start a Project
+        <iconify-icon icon="ph:arrow-right-bold" width="18"></iconify-icon>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-vol-border py-16 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-10 mb-16">
+        <div>
+          <p class="text-vol-gray text-sm font-body mb-2">Let's Talk</p>
+          <a href="contact.html" class="font-display font-bold text-4xl md:text-6xl lg:text-7xl text-vol-white hover:text-vol-accent transition-colors">hello@volatilestudios.com</a>
+        </div>
+        <div class="flex gap-4">
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors">
+            <iconify-icon icon="ph:instagram-logo" width="20"></iconify-icon>
+          </a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors">
+            <iconify-icon icon="ph:twitter-logo" width="20"></iconify-icon>
+          </a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors">
+            <iconify-icon icon="ph:linkedin-logo" width="20"></iconify-icon>
+          </a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors">
+            <iconify-icon icon="ph:dribbble-logo" width="20"></iconify-icon>
+          </a>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-vol-border">
+        <p class="font-body text-vol-gray text-xs">&copy; 2026 Volatile Studios. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="font-body text-vol-gray text-xs hover:text-vol-white transition-colors">Privacy</a>
+          <a href="#" class="font-body text-vol-gray text-xs hover:text-vol-white transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('nav-open');
+      document.body.classList.toggle('nav-open-body');
+      bar1.style.transform = menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '';
+      bar2.style.opacity = menuOpen ? '0' : '1';
+      bar3.style.transform = menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : '';
+    });
+
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .work-card, .btn-primary, .btn-outline').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

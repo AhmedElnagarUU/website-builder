@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Mara Ellsworth</title>
+  <meta name="description" content="The full index of Mara Ellsworth's documentary photo essays — steel towns, night shifts, homecomings, and the long grain of rural life.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bone: '#edeae0', ink: '#1d1d1d', ash: '#777', red: '#a63a2c', line: '#d4cfc2',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="antialiased text-ink bg-bone overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-bone/95 backdrop-blur border-b border-line">
+    <div class="max-w-[1400px] mx-auto px-5 lg:px-10 flex items-center justify-between h-[72px]">
+      <a href="index.html" class="font-display font-semibold text-sm tracking-[0.18em] uppercase leading-none">
+        Mara Ellsworth
+        <span class="block font-mono2 text-[8px] tracking-[0.35em] text-ash mt-[3px]">documentary · editorial · est. 2015</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-9">
+        <a href="work.html" class="nav-link active text-[11px] tracking-[0.2em] uppercase text-ink/60 hover:text-ink transition-colors">Work</a>
+        <a href="series.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/60 hover:text-ink transition-colors">Essays</a>
+        <a href="about.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/60 hover:text-ink transition-colors">About</a>
+        <a href="contact.html" class="ml-3 border border-ink text-ink font-mono2 text-[10px] tracking-[0.18em] uppercase px-5 py-3 hover:bg-ink hover:text-bone transition-colors">Contact</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-bone z-40 flex flex-col items-center justify-center gap-7 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl font-light">Home</a>
+    <a href="work.html" class="font-display text-3xl font-light">Work</a>
+    <a href="series.html" class="font-display text-3xl font-light">Essays</a>
+    <a href="about.html" class="font-display text-3xl font-light">About</a>
+    <a href="contact.html" class="mt-4 border border-ink text-ink font-mono2 text-[10px] tracking-[0.18em] uppercase px-6 py-3">Contact</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-32 lg:pt-44 pb-14 px-6 lg:px-10">
+    <div class="max-w-[1400px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div>
+        <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-red mb-5 reveal">The index · All plates</p>
+        <h1 class="font-display font-light text-[clamp(2.6rem,6.5vw,5.2rem)] leading-[0.96] reveal reveal-delay-1">Essays, filed<br>in order.</h1>
+      </div>
+      <p class="text-ash text-base leading-relaxed max-w-sm reveal reveal-delay-2">
+        Every project gets a title, a plate number, and a promise that I stayed until the story changed shape — not just until the light was good.
+      </p>
+    </div>
+  </header>
+
+  <!-- ARCHIVE LIST -->
+  <section class="px-6 lg:px-10 pb-24">
+    <div class="max-w-[1400px] mx-auto">
+
+      <a href="series.html" class="group grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 border-t border-line last:border-b reveal">
+        <div class="lg:col-span-4 overflow-hidden aspect-[4/3] frame-line">
+          <img src="https://images.pexels.com/photos/24366493/pexels-photo-24366493.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Steelcrest — fabrication plant interior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        </div>
+        <div class="lg:col-span-3">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-3">Plate 01 · 12 images · 2019</p>
+          <h2 class="font-display font-light text-3xl lg:text-4xl">Steelcrest</h2>
+        </div>
+        <div class="lg:col-span-4 text-ash text-sm leading-relaxed">
+          A fabrication plant that once built half the bridges in the county, seen through three generations of the family that owns it — and the fourth, deciding whether to stay.
+        </div>
+        <div class="lg:col-span-1 text-right">
+          <iconify-icon icon="ph:arrow-right" class="text-xl transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+        </div>
+      </a>
+
+      <a href="series.html" class="group grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 border-t border-line last:border-b reveal">
+        <div class="lg:col-span-4 overflow-hidden aspect-[4/3] frame-line">
+          <img src="https://images.pexels.com/photos/15397424/pexels-photo-15397424.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Late Shift — person on a city street at dusk" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        </div>
+        <div class="lg:col-span-3">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-3">Plate 02 · 9 images · 2020</p>
+          <h2 class="font-display font-light text-3xl lg:text-4xl">Late Shift</h2>
+        </div>
+        <div class="lg:col-span-4 text-ash text-sm leading-relaxed">
+          Diners, gas stations, and the 11 p.m. bus route. A portrait of the city after the movies let out and the honest shifts began.
+        </div>
+        <div class="lg:col-span-1 text-right">
+          <iconify-icon icon="ph:arrow-right" class="text-xl transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+        </div>
+      </a>
+
+      <a href="series.html" class="group grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 border-t border-line last:border-b reveal">
+        <div class="lg:col-span-4 overflow-hidden aspect-[4/3] frame-line">
+          <img src="https://images.pexels.com/photos/32547129/pexels-photo-32547129.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Homecoming — rural field and barn" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        </div>
+        <div class="lg:col-span-3">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-3">Plate 03 · 14 images · 2021</p>
+          <h2 class="font-display font-light text-3xl lg:text-4xl">Homecoming</h2>
+        </div>
+        <div class="lg:col-span-4 text-ash text-sm leading-relaxed">
+          One small town, one autumn, one very serious football game the whole county drives out to watch. The bleachers remember everything the record book forgets.
+        </div>
+        <div class="lg:col-span-1 text-right">
+          <iconify-icon icon="ph:arrow-right" class="text-xl transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+        </div>
+      </a>
+
+      <a href="series.html" class="group grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 border-t border-line last:border-b reveal">
+        <div class="lg:col-span-4 overflow-hidden aspect-[4/3] frame-line">
+          <img src="https://images.pexels.com/photos/20850580/pexels-photo-20850580.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Long Grain — rural landscape" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        </div>
+        <div class="lg:col-span-3">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-3">Plate 04 · 11 images · 2022</p>
+          <h2 class="font-display font-light text-3xl lg:text-4xl">Long Grain</h2>
+        </div>
+        <div class="lg:col-span-4 text-ash text-sm leading-relaxed">
+          The harvest, the elevators, and the farmers who read the weather the way the rest of us read headlines. Shot on 35mm across two summers.
+        </div>
+        <div class="lg:col-span-1 text-right">
+          <iconify-icon icon="ph:arrow-right" class="text-xl transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+        </div>
+      </a>
+
+      <a href="series.html" class="group grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-10 border-t border-line last:border-b reveal">
+        <div class="lg:col-span-4 overflow-hidden aspect-[4/3] frame-line">
+          <img src="https://images.pexels.com/photos/16124554/pexels-photo-16124554.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="The Commute — factory worker portrait" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+        </div>
+        <div class="lg:col-span-3">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-red mb-3">Plate 05 · 8 images · 2023</p>
+          <h2 class="font-display font-light text-3xl lg:text-4xl">The Commute</h2>
+        </div>
+        <div class="lg:col-span-4 text-ash text-sm leading-relaxed">
+          Ninety minutes at dawn and ninety at dusk, spent mostly on one other person's schedule. A series about the time between the places you're expected to be.
+        </div>
+        <div class="lg:col-span-1 text-right">
+          <iconify-icon icon="ph:arrow-right" class="text-xl transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <footer class="bg-ink text-bone/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display font-semibold text-sm tracking-[0.18em] uppercase text-bone">Mara Ellsworth</div>
+          <p class="font-mono2 text-[9px] tracking-[0.3em] uppercase text-ash/50 mt-[5px] mb-5">Documentary &amp; editorial photography</p>
+          <p class="text-sm leading-relaxed max-w-sm">Portland-based. Shoots long-form essays, commissioned editorials, and the occasional branding project that deserves a real camera. Available worldwide with a passport and a good pair of boots.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-bone/30 mb-4">Navigate</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="work.html" class="hover:text-red transition-colors">Work</a>
+            <a href="series.html" class="hover:text-red transition-colors">Essays</a>
+            <a href="about.html" class="hover:text-red transition-colors">About</a>
+            <a href="contact.html" class="hover:text-red transition-colors">Contact</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-bone/30 mb-4">Selected clients</h4>
+          <div class="flex flex-col gap-2 text-sm text-ash">
+            <span>The New York Times</span><span>Harper's</span><span>Dwell</span><span>Patagonia</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-bone/30 mb-4">Contact</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>Portland, OR</p>
+            <a href="mailto:studio@maraellsworth.com" class="hover:text-red transition-colors">studio@maraellsworth.com</a>
+            <p class="text-ash text-xs mt-2">Representation via Lede Agency, NYC</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-bone/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[9px] text-bone/30">&copy; 2026 Mara Ellsworth. Film is dead, long live the grain.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-bone/40 hover:text-red transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-bone/40 hover:text-red transition-colors"><iconify-icon icon="ph:x-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

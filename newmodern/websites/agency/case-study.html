@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Athletics Case Study — Volatile Studios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'vol-black': '#0A0A0A',
+          'vol-white': '#F5F5F5',
+          'vol-gray': '#888888',
+          'vol-accent': '#E8FF00',
+          'vol-accent-hover': '#CCFF00',
+          'vol-surface': '#141414',
+          'vol-surface-light': '#1A1A1A',
+          'vol-border': '#2A2A2A',
+        },
+        fontFamily: {
+          display: ['Space Grotesk', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0A0A0A; color: #F5F5F5; overflow-x: hidden; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .section-title { font-size: clamp(2.5rem, 7vw, 6rem); line-height: 1; letter-spacing: -0.02em; }
+    .text-stroke-accent { -webkit-text-stroke: 1.5px #E8FF00; color: transparent; }
+    .line-accent { position: relative; }
+    .line-accent::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 3px; background: #E8FF00; transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .line-accent:hover::after { transform: scaleX(1); transform-origin: left; }
+    .custom-cursor { width: 16px; height: 16px; border: 2px solid #E8FF00; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: width 0.3s, height 0.3s, border-color 0.3s; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+    .custom-cursor.hover { width: 48px; height: 48px; border-color: #CCFF00; }
+    .nav-open { transform: translateY(0) !important; }
+    .nav-open-body { overflow: hidden; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #E8FF00; color: #0A0A0A; font-weight: 600; font-family: 'Space Grotesk', sans-serif; border-radius: 100px; transition: background 0.3s, transform 0.3s; }
+    .btn-primary:hover { background: #CCFF00; transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; border: 1px solid #2A2A2A; color: #F5F5F5; font-weight: 500; font-family: 'Space Grotesk', sans-serif; border-radius: 100px; transition: border-color 0.3s, color 0.3s; }
+    .btn-outline:hover { border-color: #E8FF00; color: #E8FF00; }
+    .stat-number { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; line-height: 1; }
+    .img-hover { overflow: hidden; border-radius: 8px; }
+    .img-hover img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .img-hover:hover img { transform: scale(1.05); }
+    @media (max-width: 768px) { .custom-cursor { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 w-full z-50 mix-blend-difference">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" class="font-display font-bold text-2xl tracking-tight text-vol-white">VOLATILE</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="work.html" class="font-display text-sm font-medium text-vol-accent transition-colors line-accent">Work</a>
+        <a href="services.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Services</a>
+        <a href="about.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Studio</a>
+        <a href="process.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Process</a>
+        <a href="insights.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Insights</a>
+        <a href="contact.html" class="btn-primary text-sm py-2.5 px-5">Contact</a>
+      </div>
+      <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 z-[60]">
+        <span class="block w-7 h-[2px] bg-vol-white transition-all" id="bar1"></span>
+        <span class="block w-5 h-[2px] bg-vol-accent transition-all" id="bar2"></span>
+        <span class="block w-7 h-[2px] bg-vol-white transition-all" id="bar3"></span>
+      </button>
+    </div>
+  </nav>
+  <div id="mobileMenu" class="fixed inset-0 z-[55] bg-vol-black flex flex-col items-center justify-center gap-8 transform -translate-y-full transition-transform duration-500 md:hidden">
+    <a href="work.html" class="font-display text-4xl font-bold text-vol-accent transition-colors">Work</a>
+    <a href="services.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Services</a>
+    <a href="about.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Studio</a>
+    <a href="process.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Process</a>
+    <a href="insights.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Insights</a>
+    <a href="contact.html" class="font-display text-4xl font-bold text-vol-accent hover:text-vol-accent-hover transition-colors">Contact</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="relative h-[70vh] md:h-[80vh] flex items-end px-6 md:px-10 pb-16">
+    <img src="https://images.pexels.com/photos/7661590/pexels-photo-7661590.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Neon Athletics" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-vol-black via-vol-black/60 to-transparent"></div>
+    <div class="relative z-10 max-w-[1400px] mx-auto w-full">
+      <span class="text-vol-accent font-display text-sm font-medium tracking-widest uppercase mb-4 reveal">Case Study</span>
+      <h1 class="font-display font-bold text-4xl md:text-7xl lg:text-8xl text-vol-white mb-4 reveal" style="transition-delay: 0.1s">Neon Athletics</h1>
+      <p class="font-body text-vol-gray text-lg reveal" style="transition-delay: 0.2s">Branding & Identity — 2024</p>
+    </div>
+  </section>
+
+  <!-- Project Info -->
+  <section class="py-16 px-6 md:px-10 border-b border-vol-border">
+    <div class="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="reveal">
+        <p class="font-body text-vol-gray text-xs uppercase tracking-widest mb-2">Client</p>
+        <p class="font-display font-medium text-vol-white">Neon Athletics</p>
+      </div>
+      <div class="reveal" style="transition-delay: 0.05s">
+        <p class="font-body text-vol-gray text-xs uppercase tracking-widest mb-2">Services</p>
+        <p class="font-display font-medium text-vol-white">Brand Identity, Visual System</p>
+      </div>
+      <div class="reveal" style="transition-delay: 0.1s">
+        <p class="font-body text-vol-gray text-xs uppercase tracking-widest mb-2">Year</p>
+        <p class="font-display font-medium text-vol-white">2024</p>
+      </div>
+      <div class="reveal" style="transition-delay: 0.15s">
+        <p class="font-body text-vol-gray text-xs uppercase tracking-widest mb-2">Duration</p>
+        <p class="font-display font-medium text-vol-white">14 Weeks</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="py-20 md:py-28 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20">
+        <div class="md:col-span-5 reveal">
+          <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">The Challenge</h2>
+          <p class="font-body text-vol-gray text-lg leading-relaxed">
+            Neon Athletics was launching into a saturated fitness market dominated by legacy brands. They needed an identity that resonated with Gen-Z athletes who value authenticity, sustainability, and bold self-expression. The existing branding felt generic — just another fitness brand in a sea of sameness.
+          </p>
+        </div>
+        <div class="md:col-span-7 reveal" style="transition-delay: 0.15s">
+          <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">The Solution</h2>
+          <p class="font-body text-vol-gray text-lg leading-relaxed mb-6">
+            We built a brand that refuses to whisper. The Neon Athletics identity system is built around electric energy — bold typography, a neon-infused color palette, and a visual language that mirrors the intensity of the athletes it represents. Every touchpoint was designed to feel alive.
+          </p>
+          <p class="font-body text-vol-gray text-lg leading-relaxed">
+            From the logo system and packaging to social templates and in-store experiences, we created a cohesive brand world that makes Neon Athletics impossible to scroll past.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Width Image -->
+  <section class="px-6 md:px-10 mb-20 md:mb-28">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="img-hover rounded-lg reveal">
+        <img src="https://images.pexels.com/photos/4977460/pexels-photo-4977460.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Neon Athletics Brand Work" class="w-full aspect-[21/9] object-cover rounded-lg">
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="py-20 md:py-28 bg-vol-surface px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <h2 class="section-title font-display font-bold mb-16 reveal">The <span class="text-vol-accent">Results</span></h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div class="reveal">
+          <div class="stat-number font-display text-vol-accent">186%</div>
+          <p class="font-body text-vol-gray mt-2 text-sm">Increase in Brand Recognition</p>
+        </div>
+        <div class="reveal" style="transition-delay: 0.1s">
+          <div class="stat-number font-display text-vol-white">3.2M</div>
+          <p class="font-body text-vol-gray mt-2 text-sm">Social Impressions (First Quarter)</p>
+        </div>
+        <div class="reveal" style="transition-delay: 0.2s">
+          <div class="stat-number font-display text-vol-white">47%</div>
+          <p class="font-body text-vol-gray mt-2 text-sm">Increase in Direct Sales</p>
+        </div>
+        <div class="reveal" style="transition-delay: 0.3s">
+          <div class="stat-number font-display text-vol-white">12</div>
+          <p class="font-body text-vol-gray mt-2 text-sm">Design Awards</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Image Grid -->
+  <section class="py-20 md:py-28 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-12 reveal">The Work</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="img-hover rounded-lg reveal">
+          <img src="https://images.pexels.com/photos/7661184/pexels-photo-7661184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Brand Identity Details" class="w-full aspect-[4/3] object-cover rounded-lg">
+        </div>
+        <div class="img-hover rounded-lg reveal mt-0 md:mt-12" style="transition-delay: 0.1s">
+          <img src="https://images.pexels.com/photos/7491021/pexels-photo-7491021.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Color Palette Work" class="w-full aspect-[4/3] object-cover rounded-lg">
+        </div>
+        <div class="img-hover rounded-lg reveal md:col-span-2" style="transition-delay: 0.2s">
+          <img src="https://images.pexels.com/photos/8367791/pexels-photo-8367791.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Brand Application" class="w-full aspect-[21/9] object-cover rounded-lg">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="py-20 md:py-28 bg-vol-surface px-6 md:px-10">
+    <div class="max-w-[800px] mx-auto text-center reveal">
+      <iconify-icon icon="ph:quotes-fill" width="48" class="text-vol-accent mx-auto mb-8"></iconify-icon>
+      <blockquote class="font-display text-2xl md:text-3xl font-bold leading-snug mb-8">
+        "Volatile Studios didn't just build our brand — they gave us a voice. Their work changed how people see us, and more importantly, how we see ourselves. Our revenue tripled in the first year."
+      </blockquote>
+      <div>
+        <p class="font-display font-medium text-vol-white">Sarah Chen</p>
+        <p class="font-body text-vol-gray text-sm">CMO, Neon Athletics</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Project -->
+  <section class="py-20 md:py-28 px-6 md:px-10 border-t border-vol-border">
+    <div class="max-w-[1400px] mx-auto">
+      <p class="font-display text-vol-gray text-sm uppercase tracking-widest mb-6 reveal">Next Project</p>
+      <a href="case-study.html" class="group reveal" style="transition-delay: 0.1s">
+        <h2 class="font-display font-bold text-4xl md:text-7xl text-vol-white group-hover:text-vol-accent transition-colors mb-4">Prism Cosmetics</h2>
+        <p class="font-body text-vol-gray text-lg">Digital Marketing — Full-Funnel Strategy</p>
+        <div class="flex items-center gap-2 mt-4 text-vol-accent font-display font-medium">
+          View Case Study
+          <iconify-icon icon="ph:arrow-right-bold" width="20" class="group-hover:translate-x-2 transition-transform"></iconify-icon>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-vol-border py-16 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-10 mb-16">
+        <div>
+          <p class="text-vol-gray text-sm font-body mb-2">Let's Talk</p>
+          <a href="contact.html" class="font-display font-bold text-4xl md:text-6xl lg:text-7xl text-vol-white hover:text-vol-accent transition-colors">hello@volatilestudios.com</a>
+        </div>
+        <div class="flex gap-4">
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:instagram-logo" width="20"></iconify-icon></a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:twitter-logo" width="20"></iconify-icon></a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:linkedin-logo" width="20"></iconify-icon></a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:dribbble-logo" width="20"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-vol-border">
+        <p class="font-body text-vol-gray text-xs">&copy; 2026 Volatile Studios. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="font-body text-vol-gray text-xs hover:text-vol-white transition-colors">Privacy</a>
+          <a href="#" class="font-body text-vol-gray text-xs hover:text-vol-white transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('nav-open');
+      document.body.classList.toggle('nav-open-body');
+      bar1.style.transform = menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '';
+      bar2.style.opacity = menuOpen ? '0' : '1';
+      bar3.style.transform = menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : '';
+    });
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+    document.querySelectorAll('a, button, .img-hover, .btn-primary, .btn-outline').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

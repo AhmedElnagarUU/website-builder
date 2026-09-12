@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Clearview Dental, Austin TX</title>
+  <meta name="description" content="Learn about Clearview Dental's mission, values, and the expert team behind Austin's trusted dental practice since 2015.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'clinic-bg': '#FAFBFC',
+          'clinic-text': '#1E293B',
+          'clinic-secondary': '#64748B',
+          'clinic-teal': '#0891B2',
+          'clinic-teal-dark': '#0E7490',
+          'clinic-surface': '#F1F5F9',
+          'clinic-white': '#FFFFFF',
+          'clinic-border': '#E2E8F0',
+          'clinic-green': '#059669',
+        },
+        fontFamily: {
+          display: ['Plus Jakarta Sans', 'sans-serif'],
+          body: ['Source Sans 3', 'sans-serif'],
+        },
+        borderRadius: { 'clinic': '12px' }
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Source Sans 3', sans-serif; color: #1E293B; background: #FAFBFC; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .nav-open { max-height: 400px !important; opacity: 1 !important; }
+    .mobile-nav { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #0891B2; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-primary { transition: all 0.3s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(8,145,178,0.3); }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-clinic-white/90 backdrop-blur-md border-b border-clinic-border/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-4">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center group-hover:bg-clinic-teal-dark transition-colors">
+            <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+          </div>
+          <span class="font-display font-bold text-xl text-clinic-text">Clearview <span class="text-clinic-teal">Dental</span></span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="treatments.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Treatments</a>
+          <a href="doctors.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Our Team</a>
+          <a href="patient-info.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Patient Info</a>
+          <a href="faqs.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal hover:bg-clinic-teal-dark text-white font-display font-semibold px-6 py-2.5 rounded-clinic transition-all hover:shadow-lg hover:shadow-clinic-teal/20">Book Now</a>
+          <a href="contact.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Contact</a>
+        </div>
+        <button id="mobileToggle" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-clinic hover:bg-clinic-surface transition-colors" aria-label="Toggle menu">
+          <iconify-icon id="menuIcon" icon="mdi:menu" class="text-2xl text-clinic-text"></iconify-icon>
+          <iconify-icon id="closeIcon" icon="mdi:close" class="text-2xl text-clinic-text hidden"></iconify-icon>
+        </button>
+      </div>
+      <div id="mobileMenu" class="mobile-nav lg:hidden pb-4">
+        <div class="flex flex-col gap-1">
+          <a href="treatments.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Treatments</a>
+          <a href="doctors.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Our Team</a>
+          <a href="patient-info.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Patient Info</a>
+          <a href="faqs.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal text-white font-display font-semibold px-4 py-3 rounded-clinic text-center mt-2">Book Now</a>
+          <a href="contact.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-clinic-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider">About Clearview Dental</span>
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl text-clinic-text leading-tight mt-3 mb-6">A Practice Built on Trust, <span class="text-clinic-teal">Compassion</span>, and Excellence</h1>
+          <p class="font-body text-lg text-clinic-secondary leading-relaxed">Since 2015, we've been helping Austin families achieve healthier, more confident smiles through personalized dental care and cutting-edge technology.</p>
+        </div>
+        <div class="reveal">
+          <img src="https://images.pexels.com/photos/7108324/pexels-photo-7108324.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Clearview Dental clinic interior" class="rounded-[20px] w-full h-[350px] lg:h-[420px] object-cover shadow-xl">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story -->
+  <section class="py-20 bg-clinic-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal order-2 lg:order-1">
+          <img src="https://images.pexels.com/photos/6812461/pexels-photo-6812461.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Dentist consulting with patient" class="rounded-[20px] w-full h-[400px] object-cover shadow-xl">
+        </div>
+        <div class="reveal order-1 lg:order-2">
+          <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider">Our Story</span>
+          <h2 class="font-display font-extrabold text-3xl text-clinic-text mt-3 mb-6">Founded with a Vision for Better Dental Care</h2>
+          <div class="space-y-4 font-body text-clinic-secondary leading-relaxed">
+            <p>Clearview Dental was founded in 2015 by Dr. Sarah Chen and Dr. Michael Torres, two dentists who shared a common frustration: too many dental practices prioritized volume over quality, and too many patients left feeling like just another number.</p>
+            <p>They envisioned a practice where every patient felt heard, every treatment was explained thoroughly, and where advanced technology wasn't just a marketing buzzword — it was a genuine commitment to better outcomes.</p>
+            <p>Starting with a single treatment room in a modest office on Clearview Blvd, the practice grew rapidly through word-of-mouth referrals. Today, our state-of-the-art facility houses six treatment rooms, a dedicated orthodontic suite, and a team of 38 professionals who share Dr. Chen and Dr. Torres's original vision.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Values -->
+  <section class="py-20 bg-clinic-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider">Our Mission</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-clinic-text mt-3 mb-4">What We Stand For</h2>
+        <p class="font-body text-lg text-clinic-secondary max-w-2xl mx-auto">Every decision we make is guided by our core values. They shape how we treat our patients, support our team, and serve our community.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="reveal bg-clinic-white rounded-clinic p-8 border border-clinic-border/50">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-5">
+            <iconify-icon icon="mdi:heart-outline" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Patient-First Philosophy</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed">Your comfort, health, and goals drive every recommendation we make. We listen before we treat, and we never pressure you into unnecessary procedures.</p>
+        </div>
+        <div class="reveal bg-clinic-white rounded-clinic p-8 border border-clinic-border/50">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-5">
+            <iconify-icon icon="mdi:lightbulb-outline" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Innovation & Excellence</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed">We invest in the latest technology and pursue ongoing education to ensure you receive the most effective, minimally invasive treatments available.</p>
+        </div>
+        <div class="reveal bg-clinic-white rounded-clinic p-8 border border-clinic-border/50">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-5">
+            <iconify-icon icon="mdi:hand-heart-outline" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Gentle Care</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed">Dental anxiety is real, and we take it seriously. Our team is trained in comfort techniques, and we offer sedation options for a stress-free experience.</p>
+        </div>
+        <div class="reveal bg-clinic-white rounded-clinic p-8 border border-clinic-border/50">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-5">
+            <iconify-icon icon="mdi:account-group-outline" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Community Roots</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed">We're proud to serve the Austin community. From sponsoring local youth sports to providing free dental screenings, we give back whenever we can.</p>
+        </div>
+        <div class="reveal bg-clinic-white rounded-clinic p-8 border border-clinic-border/50">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-5">
+            <iconify-icon icon="mdi:shield-check-outline" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Transparency</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed">No surprise bills, no hidden fees. We provide clear treatment plans with upfront pricing and help you navigate your insurance benefits.</p>
+        </div>
+        <div class="reveal bg-clinic-white rounded-clinic p-8 border border-clinic-border/50">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-5">
+            <iconify-icon icon="mdi:school-outline" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl text-clinic-text mb-3">Lifelong Learning</h3>
+          <p class="font-body text-clinic-secondary leading-relaxed">Every member of our team completes 60+ hours of continuing education annually, staying current with the latest techniques and research.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- By the Numbers -->
+  <section class="py-20 bg-clinic-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider">By the Numbers</span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-clinic-text mt-3 mb-4">Our Impact in Austin</h2>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center reveal">
+          <p class="font-display font-extrabold text-5xl text-clinic-teal">11</p>
+          <p class="font-body text-clinic-secondary text-lg mt-2">Years in Practice</p>
+        </div>
+        <div class="text-center reveal">
+          <p class="font-display font-extrabold text-5xl text-clinic-teal">15K+</p>
+          <p class="font-body text-clinic-secondary text-lg mt-2">Patients Served</p>
+        </div>
+        <div class="text-center reveal">
+          <p class="font-display font-extrabold text-5xl text-clinic-teal">38</p>
+          <p class="font-body text-clinic-secondary text-lg mt-2">Team Members</p>
+        </div>
+        <div class="text-center reveal">
+          <p class="font-display font-extrabold text-5xl text-clinic-teal">98%</p>
+          <p class="font-body text-clinic-secondary text-lg mt-2">Patient Satisfaction</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="py-16 bg-clinic-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 reveal">
+        <h2 class="font-display font-extrabold text-2xl text-clinic-text">Accreditations & Affiliations</h2>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+        <div class="bg-clinic-white rounded-clinic p-6 text-center border border-clinic-border/50">
+          <iconify-icon icon="mdi:certificate" class="text-clinic-teal text-3xl mb-3"></iconify-icon>
+          <p class="font-display font-semibold text-clinic-text text-sm">ADA Member</p>
+          <p class="font-body text-clinic-secondary text-xs mt-1">American Dental Association</p>
+        </div>
+        <div class="bg-clinic-white rounded-clinic p-6 text-center border border-clinic-border/50">
+          <iconify-icon icon="mdi:certificate" class="text-clinic-teal text-3xl mb-3"></iconify-icon>
+          <p class="font-display font-semibold text-clinic-text text-sm">TDA Member</p>
+          <p class="font-body text-clinic-secondary text-xs mt-1">Texas Dental Association</p>
+        </div>
+        <div class="bg-clinic-white rounded-clinic p-6 text-center border border-clinic-border/50">
+          <iconify-icon icon="mdi:certificate" class="text-clinic-teal text-3xl mb-3"></iconify-icon>
+          <p class="font-display font-semibold text-clinic-text text-sm">AACD Accredited</p>
+          <p class="font-body text-clinic-secondary text-xs mt-1">American Academy of Cosmetic Dentistry</p>
+        </div>
+        <div class="bg-clinic-white rounded-clinic p-6 text-center border border-clinic-border/50">
+          <iconify-icon icon="mdi:certificate" class="text-clinic-teal text-3xl mb-3"></iconify-icon>
+          <p class="font-display font-semibold text-clinic-text text-sm">Invisalign Diamond</p>
+          <p class="font-body text-clinic-secondary text-xs mt-1">Top 1% Provider Nationwide</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-clinic-teal">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-4">Come Experience the Clearview Difference</h2>
+      <p class="font-body text-lg text-white/80 mb-8 max-w-xl mx-auto">We'd love to welcome you and your family to our practice. Schedule a consultation and discover why Austin trusts Clearview Dental.</p>
+      <a href="contact.html" class="inline-flex items-center gap-2 bg-white text-clinic-teal font-display font-bold px-8 py-4 rounded-clinic text-lg hover:bg-clinic-bg transition-all hover:shadow-xl">
+        Schedule a Visit
+        <iconify-icon icon="mdi:arrow-right" class="text-xl"></iconify-icon>
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-clinic-text pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <a href="index.html" class="flex items-center gap-2.5 mb-5">
+            <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center">
+              <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+            </div>
+            <span class="font-display font-bold text-xl text-white">Clearview <span class="text-clinic-teal">Dental</span></span>
+          </a>
+          <p class="font-body text-slate-400 text-sm leading-relaxed">Modern, compassionate dental care for the whole family. Proudly serving Austin, Texas since 2015.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatments.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Treatments</a></li>
+            <li><a href="doctors.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Our Team</a></li>
+            <li><a href="patient-info.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Patient Info</a></li>
+            <li><a href="faqs.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">FAQs</a></li>
+            <li><a href="about.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">About Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Treatments</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">General Dentistry</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Teeth Whitening</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Invisalign</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Dental Implants</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Porcelain Veneers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="mdi:map-marker" class="text-clinic-teal text-lg mt-0.5"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">1200 Clearview Blvd, Suite 200<br>Austin, TX 78701</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:phone" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">(512) 555-0147</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:email" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">hello@clearviewdental.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body text-slate-500 text-sm">&copy; 2026 Clearview Dental. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Facebook"><iconify-icon icon="mdi:facebook" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Instagram"><iconify-icon icon="mdi:instagram" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Twitter"><iconify-icon icon="mdi:twitter" class="text-white text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('nav-open');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active');
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+</html>

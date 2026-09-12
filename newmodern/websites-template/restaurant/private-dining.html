@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Dining — Ember &amp; Oak</title>
+  <meta name="description" content="Host 8 to 30 guests at Ember & Oak — the hearth counter, the chef's table, the full-room buyout. Custom menus built around the wood oven.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          soot: '#161110', coal: '#201a17', embers: '#df5b32', flame: '#f0a252',
+          crema: '#f2e6d3', herb: '#4a5531', line: '#3b2f27',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-crema overflow-x-hidden bg-soot">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 border-b border-line/30 bg-soot/95 backdrop-blur">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-2xl lg:text-[1.7rem] tracking-tight">Ember <span class="italic text-flame">&amp;</span> Oak</a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="menu.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Menu</a>
+        <a href="story.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Our Story</a>
+        <a href="private-dining.html" class="nav-link active text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Private Dining</a>
+        <a href="journal.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">The Journal</a>
+        <a href="visit.html" class="ml-3 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-5 py-3 hover:bg-flame hover:text-soot transition-colors">Book a Table</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-soot z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="menu.html" class="font-display text-3xl">Menu</a>
+    <a href="story.html" class="font-display text-3xl">Our Story</a>
+    <a href="private-dining.html" class="font-display text-3xl">Private Dining</a>
+    <a href="journal.html" class="font-display text-3xl">The Journal</a>
+    <a href="visit.html" class="mt-4 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-6 py-3">Book a Table</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-40 lg:pt-52 pb-14 lg:pb-20 px-6 lg:px-10">
+    <div class="max-w-[880px] mx-auto text-center">
+      <div class="ember-div mb-8 reveal"><span class="ember-glyph">◆</span></div>
+      <p class="font-mono2 text-[10px] tracking-[0.35em] uppercase text-embers mb-5 reveal">Eventi · 8 – 30 covers</p>
+      <h1 class="font-display font-medium text-4xl lg:text-6xl leading-[1.0] reveal reveal-delay-1">Your table,<br><span class="italic text-flame">the whole hearth.</span></h1>
+      <p class="text-crema/50 text-sm leading-relaxed max-w-md mx-auto mt-6 reveal reveal-delay-2">Weddings of twelve, product dinners, anniversary nights nobody forgets. We close to the public for groups who want the fire to themselves.</p>
+    </div>
+  </header>
+
+  <!-- OPTIONS -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[1100px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20">
+        <div class="border border-line/50 p-8 reveal">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-flame mb-4">The Hearth Counter</p>
+          <h3 class="font-display text-2xl mb-3">6 seats, front row</h3>
+          <p class="text-crema/55 text-sm leading-relaxed">The original six counter seats at the fire. Fixed five-course menu, chef on the other side of the pass. Perfect for birthday dinners and small celebrations.</p>
+          <p class="font-mono2 text-xs text-flame mt-6">$79 / person · Tue–Thu</p>
+        </div>
+        <div class="border border-line/50 p-8 reveal reveal-delay-1">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-flame mb-4">Private Room</p>
+          <h3 class="font-display text-2xl mb-3">8 – 18, in the back room</h3>
+          <p class="text-crema/55 text-sm leading-relaxed">The room behind the kitchen line — one long table, its own wine wall, a view of the pass through the arch. Custom menu, wine pairing optional.</p>
+          <p class="font-mono2 text-xs text-flame mt-6">$95 / person · Any night</p>
+        </div>
+        <div class="border border-line/50 p-8 reveal reveal-delay-2">
+          <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-flame mb-4">The Buyout</p>
+          <h3 class="font-display text-2xl mb-3">20 – 30, the whole room</h3>
+          <p class="text-crema/55 text-sm leading-relaxed">40 seats, one party, endless fire. For weddings, launches, and people who want the restaurant to feel like it belongs to them for one night.</p>
+          <p class="font-mono2 text-xs text-flame mt-6">From $4,500 · Fri–Sat</p>
+        </div>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        <div class="lg:col-span-5">
+          <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-embers mb-4 reveal">How it works</p>
+          <h2 class="font-display font-medium text-3xl lg:text-4xl leading-[1.05] max-w-sm reveal reveal-delay-1">One conversation, then the fire takes it from there.</h2>
+          <p class="text-crema/55 text-base leading-relaxed mt-6 max-w-sm reveal reveal-delay-2">Write to Rosa with the guest count and the occasion. She replies within two business days with a menu written for your night — no templates, no catering menus, no "chicken or fish" forms.</p>
+        </div>
+        <div class="lg:col-span-7 space-y-0 reveal reveal-delay-2">
+          <div class="border-b border-line/40 py-5 flex gap-6">
+            <span class="font-mono2 text-xs text-flame pt-1">01</span>
+            <div><h3 class="font-display text-xl mb-1">Tell us the occasion</h3><p class="text-crema/55 text-sm leading-relaxed">Wedding, launch, birthday, retirement, "we just miss the old gang." No detail is too small — allergies, seating quirks, a song you all want.</p></div>
+          </div>
+          <div class="border-b border-line/40 py-5 flex gap-6">
+            <span class="font-mono2 text-xs text-flame pt-1">02</span>
+            <div><h3 class="font-display text-xl mb-1">We build the menu around the fire</h3><p class="text-crema/55 text-sm leading-relaxed">What's in season and what the oven loves becomes a five- to seven-course menu. Signature dishes sit next to things we only make for parties.</p></div>
+          </div>
+          <div class="border-b border-line/40 py-5 flex gap-6">
+            <span class="font-mono2 text-xs text-flame pt-1">03</span>
+            <div><h3 class="font-display text-xl mb-1">30% holds the night</h3><p class="text-crema/55 text-sm leading-relaxed">A simple deposit holds the date. The balance settles on the night. Cancel with 10 days' notice and you get it all back — no fine print theater.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INQUIRY -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[1100px] mx-auto bg-coal border border-line/50 p-8 lg:p-14">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5">
+          <h2 class="font-display text-3xl mb-4 reveal">Tell us about the night.</h2>
+          <p class="text-crema/55 text-sm leading-relaxed reveal reveal-delay-1">Or pick up the phone — Rosa likes two good sentences and a date better than any form.</p>
+          <a href="tel:+15035550170" class="inline-flex items-center gap-2 font-mono2 text-[11px] tracking-[0.22em] uppercase text-flame mt-6 hover:text-crema transition-colors reveal reveal-delay-2">503-555-0170 <iconify-icon icon="ph:phone"></iconify-icon></a>
+        </div>
+        <div class="lg:col-span-7 reveal reveal-delay-1">
+          <form action="#" method="post" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div>
+              <label for="ename" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Name</label>
+              <input id="ename" name="ename" type="text" class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="Your name">
+            </div>
+            <div>
+              <label for="eemail" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Email</label>
+              <input id="eemail" name="eemail" type="email" class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="you@example.com">
+            </div>
+            <div>
+              <label for="eguest" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Guests</label>
+              <input id="eguest" name="eguest" type="number" min="6" max="30" class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="8">
+            </div>
+            <div>
+              <label for="edate" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">Preferred date</label>
+              <input id="edate" name="edate" type="text" class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="e.g. October 14">
+            </div>
+            <div class="md:col-span-2">
+              <label for="edetails" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 block mb-2">The occasion</label>
+              <textarea id="edetails" name="edetails" rows="4" class="w-full bg-transparent border border-line/50 px-4 py-3 text-sm focus:border-flame focus:outline-none" placeholder="What are we celebrating? Any allergies or seating notes?"></textarea>
+            </div>
+            <div class="md:col-span-2">
+              <button type="submit" class="inline-flex items-center gap-3 bg-flame text-soot font-mono2 text-[11px] tracking-[0.22em] uppercase px-8 py-4 hover:bg-crema transition-colors">
+                Send the inquiry <iconify-icon icon="ph:arrow-right"></iconify-icon>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-coal border-t border-line/40 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl tracking-tight">Ember <span class="italic text-flame">&amp;</span> Oak</div>
+          <p class="text-crema/50 text-sm leading-relaxed max-w-sm mt-4">Wood-fired Italian kitchen and neighborly trattoria in Southeast Portland. Forty seats, one oven, and a menu written in pencil.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Visit</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="visit.html" class="hover:text-flame transition-colors">Reservations</a>
+            <a href="private-dining.html" class="hover:text-flame transition-colors">Private Dining</a>
+            <a href="visit.html" class="hover:text-flame transition-colors">Hours &amp; Directions</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Kitchen</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="menu.html" class="hover:text-flame transition-colors">Menu</a>
+            <a href="story.html" class="hover:text-flame transition-colors">Our Story</a>
+            <a href="journal.html" class="hover:text-flame transition-colors">The Journal</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Find us</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <p>2114 SE Morrison St.</p>
+            <p>Portland, OR 97214</p>
+            <a href="tel:+15035550170" class="text-flame hover:text-crema transition-colors">503-555-0170</a>
+            <a href="mailto:ciao@emberandoak.com" class="hover:text-flame transition-colors">ciao@emberandoak.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-line/40 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[10px] text-crema/30 tracking-[0.18em] uppercase">&copy; 2026 Ember &amp; Oak. <span class="text-crema/40">Aperti in cucina.</span></p>
+        <div class="flex gap-5">
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harlan &amp; Co. — Chartered Accountants, Chicago</title>
+  <meta name="description" content="Harlan & Co. has kept the books of Chicago's family businesses and manufacturers straight since 1974. Audit, tax, and advisory that reads like plain English.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: '#10232e', paper: '#f4efe3', brass: '#b08d4a', mist: '#5f7d96',
+          line: '#d8cfbb', parchment: '#fbf7ec', coal: '#0b141d',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="antialiased text-navy bg-paper overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-paper/95 backdrop-blur border-b border-line">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-[1.35rem] leading-none tracking-tight">
+        Harlan <span class="text-brass">&amp;</span> Co.
+        <span class="block font-ledger text-[9px] tracking-[0.3em] uppercase text-mist mt-1">Chartered accountants · est. 1974</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="services.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">Services</a>
+        <a href="about.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">The Firm</a>
+        <a href="team.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">Team</a>
+        <a href="insights.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">Thinking</a>
+        <a href="contact.html" class="ml-4 bg-navy text-paper font-ledger text-[10px] tracking-[0.22em] uppercase px-5 py-3 hover:bg-brass transition-colors">Begin a conversation</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-navy origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-navy transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-navy origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-7 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="services.html" class="font-display text-3xl">Services</a>
+    <a href="about.html" class="font-display text-3xl">The Firm</a>
+    <a href="team.html" class="font-display text-3xl">Team</a>
+    <a href="insights.html" class="font-display text-3xl">Thinking</a>
+    <a href="contact.html" class="mt-4 bg-navy text-paper font-ledger text-[10px] tracking-[0.22em] uppercase px-6 py-3">Begin a conversation</a>
+  </div>
+
+  <!-- HERO -->
+  <header class="pt-40 lg:pt-52 pb-20 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <p class="font-ledger text-[11px] tracking-[0.3em] uppercase text-brass mb-6 reveal">Principal journal · Chicago, IL</p>
+      <h1 class="font-display font-light text-[clamp(2.8rem,7vw,5.6rem)] leading-[0.95] max-w-[900px] reveal reveal-delay-1">
+        Your books, kept so<br>honestly they read like<br><em class="italic text-brass">plain English.</em>
+      </h1>
+      <div class="mt-10 flex flex-col sm:flex-row items-start gap-10 justify-between">
+        <p class="text-mist text-lg leading-relaxed max-w-md reveal reveal-delay-2">
+          Since 1974 we've been the numbers department for Chicago's family businesses, workshops, and manufacturers — the accountants who show up to every closing, dinner, and difficult Tuesday.
+        </p>
+        <div class="reveal reveal-delay-2">
+          <a href="#ledger" class="inline-flex items-center gap-3 bg-navy text-paper font-ledger text-[11px] tracking-[0.22em] uppercase px-7 py-4 hover:bg-brass transition-colors">Read this month's journal</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LEDGER STRIP -->
+  <section class="px-6 lg:px-10 pb-20">
+    <div class="max-w-[820px] mx-auto ledger reveal" id="ledger">
+      <div class="ledger-head"><span>From the journal</span><span>Ledger H-C 1974</span></div>
+      <div class="px-6 lg:px-9 py-8">
+        <div class="lentry">
+          <div><p class="title">An inventory at street level</p><p class="memo mt-1">Three generations in, still counting what matters.</p></div>
+          <span class="amt">$—</span><span class="amt"></span>
+        </div>
+        <div class="lentry">
+          <div><p class="title">Family businesses we've carried</p><p class="memo mt-1">From refrigerator-repair vans to a 400-year-old organ-maker.</p></div>
+          <span class="amt">412</span><span class="amt"></span>
+        </div>
+        <div class="lentry">
+          <div><p class="title">Audits without a surprise</p><p class="memo mt-1">Prepared, not repaired. The difference is your peace of mind.</p></div>
+          <span class="amt">100%</span><span class="amt"></span>
+        </div>
+        <div class="lentry">
+          <div><p class="title">Years in our own lease</p><p class="memo mt-1">Same office, same floor, same door — three mayors ago.</p></div>
+          <span class="amt">52</span><span class="amt"></span>
+        </div>
+        <div class="lg:flex lg:items-center lg:justify-between mt-8 pt-4 ledger-rule-thick">
+          <p class="font-ledger text-[10px] tracking-[0.2em] uppercase text-mist">Carried forward to engagement</p>
+          <a href="contact.html" class="inline-flex items-center gap-2 font-ledger text-[11px] tracking-[0.2em] uppercase text-brass hover:text-navy transition-colors mt-3 lg:mt-0">Open a conversation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES INDEX -->
+  <section class="py-24 lg:py-32 px-6 lg:px-10 border-t border-line bg-parchment">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-4">
+        <p class="font-ledger text-[10px] tracking-[0.3em] uppercase text-brass mb-4 reveal">Our practice</p>
+        <h2 class="font-display font-light text-4xl lg:text-5xl leading-tight reveal reveal-delay-1">Four ledgers,<br>one ethic.</h2>
+      </div>
+      <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
+        <div class="reveal"><h3 class="font-display text-2xl mb-2">Audit &amp; assurance</h3><p class="text-mist text-sm leading-relaxed">Clean opinions, drawn without drama, delivered on the due date your banker expects.</p></div>
+        <div class="reveal reveal-delay-1"><h3 class="font-display text-2xl mb-2">Tax, through the year</h3><p class="text-mist text-sm leading-relaxed">Planning that happens in April is late. We keep tax decisions in the ordinary rhythm of your business year.</p></div>
+        <div class="reveal reveal-delay-2"><h3 class="font-display text-2xl mb-2">Business advisory</h3><p class="text-mist text-sm leading-relaxed">Buying a shop, selling a share, pricing a job. We're at the table where the numbers get made.</p></div>
+        <div class="reveal"><h3 class="font-display text-2xl mb-2">Bookkeeping bench</h3><p class="text-mist text-sm leading-relaxed">When the invoices pile up, ours arrive with a seasoned hand and a tidy ledger to hand back.</p></div>
+        <a href="services.html" class="sm:col-span-2 inline-flex items-center gap-2 font-ledger text-[11px] tracking-[0.22em] uppercase text-brass hover:text-navy transition-colors reveal">Open the full ledger <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE / IMAGE BAND -->
+  <section class="py-24 lg:py-32 px-6 lg:px-10 text-paper bg-navy">
+    <div class="max-w-[920px] mx-auto text-center">
+      <p class="font-ledger text-[10px] tracking-[0.3em] uppercase text-brass mb-8 reveal">What our clients say</p>
+      <blockquote class="font-display font-light text-2xl lg:text-4xl leading-relaxed reveal reveal-delay-1">
+        "They act like our business is their only client. It's the reason we've never interviewed another firm in thirty years."
+      </blockquote>
+      <p class="font-ledger text-[11px] tracking-[0.2em] uppercase text-paper/50 mt-8 reveal reveal-delay-2">— Third-generation owners, a Chicago manufacturer</p>
+    </div>
+  </section>
+
+  <!-- IMAGE + TEXT -->
+  <section class="py-24 lg:py-32 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div class="overflow-hidden aspect-[4/3] reveal">
+        <img src="https://images.pexels.com/photos/8297016/pexels-photo-8297016.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Accountant reviewing financial documents at an office desk" class="w-full h-full object-cover">
+      </div>
+      <div class="lg:pl-10">
+        <p class="font-ledger text-[10px] tracking-[0.3em] uppercase text-brass mb-4 reveal">Why Harlan &amp; Co.</p>
+        <h2 class="font-display font-light text-4xl lg:text-5xl leading-tight reveal reveal-delay-1">We work in your kitchen, not your vestibule.</h2>
+        <div class="text-mist text-base leading-relaxed space-y-4 mt-8 max-w-xl reveal reveal-delay-2">
+          <p>A lot of firms meet you once, hand you a staff barcode, and bill you for the privilege. We assign a partner who can sit in your office, understand your margins, and answer a phone when the bank calls.</p>
+          <p>Our clients stay because the sheets they sign every spring match the conversations we have every other month. That's the whole trick, and we've had fifty years to practice it.</p>
+        </div>
+        <a href="about.html" class="inline-flex items-center gap-2 font-ledger text-[11px] tracking-[0.22em] uppercase text-brass hover:text-navy transition-colors mt-8 reveal reveal-delay-2">Read the firm's story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILED / THINKING TEASER -->
+  <section class="pb-28 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div class="border border-line bg-parchment p-8 lg:p-10 reveal">
+        <p class="font-ledger text-[10px] tracking-[0.22em] uppercase text-brass mb-6">Latest filing · Thinking</p>
+        <h3 class="font-display font-light text-2xl leading-snug mb-3">"What to bring your accountant before the year grinds to a halt"</h3>
+        <p class="text-mist text-sm leading-relaxed mb-6">A short, seasonal note on the six documents that make your closing table calm instead of chaotic.</p>
+        <a href="insights.html" class="inline-flex items-center gap-2 font-ledger text-[11px] tracking-[0.22em] uppercase text-brass hover:text-navy transition-colors">Read it in the journal</a>
+      </div>
+      <div class="border border-line bg-parchment p-8 lg:p-10 reveal reveal-delay-1">
+        <p class="font-ledger text-[10px] tracking-[0.22em] uppercase text-brass mb-6">New disclaimer</p>
+        <h3 class="font-display font-light text-2xl leading-snug mb-3">We're the only shouting partner some of you will ever need.</h3>
+        <p class="text-mist text-sm leading-relaxed mb-6">Buying another business is emotional. Our job is to love the emotion and audit the asking price, in that order.</p>
+        <a href="services.html" class="inline-flex items-center gap-2 font-ledger text-[11px] tracking-[0.22em] uppercase text-brass hover:text-navy transition-colors">Talk to us about a deal</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-coal text-paper/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl text-paper tracking-tight">Harlan <span class="text-brass">&amp;</span> Co.</div>
+          <p class="font-ledger text-[10px] tracking-[0.25em] uppercase text-mist mt-2 mb-5">Chartered accountants · est. 1974</p>
+          <p class="text-sm leading-relaxed max-w-sm">A full-service accounting and advisory firm for Chicago's family businesses, manufacturers, and the people who run them. Same office since 1974.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-ledger text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Practice</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="services.html" class="hover:text-brass transition-colors">Services</a>
+            <a href="about.html" class="hover:text-brass transition-colors">The Firm</a>
+            <a href="team.html" class="hover:text-brass transition-colors">Team</a>
+            <a href="insights.html" class="hover:text-brass transition-colors">Thinking</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-ledger text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Office</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>1212 Wacker Dr.</p>
+            <p>Suite 900 · Chicago, IL 60606</p>
+            <a href="tel:+13125550174" class="text-stem hover:text-brass transition-colors">312-555-0174</a>
+            <a href="mailto:hello@harlanco.com" class="hover:text-brass transition-colors">hello@harlanco.com</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-ledger text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Hours</h4>
+          <p class="text-sm">Mon – Fri, 8:00 – 18:00<br>Closings by appointment, including the occasional Saturday.</p>
+        </div>
+      </div>
+      <div class="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-ledger text-[10px] text-paper/30">&copy; 2026 Harlan &amp; Co., Chartered Accountants. Figures reconciled monthly.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

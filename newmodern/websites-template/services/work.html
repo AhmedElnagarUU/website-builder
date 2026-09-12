@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Work — Redline Service Co. Job Log</title>
+  <meta name="description" content="Browse the Redline job log — kitchens, HVAC overhauls, repipes, panels, and roofs across Portland, OR.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#17191b', paper: '#f1ebe1', signal: '#e4572e', 'signal-soft': '#f2a183',
+          steel: '#55626e', line: '#d8d1c3', night: '#101214',
+        },
+        fontFamily: {
+          cond: ['"Barlow Condensed"', 'sans-serif'],
+          body: ['Barlow', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-ink overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300 bg-paper border-b border-ink/10">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16 lg:h-[72px]">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-cond font-bold text-xl tracking-tight leading-none">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup></span>
+        <span class="hidden sm:inline font-cond font-semibold text-[10px] tracking-[0.26em] uppercase text-steel">Redline Service Co.</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7">
+        <a href="services.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Services</a>
+        <a href="work.html" class="nav-link active font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Our Work</a>
+        <a href="about.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">The Crew</a>
+        <a href="contact.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Contact</a>
+        <a href="emergency.html" class="ml-2 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-[11px] tracking-[0.18em] uppercase px-4 py-2.5 hover:bg-signal/90 transition-colors">
+          <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>24/7
+        </a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-cond font-semibold text-3xl tracking-wide">Home</a>
+    <a href="services.html" class="font-cond font-semibold text-3xl tracking-wide">Services</a>
+    <a href="work.html" class="font-cond font-semibold text-3xl tracking-wide">Our Work</a>
+    <a href="about.html" class="font-cond font-semibold text-3xl tracking-wide">The Crew</a>
+    <a href="contact.html" class="font-cond font-semibold text-3xl tracking-wide">Contact</a>
+    <a href="emergency.html" class="mt-4 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-xs tracking-[0.18em] uppercase px-6 py-3">
+      <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>24/7 Emergency
+    </a>
+  </div>
+
+  <header class="pt-32 lg:pt-44 pb-14 lg:pb-20 px-6 lg:px-10 bg-paper">
+    <div class="max-w-[1320px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div>
+        <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-4 reveal">Job Log · Selected Entries</p>
+        <h1 class="font-cond font-bold text-[clamp(2.6rem,6vw,4.6rem)] leading-[0.9] max-w-[680px] reveal reveal-delay-1">
+          Every job logged.<br>Every job finished.
+        </h1>
+      </div>
+      <p class="text-steel max-w-sm text-sm leading-relaxed reveal reveal-delay-2">
+        A selection from the log. Each entry lists the trade, the neighborhood, and what we actually did — the way we'd want to see it ourselves.
+      </p>
+    </div>
+  </header>
+
+  <!-- JOB LOG FILTER STRIP -->
+  <div class="px-6 lg:px-10 pb-6">
+    <div class="max-w-[1320px] mx-auto flex flex-wrap gap-2" aria-label="Filter jobs">
+      <span class="font-mono text-[10px] tracking-[0.2em] uppercase text-steel py-2 pr-3">Filter</span>
+      <a href="#" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink px-4 py-2 bg-ink text-paper" data-filter="all">All</a>
+      <a href="#" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors" data-filter="hvac">HVAC</a>
+      <a href="#" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors" data-filter="plumbing">Plumbing</a>
+      <a href="#" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors" data-filter="electrical">Electrical</a>
+      <a href="#" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors" data-filter="roofing">Roofing</a>
+      <a href="#" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors" data-filter="finishing">Drywall + Paint</a>
+    </div>
+  </div>
+
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+
+      <!-- Entry -->
+      <div class="group block reveal" data-job="hvac">
+        <div class="img-frame overflow-hidden aspect-[4/3]">
+          <img src="https://images.pexels.com/photos/36035073/pexels-photo-36035073.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Kitchen under renovation" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+        </div>
+        <div class="mt-4 border-b border-ink/15 pb-3">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel flex justify-between"><span>RL-2031</span><span class="text-signal">Closed · 5 Days</span></div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1">Full Kitchen Renovation</h3>
+          <p class="text-steel text-sm">Pearl District · Cabinetry, plumbing, electrical, drywall</p>
+        </div>
+      </div>
+
+      <div class="group block reveal reveal-delay-1" data-job="hvac">
+        <div class="img-frame overflow-hidden aspect-[4/3]">
+          <img src="https://images.pexels.com/photos/6471913/pexels-photo-6471913.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="HVAC technician repairing outdoor unit" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+        </div>
+        <div class="mt-4 border-b border-ink/15 pb-3">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel flex justify-between"><span>RL-2028</span><span class="text-signal">Closed · 3 Days</span></div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1">HVAC System Overhaul</h3>
+          <p class="text-steel text-sm">Hawthorne · Replacement, new ducting, NATE-certified install</p>
+        </div>
+      </div>
+
+      <div class="group block reveal reveal-delay-2" data-job="plumbing">
+        <div class="img-frame overflow-hidden aspect-[4/3]">
+          <img src="https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Plumber installing pipes" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+        </div>
+        <div class="mt-4 border-b border-ink/15 pb-3">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel flex justify-between"><span>RL-2025</span><span class="text-signal">Closed · 4 Days</span></div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1">Full-House Repipe</h3>
+          <p class="text-steel text-sm">Mississippi Ave · Galvanized-to-PEX, two bathrooms</p>
+        </div>
+      </div>
+
+      <div class="group block reveal" data-job="electrical">
+        <div class="img-frame overflow-hidden aspect-[4/3]">
+          <img src="https://images.pexels.com/photos/5667685/pexels-photo-5667685.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Two workers installing electrical panel outside" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+        </div>
+        <div class="mt-4 border-b border-ink/15 pb-3">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel flex justify-between"><span>RL-2023</span><span class="text-signal">Closed · 2 Days</span></div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1">200A Panel Replacement</h3>
+          <p class="text-steel text-sm">Division St · Service upgrade, whole-panel re-label</p>
+        </div>
+      </div>
+
+      <div class="group block reveal reveal-delay-1" data-job="roofing">
+        <div class="img-frame overflow-hidden aspect-[4/3]">
+          <img src="https://images.pexels.com/photos/8487771/pexels-photo-8487771.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Worker in PPE hammering on structure" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+        </div>
+        <div class="mt-4 border-b border-ink/15 pb-3">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel flex justify-between"><span>RL-2019</span><span class="text-signal">Closed · 7 Days</span></div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1">Storm Repair + Tear-Off</h3>
+          <p class="text-steel text-sm">Sellwood · Wind damage, partial deck replace, re-roof</p>
+        </div>
+      </div>
+
+      <div class="group block reveal reveal-delay-2" data-job="finishing">
+        <div class="img-frame overflow-hidden aspect-[4/3]">
+          <img src="https://images.pexels.com/photos/6474133/pexels-photo-6474133.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Painting interior wall during renovation" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+        </div>
+        <div class="mt-4 border-b border-ink/15 pb-3">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel flex justify-between"><span>RL-2016</span><span class="text-signal">Closed · 3 Days</span></div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1">Whole-Floor Drywall + Paint</h3>
+          <p class="text-steel text-sm">Alberta Arts · Re-board, tape, texture, low-VOC paint</p>
+        </div>
+      </div>
+
+      <div class="group block reveal" data-job="plumbing">
+        <div class="img-frame overflow-hidden aspect-[4/3]">
+          <img src="https://images.pexels.com/photos/7859953/pexels-photo-7859953.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Hands adjusting boiler system" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+        </div>
+        <div class="mt-4 border-b border-ink/15 pb-3">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel flex justify-between"><span>RL-2012</span><span class="text-signal">Closed · 1 Day</span></div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1">Combi Boiler Swap + Radiant Zone</h3>
+          <p class="text-steel text-sm">Sunnyside · New boiler, wiring, hydronic balance</p>
+        </div>
+      </div>
+
+      <div class="group block reveal reveal-delay-1" data-job="electrical">
+        <div class="img-frame overflow-hidden aspect-[4/3]">
+          <img src="https://images.pexels.com/photos/31583983/pexels-photo-31583983.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Electrical tools on workbench" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+        </div>
+        <div class="mt-4 border-b border-ink/15 pb-3">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel flex justify-between"><span>RL-2009</span><span class="text-signal">Closed · 1 Day</span></div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1">EV Charger + Dedicated Circuit</h3>
+          <p class="text-steel text-sm">Woodstock · New 50A circuit, utility coordination</p>
+        </div>
+      </div>
+
+      <div class="group block reveal reveal-delay-2" data-job="finishing">
+        <div class="img-frame overflow-hidden aspect-[4/3]">
+          <img src="https://images.pexels.com/photos/37178416/pexels-photo-37178416.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Carpenter measuring wooden plank" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+        </div>
+        <div class="mt-4 border-b border-ink/15 pb-3">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel flex justify-between"><span>RL-2004</span><span class="text-signal">Closed · 6 Days</span></div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1">Built-In Shelving + Trim Package</h3>
+          <p class="text-steel text-sm">Laurelhurst · Custom millwork, floating shelves, casing</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[1320px] mx-auto perf relative pt-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-paper">
+      <div>
+        <div class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-2">Add your address to the log</div>
+        <p class="font-cond font-semibold text-2xl tracking-wide">Your place could be next. Get a written estimate first.</p>
+      </div>
+      <a href="contact.html" class="inline-flex items-center gap-3 bg-ink text-paper font-cond font-semibold text-[11px] tracking-[0.2em] uppercase px-7 py-4 hover:bg-ink/85 transition-colors shrink-0">
+        Request a Visit <iconify-icon icon="ph:arrow-right"></iconify-icon>
+      </a>
+    </div>
+  </section>
+
+  <footer class="bg-ink text-paper/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-cond font-bold text-2xl text-paper tracking-tight mb-4">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup> <span class="text-sm font-semibold tracking-[0.22em] uppercase text-paper/40">Redline Service Co.</span></div>
+          <p class="text-sm leading-relaxed max-w-sm">Licensed home repair and maintenance for Portland, OR and the greater metro. Same-day dispatch, honest estimates, crews who get it right.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Navigate</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-sm hover:text-signal transition-colors">Services</a>
+            <a href="work.html" class="text-sm hover:text-signal transition-colors">Our Work</a>
+            <a href="about.html" class="text-sm hover:text-signal transition-colors">The Crew</a>
+            <a href="contact.html" class="text-sm hover:text-signal transition-colors">Contact</a>
+            <a href="emergency.html" class="text-sm text-signal hover:text-signal-soft transition-colors">24/7 Emergency</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Trades</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <span>HVAC</span><span>Plumbing</span><span>Electrical</span><span>Roofing</span><span>Drywall &amp; Finishing</span><span>Painting</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Contact</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>1821 SE Division St.</p>
+            <p>Portland, OR 97202</p>
+            <a href="mailto:dispatch@redlineservice.co" class="text-signal hover:text-signal-soft transition-colors">dispatch@redlineservice.co</a>
+            <a href="tel:+15035550124" class="text-paper hover:text-signal transition-colors">503-555-0124</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono text-[10px] text-paper/30">&copy; 2026 Redline Service Co. Licensed &amp; Insured, CCB #218745.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

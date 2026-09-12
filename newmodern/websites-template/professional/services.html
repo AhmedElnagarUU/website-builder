@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Harlan &amp; Co.</title>
+  <meta name="description" content="Our practice ledgers: audit & assurance, tax, business advisory, bookkeeping, and CFO support for Chicago's family businesses and manufacturers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&family=Mulish:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: '#10232e', paper: '#f4efe3', brass: '#b08d4a', mist: '#5f7d96',
+          line: '#d8cfbb', parchment: '#fbf7ec', coal: '#0b141d',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="antialiased text-navy bg-paper overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-paper/95 backdrop-blur border-b border-line">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-[1.35rem] leading-none tracking-tight">
+        Harlan <span class="text-brass">&amp;</span> Co.
+        <span class="block font-ledger text-[9px] tracking-[0.3em] uppercase text-mist mt-1">Chartered accountants · est. 1974</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="services.html" class="nav-link active text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">Services</a>
+        <a href="about.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">The Firm</a>
+        <a href="team.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">Team</a>
+        <a href="insights.html" class="nav-link text-[11px] tracking-[0.18em] uppercase text-navy/70 hover:text-navy transition-colors">Thinking</a>
+        <a href="contact.html" class="ml-4 bg-navy text-paper font-ledger text-[10px] tracking-[0.22em] uppercase px-5 py-3 hover:bg-brass transition-colors">Begin a conversation</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-navy origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-navy transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-navy origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-7 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="services.html" class="font-display text-3xl">Services</a>
+    <a href="about.html" class="font-display text-3xl">The Firm</a>
+    <a href="team.html" class="font-display text-3xl">Team</a>
+    <a href="insights.html" class="font-display text-3xl">Thinking</a>
+    <a href="contact.html" class="mt-4 bg-navy text-paper font-ledger text-[10px] tracking-[0.22em] uppercase px-6 py-3">Begin a conversation</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-40 lg:pt-52 pb-16 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+      <div>
+        <p class="font-ledger text-[11px] tracking-[0.3em] uppercase text-brass mb-6 reveal">Accounts &amp; engagements · Practice ledger</p>
+        <h1 class="font-display font-light text-[clamp(2.8rem,7vw,5.2rem)] leading-[0.95] reveal reveal-delay-1">The work we<br>take on.</h1>
+      </div>
+      <p class="text-mist text-base leading-relaxed max-w-sm reveal reveal-delay-2">
+        Every engagement starts the same way: a partner, a notepad, and a promise that the numbers will make sense to you by the time we're done.
+      </p>
+    </div>
+  </header>
+
+  <!-- SERVICE INDEX -->
+  <section class="px-6 lg:px-10 pb-24">
+    <div class="max-w-[920px] mx-auto space-y-6">
+
+      <div class="ledger reveal">
+        <div class="ledger-head"><span>Account 01</span><span>Audit &amp; assurance</span></div>
+        <div class="px-6 lg:px-9 py-7">
+          <p class="text-mist text-base leading-relaxed mb-6">Independent audits with clean opinions, prepared in time for the meeting they're actually for. We audit privately held businesses, members' association accounts, and grant-funded nonprofits — nobody leaves wondering what "it" means.</p>
+          <div class="lentry"><div><p class="title">Financial statement audits</p><p class="memo mt-1">GAAP, without the grandfather clauses.</p></div><span class="amt"></span><span class="amt"></span></div>
+          <div class="lentry"><div><p class="title">Reviews &amp; compilations</p><p class="memo mt-1">For owners who need rigor, not the full orchestra.</p></div><span class="amt"></span><span class="amt"></span></div>
+          <div class="lentry"><div><p class="title">Controls &amp; readiness</p><p class="memo mt-1">A dry run before your auditor's expectations show up.</p></div><span class="amt"></span><span class="amt"></span></div>
+        </div>
+      </div>
+
+      <div class="ledger reveal">
+        <div class="ledger-head"><span>Account 02</span><span>Tax, through the year</span></div>
+        <div class="px-6 lg:px-9 py-7">
+          <p class="text-mist text-base leading-relaxed mb-6">Prepared the same year as the income. Our planning work begins in June, not April — so by the time the filing season arrives, most of our clients have only signatures left to do.</p>
+          <div class="lentry"><div><p class="title">C-Corp, S-Corp &amp; partnership returns</p><p class="memo mt-1">Entity and owner handled in one coordinated pass.</p></div><span class="amt"></span><span class="amt"></span></div>
+          <div class="lentry"><div><p class="title">Owner &amp; family tax strategy</p><p class="memo mt-1">Succession, gifting, and the honest version of "saving it for the kids".</p></div><span class="amt"></span><span class="amt"></span></div>
+          <div class="lentry"><div><p class="title">State &amp; city filings</p><p class="memo mt-1">Chicago and Cook County, which have opinions of their own.</p></div><span class="amt"></span><span class="amt"></span></div>
+        </div>
+      </div>
+
+      <div class="ledger reveal">
+        <div class="ledger-head"><span>Account 03</span><span>Business advisory</span></div>
+        <div class="px-6 lg:px-9 py-7">
+          <p class="text-mist text-base leading-relaxed mb-6">Mergers, takeovers, price discipline, and the quiet art of telling an owner what their pride is worth. We've sat on both sides of the table; we know which fevers to respect.</p>
+          <div class="lentry"><div><p class="title">Buy &amp; sell representation</p><p class="memo mt-1">Valuations and diligence without the dramatic ultimatum.</p></div><span class="amt"></span><span class="amt"></span></div>
+          <div class="lentry"><div><p class="title">Succession planning</p><p class="memo mt-1">The next generation, equipped and genuinely ready.</p></div><span class="amt"></span><span class="amt"></span></div>
+          <div class="lentry"><div><p class="title">Owner-to-owner roundtables</p><p class="memo mt-1">A small circle that meets quarterly and trades the real numbers.</p></div><span class="amt"></span><span class="amt"></span></div>
+        </div>
+      </div>
+
+      <div class="ledger reveal">
+        <div class="ledger-head"><span>Account 04</span><span>Bookkeeping bench &amp; CFO</span></div>
+        <div class="px-6 lg:px-9 py-7">
+          <p class="text-mist text-base leading-relaxed mb-6">A senior team that keeps your ledgers clean between closings, plus a part-time financial officer for the months you'd rather spend running the shop than reconciling it.</p>
+          <div class="lentry"><div><p class="title">Monthly close &amp; detail</p><p class="memo mt-1">Invoices, payroll, and the deferred-subscription curse.</p></div><span class="amt"></span><span class="amt"></span></div>
+          <div class="lentry"><div><p class="title">Part-time CFO</p><p class="memo mt-1">The strategic conversations, for two days a week.</p></div><span class="amt"></span><span class="amt"></span></div>
+          <div class="lentry"><div><p class="title">Software triage</p><p class="memo mt-1">We speak QuickBooks, Xero, and the binder your bookkeeper keeps.</p></div><span class="amt"></span><span class="amt"></span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[920px] mx-auto bg-navy text-paper p-10 lg:p-14 reveal">
+      <p class="font-ledger text-[10px] tracking-[0.3em] uppercase text-brass mb-5">Unsure which account you need?</p>
+      <h2 class="font-display font-light text-3xl lg:text-4xl leading-tight">Bring us the messy version of the problem. That's usually where the real one hides.</h2>
+      <a href="contact.html" class="inline-flex items-center gap-3 bg-brass text-navy font-ledger text-[11px] tracking-[0.22em] uppercase px-7 py-4 hover:bg-paper transition-colors mt-8">Start with a coffee <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon></a>
+    </div>
+  </section>
+
+  <footer class="bg-coal text-paper/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl text-paper tracking-tight">Harlan <span class="text-brass">&amp;</span> Co.</div>
+          <p class="font-ledger text-[10px] tracking-[0.25em] uppercase text-mist mt-2 mb-5">Chartered accountants · est. 1974</p>
+          <p class="text-sm leading-relaxed max-w-sm">A full-service accounting and advisory firm for Chicago's family businesses, manufacturers, and the people who run them. Same office since 1974.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-ledger text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Practice</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="services.html" class="hover:text-brass transition-colors">Services</a>
+            <a href="about.html" class="hover:text-brass transition-colors">The Firm</a>
+            <a href="team.html" class="hover:text-brass transition-colors">Team</a>
+            <a href="insights.html" class="hover:text-brass transition-colors">Thinking</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-ledger text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Office</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>1212 Wacker Dr.</p>
+            <p>Suite 900 · Chicago, IL 60606</p>
+            <a href="tel:+13125550174" class="text-stem hover:text-brass transition-colors">312-555-0174</a>
+            <a href="mailto:hello@harlanco.com" class="hover:text-brass transition-colors">hello@harlanco.com</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-ledger text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Hours</h4>
+          <p class="text-sm">Mon – Fri, 8:00 – 18:00<br>Closings by appointment, including the occasional Saturday.</p>
+        </div>
+      </div>
+      <div class="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-ledger text-[10px] text-paper/30">&copy; 2026 Harlan &amp; Co., Chartered Accountants. Figures reconciled monthly.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

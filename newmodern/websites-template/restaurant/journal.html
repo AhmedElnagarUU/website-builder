@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Journal — Ember &amp; Oak Notes from the Kitchen</title>
+  <meta name="description" content="Field notes from the Ember & Oak kitchen — seasonal produce updates, recipes, and dispatches from the fire.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          soot: '#161110', coal: '#201a17', embers: '#df5b32', flame: '#f0a252',
+          crema: '#f2e6d3', herb: '#4a5531', line: '#3b2f27',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-crema overflow-x-hidden bg-soot">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 border-b border-line/30 bg-soot/95 backdrop-blur">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-2xl lg:text-[1.7rem] tracking-tight">Ember <span class="italic text-flame">&amp;</span> Oak</a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="menu.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Menu</a>
+        <a href="story.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Our Story</a>
+        <a href="private-dining.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Private Dining</a>
+        <a href="journal.html" class="nav-link active text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">The Journal</a>
+        <a href="visit.html" class="ml-3 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-5 py-3 hover:bg-flame hover:text-soot transition-colors">Book a Table</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-soot z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="menu.html" class="font-display text-3xl">Menu</a>
+    <a href="story.html" class="font-display text-3xl">Our Story</a>
+    <a href="private-dining.html" class="font-display text-3xl">Private Dining</a>
+    <a href="journal.html" class="font-display text-3xl">The Journal</a>
+    <a href="visit.html" class="mt-4 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-6 py-3">Book a Table</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-40 lg:pt-52 pb-14 lg:pb-20 px-6 lg:px-10">
+    <div class="max-w-[880px] mx-auto text-center">
+      <div class="ember-div mb-8 reveal"><span class="ember-glyph">◆</span></div>
+      <p class="font-mono2 text-[10px] tracking-[0.35em] uppercase text-embers mb-5 reveal">Quaderno di cucina</p>
+      <h1 class="font-display font-medium text-4xl lg:text-6xl leading-[1.0] reveal reveal-delay-1">The journal</h1>
+      <p class="text-crema/50 text-sm leading-relaxed max-w-md mx-auto mt-6 reveal reveal-delay-2">Undispatched letters from the kitchen. What's in season, what the oven found, and the occasional recipe if the team is feeling generous.</p>
+    </div>
+  </header>
+
+  <!-- POSTS -->
+  <section class="px-6 lg:px-10 pb-16">
+    <div class="max-w-[1320px] mx-auto space-y-16 lg:space-y-20">
+
+      <!-- featured post -->
+      <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center reveal">
+        <div class="lg:col-span-7 order-2 lg:order-1">
+          <p class="font-mono2 text-[10px] tracking-[0.28em] uppercase text-flame mb-3">Harvest · September 2026</p>
+          <h2 class="font-display font-medium text-3xl lg:text-5xl leading-[1.03] max-w-xl mb-5">The lambs come down from the hills this week.</h2>
+          <div class="text-crema/60 leading-relaxed space-y-4 max-w-xl">
+            <p>Every September a truck rolls in from the coast range with a half-dozen young lambs pasture-finished by a farmer who's been selling to the restaurant since 2016. It's not cheap, it's not year-round, and it's the single best thing to come off the fire all year.</p>
+            <p>Tonight's braise uses the shoulder with red wine, porcini, and a square of dark chocolate. The racks go whole over oak. The fat sizzles, the room glows, and for about six weeks the menu has a heartbeat in it you can't fake the rest of the season.</p>
+          </div>
+          <div class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 mt-6">By Elia Moretti · 6 min</div>
+        </div>
+        <div class="lg:col-span-5 order-1 lg:order-2">
+          <div class="overflow-hidden aspect-[4/5]">
+            <img src="https://images.pexels.com/photos/5779787/pexels-photo-5779787.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Chef grilling meat over open flame" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+          </div>
+        </div>
+      </article>
+
+      <!-- smaller posts -->
+      <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center reveal">
+        <div class="lg:col-span-5">
+          <div class="overflow-hidden aspect-[4/3]">
+            <img src="https://images.pexels.com/photos/6287259/pexels-photo-6287259.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Flour dusted table with pasta dough" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+          </div>
+        </div>
+        <div class="lg:col-span-7">
+          <p class="font-mono2 text-[10px] tracking-[0.28em] uppercase text-flame mb-3">Pasta Lessons · August 2026</p>
+          <h2 class="font-display font-medium text-3xl lg:text-4xl leading-[1.03] max-w-lg mb-5">Why we roll pappardelle, not buy it.</h2>
+          <div class="text-crema/60 leading-relaxed space-y-4 max-w-xl">
+            <p>There's flour on everything in this kitchen by 10am, and we wouldn't have it any other way. A batch of pappardelle takes forty minutes and tastes like the difference between bread and a distraction.</p>
+            <p>The dough is two flours and eggs. The rolling is the patient part. The cutting is done fast with a knife that's older than me. The cooking takes ninety seconds — the drying rack to the boiling pot, no resting, no drama.</p>
+          </div>
+          <div class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 mt-6">By Gina Ferrante · 4 min</div>
+        </div>
+      </article>
+
+      <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center reveal">
+        <div class="lg:col-span-7 order-2 lg:order-1">
+          <p class="font-mono2 text-[10px] tracking-[0.28em] uppercase text-flame mb-3">From the Cellar · June 2026</p>
+          <h2 class="font-display font-medium text-3xl lg:text-4xl leading-[1.03] max-w-lg mb-5">A small list, chosen by people who drink it.</h2>
+          <div class="text-crema/60 leading-relaxed space-y-4 max-w-xl">
+            <p>We don't have a sommelier with a lanyard. We have Rosa, who drinks everything on the list twice and returns the ones that lied to her. It's twelve reds, six whites, and one weird sparkling we keep because it always starts a conversation.</p>
+            <p>Everything is under our noses for the check we'd actually pay. You want a wine list the size of a phone book? There's a spreadsheet for that, and it's not ours.</p>
+          </div>
+          <div class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-crema/40 mt-6">By Rosa Deluca · 3 min</div>
+        </div>
+        <div class="lg:col-span-5 order-1 lg:order-2">
+          <div class="overflow-hidden aspect-[4/5]">
+            <img src="https://images.pexels.com/photos/36542254/pexels-photo-36542254.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Rustic display of wine bottles on a barrel" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105">
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- WALK-IN RFC -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[1320px] mx-auto bg-coal border border-line/40 px-6 py-14 lg:px-14 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 reveal">
+      <div>
+        <p class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-flame mb-3">Dinner is 5 to close</p>
+        <h2 class="font-display text-3xl lg:text-4xl">Half the room waits for walk-ins.</h2>
+      </div>
+      <a href="visit.html" class="inline-flex items-center gap-3 bg-flame text-soot font-mono2 text-[11px] tracking-[0.22em] uppercase px-8 py-4 hover:bg-crema transition-colors shrink-0">
+        See tonight's hours <iconify-icon icon="ph:arrow-right"></iconify-icon>
+      </a>
+    </div>
+  </section>
+
+  <footer class="bg-coal border-t border-line/40 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl tracking-tight">Ember <span class="italic text-flame">&amp;</span> Oak</div>
+          <p class="text-crema/50 text-sm leading-relaxed max-w-sm mt-4">Wood-fired Italian kitchen and neighborly trattoria in Southeast Portland. Forty seats, one oven, and a menu written in pencil.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Visit</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="visit.html" class="hover:text-flame transition-colors">Reservations</a>
+            <a href="private-dining.html" class="hover:text-flame transition-colors">Private Dining</a>
+            <a href="visit.html" class="hover:text-flame transition-colors">Hours &amp; Directions</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Kitchen</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="menu.html" class="hover:text-flame transition-colors">Menu</a>
+            <a href="story.html" class="hover:text-flame transition-colors">Our Story</a>
+            <a href="journal.html" class="hover:text-flame transition-colors">The Journal</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Find us</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <p>2114 SE Morrison St.</p>
+            <p>Portland, OR 97214</p>
+            <a href="tel:+15035550170" class="text-flame hover:text-crema transition-colors">503-555-0170</a>
+            <a href="mailto:ciao@emberandoak.com" class="hover:text-flame transition-colors">ciao@emberandoak.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-line/40 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[10px] text-crema/30 tracking-[0.18em] uppercase">&copy; 2026 Ember &amp; Oak. <span class="text-crema/40">Aperti in cucina.</span></p>
+        <div class="flex gap-5">
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; Request a Visit — Redline Service Co.</title>
+  <meta name="description" content="Request a service visit from Redline Service Co. Tell us what's wrong, get a written estimate, and we'll route your job to the right Portland crew.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#17191b', paper: '#f1ebe1', signal: '#e4572e', 'signal-soft': '#f2a183',
+          steel: '#55626e', line: '#d8d1c3', night: '#101214',
+        },
+        fontFamily: {
+          cond: ['"Barlow Condensed"', 'sans-serif'],
+          body: ['Barlow', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-ink overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300 bg-paper border-b border-ink/10">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16 lg:h-[72px]">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-cond font-bold text-xl tracking-tight leading-none">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup></span>
+        <span class="hidden sm:inline font-cond font-semibold text-[10px] tracking-[0.26em] uppercase text-steel">Redline Service Co.</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7">
+        <a href="services.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Services</a>
+        <a href="work.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Our Work</a>
+        <a href="about.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">The Crew</a>
+        <a href="contact.html" class="nav-link active font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Contact</a>
+        <a href="emergency.html" class="ml-2 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-[11px] tracking-[0.18em] uppercase px-4 py-2.5 hover:bg-signal/90 transition-colors">
+          <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>24/7
+        </a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-cond font-semibold text-3xl tracking-wide">Home</a>
+    <a href="services.html" class="font-cond font-semibold text-3xl tracking-wide">Services</a>
+    <a href="work.html" class="font-cond font-semibold text-3xl tracking-wide">Our Work</a>
+    <a href="about.html" class="font-cond font-semibold text-3xl tracking-wide">The Crew</a>
+    <a href="contact.html" class="font-cond font-semibold text-3xl tracking-wide">Contact</a>
+    <a href="emergency.html" class="mt-4 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-xs tracking-[0.18em] uppercase px-6 py-3">
+      <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>24/7 Emergency
+    </a>
+  </div>
+
+  <!-- PAGE HEAD -->
+  <header class="pt-32 lg:pt-44 pb-14 lg:pb-20 px-6 lg:px-10 bg-paper">
+    <div class="max-w-[1320px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div>
+        <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-4 reveal">Dispatch · New Request</p>
+        <h1 class="font-cond font-bold text-[clamp(2.6rem,6vw,4.6rem)] leading-[0.9] max-w-[660px] reveal reveal-delay-1">
+          Tell us what's wrong.<br>We'll take it from here.
+        </h1>
+      </div>
+      <p class="text-steel max-w-sm text-sm leading-relaxed reveal reveal-delay-2">
+        Fill out the request and we'll call you back within the hour on a business day. For emergencies, skip the form and call — the desk answers 24/7.
+      </p>
+    </div>
+  </header>
+
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+
+      <!-- FORM -->
+      <div class="lg:col-span-7 reveal">
+        <form action="#" method="post" class="border-2 border-ink bg-[#fbf7ef] p-6 lg:p-10" style="box-shadow:10px 10px 0 var(--ink);">
+          <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel border-b border-ink/15 pb-4 mb-8">Request Form · RL-####</div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label for="name" class="font-cond font-semibold text-xs tracking-[0.18em] uppercase text-ink mb-2 block">Full name</label>
+              <input id="name" name="name" type="text" required class="w-full border border-ink/30 bg-transparent px-4 py-3 font-body text-sm focus:border-ink focus:outline-none" placeholder="Jordan Blake">
+            </div>
+            <div>
+              <label for="phone" class="font-cond font-semibold text-xs tracking-[0.18em] uppercase text-ink mb-2 block">Phone</label>
+              <input id="phone" name="phone" type="tel" required class="w-full border border-ink/30 bg-transparent px-4 py-3 font-body text-sm focus:border-ink focus:outline-none" placeholder="(503) 555-0100">
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label for="address" class="font-cond font-semibold text-xs tracking-[0.18em] uppercase text-ink mb-2 block">Service address</label>
+            <input id="address" name="address" type="text" required class="w-full border border-ink/30 bg-transparent px-4 py-3 font-body text-sm focus:border-ink focus:outline-none" placeholder="Street, city, neighborhood">
+          </div>
+
+          <div class="mb-6">
+            <label for="job" class="font-cond font-semibold text-xs tracking-[0.18em] uppercase text-ink mb-2 block">What needs fixing?</label>
+            <select id="job" name="job" class="w-full border border-ink/30 bg-transparent px-4 py-3 font-body text-sm focus:border-ink focus:outline-none">
+              <option>HVAC / climate</option>
+              <option>Plumbing</option>
+              <option>Electrical</option>
+              <option>Roofing</option>
+              <option>Drywall &amp; finishing</option>
+              <option>Painting</option>
+              <option>Not sure — route it for me</option>
+            </select>
+          </div>
+
+          <div class="mb-8">
+            <label for="details" class="font-cond font-semibold text-xs tracking-[0.18em] uppercase text-ink mb-2 block">Describe the problem</label>
+            <textarea id="details" name="details" rows="4" class="w-full border border-ink/30 bg-transparent px-4 py-3 font-body text-sm focus:border-ink focus:outline-none" placeholder="When did it start? What have you tried? Anything we should know before the crew arrives?"></textarea>
+          </div>
+
+          <button type="submit" class="inline-flex items-center gap-3 bg-signal text-white font-cond font-semibold text-[12px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-signal/90 transition-colors">
+            Request a Visit
+            <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+          </button>
+          <p class="font-mono text-[10px] text-steel mt-4 leading-relaxed">A dispatcher calls back within one business hour. This form does not book emergency calls — call 503-555-0124 for those.</p>
+        </form>
+      </div>
+
+      <!-- SIDE INFO -->
+      <div class="lg:col-span-5">
+        <div class="space-y-10">
+          <div class="reveal">
+            <h3 class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-4">Direct lines</h3>
+            <div class="space-y-6">
+              <div>
+                <p class="text-steel text-xs mb-1">Dispatch desk — 24/7</p>
+                <a href="tel:+15035550124" class="font-cond font-bold text-3xl tracking-wide hover:text-signal transition-colors">503-555-0124</a>
+              </div>
+              <div>
+                <p class="text-steel text-xs mb-1">Estimates &amp; office</p>
+                <a href="tel:+15035550130" class="font-cond font-semibold text-2xl tracking-wide hover:text-signal transition-colors">503-555-0130</a>
+              </div>
+              <div>
+                <p class="text-steel text-xs mb-1">Email</p>
+                <a href="mailto:dispatch@redlineservice.co" class="font-cond font-semibold text-2xl tracking-wide text-signal hover:text-ink transition-colors">dispatch@redlineservice.co</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-1">
+            <h3 class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-4">Hours</h3>
+            <div class="font-mono text-sm space-y-2">
+              <div class="flex justify-between border-b border-ink/10 pb-2"><span>Mon – Fri</span><span class="font-medium">7:00 AM – 6:00 PM</span></div>
+              <div class="flex justify-between border-b border-ink/10 pb-2"><span>Saturday</span><span class="font-medium">8:00 AM – 4:00 PM</span></div>
+              <div class="flex justify-between border-b border-ink/10 pb-2"><span>Sunday</span><span class="text-signal font-medium">Emergency only</span></div>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-2">
+            <h3 class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-4">The yard</h3>
+            <p class="text-sm leading-relaxed text-steel">Headquarters, parts room, and the truck wash at 1821 SE Division St, Portland, OR 97202. Walk-in estimates Mon–Fri, 9 to 5.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-ink text-paper/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-cond font-bold text-2xl text-paper tracking-tight mb-4">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup> <span class="text-sm font-semibold tracking-[0.22em] uppercase text-paper/40">Redline Service Co.</span></div>
+          <p class="text-sm leading-relaxed max-w-sm">Licensed home repair and maintenance for Portland, OR and the greater metro. Same-day dispatch, honest estimates, crews who get it right.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Navigate</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-sm hover:text-signal transition-colors">Services</a>
+            <a href="work.html" class="text-sm hover:text-signal transition-colors">Our Work</a>
+            <a href="about.html" class="text-sm hover:text-signal transition-colors">The Crew</a>
+            <a href="contact.html" class="text-sm hover:text-signal transition-colors">Contact</a>
+            <a href="emergency.html" class="text-sm text-signal hover:text-signal-soft transition-colors">24/7 Emergency</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Trades</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <span>HVAC</span><span>Plumbing</span><span>Electrical</span><span>Roofing</span><span>Drywall &amp; Finishing</span><span>Painting</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Contact</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>1821 SE Division St.</p>
+            <p>Portland, OR 97202</p>
+            <a href="mailto:dispatch@redlineservice.co" class="text-signal hover:text-signal-soft transition-colors">dispatch@redlineservice.co</a>
+            <a href="tel:+15035550124" class="text-paper hover:text-signal transition-colors">503-555-0124</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono text-[10px] text-paper/30">&copy; 2026 Redline Service Co. Licensed &amp; Insured, CCB #218745.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experiences — The Meridian, Santorini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'navy': '#0D1B2A',
+        'navy-light': '#1B2D45',
+        'navy-border': '#2A3F5F',
+        'cream': '#F0E6D3',
+        'cream-light': '#FAF8F5',
+        'gold': '#C8A96E',
+        'gold-muted': '#A09880',
+      },
+      fontFamily: {
+        display: ['Cormorant Garamond', 'serif'],
+        body: ['Lato', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lato', sans-serif; background: #0D1B2A; color: #F0E6D3; }
+  .gold-line { width: 60px; height: 1px; background: #C8A96E; }
+  .gold-line-wide { width: 100px; height: 1px; background: #C8A96E; }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #C8A96E; transition: width 0.3s ease; }
+  .nav-link:hover::after { width: 100%; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  .mobile-menu { transform: translateX(100%); transition: transform 0.4s ease; }
+  .mobile-menu.open { transform: translateX(0); }
+  .overlay { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+  .overlay.open { opacity: 1; pointer-events: all; }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="mainNav">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="rooms.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Stay</a>
+      <a href="dining.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Dining</a>
+      <a href="experiences.html" class="nav-link text-gold text-sm tracking-widest uppercase font-body">Experiences</a>
+    </div>
+    <a href="index.html" class="font-display text-2xl md:text-3xl tracking-[0.3em] text-cream font-light">THE MERIDIAN</a>
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="gallery.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Gallery</a>
+      <a href="about.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">About</a>
+      <a href="contact.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Contact</a>
+    </div>
+    <button id="menuBtn" class="lg:hidden text-cream">
+      <iconify-icon icon="heroicons:bars-3" width="28"></iconify-icon>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="overlay fixed inset-0 bg-black/60 z-50" id="overlay"></div>
+<div class="mobile-menu fixed top-0 right-0 w-80 h-full bg-navy-light z-50 flex flex-col justify-center items-center space-y-8" id="mobileMenu">
+  <button id="closeMenu" class="absolute top-6 right-6 text-cream">
+    <iconify-icon icon="heroicons:x-mark" width="28"></iconify-icon>
+  </button>
+  <a href="index.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">HOME</a>
+  <a href="rooms.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">STAY</a>
+  <a href="dining.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">DINING</a>
+  <a href="experiences.html" class="font-display text-xl tracking-[0.2em] text-gold">EXPERIENCES</a>
+  <a href="gallery.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">GALLERY</a>
+  <a href="about.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">ABOUT</a>
+  <a href="contact.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">CONTACT</a>
+</div>
+
+<!-- Hero -->
+<section class="relative h-[60vh] flex items-center justify-center" style="background-image: url('https://images.pexels.com/photos/8765693/pexels-photo-8765693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-navy/60"></div>
+  <div class="relative z-10 text-center px-6">
+    <div class="gold-line-wide mx-auto mb-6"></div>
+    <p class="text-gold-muted tracking-[0.4em] uppercase text-sm mb-3 font-body">Curated for You</p>
+    <h1 class="font-display text-5xl md:text-7xl font-light text-cream mb-4">Experiences</h1>
+    <p class="font-display text-xl text-cream/60 font-light italic">Discover the soul of Santorini</p>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="py-20 bg-navy">
+  <div class="max-w-4xl mx-auto px-6 text-center reveal">
+    <p class="text-cream/70 font-body text-lg leading-relaxed">Beyond the walls of The Meridian lies a world of wonder waiting to be explored. Our dedicated concierge team curates bespoke experiences that connect you with the culture, history, and natural beauty of Santorini — from private wine tours through volcanic vineyards to sailing expeditions along the dramatic coastline.</p>
+  </div>
+</section>
+
+<!-- Wine Tasting -->
+<section class="pb-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-0 items-center reveal">
+      <div class="relative">
+        <img src="https://images.pexels.com/photos/13871291/pexels-photo-13871291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Wine Tasting" class="w-full h-[500px] md:h-[600px] object-cover">
+        <div class="absolute -bottom-6 -right-6 hidden md:block w-40 h-40 border border-gold/20"></div>
+      </div>
+      <div class="bg-navy-light p-10 md:p-16 md:-ml-12 relative z-10 mt-8 md:mt-0">
+        <div class="flex items-center space-x-3 mb-4">
+          <iconify-icon icon="mdi:wine" width="20" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.3em] uppercase font-body">Wine & Culture</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl text-cream mb-4">Volcanic Wine Tasting</h2>
+        <div class="gold-line mb-6"></div>
+        <p class="text-cream/70 font-body leading-relaxed mb-6">Santorini's volcanic terroir produces some of Greece's most extraordinary wines. Join our sommelier for a guided journey through the island's storied vineyards, where vines grow in distinctive basket-shaped kouloura to protect them from the fierce Aegean winds.</p>
+        <p class="text-cream/70 font-body leading-relaxed mb-8">Visit three renowned wineries, sample indigenous varietals like Assyrtiko and Vinsanto, and learn the centuries-old winemaking traditions that make Santorini a world-class wine destination. Each tasting is paired with local delicacies and accompanied by stories of the island's rich viticultural heritage.</p>
+        <div class="flex items-center space-x-6 text-cream/50 font-body text-sm mb-6">
+          <span class="flex items-center"><iconify-icon icon="heroicons:clock" width="16" class="text-gold mr-2"></iconify-icon> 4 Hours</span>
+          <span class="flex items-center"><iconify-icon icon="heroicons:user-group" width="16" class="text-gold mr-2"></iconify-icon> Up to 8 guests</span>
+          <span class="flex items-center"><iconify-icon icon="heroicons:currency-euro" width="16" class="text-gold mr-2"></iconify-icon> €180 per person</span>
+        </div>
+        <a href="contact.html" class="inline-flex items-center border border-gold text-gold hover:bg-gold hover:text-navy px-8 py-3 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300">
+          Book Experience
+          <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sailing -->
+<section class="pb-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-0 items-center reveal">
+      <div class="bg-navy-light p-10 md:p-16 md:-mr-12 relative z-10 order-2 md:order-1 mt-8 md:mt-0">
+        <div class="flex items-center space-x-3 mb-4">
+          <iconify-icon icon="mdi:sail-boat" width="20" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.3em] uppercase font-body">Maritime</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl text-cream mb-4">Private Sailing</h2>
+        <div class="gold-line mb-6"></div>
+        <p class="text-cream/70 font-body leading-relaxed mb-6">Set sail aboard a traditional wooden caïque or a modern catamaran and discover the hidden beauty of Santorini's coastline. Our private sailing experiences take you to secluded beaches, dramatic lava formations, and natural hot springs that are inaccessible by land.</p>
+        <p class="text-cream/70 font-body leading-relaxed mb-8">Choose from half-day coastal cruises, full-day adventures including lunch on board, or the ultimate sunset sail — where you'll toast with champagne as the sun dips below the caldera in a blaze of color. Snorkeling equipment and refreshments are provided throughout.</p>
+        <div class="flex items-center space-x-6 text-cream/50 font-body text-sm mb-6">
+          <span class="flex items-center"><iconify-icon icon="heroicons:clock" width="16" class="text-gold mr-2"></iconify-icon> 3 – 7 Hours</span>
+          <span class="flex items-center"><iconify-icon icon="heroicons:user-group" width="16" class="text-gold mr-2"></iconify-icon> Up to 12 guests</span>
+          <span class="flex items-center"><iconify-icon icon="heroicons:currency-euro" width="16" class="text-gold mr-2"></iconify-icon> From €350</span>
+        </div>
+        <a href="contact.html" class="inline-flex items-center border border-gold text-gold hover:bg-gold hover:text-navy px-8 py-3 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300">
+          Book Experience
+          <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2"></iconify-icon>
+        </a>
+      </div>
+      <div class="relative order-1 md:order-2">
+        <img src="https://images.pexels.com/photos/8765693/pexels-photo-8765693.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Private Sailing" class="w-full h-[500px] md:h-[600px] object-cover">
+        <div class="absolute -bottom-6 -left-6 hidden md:block w-40 h-40 border border-gold/20"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cooking Class -->
+<section class="pb-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-0 items-center reveal">
+      <div class="relative">
+        <img src="https://images.pexels.com/photos/13871291/pexels-photo-13871291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Cooking Class" class="w-full h-[500px] md:h-[600px] object-cover">
+        <div class="absolute -bottom-6 -right-6 hidden md:block w-40 h-40 border border-gold/20"></div>
+      </div>
+      <div class="bg-navy-light p-10 md:p-16 md:-ml-12 relative z-10 mt-8 md:mt-0">
+        <div class="flex items-center space-x-3 mb-4">
+          <iconify-icon icon="mdi:food-fork-drink" width="20" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.3em] uppercase font-body">Culinary Arts</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl text-cream mb-4">Greek Cooking Class</h2>
+        <div class="gold-line mb-6"></div>
+        <p class="text-cream/70 font-body leading-relaxed mb-6">Step into the kitchen with our Executive Chef Nikos Stavridis for an immersive journey through the flavors of Greece. Begin at the local market, hand-selecting the freshest ingredients, then return to The Meridian's demonstration kitchen to master traditional and modern Greek recipes.</p>
+        <p class="text-cream/70 font-body leading-relaxed mb-8">Learn to prepare classics like moussaka, spanakopita, and baklava alongside contemporary interpretations that reflect Chef Nikos's creative vision. The experience concludes with a leisurely lunch featuring your creations, paired with exceptional local wines.</p>
+        <div class="flex items-center space-x-6 text-cream/50 font-body text-sm mb-6">
+          <span class="flex items-center"><iconify-icon icon="heroicons:clock" width="16" class="text-gold mr-2"></iconify-icon> 5 Hours</span>
+          <span class="flex items-center"><iconify-icon icon="heroicons:user-group" width="16" class="text-gold mr-2"></iconify-icon> Up to 10 guests</span>
+          <span class="flex items-center"><iconify-icon icon="heroicons:currency-euro" width="16" class="text-gold mr-2"></iconify-icon> €220 per person</span>
+        </div>
+        <a href="contact.html" class="inline-flex items-center border border-gold text-gold hover:bg-gold hover:text-navy px-8 py-3 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300">
+          Book Experience
+          <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Spa & Wellness -->
+<section class="py-24 bg-navy-light">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="gold-line mx-auto mb-8"></div>
+      <p class="text-gold-muted tracking-[0.3em] uppercase text-xs mb-4 font-body">Wellness</p>
+      <h2 class="font-display text-4xl md:text-5xl font-light text-cream">Spa & Retreat</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="reveal group">
+        <div class="overflow-hidden aspect-[3/4] mb-6 relative">
+          <img src="https://images.pexels.com/photos/3921395/pexels-photo-3921395.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Infinity Pool" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex items-end p-8">
+            <div>
+              <p class="text-gold text-xs tracking-[0.2em] uppercase mb-2 font-body">Signature</p>
+              <h3 class="font-display text-2xl text-cream mb-2">Infinity Pool & Hammam</h3>
+              <p class="text-cream/60 font-body text-sm">Our stunning infinity pool cascades toward the caldera while the traditional hammam offers ancient cleansing rituals in a serene marble chamber.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal group">
+        <div class="overflow-hidden aspect-[3/4] mb-6 relative">
+          <img src="https://images.pexels.com/photos/6634828/pexels-photo-6634828.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Wellness Treatments" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex items-end p-8">
+            <div>
+              <p class="text-gold text-xs tracking-[0.2em] uppercase mb-2 font-body">Treatments</p>
+              <h3 class="font-display text-2xl text-cream mb-2">Bespoke Wellness Journeys</h3>
+              <p class="text-cream/60 font-body text-sm">Personalized multi-day wellness programs combining massage, aromatherapy, yoga, and nutrition consultations tailored to your goals.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal group">
+        <div class="overflow-hidden aspect-[3/4] mb-6 relative">
+          <img src="https://images.pexels.com/photos/3011575/pexels-photo-3011575.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Yoga" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex items-end p-8">
+            <div>
+              <p class="text-gold text-xs tracking-[0.2em] uppercase mb-2 font-body">Movement</p>
+              <h3 class="font-display text-2xl text-cream mb-2">Sunrise Yoga & Meditation</h3>
+              <p class="text-cream/60 font-body text-sm">Begin each day with guided sessions on our clifftop platform, where the rising sun over the Aegean creates the most extraordinary backdrop.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Private Tours -->
+<section class="py-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="gold-line mx-auto mb-8"></div>
+      <h2 class="font-display text-4xl font-light text-cream mb-4">Private Tours</h2>
+      <p class="text-cream/60 font-body text-lg max-w-3xl mx-auto">Explore Santorini at your own pace with our bespoke private tour experiences, guided by local experts who bring the island's stories to life.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-navy-light border border-navy-border p-8 md:p-10 reveal">
+        <div class="flex items-start justify-between mb-4">
+          <iconify-icon icon="mdi:car" width="28" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.2em] uppercase font-body">Full Day</span>
+        </div>
+        <h3 class="font-display text-2xl text-cream mb-3">Island Discovery Tour</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed mb-4">A comprehensive private tour of Santorini with your own driver and guide. Visit the ancient ruins of Akrotiri, the iconic blue domes of Oia, the charming village of Pyrgos, and the dramatic Red Beach. Includes lunch at a traditional taverna and stops at the island's best viewpoints.</p>
+        <p class="text-gold font-body text-sm">From €350 for 2 guests</p>
+      </div>
+      <div class="bg-navy-light border border-navy-border p-8 md:p-10 reveal">
+        <div class="flex items-start justify-between mb-4">
+          <iconify-icon icon="mdi:history" width="28" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.2em] uppercase font-body">Half Day</span>
+        </div>
+        <h3 class="font-display text-2xl text-cream mb-3">Archaeological Journey</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed mb-4">Delve into Santorini's fascinating archaeological heritage with an expert guide. Explore the remarkably preserved Minoan settlement of Akrotiri, the ancient city of Thera on Mesa Vouno, and the prehistoric museum. A journey through 4,000 years of civilization.</p>
+        <p class="text-gold font-body text-sm">From €280 for 2 guests</p>
+      </div>
+      <div class="bg-navy-light border border-navy-border p-8 md:p-10 reveal">
+        <div class="flex items-start justify-between mb-4">
+          <iconify-icon icon="mdi:camera" width="28" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.2em] uppercase font-body">2 Hours</span>
+        </div>
+        <h3 class="font-display text-2xl text-cream mb-3">Photography Tour</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed mb-4">Capture Santorini's most photogenic spots with a professional photographer as your guide. From the golden light of Fira's alleys to the iconic windmills and blue-domed churches, learn composition techniques while creating stunning travel photographs.</p>
+        <p class="text-gold font-body text-sm">From €200 for 2 guests</p>
+      </div>
+      <div class="bg-navy-light border border-navy-border p-8 md:p-10 reveal">
+        <div class="flex items-start justify-between mb-4">
+          <iconify-icon icon="mdi:sail-boat" width="28" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.2em] uppercase font-body">Full Day</span>
+        </div>
+        <h3 class="font-display text-2xl text-cream mb-3">Volcanic Hot Springs</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed mb-4">Sail to the volcanic island of Nea Kameni, hike to the active crater, then swim in the natural hot springs of Palea Kameni where geothermal waters create warm turquoise pools. A unique encounter with the living geology of Santorini.</p>
+        <p class="text-gold font-body text-sm">From €420 for 2 guests</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="relative h-[50vh] flex items-center justify-center" style="background-image: url('https://images.pexels.com/photos/10611880/pexels-photo-10611880.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-navy/70"></div>
+  <div class="relative z-10 text-center px-6 max-w-4xl reveal">
+    <div class="gold-line-wide mx-auto mb-8"></div>
+    <h2 class="font-display text-4xl md:text-5xl font-light text-cream mb-6">Your Experience Awaits</h2>
+    <p class="text-cream/70 font-body text-lg leading-relaxed mb-10">Contact our concierge team to begin planning your personalized Santorini experience. We're here to make every moment extraordinary.</p>
+    <a href="contact.html" class="inline-flex items-center bg-gold text-navy px-10 py-4 text-sm tracking-[0.2em] uppercase font-body hover:bg-gold-muted transition-colors">
+      Contact Concierge
+      <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2"></iconify-icon>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-navy border-t border-navy-border">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-4 gap-12">
+      <div>
+        <h4 class="font-display text-xl tracking-[0.2em] text-cream mb-6">THE MERIDIAN</h4>
+        <p class="text-cream/50 font-body text-sm leading-relaxed mb-6">An exclusive luxury beachfront resort overlooking the caldera in Santorini, Greece.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:instagram" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:facebook" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:twitter" width="18" class="text-gold"></iconify-icon>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Quick Links</h5>
+        <ul class="space-y-3">
+          <li><a href="rooms.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Dining</a></li>
+          <li><a href="experiences.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Experiences</a></li>
+          <li><a href="gallery.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Gallery</a></li>
+          <li><a href="about.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Contact</h5>
+        <ul class="space-y-3">
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:map-pin" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            Oia, Santorini 847 02, Greece
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:phone" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            +30 22860 71234
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:envelope" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            reservations@themeridian.gr
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Newsletter</h5>
+        <p class="text-cream/50 font-body text-sm mb-4">Subscribe for exclusive offers and updates.</p>
+        <div class="flex">
+          <input type="email" placeholder="Your email" class="bg-navy border border-navy-border px-4 py-3 text-cream text-sm font-body focus:outline-none focus:border-gold transition-colors w-full">
+          <button class="bg-gold text-navy px-4 py-3 hover:bg-gold-muted transition-colors">
+            <iconify-icon icon="heroicons:paper-airplane" width="16"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-navy-border mt-12 pt-8 text-center">
+      <p class="text-cream/30 font-body text-xs">© 2026 The Meridian. All rights reserved. | Oia, Santorini, Greece</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const closeMenu = document.getElementById('closeMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+const overlay = document.getElementById('overlay');
+menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); overlay.classList.add('open'); });
+closeMenu.addEventListener('click', () => { mobileMenu.classList.remove('open'); overlay.classList.remove('open'); });
+overlay.addEventListener('click', () => { mobileMenu.classList.remove('open'); overlay.classList.remove('open'); });
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 50) { nav.style.background = 'rgba(13, 27, 42, 0.95)'; nav.style.backdropFilter = 'blur(10px)'; }
+  else { nav.style.background = 'transparent'; nav.style.backdropFilter = 'none'; }
+});
+const reveals = document.querySelectorAll('.reveal');
+const revealOnScroll = () => { reveals.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); }); };
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+</body>
+</html>

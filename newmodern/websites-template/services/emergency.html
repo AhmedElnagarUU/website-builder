@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>24/7 Emergency — Redline Service Co.</title>
+  <meta name="description" content="Burst pipes, no heat, sparking outlets. Redline takes emergency calls 24 hours a day, every day. Response within the hour across Portland, OR.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#17191b', paper: '#f1ebe1', signal: '#e4572e', 'signal-soft': '#f2a183',
+          steel: '#55626e', line: '#d8d1c3', night: '#101214',
+        },
+        fontFamily: {
+          cond: ['"Barlow Condensed"', 'sans-serif'],
+          body: ['Barlow', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-ink overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300 bg-paper border-b border-ink/10">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16 lg:h-[72px]">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-cond font-bold text-xl tracking-tight leading-none">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup></span>
+        <span class="hidden sm:inline font-cond font-semibold text-[10px] tracking-[0.26em] uppercase text-steel">Redline Service Co.</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7">
+        <a href="services.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Services</a>
+        <a href="work.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Our Work</a>
+        <a href="about.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">The Crew</a>
+        <a href="contact.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Contact</a>
+        <a href="emergency.html" class="ml-2 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-[11px] tracking-[0.18em] uppercase px-4 py-2.5 hover:bg-signal/90 transition-colors">
+          <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>24/7
+        </a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-cond font-semibold text-3xl tracking-wide">Home</a>
+    <a href="services.html" class="font-cond font-semibold text-3xl tracking-wide">Services</a>
+    <a href="work.html" class="font-cond font-semibold text-3xl tracking-wide">Our Work</a>
+    <a href="about.html" class="font-cond font-semibold text-3xl tracking-wide">The Crew</a>
+    <a href="contact.html" class="font-cond font-semibold text-3xl tracking-wide">Contact</a>
+    <a href="emergency.html" class="mt-4 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-xs tracking-[0.18em] uppercase px-6 py-3">
+      <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>24/7 Emergency
+    </a>
+  </div>
+
+  <!-- EMERGENCY HERO -->
+  <section class="pt-[72px] bg-signal text-white">
+    <div class="max-w-[1320px] mx-auto px-6 lg:px-10 py-20 lg:py-28 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
+      <div class="max-w-xl">
+        <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-white/60 mb-4 reveal">Emergency Response · 24 / 7 / 365</p>
+        <h1 class="font-cond font-bold text-[clamp(2.8rem,6.5vw,5rem)] leading-[0.9] text-white reveal reveal-delay-1">
+          It's urgent.<br>We're already<br>on our way.
+        </h1>
+        <p class="text-white/80 text-lg max-w-md mt-6 leading-relaxed reveal reveal-delay-2">
+          Average pickup in under 60 seconds. Crew dispatched within the hour, nights, weekends, and holidays included. No answering machine, no "next business day."
+        </p>
+        <div class="mt-10 flex flex-wrap gap-4 reveal reveal-delay-3">
+          <a href="tel:+15035550124" class="inline-flex items-center gap-3 bg-white text-signal font-cond font-semibold text-[12px] tracking-[0.18em] uppercase px-8 py-4 hover:bg-paper transition-colors">
+            <iconify-icon icon="ph:phone" class="text-lg"></iconify-icon>
+            503-555-0124
+          </a>
+          <span class="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.22em] uppercase text-white/70">
+            <span class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
+            Dispatch desk live now
+          </span>
+        </div>
+      </div>
+      <div class="ticket bg-paper text-ink w-full max-w-[320px] p-5 reveal reveal-delay-2" style="box-shadow:5px 5px 0 #101214;">
+        <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel border-b border-ink/15 pb-3 mb-3 flex justify-between">
+          <span>Emergency Log</span>
+          <span class="text-signal font-medium">LIVE</span>
+        </div>
+        <div class="space-y-2 font-mono text-xs">
+          <div class="flex justify-between"><span class="text-steel">Last call</span><span>2:17 AM</span></div>
+          <div class="flex justify-between"><span class="text-steel">Nature</span><span>Burst pipe</span></div>
+          <div class="flex justify-between"><span class="text-steel">Crew</span><span>Team 3 · ETA 24m</span></div>
+          <div class="flex justify-between"><span class="text-steel">Shut-off</span><span class="text-signal font-medium">WALKED THROUGH</span></div>
+          <div class="mt-3 pt-3 border-t border-ink/15 font-mono text-[10px] text-steel">
+            <div class="flex justify-between"><span>On-call crews</span><span class="text-ink font-medium">3</span></div>
+            <div class="flex justify-between"><span>Avg. response</span><span class="text-ink font-medium">42 min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT COUNTS -->
+  <section class="py-24 lg:py-32 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-14 lg:mb-16">
+        <div class="reveal">
+          <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3">Triage Guide</p>
+          <h2 class="font-cond font-bold text-4xl lg:text-5xl leading-[0.95]">Call now for these.</h2>
+        </div>
+        <p class="text-steel text-sm max-w-xs reveal reveal-delay-1">Not sure if it's an emergency? Call anyway. If it can wait, we'll tell you flat — and quote you a regular visit instead.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="border border-ink/15 p-6 reveal">
+          <iconify-icon icon="ph:drop" class="text-signal text-3xl mb-4"></iconify-icon>
+          <h3 class="font-cond font-semibold text-xl tracking-wide mb-2">Water leaks</h3>
+          <p class="text-steel text-sm leading-relaxed">Burst or active leaks, ceiling staining, flooding from any fixture. We'll shut off and stop the damage first.</p>
+        </div>
+        <div class="border border-ink/15 p-6 reveal reveal-delay-1">
+          <iconify-icon icon="ph:snowflake" class="text-signal text-3xl mb-4"></iconify-icon>
+          <h3 class="font-cond font-semibold text-xl tracking-wide mb-2">No heat or cooling</h3>
+          <p class="text-steel text-sm leading-relaxed">Mid-January failure, elderly or infant in the house, or a smell coming from the unit — that's a call.</p>
+        </div>
+        <div class="border border-ink/15 p-6 reveal reveal-delay-2">
+          <iconify-icon icon="ph:lightning" class="text-signal text-3xl mb-4"></iconify-icon>
+          <h3 class="font-cond font-semibold text-xl tracking-wide mb-2">Electrical danger</h3>
+          <p class="text-steel text-sm leading-relaxed">Sparking outlets, burning smell, breaker that won't reset, warm walls. Power off at the panel if safe, then call.</p>
+        </div>
+        <div class="border border-ink/15 p-6 reveal reveal-delay-3">
+          <iconify-icon icon="ph:house" class="text-signal text-3xl mb-4"></iconify-icon>
+          <h3 class="font-cond font-semibold text-xl tracking-wide mb-2">Storm &amp; structural</h3>
+          <p class="text-steel text-sm leading-relaxed">Tree through the roof, missing shingles mid-rain, or a sagging beam overnight. We tarp and brace what we can.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEFORE WE ARRIVE -->
+  <section class="bg-ink text-paper py-24 lg:py-32 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      <div class="lg:col-span-5">
+        <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-4 reveal">On the phone now</p>
+        <h2 class="font-cond font-bold text-4xl lg:text-5xl leading-[0.95] mb-6 reveal reveal-delay-1">What we'll walk you through while you wait.</h2>
+      </div>
+      <div class="lg:col-span-7 space-y-0 reveal reveal-delay-2">
+        <div class="border-t border-paper/15 py-5 grid grid-cols-[24px_1fr] gap-4">
+          <span class="font-mono text-xs text-signal">01</span>
+          <div><h3 class="font-cond font-semibold text-lg tracking-wide mb-1">Stay calm, we lead the call</h3><p class="text-paper/55 text-sm leading-relaxed">The dispatch desk asks three questions and takes over. You won't be reading instruction labels off your water heater at 2am alone.</p></div>
+        </div>
+        <div class="border-t border-paper/15 py-5 grid grid-cols-[24px_1fr] gap-4">
+          <span class="font-mono text-xs text-signal">02</span>
+          <div><h3 class="font-cond font-semibold text-lg tracking-wide mb-1">Minimize the damage</h3><p class="text-paper/55 text-sm leading-relaxed">We'll tell you which valve to turn, which breaker to kill, and what to move. In many cases this buys you until morning — but the crew still comes.</p></div>
+        </div>
+        <div class="border-t border-paper/15 py-5 grid grid-cols-[24px_1fr] gap-4">
+          <span class="font-mono text-xs text-signal">03</span>
+          <div><h3 class="font-cond font-semibold text-lg tracking-wide mb-1">Price on the phone</h3><p class="text-paper/55 text-sm leading-relaxed">Emergency rates are clear: a flat after-hours dispatch fee plus the job quote. You approve the number before the van rolls.</p></div>
+        </div>
+        <div class="border-t border-paper/15 py-5 grid grid-cols-[24px_1fr] gap-4">
+          <span class="font-mono text-xs text-signal">04</span>
+          <div><h3 class="font-cond font-semibold text-lg tracking-wide mb-1">One call, one fix</h3><p class="text-paper/55 text-sm leading-relaxed">Most emergency jobs are one-call-and-done because we bring the parts room with us. If a follow-up is needed, it's already scheduled.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section class="py-24 lg:py-28 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-4 reveal">Coverage Map</p>
+      <div class="flex flex-col lg:flex-row gap-10 lg:gap-20">
+        <div class="reveal">
+          <h2 class="font-cond font-bold text-4xl lg:text-5xl leading-[0.95] max-w-md mb-6">Where our trucks live.</h2>
+          <p class="text-steel max-w-sm text-sm leading-relaxed">Crews are stationed across the metro so the closest van is usually under 20 minutes away, even at 3am. If you're inside the ring, you get the 60-minute promise.</p>
+        </div>
+        <ul class="grid grid-cols-2 gap-x-12 gap-y-3 text-sm lg:pl-10 border-l border-ink/10 reveal reveal-delay-1">
+          <li class="flex items-center gap-2"><iconify-icon icon="ph:map-pin" class="text-signal text-sm"></iconify-icon>Downtown Portland</li>
+          <li class="flex items-center gap-2"><iconify-icon icon="ph:map-pin" class="text-signal text-sm"></iconify-icon>Pearl District</li>
+          <li class="flex items-center gap-2"><iconify-icon icon="ph:map-pin" class="text-signal text-sm"></iconify-icon>Hawthorne</li>
+          <li class="flex items-center gap-2"><iconify-icon icon="ph:map-pin" class="text-signal text-sm"></iconify-icon>Alberta Arts</li>
+          <li class="flex items-center gap-2"><iconify-icon icon="ph:map-pin" class="text-signal text-sm"></iconify-icon>Laurelhurst</li>
+          <li class="flex items-center gap-2"><iconify-icon icon="ph:map-pin" class="text-signal text-sm"></iconify-icon>Sellwood</li>
+          <li class="flex items-center gap-2"><iconify-icon icon="ph:map-pin" class="text-signal text-sm"></iconify-icon>Mississippi</li>
+          <li class="flex items-center gap-2"><iconify-icon icon="ph:map-pin" class="text-signal text-sm"></iconify-icon>Sunnyside</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-ink text-paper/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-cond font-bold text-2xl text-paper tracking-tight mb-4">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup> <span class="text-sm font-semibold tracking-[0.22em] uppercase text-paper/40">Redline Service Co.</span></div>
+          <p class="text-sm leading-relaxed max-w-sm">Licensed home repair and maintenance for Portland, OR and the greater metro. Same-day dispatch, honest estimates, crews who get it right.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Navigate</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-sm hover:text-signal transition-colors">Services</a>
+            <a href="work.html" class="text-sm hover:text-signal transition-colors">Our Work</a>
+            <a href="about.html" class="text-sm hover:text-signal transition-colors">The Crew</a>
+            <a href="contact.html" class="text-sm hover:text-signal transition-colors">Contact</a>
+            <a href="emergency.html" class="text-sm text-signal hover:text-signal-soft transition-colors">24/7 Emergency</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Trades</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <span>HVAC</span><span>Plumbing</span><span>Electrical</span><span>Roofing</span><span>Drywall &amp; Finishing</span><span>Painting</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Contact</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>1821 SE Division St.</p>
+            <p>Portland, OR 97202</p>
+            <a href="mailto:dispatch@redlineservice.co" class="text-signal hover:text-signal-soft transition-colors">dispatch@redlineservice.co</a>
+            <a href="tel:+15035550124" class="text-paper hover:text-signal transition-colors">503-555-0124</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono text-[10px] text-paper/30">&copy; 2026 Redline Service Co. Licensed &amp; Insured, CCB #218745.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <p class="font-mono text-[10px] tracking-[0.3em] uppercase text-signal/80"><iconify-icon icon="ph:warning-circle" class="inline text-sm"></iconify-icon> In immediate danger or flooding? Call us AND your utility's emergency line.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

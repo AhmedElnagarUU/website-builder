@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Redline Service Co. Home Repair &amp; Maintenance</title>
+  <meta name="description" content="HVAC, plumbing, electrical, roofing, drywall, and painting from licensed Redline crews. Fixed estimates, same-day dispatch, two-year workmanship guarantee.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#17191b', paper: '#f1ebe1', signal: '#e4572e', 'signal-soft': '#f2a183',
+          steel: '#55626e', line: '#d8d1c3', night: '#101214',
+        },
+        fontFamily: {
+          cond: ['"Barlow Condensed"', 'sans-serif'],
+          body: ['Barlow', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-ink overflow-x-hidden">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300 bg-paper border-b border-ink/10">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16 lg:h-[72px]">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-cond font-bold text-xl tracking-tight leading-none">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup></span>
+        <span class="hidden sm:inline font-cond font-semibold text-[10px] tracking-[0.26em] uppercase text-steel">Redline Service Co.</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7">
+        <a href="services.html" class="nav-link active font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Services</a>
+        <a href="work.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Our Work</a>
+        <a href="about.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">The Crew</a>
+        <a href="contact.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Contact</a>
+        <a href="emergency.html" class="ml-2 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-[11px] tracking-[0.18em] uppercase px-4 py-2.5 hover:bg-signal/90 transition-colors">
+          <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>24/7
+        </a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-cond font-semibold text-3xl tracking-wide">Home</a>
+    <a href="services.html" class="font-cond font-semibold text-3xl tracking-wide">Services</a>
+    <a href="work.html" class="font-cond font-semibold text-3xl tracking-wide">Our Work</a>
+    <a href="about.html" class="font-cond font-semibold text-3xl tracking-wide">The Crew</a>
+    <a href="contact.html" class="font-cond font-semibold text-3xl tracking-wide">Contact</a>
+    <a href="emergency.html" class="mt-4 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-xs tracking-[0.18em] uppercase px-6 py-3">
+      <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>24/7 Emergency
+    </a>
+  </div>
+
+  <!-- PAGE HEAD -->
+  <header class="pt-32 lg:pt-44 pb-14 lg:pb-20 px-6 lg:px-10 bg-paper">
+    <div class="max-w-[1320px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div>
+        <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-4 reveal">Service Manifest · Full Scope</p>
+        <h1 class="font-cond font-bold text-[clamp(2.6rem,6vw,4.6rem)] leading-[0.9] max-w-[720px] reveal reveal-delay-1">
+          Six trades.<br><span class="text-signal">One crew to call.</span>
+        </h1>
+      </div>
+      <p class="text-steel max-w-sm text-sm leading-relaxed reveal reveal-delay-2">
+        Each listed price is a starting point for a fixed written estimate. Every job gets a clear scope before we lift a tool — that's not a policy, it's the standard.
+      </p>
+    </div>
+  </header>
+
+  <!-- SERVICES LIST -->
+  <section class="px-6 lg:px-10 pb-24 lg:pb-32">
+    <div class="max-w-[1320px] mx-auto">
+      <nav class="flex flex-wrap gap-2 mb-16 reveal" aria-label="Service sections">
+        <a href="#hvac" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors">HVAC</a>
+        <a href="#plumbing" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors">Plumbing</a>
+        <a href="#electrical" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors">Electrical</a>
+        <a href="#roofing" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors">Roofing</a>
+        <a href="#drywall" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors">Drywall</a>
+        <a href="#painting" class="font-mono text-[10px] tracking-[0.2em] uppercase border border-ink/30 px-4 py-2 hover:bg-ink hover:text-paper transition-colors">Painting</a>
+      </nav>
+
+      <div class="space-y-24 lg:space-y-32">
+
+        <!-- HVAC -->
+        <div id="hvac" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start scroll-mt-28">
+          <div class="lg:col-span-5 reveal">
+            <div class="img-frame overflow-hidden aspect-[4/3]">
+              <img src="https://images.pexels.com/photos/32497161/pexels-photo-32497161.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Technician inspecting outdoor HVAC unit" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3 reveal">T01 / HVAC &amp; Climate</div>
+            <h2 class="font-cond font-bold text-3xl lg:text-5xl leading-[0.95] mb-5 reveal reveal-delay-1">Heating &amp; cooling that actually starts in October.</h2>
+            <p class="text-steel leading-relaxed max-w-lg reveal reveal-delay-2">Installation, replacement, maintenance and emergency repair for furnaces, heat pumps, ducted and ductless systems. We tune, we seal, we measure airflow — and we never sell you a bigger system than your house needs.</p>
+            <div class="max-w-lg mt-8 reveal reveal-delay-3">
+              <div class="dot-lead py-2.5 border-t border-ink/15"><span class="text-sm">Furnace install / replacement</span><span class="dots"></span><span class="font-mono text-xs">$3,400</span></div>
+              <div class="dot-lead py-2.5 border-t border-ink/15"><span class="text-sm">Heat pump conversion</span><span class="dots"></span><span class="font-mono text-xs">$5,800</span></div>
+              <div class="dot-lead py-2.5 border-t border-ink/15"><span class="text-sm">Duct sealing &amp; balance</span><span class="dots"></span><span class="font-mono text-xs">$650</span></div>
+              <div class="dot-lead py-2.5 border-t border-b border-ink/15"><span class="text-sm">Seasonal tune-up</span><span class="dots"></span><span class="font-mono text-xs">$129</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Plumbing -->
+        <div id="plumbing" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start scroll-mt-28">
+          <div class="lg:col-span-7 lg:order-2 reveal">
+            <div class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3">T02 / Plumbing</div>
+            <h2 class="font-cond font-bold text-3xl lg:text-5xl leading-[0.95] mb-5">From sloppy faucets to full repipes.</h2>
+            <p class="text-steel leading-relaxed max-w-lg mb-8">We handle leaks, clogs, water heaters, and complete repipes for old Portland homes. Every repair starts with diagnosis, not disassembly — we find the cause before we cut anything.</p>
+            <div class="grid sm:grid-cols-2 gap-3 text-sm">
+              <span class="flex items-center gap-2"><iconify-icon icon="ph:check" class="text-signal"></iconify-icon>Leak detection &amp; repair</span>
+              <span class="flex items-center gap-2"><iconify-icon icon="ph:check" class="text-signal"></iconify-icon>Tank &amp; tankless water heaters</span>
+              <span class="flex items-center gap-2"><iconify-icon icon="ph:check" class="text-signal"></iconify-icon>Drain &amp; sewer service</span>
+              <span class="flex items-center gap-2"><iconify-icon icon="ph:check" class="text-signal"></iconify-icon>Bathroom &amp; kitchen fixtures</span>
+            </div>
+          </div>
+          <div class="lg:col-span-5 lg:order-1 reveal reveal-delay-1">
+            <div class="img-frame overflow-hidden aspect-[4/3] lg:aspect-[3/4]">
+              <img src="https://images.pexels.com/photos/32588548/pexels-photo-32588548.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Plumber repairing a pipe with a wrench" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+
+        <!-- Electrical -->
+        <div id="electrical" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start scroll-mt-28">
+          <div class="lg:col-span-5 reveal">
+            <div class="img-frame overflow-hidden aspect-[4/3]">
+              <img src="https://images.pexels.com/photos/31583983/pexels-photo-31583983.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Arranged electrical tools and multimeter on workbench" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3 reveal">T03 / Electrical</div>
+            <h2 class="font-cond font-bold text-3xl lg:text-5xl leading-[0.95] mb-5 reveal reveal-delay-1">Panel work, new circuits, and the stuff that sparks at 2am.</h2>
+            <p class="text-steel leading-relaxed max-w-lg reveal reveal-delay-2">Licensed electricians for service upgrades, EV chargers, panel replacement, lighting, and troubleshooting. All work inspected and permitted where code requires. We leave your panel labeled like a filing cabinet.</p>
+            <div class="max-w-lg mt-8 reveal reveal-delay-3">
+              <div class="dot-lead py-2.5 border-t border-ink/15"><span class="text-sm">Service panel replacement</span><span class="dots"></span><span class="font-mono text-xs">$2,150</span></div>
+              <div class="dot-lead py-2.5 border-t border-ink/15"><span class="text-sm">EV charger circuit</span><span class="dots"></span><span class="font-mono text-xs">$890</span></div>
+              <div class="dot-lead py-2.5 border-t border-b border-ink/15"><span class="text-sm">Troubleshoot &amp; repair</span><span class="dots"></span><span class="font-mono text-xs">$110</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Roofing -->
+        <div id="roofing" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start scroll-mt-28">
+          <div class="lg:col-span-7 lg:order-2 reveal">
+            <div class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3">T04 / Roofing</div>
+            <h2 class="font-cond font-bold text-3xl lg:text-5xl leading-[0.95] mb-5">The one thing between your ceiling and the sky.</h2>
+            <p class="text-steel leading-relaxed max-w-lg mb-8">Repair, replacement, and emergency tarp-over for storm damage. We're honest about patch-versus-replace, and we carry the insurance required to work near the edge.</p>
+            <div class="grid sm:grid-cols-2 gap-3 text-sm">
+              <span class="flex items-center gap-2"><iconify-icon icon="ph:check" class="text-signal"></iconify-icon>Composition &amp; standing seam</span>
+              <span class="flex items-center gap-2"><iconify-icon icon="ph:check" class="text-signal"></iconify-icon>Leak diagnosis</span>
+              <span class="flex items-center gap-2"><iconify-icon icon="ph:check" class="text-signal"></iconify-icon>Storm tarp &amp; board-up</span>
+              <span class="flex items-center gap-2"><iconify-icon icon="ph:check" class="text-signal"></iconify-icon>Gutter &amp; flashings</span>
+            </div>
+          </div>
+          <div class="lg:col-span-5 lg:order-1 reveal reveal-delay-1">
+            <div class="img-frame overflow-hidden aspect-[4/3] lg:aspect-[3/4]">
+              <img src="https://images.pexels.com/photos/38510717/pexels-photo-38510717.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Roofers applying waterproofing membrane" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+
+        <!-- Drywall -->
+        <div id="drywall" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start scroll-mt-28">
+          <div class="lg:col-span-5 reveal">
+            <div class="img-frame overflow-hidden aspect-[4/3]">
+              <img src="https://images.pexels.com/photos/6474133/pexels-photo-6474133.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Man spraying paint on wall during renovation" class="w-full h-full object-cover">
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3 reveal">T05 / Drywall &amp; Finishing</div>
+            <h2 class="font-cond font-bold text-3xl lg:text-5xl leading-[0.95] mb-5 reveal reveal-delay-1">Seams you can't see, sanded to a finish the painter thanks you for.</h2>
+            <p class="text-steel leading-relaxed max-w-lg reveal reveal-delay-2">Repair, framing, hanging, taping, and texturing. Got a hole from a doorknob or a whole room to re-board? We patch, prime, and hand off clean.</p>
+            <div class="max-w-lg mt-8 reveal reveal-delay-3">
+              <div class="dot-lead py-2.5 border-t border-ink/15"><span class="text-sm">Patch repair (per opening)</span><span class="dots"></span><span class="font-mono text-xs">$85</span></div>
+              <div class="dot-lead py-2.5 border-t border-ink/15"><span class="text-sm">Re-board (per 100 sf)</span><span class="dots"></span><span class="font-mono text-xs">$610</span></div>
+              <div class="dot-lead py-2.5 border-t border-b border-ink/15"><span class="text-sm">Texture &amp; prime</span><span class="dots"></span><span class="font-mono text-xs">$1.20/sf</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Painting -->
+        <div id="painting" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start scroll-mt-28">
+          <div class="lg:col-span-7 lg:order-2 reveal">
+            <div class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3">T06 / Painting</div>
+            <h2 class="font-cond font-bold text-3xl lg:text-5xl leading-[0.95] mb-5">Interior and exterior, prepped the right way.</h2>
+            <p class="text-steel leading-relaxed max-w-lg mb-8">90% of a good paint job happens before the first coat. We patch, sand, caulk, and mask so the finish lasts. Waterborne and low-VOC as standard, zero-price-upsell.</p>
+            <a href="contact.html" class="inline-flex items-center gap-2 font-mono text-xs text-signal hover:text-ink transition-colors">REQUEST A WRITTEN QUOTE <iconify-icon icon="ph:arrow-right"></iconify-icon></a>
+          </div>
+          <div class="lg:col-span-5 lg:order-1 reveal reveal-delay-1">
+            <div class="img-frame overflow-hidden aspect-[4/3] lg:aspect-[3/4]">
+              <img src="https://images.pexels.com/photos/5691533/pexels-photo-5691533.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Interior room during renovation with construction materials" class="w-full h-full object-cover">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESPONSE STRIP -->
+  <section class="perf relative bg-paper px-6 lg:px-10 pt-16">
+    <div class="max-w-[1320px] mx-auto py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <div class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-2">Not sure which trade?</div>
+        <p class="font-cond font-semibold text-2xl tracking-wide max-w-lg">Tell us what's wrong. We'll route it to the right crew — usually within the hour.</p>
+      </div>
+      <a href="contact.html" class="inline-flex items-center gap-3 border-2 border-ink text-ink font-cond font-semibold text-[11px] tracking-[0.2em] uppercase px-7 py-4 hover:bg-ink hover:text-paper transition-colors shrink-0">
+        Get a Recommendation
+      </a>
+    </div>
+  </section>
+
+  <footer class="bg-ink text-paper/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-cond font-bold text-2xl text-paper tracking-tight mb-4">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup> <span class="text-sm font-semibold tracking-[0.22em] uppercase text-paper/40">Redline Service Co.</span></div>
+          <p class="text-sm leading-relaxed max-w-sm">Licensed home repair and maintenance for Portland, OR and the greater metro. Same-day dispatch, honest estimates, crews who get it right.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Navigate</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-sm hover:text-signal transition-colors">Services</a>
+            <a href="work.html" class="text-sm hover:text-signal transition-colors">Our Work</a>
+            <a href="about.html" class="text-sm hover:text-signal transition-colors">The Crew</a>
+            <a href="contact.html" class="text-sm hover:text-signal transition-colors">Contact</a>
+            <a href="emergency.html" class="text-sm text-signal hover:text-signal-soft transition-colors">24/7 Emergency</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Trades</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <span>HVAC</span><span>Plumbing</span><span>Electrical</span><span>Roofing</span><span>Drywall &amp; Finishing</span><span>Painting</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Contact</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>1821 SE Division St.</p>
+            <p>Portland, OR 97202</p>
+            <a href="mailto:dispatch@redlineservice.co" class="text-signal hover:text-signal-soft transition-colors">dispatch@redlineservice.co</a>
+            <a href="tel:+15035550124" class="text-paper hover:text-signal transition-colors">503-555-0124</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono text-[10px] text-paper/30">&copy; 2026 Redline Service Co. Licensed &amp; Insured, CCB #218745.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lakefront Medical Center | Project Detail | Ironclad Builders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'iron-black': '#111111',
+          'iron-white': '#F5F5F5',
+          'iron-gray': '#999999',
+          'iron-amber': '#F59E0B',
+          'iron-amber-dark': '#D97706',
+          'iron-surface': '#1A1A1A',
+          'iron-surface-light': '#222222',
+          'iron-border': '#333333',
+          'iron-steel': '#64748B',
+        },
+        fontFamily: {
+          display: ['Barlow Condensed', 'sans-serif'],
+          body: ['IBM Plex Sans', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="bg-iron-black text-iron-white font-body">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-iron-black/90 backdrop-blur-md border-b border-iron-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="font-display font-extrabold text-2xl tracking-wider text-iron-amber">IRONCLAD <span class="text-iron-white">BUILDERS</span></a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+          <a href="services.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+          <a href="projects.html" class="font-display text-sm tracking-widest uppercase text-iron-amber">Projects</a>
+          <a href="industries.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+          <a href="sustainability.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+          <a href="contact.html" class="bg-iron-amber hover:bg-iron-amber-dark text-iron-black font-display font-bold text-sm tracking-widest uppercase px-6 py-3 transition-colors">Contact</a>
+        </div>
+        <button id="menuBtn" class="lg:hidden text-iron-white" onclick="toggleMenu()">
+          <iconify-icon icon="lucide:menu" class="text-3xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-[60] bg-iron-black flex flex-col items-center justify-center gap-8 transform translate-x-full transition-transform duration-300">
+    <button class="absolute top-6 right-6 text-iron-white" onclick="toggleMenu()">
+      <iconify-icon icon="lucide:x" class="text-3xl"></iconify-icon>
+    </button>
+    <a href="index.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Home</a>
+    <a href="about.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+    <a href="services.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+    <a href="projects.html" class="font-display text-2xl tracking-widest uppercase text-iron-amber">Projects</a>
+    <a href="industries.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+    <a href="sustainability.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+    <a href="contact.html" class="bg-iron-amber text-iron-black font-display font-bold text-lg tracking-widest uppercase px-8 py-3">Contact</a>
+  </div>
+
+  <!-- Project Hero -->
+  <section class="relative h-[70vh] flex items-end">
+    <img src="https://images.pexels.com/photos/7108785/pexels-photo-7108785.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Lakefront Medical Center" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-iron-black via-iron-black/50 to-transparent"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 w-full">
+      <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-3">Healthcare</p>
+      <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl uppercase leading-[0.9]">Lakefront <br>Medical <span class="text-iron-amber">Center</span></h1>
+    </div>
+  </section>
+
+  <!-- Project Info Bar -->
+  <section class="bg-iron-surface border-y border-iron-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-iron-border">
+        <div class="py-8 px-6 text-center">
+          <p class="font-display text-iron-gray text-xs tracking-widest uppercase mb-1">Location</p>
+          <p class="font-display font-bold text-lg">Chicago, IL</p>
+        </div>
+        <div class="py-8 px-6 text-center">
+          <p class="font-display text-iron-gray text-xs tracking-widest uppercase mb-1">Value</p>
+          <p class="font-display font-bold text-lg text-iron-amber">$180M</p>
+        </div>
+        <div class="py-8 px-6 text-center">
+          <p class="font-display text-iron-gray text-xs tracking-widest uppercase mb-1">Size</p>
+          <p class="font-display font-bold text-lg">420,000 SF</p>
+        </div>
+        <div class="py-8 px-6 text-center">
+          <p class="font-display text-iron-gray text-xs tracking-widest uppercase mb-1">Completed</p>
+          <p class="font-display font-bold text-lg">2023</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Details -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-3 gap-16">
+        <div class="lg:col-span-2 reveal">
+          <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-4">Project Overview</p>
+          <h2 class="font-display font-extrabold text-3xl uppercase mb-6">Building the Future of <span class="text-iron-amber">Patient Care</span></h2>
+          <p class="text-iron-gray leading-relaxed mb-4">The Lakefront Medical Center is a 420,000 square-foot, 10-story acute care hospital and ambulatory surgical center located on Chicago's lakefront. This landmark project represents one of the largest healthcare construction projects in Illinois in the past decade.</p>
+          <p class="text-iron-gray leading-relaxed mb-4">Ironclad Builders served as the general contractor for this complex project, coordinating over 40 subcontractors across 18 months of active construction. The facility features 180 private patient rooms, 12 operating suites, an emergency department with 35 treatment bays, and a rooftop helipad.</p>
+          <p class="text-iron-gray leading-relaxed mb-8">The project required innovative construction techniques, including top-down construction to minimize disruption to adjacent hospital operations and prefabricated mechanical systems to accelerate the MEP rough-in schedule. We achieved substantial completion two weeks ahead of the contractual deadline.</p>
+
+          <img src="https://images.pexels.com/photos/7108784/pexels-photo-7108784.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Building interior" class="w-full h-80 object-cover mb-8">
+
+          <h3 class="font-display font-bold text-xl uppercase mb-4">Scope of Work</h3>
+          <p class="text-iron-gray leading-relaxed mb-4">Our scope included site preparation, structural steel erection, exterior envelope, interior fit-out, MEP systems, medical gas, fire protection, and commissioning. The project achieved LEED Gold certification through sustainable design features including high-performance HVAC systems, low-emissivity glazing, and a green roof system.</p>
+          <p class="text-iron-gray leading-relaxed">The facility also includes a 500-space parking structure, central energy plant, and connection to the city's district steam system. Our team managed complex logistics including deliveries to a constrained urban site with limited staging areas, coordinating with three adjacent healthcare facilities.</p>
+        </div>
+
+        <div class="reveal">
+          <div class="bg-iron-surface border border-iron-border p-8 mb-8 sticky top-28">
+            <h3 class="font-display font-bold text-lg uppercase mb-6 text-iron-amber">Project Highlights</h3>
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <iconify-icon icon="lucide:check-circle" class="text-iron-amber text-xl mt-0.5"></iconify-icon>
+                <p class="text-iron-gray text-sm">LEED Gold Certified</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <iconify-icon icon="lucide:check-circle" class="text-iron-amber text-xl mt-0.5"></iconify-icon>
+                <p class="text-iron-gray text-sm">Completed 2 weeks ahead of schedule</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <iconify-icon icon="lucide:check-circle" class="text-iron-amber text-xl mt-0.5"></iconify-icon>
+                <p class="text-iron-gray text-sm">Zero lost-time safety incidents</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <iconify-icon icon="lucide:check-circle" class="text-iron-amber text-xl mt-0.5"></iconify-icon>
+                <p class="text-iron-gray text-sm">420,000 SF of construction</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <iconify-icon icon="lucide:check-circle" class="text-iron-amber text-xl mt-0.5"></iconify-icon>
+                <p class="text-iron-gray text-sm">12 operating suites</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <iconify-icon icon="lucide:check-circle" class="text-iron-amber text-xl mt-0.5"></iconify-icon>
+                <p class="text-iron-gray text-sm">180 private patient rooms</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <iconify-icon icon="lucide:check-circle" class="text-iron-amber text-xl mt-0.5"></iconify-icon>
+                <p class="text-iron-gray text-sm">Rooftop helipad</p>
+              </div>
+              <div class="flex items-start gap-3">
+                <iconify-icon icon="lucide:check-circle" class="text-iron-amber text-xl mt-0.5"></iconify-icon>
+                <p class="text-iron-gray text-sm">35-bay emergency department</p>
+              </div>
+            </div>
+
+            <div class="border-t border-iron-border mt-6 pt-6">
+              <h4 class="font-display font-bold text-sm uppercase mb-4">Services Provided</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="bg-iron-black border border-iron-border px-3 py-1 text-xs text-iron-gray">General Contracting</span>
+                <span class="bg-iron-black border border-iron-border px-3 py-1 text-xs text-iron-gray">Pre-Construction</span>
+                <span class="bg-iron-black border border-iron-border px-3 py-1 text-xs text-iron-gray">BIM Services</span>
+                <span class="bg-iron-black border border-iron-border px-3 py-1 text-xs text-iron-gray">Sustainability</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="py-24 bg-iron-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display font-extrabold text-3xl uppercase mb-12 reveal">Project <span class="text-iron-amber">Gallery</span></h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <img src="https://images.pexels.com/photos/18078304/pexels-photo-18078304.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Construction detail" class="w-full h-80 object-cover reveal">
+        <img src="https://images.pexels.com/photos/17297091/pexels-photo-17297091.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Construction progress" class="w-full h-80 object-cover reveal">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-iron-amber">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <h2 class="font-display font-extrabold text-4xl sm:text-5xl uppercase text-iron-black mb-6">Have a Project <span class="underline decoration-2">In Mind</span>?</h2>
+      <p class="text-iron-black/70 text-lg max-w-2xl mx-auto mb-8">Let's discuss how Ironclad Builders can bring the same expertise and dedication to your next project.</p>
+      <a href="contact.html" class="inline-flex items-center gap-2 bg-iron-black hover:bg-iron-surface text-iron-white font-display font-bold text-sm tracking-widest uppercase px-8 py-4 transition-colors">Start a Conversation</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-iron-surface border-t border-iron-border pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div>
+          <p class="font-display font-extrabold text-xl tracking-wider text-iron-amber mb-4">IRONCLAD <span class="text-iron-white">BUILDERS</span></p>
+          <p class="text-iron-gray text-sm leading-relaxed">Leading commercial construction and engineering firm based in Chicago, delivering excellence since 1987.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Quick Links</h4>
+          <div class="flex flex-col gap-2">
+            <a href="about.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">About Us</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Services</a>
+            <a href="projects.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Projects</a>
+            <a href="contact.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Services</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">General Contracting</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Design-Build</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Construction Management</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Pre-Construction</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Contact</h4>
+          <div class="flex flex-col gap-2">
+            <p class="text-iron-gray text-sm">200 W Adams Street, Suite 1200</p>
+            <p class="text-iron-gray text-sm">Chicago, IL 60606</p>
+            <p class="text-iron-gray text-sm">info@ironcladbuilders.com</p>
+            <p class="text-iron-gray text-sm">(312) 555-0187</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-iron-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-iron-gray text-xs">&copy; 2024 Ironclad Builders. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:linkedin" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:twitter" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:instagram" class="text-xl"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('translate-x-full');
+    }
+    function reveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+  </script>
+</body>
+</html>

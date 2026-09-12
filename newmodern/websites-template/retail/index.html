@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arbor &amp; Clay — Plant &amp; Ceramics Shop, Austin</title>
+  <meta name="description" content="Arbor & Clay is an Austin plant shop and ceramics studio. Houseplants, handmade pots, and the care that keeps both alive.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ivory: '#f6f3ea', fern: '#2f4433', moss: '#5e7861', clay: '#c07754',
+          stem: '#a6b79c', ink: '#1f2620', line: '#dcd6c4',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="antialiased text-ink overflow-x-hidden bg-ivory">
+
+  <!-- NAV -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-2xl tracking-tight">Arbor <span class="italic text-clay">&amp;</span> Clay</a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="shop.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/70 hover:text-ink transition-colors">Shop</a>
+        <a href="plant-care.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/70 hover:text-ink transition-colors">Plant Care</a>
+        <a href="story.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/70 hover:text-ink transition-colors">Our Story</a>
+        <a href="visit.html" class="ml-4 border border-fern text-fern font-mono2 text-[10px] tracking-[0.18em] uppercase px-5 py-3 hover:bg-fern hover:text-ivory transition-colors">Find Us</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-ivory z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="shop.html" class="font-display text-3xl">Shop</a>
+    <a href="plant-care.html" class="font-display text-3xl">Plant Care</a>
+    <a href="story.html" class="font-display text-3xl">Our Story</a>
+    <a href="visit.html" class="mt-4 border border-fern text-fern font-mono2 text-[10px] tracking-[0.18em] uppercase px-6 py-3">Find Us</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="relative min-h-screen flex flex-col justify-end overflow-hidden pt-20">
+    <img src="https://images.pexels.com/photos/12096571/pexels-photo-12096571.jpeg?auto=compress&cs=tinysrgb&w=2000" alt="Lush greenhouse filled with hanging plants under a glass roof" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-ivory via-transparent to-transparent"></div>
+
+    <!-- accession label overlay -->
+    <div class="specimen absolute top-28 right-5 lg:right-10 max-w-[240px] text-[10px] leading-relaxed reveal hidden sm:block" style="box-shadow:4px 4px 0 var(--fern);">
+      <div class="flex justify-between items-baseline mb-1">
+        <span class="text-[9px] tracking-[0.15em] uppercase text-clay">Specimen</span>
+        <span class="text-[9px]">ACQ. 2026-047</span>
+      </div>
+      <p class="latin text-[11px]">Monstera deliciosa</p>
+      <p class="text-ink/70">Variegated, rooted spring '26</p>
+      <div class="flex gap-1.5 mt-2">
+        <span class="care-tag">Bright indirect</span>
+        <span class="care-tag">Water 10d</span>
+      </div>
+    </div>
+
+    <div class="relative z-10 px-6 lg:px-10 pb-14 lg:pb-20">
+      <div class="max-w-[1320px] mx-auto">
+        <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-moss mb-5 reveal">Plants · Pots · Patience · Austin, TX</p>
+        <h1 class="font-display font-light leading-[0.95] text-[clamp(3rem,9vw,7rem)] max-w-3xl reveal reveal-delay-1">
+          Green things<br>in well-made<br>earth.
+        </h1>
+        <div class="mt-8 flex flex-wrap items-center gap-6 reveal reveal-delay-2">
+          <a href="shop.html" class="inline-flex items-center gap-3 bg-fern text-ivory font-mono2 text-[11px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-ink transition-colors">
+            Browse the shop <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+          </a>
+          <a href="visit.html" class="text-sm text-ink/70 border-b border-ink/40 hover:text-clay hover:border-clay transition-colors">Come see the greenhouse →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW AT THE GREENHOUSE -->
+  <section class="py-24 lg:py-32 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-14 lg:mb-20">
+        <div class="reveal">
+          <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-clay mb-4">New arrivals · Autumn</p>
+          <h2 class="font-display font-light text-4xl lg:text-5xl leading-[1.0]">Fresh off the truck.</h2>
+        </div>
+        <a href="shop.html" class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-moss hover:text-ink transition-colors flex items-center gap-2 reveal reveal-delay-1">
+          View all <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+        <!-- specimen card -->
+        <a href="shop.html" class="group block reveal">
+          <div class="overflow-hidden aspect-[4/5] border border-ink/10">
+            <img src="https://images.pexels.com/photos/15232403/pexels-photo-15232403.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Lush monstera plant by a window with soft shadows" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <div class="specimen mt-0">
+            <div class="flex justify-between items-baseline mb-1">
+              <span class="text-[9px] tracking-[0.15em] uppercase text-clay">Herbarium No. 041</span>
+              <span class="text-[10px] text-ink/60">$48</span>
+            </div>
+            <p class="latin text-[12px]">Monstera deliciosa</p>
+            <p class="text-[10px] text-ink/60">The classic, well-behaved and forgiving</p>
+            <div class="flex gap-1.5 mt-2 flex-wrap">
+              <span class="care-tag">Bright indirect</span>
+              <span class="care-tag">Water 10d</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="shop.html" class="group block reveal reveal-delay-1">
+          <div class="overflow-hidden aspect-[4/5] border border-ink/10">
+            <img src="https://images.pexels.com/photos/9412439/pexels-photo-9412439.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Person tending hanging potted plants by a window" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <div class="specimen mt-0">
+            <div class="flex justify-between items-baseline mb-1">
+              <span class="text-[9px] tracking-[0.15em] uppercase text-clay">Herbarium No. 062</span>
+              <span class="text-[10px] text-ink/60">$32</span>
+            </div>
+            <p class="latin text-[12px]">Epipremnum aureum</p>
+            <p class="text-[10px] text-ink/60">Golden pothos — the trailer that never quits</p>
+            <div class="flex gap-1.5 mt-2 flex-wrap">
+              <span class="care-tag">Low light ok</span>
+              <span class="care-tag">Water 7d</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="shop.html" class="group block reveal reveal-delay-2">
+          <div class="overflow-hidden aspect-[4/5] border border-ink/10">
+            <img src="https://images.pexels.com/photos/17962521/pexels-photo-17962521.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Collection of terracotta pots with lush foliage" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <div class="specimen mt-0">
+            <div class="flex justify-between items-baseline mb-1">
+              <span class="text-[9px] tracking-[0.15em] uppercase text-clay">Kiln No. 114</span>
+              <span class="text-[10px] text-ink/60">$28</span>
+            </div>
+            <p class="latin text-[12px]">Terracotta, hand-thrown</p>
+            <p class="text-[10px] text-ink/60">Shallow, glazed interior, fired at cone 04</p>
+            <div class="flex gap-1.5 mt-2 flex-wrap">
+              <span class="care-tag">Drainage hole</span>
+              <span class="care-tag">One of one</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE KILN -->
+  <section class="bg-fern text-ivory py-24 lg:py-32 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
+      <div class="lg:col-span-6">
+        <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-stem mb-4 reveal">The kiln · Out back</p>
+        <h2 class="font-display font-light text-4xl lg:text-5xl leading-[1.02] mb-8 reveal reveal-delay-1">
+          Every pot on the shelf<br>went through <span class="italic text-stem">our hands,</span><br>twice.
+        </h2>
+        <p class="text-ivory/65 leading-relaxed max-w-lg reveal reveal-delay-2">
+          Glazing happens on Thursday mornings; the kiln fires all day Friday. Shelves are arranged with the residents of the greenhouse mentioned by name. A pot, we figure, should be made with the same patience as the plant it carries.
+        </p>
+        <a href="story.html" class="inline-flex items-center gap-2 font-mono2 text-[10px] tracking-[0.2em] uppercase text-stem hover:text-ivory transition-colors mt-8 reveal reveal-delay-3">
+          Meet the studio <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+        </a>
+      </div>
+      <div class="lg:col-span-6 grid grid-cols-2 gap-6">
+        <div class="reveal">
+          <div class="overflow-hidden aspect-[3/4]">
+            <img src="https://images.pexels.com/photos/34004100/pexels-photo-34004100.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Handcrafted clay pots in a pottery workshop" class="w-full h-full object-cover">
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1 mt-12">
+          <div class="overflow-hidden aspect-[3/4]">
+            <img src="https://images.pexels.com/photos/6693557/pexels-photo-6693557.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Hands sculpting clay on a wooden table" class="w-full h-full object-cover">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARE TEASER -->
+  <section class="py-24 lg:py-32 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+      <div class="lg:col-span-5">
+        <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-clay mb-4 reveal">Care library</p>
+        <h2 class="font-display font-light text-4xl lg:text-5xl leading-[1.02] reveal reveal-delay-1">
+          Nobody here has killed a plant without learning something.
+        </h2>
+        <p class="text-ink/60 leading-relaxed max-w-md mt-6 reveal reveal-delay-2">
+          Every plant we sell comes with honest care notes — not a watering pamphlet, but actual field notes from this greenhouse and this city's weird climate.
+        </p>
+        <a href="plant-care.html" class="inline-flex items-center gap-2 font-mono2 text-[10px] tracking-[0.2em] uppercase text-moss hover:text-ink transition-colors mt-6 reveal reveal-delay-3">
+          Open the care library <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+        </a>
+      </div>
+      <div class="lg:col-span-7 space-y-0 reveal reveal-delay-2">
+        <div class="flex items-baseline gap-4 py-4 border-b border-line">
+          <span class="font-mono2 text-[10px] text-clay">001</span>
+          <div class="dot-lead flex-1">
+            <span class="font-display text-xl">Light is the whole game</span>
+            <span class="dots"></span>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-4 py-4 border-b border-line">
+          <span class="font-mono2 text-[10px] text-clay">002</span>
+          <div class="dot-lead flex-1">
+            <span class="font-display text-xl">Water less than you think</span>
+            <span class="dots"></span>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-4 py-4 border-b border-line">
+          <span class="font-mono2 text-[10px] text-clay">003</span>
+          <div class="dot-lead flex-1">
+            <span class="font-display text-xl">Stable beats heroic</span>
+            <span class="dots"></span>
+          </div>
+        </div>
+        <div class="flex items-baseline gap-4 py-4 border-b border-line">
+          <span class="font-mono2 text-[10px] text-clay">004</span>
+          <div class="dot-lead flex-1">
+            <span class="font-display text-xl">The pot matters as much as the plant</span>
+            <span class="dots"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT STRIP -->
+  <section class="bg-clay text-ivory py-20 lg:py-28 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+      <div>
+        <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-ivory/60 mb-3 reveal">Open six days · Workshops Saturdays</p>
+        <h2 class="font-display font-light text-4xl lg:text-5xl leading-[1.0] max-w-xl reveal reveal-delay-1">
+          Come smell the potting soil.
+        </h2>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <a href="visit.html" class="inline-flex items-center gap-3 bg-ivory text-clay font-mono2 text-[11px] tracking-[0.2em] uppercase px-8 py-4 hover:bg-ink hover:text-ivory transition-colors">
+          Hours &amp; directions <iconify-icon icon="ph:arrow-right"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-ivory/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl text-ivory tracking-tight">Arbor <span class="italic text-clay">&amp;</span> Clay</div>
+          <p class="text-sm leading-relaxed max-w-sm mt-4">A plant shop and ceramics studio in East Austin. Everything living arrived from a nursery we chose, and everything thrown went through a kiln we fire ourselves.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-ivory/30 mb-4">Explore</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="shop.html" class="hover:text-clay transition-colors">Shop</a>
+            <a href="plant-care.html" class="hover:text-clay transition-colors">Plant Care</a>
+            <a href="story.html" class="hover:text-clay transition-colors">Our Story</a>
+            <a href="visit.html" class="hover:text-clay transition-colors">Visit</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-ivory/30 mb-4">Workshops</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <span>Repot &amp; settle</span>
+            <span>Wheel-throwing 101</span>
+            <span>Pots &amp; plants night</span>
+            <span>Family terrariums</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-ivory/30 mb-4">Find us</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>2419 E 6th St.</p>
+            <p>Austin, TX 78702</p>
+            <a href="tel:+15125550188" class="text-stem hover:text-clay transition-colors">512-555-0188</a>
+            <a href="mailto:hello@arborandclay.com" class="hover:text-clay transition-colors">hello@arborandclay.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-ivory/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[10px] text-ivory/30">&copy; 2026 Arbor &amp; Clay. Plastic-free since day one.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-ivory/40 hover:text-clay transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

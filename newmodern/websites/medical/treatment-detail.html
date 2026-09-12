@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invisalign Clear Aligners — Clearview Dental, Austin TX</title>
+  <meta name="description" content="Invisalign clear aligners at Clearview Dental in Austin, TX. Discreet, comfortable teeth straightening without metal braces. Diamond provider.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'clinic-bg': '#FAFBFC',
+          'clinic-text': '#1E293B',
+          'clinic-secondary': '#64748B',
+          'clinic-teal': '#0891B2',
+          'clinic-teal-dark': '#0E7490',
+          'clinic-surface': '#F1F5F9',
+          'clinic-white': '#FFFFFF',
+          'clinic-border': '#E2E8F0',
+          'clinic-green': '#059669',
+        },
+        fontFamily: {
+          display: ['Plus Jakarta Sans', 'sans-serif'],
+          body: ['Source Sans 3', 'sans-serif'],
+        },
+        borderRadius: { 'clinic': '12px' }
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Source Sans 3', sans-serif; color: #1E293B; background: #FAFBFC; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .nav-open { max-height: 400px !important; opacity: 1 !important; }
+    .mobile-nav { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #0891B2; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-primary { transition: all 0.3s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(8,145,178,0.3); }
+    .tab-btn.active { background: #0891B2; color: #fff; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .tab-content { animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-clinic-white/90 backdrop-blur-md border-b border-clinic-border/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-4">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center group-hover:bg-clinic-teal-dark transition-colors">
+            <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+          </div>
+          <span class="font-display font-bold text-xl text-clinic-text">Clearview <span class="text-clinic-teal">Dental</span></span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="treatments.html" class="nav-link font-body font-semibold text-clinic-teal transition-colors">Treatments</a>
+          <a href="doctors.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Our Team</a>
+          <a href="patient-info.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Patient Info</a>
+          <a href="faqs.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal hover:bg-clinic-teal-dark text-white font-display font-semibold px-6 py-2.5 rounded-clinic transition-all hover:shadow-lg hover:shadow-clinic-teal/20">Book Now</a>
+          <a href="contact.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Contact</a>
+        </div>
+        <button id="mobileToggle" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-clinic hover:bg-clinic-surface transition-colors" aria-label="Toggle menu">
+          <iconify-icon id="menuIcon" icon="mdi:menu" class="text-2xl text-clinic-text"></iconify-icon>
+          <iconify-icon id="closeIcon" icon="mdi:close" class="text-2xl text-clinic-text hidden"></iconify-icon>
+        </button>
+      </div>
+      <div id="mobileMenu" class="mobile-nav lg:hidden pb-4">
+        <div class="flex flex-col gap-1">
+          <a href="treatments.html" class="font-body font-semibold text-clinic-teal bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Treatments</a>
+          <a href="doctors.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Our Team</a>
+          <a href="patient-info.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Patient Info</a>
+          <a href="faqs.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal text-white font-display font-semibold px-4 py-3 rounded-clinic text-center mt-2">Book Now</a>
+          <a href="contact.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="pt-24 pb-4 bg-clinic-bg border-b border-clinic-border/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-sm font-body text-clinic-secondary">
+        <a href="index.html" class="hover:text-clinic-teal transition-colors">Home</a>
+        <iconify-icon icon="mdi:chevron-right" class="text-xs"></iconify-icon>
+        <a href="treatments.html" class="hover:text-clinic-teal transition-colors">Treatments</a>
+        <iconify-icon icon="mdi:chevron-right" class="text-xs"></iconify-icon>
+        <span class="text-clinic-text font-semibold">Invisalign</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="py-16 lg:py-20 bg-clinic-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider">Orthodontics</span>
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl text-clinic-text leading-tight mt-3 mb-6">Invisalign <span class="text-clinic-teal">Clear Aligners</span></h1>
+          <p class="font-body text-lg text-clinic-secondary leading-relaxed mb-8">Straighten your teeth discreetly with custom-made clear aligners. No metal brackets, no wires, no food restrictions. Just a clear path to your dream smile.</p>
+          <div class="flex flex-wrap gap-4">
+            <a href="contact.html" class="btn-primary inline-flex items-center gap-2 bg-clinic-teal hover:bg-clinic-teal-dark text-white font-display font-bold px-8 py-4 rounded-clinic text-lg">
+              <iconify-icon icon="mdi:calendar-check" class="text-xl"></iconify-icon>
+              Book Free Consultation
+            </a>
+          </div>
+          <div class="flex items-center gap-6 mt-8">
+            <div class="flex items-center gap-2">
+              <iconify-icon icon="mdi:check-circle" class="text-clinic-green text-xl"></iconify-icon>
+              <span class="font-body text-clinic-secondary text-sm">Diamond Provider</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <iconify-icon icon="mdi:check-circle" class="text-clinic-green text-xl"></iconify-icon>
+              <span class="font-body text-clinic-secondary text-sm">500+ Cases Treated</span>
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <img src="https://images.pexels.com/photos/4269265/pexels-photo-4269265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Invisalign treatment" class="rounded-[20px] w-full h-[400px] lg:h-[450px] object-cover shadow-xl">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tabs Section -->
+  <section class="py-20 bg-clinic-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Tab Buttons -->
+      <div class="flex flex-wrap gap-3 mb-12 reveal justify-center">
+        <button class="tab-btn active font-display font-semibold px-6 py-3 rounded-clinic border border-clinic-border transition-all text-sm" data-tab="overview">Overview</button>
+        <button class="tab-btn font-display font-semibold px-6 py-3 rounded-clinic border border-clinic-border transition-all text-sm" data-tab="benefits">Benefits</button>
+        <button class="tab-btn font-display font-semibold px-6 py-3 rounded-clinic border border-clinic-border transition-all text-sm" data-tab="process">Process</button>
+        <button class="tab-btn font-display font-semibold px-6 py-3 rounded-clinic border border-clinic-border transition-all text-sm" data-tab="pricing">Pricing</button>
+        <button class="tab-btn font-display font-semibold px-6 py-3 rounded-clinic border border-clinic-border transition-all text-sm" data-tab="faq">FAQ</button>
+      </div>
+
+      <!-- Tab: Overview -->
+      <div id="tab-overview" class="tab-content active">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 class="font-display font-extrabold text-3xl text-clinic-text mb-6">What Is Invisalign?</h2>
+            <div class="font-body text-clinic-secondary leading-relaxed space-y-4">
+              <p>Invisalign is a revolutionary orthodontic treatment that uses a series of custom-made, virtually invisible clear aligners to gradually move your teeth into their ideal positions. Each set of aligners is engineered using advanced 3D computer imaging technology and manufactured from SmartTrack material — a BPA-free, medical-grade thermoplastic.</p>
+              <p>Unlike traditional metal braces, Invisalign aligners are removable, allowing you to eat, brush, and floss normally throughout your treatment. You'll switch to a new set of aligners every 1-2 weeks, with each set making incremental adjustments to your teeth.</p>
+              <p>At Clearview Dental, our orthodontic team has completed over 500 successful Invisalign cases, earning us Diamond Provider status — placing us in the top 1% of Invisalign providers nationwide. Whether you need minor cosmetic adjustments or comprehensive bite correction, we have the expertise to deliver outstanding results.</p>
+            </div>
+          </div>
+          <div class="space-y-6">
+            <div class="bg-clinic-surface rounded-clinic p-6 flex items-start gap-4">
+              <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center flex-shrink-0">
+                <iconify-icon icon="mdi:eye-off-outline" class="text-clinic-teal text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-clinic-text">Nearly Invisible</h4>
+                <p class="font-body text-clinic-secondary text-sm">Clear aligners are virtually undetectable, so most people won't even notice you're wearing them.</p>
+              </div>
+            </div>
+            <div class="bg-clinic-surface rounded-clinic p-6 flex items-start gap-4">
+              <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center flex-shrink-0">
+                <iconify-icon icon="mdi:food-apple-outline" class="text-clinic-teal text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-clinic-text">No Food Restrictions</h4>
+                <p class="font-body text-clinic-secondary text-sm">Remove your aligners before eating. Enjoy popcorn, apples, corn on the cob — anything you want.</p>
+              </div>
+            </div>
+            <div class="bg-clinic-surface rounded-clinic p-6 flex items-start gap-4">
+              <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center flex-shrink-0">
+                <iconify-icon icon="mdi:water-off-outline" class="text-clinic-teal text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-clinic-text">Easy Oral Hygiene</h4>
+                <p class="font-body text-clinic-secondary text-sm">Brush and floss normally — no special tools or techniques needed to clean around brackets and wires.</p>
+              </div>
+            </div>
+            <div class="bg-clinic-surface rounded-clinic p-6 flex items-start gap-4">
+              <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center flex-shrink-0">
+                <iconify-icon icon="mdi:thumb-up-outline" class="text-clinic-teal text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-clinic-text">Comfortable Fit</h4>
+                <p class="font-body text-clinic-secondary text-sm">Smooth SmartTrack material eliminates the irritation caused by metal wires and brackets.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Benefits -->
+      <div id="tab-benefits" class="tab-content">
+        <h2 class="font-display font-extrabold text-3xl text-clinic-text mb-8">Benefits of Invisalign Treatment</h2>
+        <div class="grid sm:grid-cols-2 gap-8">
+          <div class="bg-clinic-surface rounded-clinic p-6">
+            <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-4">
+              <iconify-icon icon="mdi:clock-outline" class="text-clinic-teal text-xl"></iconify-icon>
+            </div>
+            <h4 class="font-display font-bold text-clinic-text mb-2">Faster Treatment Time</h4>
+            <p class="font-body text-clinic-secondary text-sm leading-relaxed">Many cases are completed in 6-12 months, compared to 18-24 months with traditional braces. Mild cases may be finished in as little as 3 months.</p>
+          </div>
+          <div class="bg-clinic-surface rounded-clinic p-6">
+            <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-4">
+              <iconify-icon icon="mdi:teeth" class="text-clinic-teal text-xl"></iconify-icon>
+            </div>
+            <h4 class="font-display font-bold text-clinic-text mb-2">Better Oral Health</h4>
+            <p class="font-body text-clinic-secondary text-sm leading-relaxed">Since aligners are removable, you can maintain your regular brushing and flossing routine throughout treatment, reducing the risk of cavities and gum disease.</p>
+          </div>
+          <div class="bg-clinic-surface rounded-clinic p-6">
+            <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-4">
+              <iconify-icon icon="mdi:chart-line-variant" class="text-clinic-teal text-xl"></iconify-icon>
+            </div>
+            <h4 class="font-display font-bold text-clinic-text mb-2">Predictable Results</h4>
+            <p class="font-body text-clinic-secondary text-sm leading-relaxed">See a virtual 3D simulation of your treatment outcome before you even start. Know exactly how your smile will look when treatment is complete.</p>
+          </div>
+          <div class="bg-clinic-surface rounded-clinic p-6">
+            <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-4">
+              <iconify-icon icon="mdi:account-heart" class="text-clinic-teal text-xl"></iconify-icon>
+            </div>
+            <h4 class="font-display font-bold text-clinic-text mb-2">Boosted Confidence</h4>
+            <p class="font-body text-clinic-secondary text-sm leading-relaxed">Straighten your teeth without the self-consciousness of metal braces. Perfect for adults in professional environments who want discretion.</p>
+          </div>
+          <div class="bg-clinic-surface rounded-clinic p-6">
+            <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-4">
+              <iconify-icon icon="mdi:music-note" class="text-clinic-teal text-xl"></iconify-icon>
+            </div>
+            <h4 class="font-display font-bold text-clinic-text mb-2">No Speech Disruption</h4>
+            <p class="font-body text-clinic-secondary text-sm leading-relaxed">Unlike some orthodontic appliances, Invisalign aligners have a minimal impact on speech. Most patients adapt within 1-2 days.</p>
+          </div>
+          <div class="bg-clinic-surface rounded-clinic p-6">
+            <div class="w-12 h-12 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mb-4">
+              <iconify-icon icon="mdi:sports" class="text-clinic-teal text-xl"></iconify-icon>
+            </div>
+            <h4 class="font-display font-bold text-clinic-text mb-2">Active Lifestyle Friendly</h4>
+            <p class="font-body text-clinic-secondary text-sm leading-relaxed">Remove aligners for sports, photography, and special events. No risk of broken brackets or emergency orthodontic visits.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Process -->
+      <div id="tab-process" class="tab-content">
+        <h2 class="font-display font-extrabold text-3xl text-clinic-text mb-8">The Invisalign Process at Clearview Dental</h2>
+        <div class="space-y-8">
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 bg-clinic-teal text-white rounded-full flex items-center justify-center flex-shrink-0 font-display font-bold">1</div>
+            <div>
+              <h4 class="font-display font-bold text-xl text-clinic-text mb-2">Free Consultation & Digital Scan</h4>
+              <p class="font-body text-clinic-secondary leading-relaxed">Your first visit includes a comprehensive examination, digital impressions using our iTero scanner (no gooey impressions), and a discussion of your smile goals. We'll create a ClinCheck 3D simulation showing your projected results before you commit.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 bg-clinic-teal text-white rounded-full flex items-center justify-center flex-shrink-0 font-display font-bold">2</div>
+            <div>
+              <h4 class="font-display font-bold text-xl text-clinic-text mb-2">Custom Aligner Fabrication</h4>
+              <p class="font-body text-clinic-secondary leading-relaxed">Once you approve your treatment plan, your custom aligners are manufactured using SmartTrack material. You'll receive several sets at a time, along with detailed instructions on wear time (20-22 hours per day recommended).</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 bg-clinic-teal text-white rounded-full flex items-center justify-center flex-shrink-0 font-display font-bold">3</div>
+            <div>
+              <h4 class="font-display font-bold text-xl text-clinic-text mb-2">Progressive Treatment</h4>
+              <p class="font-body text-clinic-secondary leading-relaxed">You'll switch to a new set of aligners every 1-2 weeks at home. We schedule brief check-up appointments every 6-8 weeks to monitor your progress and provide your next sets of aligners. Many patients love that these visits are quick — often just 15 minutes.</p>
+            </div>
+          </div>
+          <div class="flex gap-6 items-start">
+            <div class="w-12 h-12 bg-clinic-teal text-white rounded-full flex items-center justify-center flex-shrink-0 font-display font-bold">4</div>
+            <div>
+              <h4 class="font-display font-bold text-xl text-clinic-text mb-2">Retention & Follow-Up</h4>
+              <p class="font-body text-clinic-secondary leading-relaxed">After your active treatment, you'll receive a custom retainer to maintain your beautiful new smile. We provide complimentary retainer checks for the first year and offer a clear retainer subscription program for ongoing replacement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Pricing -->
+      <div id="tab-pricing" class="tab-content">
+        <h2 class="font-display font-extrabold text-3xl text-clinic-text mb-8">Invisalign Pricing & Financing</h2>
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <div class="bg-clinic-surface rounded-clinic p-8 border border-clinic-border/50">
+            <h3 class="font-display font-bold text-xl text-clinic-text mb-2">Comprehensive</h3>
+            <p class="font-body text-clinic-secondary text-sm mb-4">Full arch alignment for complex cases</p>
+            <p class="font-display font-extrabold text-4xl text-clinic-teal mb-4">$4,500–$6,500</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center gap-2 text-clinic-secondary text-sm font-body">
+                <iconify-icon icon="mdi:check" class="text-clinic-green"></iconify-icon> Unlimited aligners
+              </li>
+              <li class="flex items-center gap-2 text-clinic-secondary text-sm font-body">
+                <iconify-icon icon="mdi:check" class="text-clinic-green"></iconify-icon> Monthly check-ups
+              </li>
+              <li class="flex items-center gap-2 text-clinic-secondary text-sm font-body">
+                <iconify-icon icon="mdi:check" class="text-clinic-green"></iconify-icon> Retainer included
+              </li>
+            </ul>
+            <a href="contact.html" class="block text-center bg-clinic-teal text-white font-display font-semibold py-3 rounded-clinic hover:bg-clinic-teal-dark transition-all">Get Started</a>
+          </div>
+          <div class="bg-clinic-teal text-white rounded-clinic p-8 shadow-xl relative">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-clinic-green text-white font-display font-bold text-xs px-4 py-1 rounded-full">MOST POPULAR</div>
+            <h3 class="font-display font-bold text-xl mb-2">Moderate</h3>
+            <p class="font-body text-white/70 text-sm mb-4">Ideal for mild to moderate cases</p>
+            <p class="font-display font-extrabold text-4xl mb-4">$3,000–$4,500</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center gap-2 text-white/80 text-sm font-body">
+                <iconify-icon icon="mdi:check" class="text-white"></iconify-icon> Up to 20 aligner sets
+              </li>
+              <li class="flex items-center gap-2 text-white/80 text-sm font-body">
+                <iconify-icon icon="mdi:check" class="text-white"></iconify-icon> Bimonthly check-ups
+              </li>
+              <li class="flex items-center gap-2 text-white/80 text-sm font-body">
+                <iconify-icon icon="mdi:check" class="text-white"></iconify-icon> Retainer included
+              </li>
+            </ul>
+            <a href="contact.html" class="block text-center bg-white text-clinic-teal font-display font-semibold py-3 rounded-clinic hover:bg-clinic-bg transition-all">Get Started</a>
+          </div>
+          <div class="bg-clinic-surface rounded-clinic p-8 border border-clinic-border/50">
+            <h3 class="font-display font-bold text-xl text-clinic-text mb-2">Express</h3>
+            <p class="font-body text-clinic-secondary text-sm mb-4">Quick cosmetic refinements</p>
+            <p class="font-display font-extrabold text-4xl text-clinic-teal mb-4">$1,800–$3,000</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center gap-2 text-clinic-secondary text-sm font-body">
+                <iconify-icon icon="mdi:check" class="text-clinic-green"></iconify-icon> Up to 7 aligner sets
+              </li>
+              <li class="flex items-center gap-2 text-clinic-secondary text-sm font-body">
+                <iconify-icon icon="mdi:check" class="text-clinic-green"></iconify-icon> Fewer appointments
+              </li>
+              <li class="flex items-center gap-2 text-clinic-secondary text-sm font-body">
+                <iconify-icon icon="mdi:check" class="text-clinic-green"></iconify-icon> Retainer included
+              </li>
+            </ul>
+            <a href="contact.html" class="block text-center bg-clinic-teal text-white font-display font-semibold py-3 rounded-clinic hover:bg-clinic-teal-dark transition-all">Get Started</a>
+          </div>
+        </div>
+        <div class="bg-clinic-surface rounded-clinic p-8 text-center">
+          <p class="font-body text-clinic-secondary mb-2">We accept most insurance plans and offer flexible financing through CareCredit and Lending Club.</p>
+          <p class="font-display font-semibold text-clinic-text">0% interest financing available for qualified patients. <a href="contact.html" class="text-clinic-teal hover:underline">Contact us</a> for a personalized quote.</p>
+        </div>
+      </div>
+
+      <!-- Tab: FAQ -->
+      <div id="tab-faq" class="tab-content">
+        <h2 class="font-display font-extrabold text-3xl text-clinic-text mb-8">Invisalign Questions</h2>
+        <div class="space-y-4 max-w-3xl">
+          <div class="faq-item bg-clinic-surface rounded-clinic overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left font-display font-bold text-clinic-text">
+              How long do I need to wear Invisalign each day?
+              <iconify-icon icon="mdi:chevron-down" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+            </button>
+            <div class="faq-answer px-6 pb-6 font-body text-clinic-secondary leading-relaxed hidden">
+              For optimal results, we recommend wearing your Invisalign aligners for 20-22 hours per day. You can remove them for eating, drinking anything other than water, brushing, and flossing. Consistent wear time is the most important factor in keeping your treatment on track.
+            </div>
+          </div>
+          <div class="faq-item bg-clinic-surface rounded-clinic overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left font-display font-bold text-clinic-text">
+              Does Invisalign hurt?
+              <iconify-icon icon="mdi:chevron-down" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+            </button>
+            <div class="faq-answer px-6 pb-6 font-body text-clinic-secondary leading-relaxed hidden">
+              You may experience mild pressure or discomfort for the first 2-3 days after switching to a new set of aligners. This is normal and indicates the aligners are working. Most patients find Invisalign significantly more comfortable than traditional braces. Over-the-counter pain relievers can help if needed.
+            </div>
+          </div>
+          <div class="faq-item bg-clinic-surface rounded-clinic overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left font-display font-bold text-clinic-text">
+              Can I drink coffee with Invisalign?
+              <iconify-icon icon="mdi:chevron-down" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+            </button>
+            <div class="faq-answer px-6 pb-6 font-body text-clinic-secondary leading-relaxed hidden">
+              You should remove your aligners before drinking coffee, tea, wine, or any colored beverages. Drinking with aligners in can stain them and potentially cause cavities since the liquid gets trapped between the aligner and your teeth. You can drink while wearing them only if it's plain water.
+            </div>
+          </div>
+          <div class="faq-item bg-clinic-surface rounded-clinic overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left font-display font-bold text-clinic-text">
+              What age is appropriate for Invisalign?
+              <iconify-icon icon="mdi:chevron-down" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+            </button>
+            <div class="faq-answer px-6 pb-6 font-body text-clinic-secondary leading-relaxed hidden">
+              Invisalign can treat patients of any age — from teenagers (with compliance indicators) to adults. Invisalign Teen includes blue compliance indicators that fade as the aligners are worn, helping parents and dentists track usage. For younger children, we evaluate on a case-by-case basis depending on dental development.
+            </div>
+          </div>
+          <div class="faq-item bg-clinic-surface rounded-clinic overflow-hidden">
+            <button class="faq-toggle w-full flex items-center justify-between p-6 text-left font-display font-bold text-clinic-text">
+              How do I clean my aligners?
+              <iconify-icon icon="mdi:chevron-down" class="text-clinic-teal text-xl transition-transform"></iconify-icon>
+            </button>
+            <div class="faq-answer px-6 pb-6 font-body text-clinic-secondary leading-relaxed hidden">
+              Rinse your aligners every time you remove them. Brush them gently with a soft toothbrush and clear antibacterial soap (not toothpaste, which can scratch the plastic). Soak them in Invisalign cleaning crystals or a denture cleaning solution weekly. Never use hot water, as it can warp the aligners.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-clinic-teal">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mb-4">Start Your Invisalign Journey Today</h2>
+      <p class="font-body text-lg text-white/80 mb-8 max-w-xl mx-auto">Book your free consultation and 3D smile preview. No obligation, no pressure — just answers and a clear vision of your future smile.</p>
+      <a href="contact.html" class="inline-flex items-center gap-2 bg-white text-clinic-teal font-display font-bold px-8 py-4 rounded-clinic text-lg hover:bg-clinic-bg transition-all hover:shadow-xl">
+        <iconify-icon icon="mdi:calendar-check" class="text-xl"></iconify-icon>
+        Book Free Consultation
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-clinic-text pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <a href="index.html" class="flex items-center gap-2.5 mb-5">
+            <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center">
+              <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+            </div>
+            <span class="font-display font-bold text-xl text-white">Clearview <span class="text-clinic-teal">Dental</span></span>
+          </a>
+          <p class="font-body text-slate-400 text-sm leading-relaxed">Modern, compassionate dental care for the whole family. Proudly serving Austin, Texas since 2015.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatments.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Treatments</a></li>
+            <li><a href="doctors.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Our Team</a></li>
+            <li><a href="patient-info.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Patient Info</a></li>
+            <li><a href="faqs.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">FAQs</a></li>
+            <li><a href="about.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">About Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Treatments</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">General Dentistry</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Teeth Whitening</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Invisalign</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Dental Implants</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Porcelain Veneers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="mdi:map-marker" class="text-clinic-teal text-lg mt-0.5"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">1200 Clearview Blvd, Suite 200<br>Austin, TX 78701</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:phone" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">(512) 555-0147</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:email" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">hello@clearviewdental.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body text-slate-500 text-sm">&copy; 2026 Clearview Dental. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Facebook"><iconify-icon icon="mdi:facebook" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Instagram"><iconify-icon icon="mdi:instagram" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Twitter"><iconify-icon icon="mdi:twitter" class="text-white text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Nav
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('nav-open');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+
+    // Scroll Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active');
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // Tab Switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-toggle').forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const answer = toggle.nextElementSibling;
+        const icon = toggle.querySelector('iconify-icon');
+        const isOpen = !answer.classList.contains('hidden');
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
+        document.querySelectorAll('.faq-toggle iconify-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+        if (!isOpen) {
+          answer.classList.remove('hidden');
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

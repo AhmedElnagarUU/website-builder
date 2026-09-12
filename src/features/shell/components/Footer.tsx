@@ -1,6 +1,6 @@
 ﻿import { useTranslations } from "next-intl";
 
-export function Footer() {
+export function Footer({ locale }: { locale: string }) {
   const t = useTranslations();
   const year = new Date().getFullYear();
   return (
@@ -27,13 +27,22 @@ export function Footer() {
               {t("landing.footer.product")}
             </h5>
             <div className="mono-display flex flex-col gap-2 text-[19px] text-ink-2">
-              <a href="#how" className="transition-colors hover:text-mono-red">
+              <a
+                href={`/${locale}/#how`}
+                className="transition-colors hover:text-mono-red"
+              >
                 {t("landing.footer.product_links.how")}
               </a>
-              <a href="#features" className="transition-colors hover:text-mono-red">
+              <a
+                href={`/${locale}/#features`}
+                className="transition-colors hover:text-mono-red"
+              >
                 {t("landing.footer.product_links.what")}
               </a>
-              <a href="#" className="transition-colors hover:text-mono-red">
+              <a
+                href={`/${locale}/pricing`}
+                className="transition-colors hover:text-mono-red"
+              >
                 {t("landing.footer.product_links.pricing")}
               </a>
             </div>
@@ -44,13 +53,22 @@ export function Footer() {
               {t("landing.footer.owners")}
             </h5>
             <div className="mono-display flex flex-col gap-2 text-[19px] text-ink-2">
-              <a href="#" className="transition-colors hover:text-mono-red">
+              <a
+                href={`/${locale}/#features`}
+                className="transition-colors hover:text-mono-red"
+              >
                 {t("landing.footer.owners_links.restaurants")}
               </a>
-              <a href="#" className="transition-colors hover:text-mono-red">
+              <a
+                href={`/${locale}/#features`}
+                className="transition-colors hover:text-mono-red"
+              >
                 {t("landing.footer.owners_links.retail")}
               </a>
-              <a href="#" className="transition-colors hover:text-mono-red">
+              <a
+                href={`/${locale}/#languages`}
+                className="transition-colors hover:text-mono-red"
+              >
                 {t("landing.footer.owners_links.bilingual")}
               </a>
             </div>
@@ -61,13 +79,22 @@ export function Footer() {
               {t("landing.footer.company")}
             </h5>
             <div className="mono-display flex flex-col gap-2 text-[19px] text-ink-2">
-              <a href="#" className="transition-colors hover:text-mono-red">
+              <a
+                href={`/${locale}`}
+                className="transition-colors hover:text-mono-red"
+              >
                 {t("landing.footer.company_links.about")}
               </a>
-              <a href="#" className="transition-colors hover:text-mono-red">
+              <a
+                href={`/${locale}/privacy`}
+                className="transition-colors hover:text-mono-red"
+              >
                 {t("landing.footer.company_links.privacy")}
               </a>
-              <a href="#" className="transition-colors hover:text-mono-red">
+              <a
+                href={`/${locale}/terms`}
+                className="transition-colors hover:text-mono-red"
+              >
                 {t("landing.footer.company_links.terms")}
               </a>
             </div>

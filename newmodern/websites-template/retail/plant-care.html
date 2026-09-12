@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Care — Arbor &amp; Clay Field Notes</title>
+  <meta name="description" content="Field notes from the Arbor & Clay greenhouse — honest, Austin-specific plant care advice from people who actually grow things here.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Instrument+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ivory: '#f6f3ea', fern: '#2f4433', moss: '#5e7861', clay: '#c07754',
+          stem: '#a6b79c', ink: '#1f2620', line: '#dcd6c4',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="antialiased text-ink overflow-x-hidden bg-ivory">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 border-b border-line bg-ivory/95 backdrop-blur">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-2xl tracking-tight">Arbor <span class="italic text-clay">&amp;</span> Clay</a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="shop.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/70 hover:text-ink transition-colors">Shop</a>
+        <a href="plant-care.html" class="nav-link active text-[11px] tracking-[0.2em] uppercase text-ink/70 hover:text-ink transition-colors">Plant Care</a>
+        <a href="story.html" class="nav-link text-[11px] tracking-[0.2em] uppercase text-ink/70 hover:text-ink transition-colors">Our Story</a>
+        <a href="visit.html" class="ml-4 border border-fern text-fern font-mono2 text-[10px] tracking-[0.18em] uppercase px-5 py-3 hover:bg-fern hover:text-ivory transition-colors">Find Us</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-ivory z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="shop.html" class="font-display text-3xl">Shop</a>
+    <a href="plant-care.html" class="font-display text-3xl">Plant Care</a>
+    <a href="story.html" class="font-display text-3xl">Our Story</a>
+    <a href="visit.html" class="mt-4 border border-fern text-fern font-mono2 text-[10px] tracking-[0.18em] uppercase px-6 py-3">Find Us</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-32 lg:pt-44 pb-14 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+      <div>
+        <p class="font-mono2 text-[10px] tracking-[0.3em] uppercase text-clay mb-4 reveal">Field notes · From our growing bench</p>
+        <h1 class="font-display font-light text-[clamp(2.6rem,6vw,4.6rem)] leading-[0.96] max-w-[720px] reveal reveal-delay-1">Care that's earned at our own workbench.</h1>
+      </div>
+      <p class="text-ink/60 max-w-sm text-sm leading-relaxed reveal reveal-delay-2">
+        These notes are written for this city, this sun, and these particular windows. Where they disagree with the internet, trust the greenhouse — we've killed plants too.
+      </p>
+    </div>
+  </header>
+
+  <!-- GUIDES -->
+  <section class="px-6 lg:px-10 pb-24">
+    <div class="max-w-[820px] mx-auto space-y-6">
+
+      <article class="bg-[#fdfbf3] border border-ink/15 p-8 lg:p-10 reveal">
+        <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+          <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-clay">Guide 01 · The basics</p>
+          <span class="care-tag">6 min</span>
+        </div>
+        <h2 class="font-display font-light text-3xl mb-4">Light is the whole game.</h2>
+        <div class="text-ink/70 leading-relaxed space-y-4 text-base">
+          <p>Ninety percent of "why is my plant sad" has one answer: it's farther from a window than it thinks it is. A south window in July is a desert; a north window in January is a cave. Learn where the hotspots of your home actually are — midday, check where the sun lands, and take notes.</p>
+          <p>Houseplants most of us grow want "bright, indirect light," which means: a few feet from a sunny window, or directly in a window that never gets harsh sun. If the leaves reach and stretch toward the window, they're asking for more. If they burn or wash out, they're asking for less.</p>
+          <div class="bg-stem/20 border-l-4 border-moss px-5 py-4 mt-6">
+            <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-moss mb-1">Workbench note</p>
+            <p class="text-sm italic text-ink/70">Rotate your plant a quarter turn every watering. It won't fix a dark room, but it will keep the plant from leaning its whole life toward one window.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="bg-[#fdfbf3] border border-ink/15 p-8 lg:p-10 reveal">
+        <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+          <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-clay">Guide 02 · Watering</p>
+          <span class="care-tag">5 min</span>
+        </div>
+        <h2 class="font-display font-light text-3xl mb-4">Water less than you think, more than you fear.</h2>
+        <div class="text-ink/70 leading-relaxed space-y-4 text-base">
+          <p>The most common plant death is a drowning, delivered lovingly. Stick a finger an inch into the soil: if it's still damp, don't water. Nearly every plant we sell prefers to dry out a little between drinks.</p>
+          <p>Use room-temperature water, water under the leaves, and let it drain fully. A plant sitting in a saucer of water all week is a plant with a cold wet foot, and cold wet feet lead to root rot — the quiet killer.</p>
+          <div class="bg-stem/20 border-l-4 border-moss px-5 py-4 mt-6">
+            <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-moss mb-1">Workbench note</p>
+            <p class="text-sm italic text-ink/70">Every accession tag you see on our plants lists a real watering interval. It's a guess with education behind it — adjust for your season, not our tag.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="bg-[#fdfbf3] border border-ink/15 p-8 lg:p-10 reveal">
+        <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+          <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-clay">Guide 03 · The pot</p>
+          <span class="care-tag">4 min</span>
+        </div>
+        <h2 class="font-display font-light text-3xl mb-4">The pot is the plant's house. Choose it like you'd choose your own.</h2>
+        <div class="text-ink/70 leading-relaxed space-y-4 text-base">
+          <p>Drainage is non-negotiable. If a pot has no hole, it's a vase pretending to be a home. If you fall for a beautiful cachepot with no drainage, use it as an outer sleeve — pot the plant in a nursery pot inside, and empty the saucer.</p>
+          <p>Material matters: terracotta breathes, which means it dries faster and is forgiving for beginners. Glazed ceramic holds moisture longer and rewards confident watering. Match the pot to your watering habits, not its looks alone — though at our studio, we think we can help with both.</p>
+          <a href="shop.html" class="inline-flex items-center gap-2 font-mono2 text-[10px] tracking-[0.2em] uppercase text-clay hover:text-ink transition-colors mt-4">Browse throwings <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon></a>
+        </div>
+      </article>
+
+      <article class="bg-[#fdfbf3] border border-ink/15 p-8 lg:p-10 reveal">
+        <div class="flex items-center justify-between flex-wrap gap-4 mb-6">
+          <p class="font-mono2 text-[10px] tracking-[0.2em] uppercase text-clay">Guide 04 · Austin seasons</p>
+          <span class="care-tag">7 min</span>
+        </div>
+        <h2 class="font-display font-light text-3xl mb-4">Summer is the real winter here.</h2>
+        <div class="text-ink/70 leading-relaxed space-y-4 text-base">
+          <p>In July, an unshaded south window cooks. Move the delicate ones back a foot or add a sheer layer. In winter, days shorten fast — growth slows, water needs drop, and the heater dries the air. Group plants together and they'll raise each other's humidity like good neighbors.</p>
+          <p>We write our care sheets around the extremes of this city, not the average. If a sheet ever sounds wrong for your apartment's actual reality, it is — the plant cares about your window, not our brochure.</p>
+        </div>
+      </article>
+
+      <!-- Ask -->
+      <div class="bg-fern text-ivory p-8 lg:p-10 reveal">
+        <h2 class="font-display font-light text-3xl mb-3">Still unsure? Bring us a leaf.</h2>
+        <p class="text-ivory/65 max-w-md text-sm leading-relaxed">Snap a photo or tuck a cutting in your pocket and come by. Diagnosis is free, friendly, and usually involves a nice chat about your windowsill.</p>
+        <a href="visit.html" class="inline-flex items-center gap-2 font-mono2 text-[10px] tracking-[0.2em] uppercase text-stem hover:text-ivory transition-colors mt-6">Find the shop <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon></a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-ink text-ivory/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl text-ivory tracking-tight">Arbor <span class="italic text-clay">&amp;</span> Clay</div>
+          <p class="text-sm leading-relaxed max-w-sm mt-4">A plant shop and ceramics studio in East Austin. Everything living arrived from a nursery we chose, and everything thrown went through a kiln we fire ourselves.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-ivory/30 mb-4">Explore</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <a href="shop.html" class="hover:text-clay transition-colors">Shop</a>
+            <a href="plant-care.html" class="hover:text-clay transition-colors">Plant Care</a>
+            <a href="story.html" class="hover:text-clay transition-colors">Our Story</a>
+            <a href="visit.html" class="hover:text-clay transition-colors">Visit</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-ivory/30 mb-4">Workshops</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <span>Repot &amp; settle</span>
+            <span>Wheel-throwing 101</span>
+            <span>Pots &amp; plants night</span>
+            <span>Family terrariums</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-ivory/30 mb-4">Find us</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>2419 E 6th St.</p>
+            <p>Austin, TX 78702</p>
+            <a href="tel:+15125550188" class="text-stem hover:text-clay transition-colors">512-555-0188</a>
+            <a href="mailto:hello@arborandclay.com" class="hover:text-clay transition-colors">hello@arborandclay.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-ivory/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[10px] text-ivory/30">&copy; 2026 Arbor &amp; Clay. Plastic-free since day one.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-ivory/40 hover:text-clay transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights — Volatile Studios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'vol-black': '#0A0A0A',
+          'vol-white': '#F5F5F5',
+          'vol-gray': '#888888',
+          'vol-accent': '#E8FF00',
+          'vol-accent-hover': '#CCFF00',
+          'vol-surface': '#141414',
+          'vol-surface-light': '#1A1A1A',
+          'vol-border': '#2A2A2A',
+        },
+        fontFamily: {
+          display: ['Space Grotesk', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #0A0A0A; color: #F5F5F5; overflow-x: hidden; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .section-title { font-size: clamp(2.5rem, 7vw, 6rem); line-height: 1; letter-spacing: -0.02em; }
+    .hero-title { font-size: clamp(3rem, 10vw, 9rem); line-height: 0.95; letter-spacing: -0.03em; }
+    .text-stroke-accent { -webkit-text-stroke: 1.5px #E8FF00; color: transparent; }
+    .line-accent { position: relative; }
+    .line-accent::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 3px; background: #E8FF00; transform: scaleX(0); transform-origin: right; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .line-accent:hover::after { transform: scaleX(1); transform-origin: left; }
+    .custom-cursor { width: 16px; height: 16px; border: 2px solid #E8FF00; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transition: width 0.3s, height 0.3s, border-color 0.3s; transform: translate(-50%, -50%); mix-blend-mode: difference; }
+    .custom-cursor.hover { width: 48px; height: 48px; border-color: #CCFF00; }
+    .nav-open { transform: translateY(0) !important; }
+    .nav-open-body { overflow: hidden; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #E8FF00; color: #0A0A0A; font-weight: 600; font-family: 'Space Grotesk', sans-serif; border-radius: 100px; transition: background 0.3s, transform 0.3s; }
+    .btn-primary:hover { background: #CCFF00; transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; border: 1px solid #2A2A2A; color: #F5F5F5; font-weight: 500; font-family: 'Space Grotesk', sans-serif; border-radius: 100px; transition: border-color 0.3s, color 0.3s; }
+    .btn-outline:hover { border-color: #E8FF00; color: #E8FF00; }
+    .blog-card { position: relative; overflow: hidden; border-radius: 12px; }
+    .blog-card img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s; }
+    .blog-card:hover img { transform: scale(1.05); filter: brightness(0.5); }
+    .blog-card .blog-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; }
+    .blog-card:hover .blog-tag { transform: translateY(0); opacity: 1; }
+    .blog-tag { transform: translateY(10px); opacity: 0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); transition-delay: 0.1s; }
+    .featured-card { position: relative; overflow: hidden; border-radius: 12px; }
+    .featured-card img { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .featured-card:hover img { transform: scale(1.03); }
+    @media (max-width: 768px) { .custom-cursor { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="custom-cursor" id="cursor"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 w-full z-50 mix-blend-difference">
+    <div class="max-w-[1400px] mx-auto px-6 md:px-10 py-5 flex items-center justify-between">
+      <a href="index.html" class="font-display font-bold text-2xl tracking-tight text-vol-white">VOLATILE</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="work.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Work</a>
+        <a href="services.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Services</a>
+        <a href="about.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Studio</a>
+        <a href="process.html" class="font-display text-sm font-medium text-vol-white hover:text-vol-accent transition-colors line-accent">Process</a>
+        <a href="insights.html" class="font-display text-sm font-medium text-vol-accent transition-colors line-accent">Insights</a>
+        <a href="contact.html" class="btn-primary text-sm py-2.5 px-5">Contact</a>
+      </div>
+      <button id="menuBtn" class="md:hidden flex flex-col gap-1.5 z-[60]">
+        <span class="block w-7 h-[2px] bg-vol-white transition-all" id="bar1"></span>
+        <span class="block w-5 h-[2px] bg-vol-accent transition-all" id="bar2"></span>
+        <span class="block w-7 h-[2px] bg-vol-white transition-all" id="bar3"></span>
+      </button>
+    </div>
+  </nav>
+  <div id="mobileMenu" class="fixed inset-0 z-[55] bg-vol-black flex flex-col items-center justify-center gap-8 transform -translate-y-full transition-transform duration-500 md:hidden">
+    <a href="work.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Work</a>
+    <a href="services.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Services</a>
+    <a href="about.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Studio</a>
+    <a href="process.html" class="font-display text-4xl font-bold text-vol-white hover:text-vol-accent transition-colors">Process</a>
+    <a href="insights.html" class="font-display text-4xl font-bold text-vol-accent transition-colors">Insights</a>
+    <a href="contact.html" class="font-display text-4xl font-bold text-vol-accent hover:text-vol-accent-hover transition-colors">Contact</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="min-h-[60vh] flex flex-col justify-end px-6 md:px-10 pt-32 pb-16">
+    <div class="max-w-[1400px] mx-auto w-full">
+      <p class="text-vol-accent font-display text-sm font-medium tracking-widest uppercase mb-4 reveal">Insights & Ideas</p>
+      <h1 class="hero-title font-display font-bold text-vol-white reveal" style="transition-delay: 0.1s">
+        Thinking out<br>
+        <span class="text-vol-accent">loud.</span>
+      </h1>
+    </div>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="px-6 md:px-10 pb-16">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="featured-card relative reveal cursor-pointer">
+        <img src="https://images.pexels.com/photos/9259017/pexels-photo-9259017.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Featured Article" class="w-full aspect-[21/9] object-cover rounded-xl">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent rounded-xl"></div>
+        <div class="absolute bottom-0 left-0 p-8 md:p-12 max-w-2xl">
+          <span class="inline-block px-4 py-1.5 bg-vol-accent text-vol-black font-display text-xs font-semibold rounded-full mb-4 uppercase tracking-wider">Featured</span>
+          <h2 class="font-display font-bold text-2xl md:text-4xl text-vol-white mb-3">Why Most Brand Redesigns Fail (And How to Get It Right)</h2>
+          <p class="font-body text-vol-gray text-sm md:text-base mb-4">We've seen hundreds of rebrands come and go. Here are the five critical mistakes that kill brand refreshes — and the framework we use to avoid them.</p>
+          <div class="flex items-center gap-4 text-vol-gray text-sm font-body">
+            <span>Aug 12, 2026</span>
+            <span>·</span>
+            <span>8 min read</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="px-6 md:px-10 pb-24 md:pb-32">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Article 1 -->
+        <a href="#" class="blog-card aspect-[4/5] reveal group" style="transition-delay: 0.1s">
+          <img src="https://images.pexels.com/photos/32417522/pexels-photo-32417522.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Article" class="w-full h-full object-cover rounded-xl">
+          <div class="blog-content bg-gradient-to-t from-black/90 to-transparent rounded-xl">
+            <span class="blog-tag text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Digital Marketing</span>
+            <h3 class="font-display font-bold text-xl text-vol-white mb-2 group-hover:text-vol-accent transition-colors">The Death of the Marketing Funnel: What Comes Next</h3>
+            <div class="flex items-center gap-3 text-vol-gray text-xs font-body">
+              <span>Jul 28, 2026</span>
+              <span>·</span>
+              <span>6 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Article 2 -->
+        <a href="#" class="blog-card aspect-[4/5] reveal group" style="transition-delay: 0.15s">
+          <img src="https://images.pexels.com/photos/8367791/pexels-photo-8367791.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Article" class="w-full h-full object-cover rounded-xl">
+          <div class="blog-content bg-gradient-to-t from-black/90 to-transparent rounded-xl">
+            <span class="blog-tag text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Design</span>
+            <h3 class="font-display font-bold text-xl text-vol-white mb-2 group-hover:text-vol-accent transition-colors">Design Systems That Scale: Lessons from 120+ Projects</h3>
+            <div class="flex items-center gap-3 text-vol-gray text-xs font-body">
+              <span>Jul 15, 2026</span>
+              <span>·</span>
+              <span>10 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Article 3 -->
+        <a href="#" class="blog-card aspect-[4/5] reveal group" style="transition-delay: 0.2s">
+          <img src="https://images.pexels.com/photos/7710206/pexels-photo-7710206.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Article" class="w-full h-full object-cover rounded-xl">
+          <div class="blog-content bg-gradient-to-t from-black/90 to-transparent rounded-xl">
+            <span class="blog-tag text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Social Media</span>
+            <h3 class="font-display font-bold text-xl text-vol-white mb-2 group-hover:text-vol-accent transition-colors">Building Community in the Age of Algorithm Fatigue</h3>
+            <div class="flex items-center gap-3 text-vol-gray text-xs font-body">
+              <span>Jun 30, 2026</span>
+              <span>·</span>
+              <span>7 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Article 4 -->
+        <a href="#" class="blog-card aspect-[4/5] reveal group" style="transition-delay: 0.1s">
+          <img src="https://images.pexels.com/photos/6231/marketing-color-colors-wheel.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Article" class="w-full h-full object-cover rounded-xl">
+          <div class="blog-content bg-gradient-to-t from-black/90 to-transparent rounded-xl">
+            <span class="blog-tag text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Branding</span>
+            <h3 class="font-display font-bold text-xl text-vol-white mb-2 group-hover:text-vol-accent transition-colors">Color Psychology in 2026: What Your Palette Says About You</h3>
+            <div class="flex items-center gap-3 text-vol-gray text-xs font-body">
+              <span>Jun 18, 2026</span>
+              <span>·</span>
+              <span>5 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Article 5 -->
+        <a href="#" class="blog-card aspect-[4/5] reveal group" style="transition-delay: 0.15s">
+          <img src="https://images.pexels.com/photos/34518920/pexels-photo-34518920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Article" class="w-full h-full object-cover rounded-xl">
+          <div class="blog-content bg-gradient-to-t from-black/90 to-transparent rounded-xl">
+            <span class="blog-tag text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Strategy</span>
+            <h3 class="font-display font-bold text-xl text-vol-white mb-2 group-hover:text-vol-accent transition-colors">Data-Driven Creativity: Why the Best Ads Use Both Brains</h3>
+            <div class="flex items-center gap-3 text-vol-gray text-xs font-body">
+              <span>Jun 5, 2026</span>
+              <span>·</span>
+              <span>9 min read</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Article 6 -->
+        <a href="#" class="blog-card aspect-[4/5] reveal group" style="transition-delay: 0.2s">
+          <img src="https://images.pexels.com/photos/33741339/pexels-photo-33741339.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Article" class="w-full h-full object-cover rounded-xl">
+          <div class="blog-content bg-gradient-to-t from-black/90 to-transparent rounded-xl">
+            <span class="blog-tag text-vol-accent text-xs font-display font-medium tracking-widest uppercase mb-2">Web Design</span>
+            <h3 class="font-display font-bold text-xl text-vol-white mb-2 group-hover:text-vol-accent transition-colors">Web Design Trends That Will Dominate 2027</h3>
+            <div class="flex items-center gap-3 text-vol-gray text-xs font-body">
+              <span>May 22, 2026</span>
+              <span>·</span>
+              <span>6 min read</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-24 md:py-32 bg-vol-surface px-6 md:px-10">
+    <div class="max-w-[800px] mx-auto text-center">
+      <iconify-icon icon="ph:envelope-simple-bold" width="48" class="text-vol-accent mx-auto mb-6"></iconify-icon>
+      <h2 class="section-title font-display font-bold mb-4 reveal">Stay in the loop.</h2>
+      <p class="font-body text-vol-gray text-lg mb-10 reveal" style="transition-delay: 0.1s">
+        Get our latest thinking on branding, marketing, and creative strategy delivered to your inbox. No spam, no fluff — just insights that matter.
+      </p>
+      <form class="flex flex-col sm:flex-row gap-4 max-w-[500px] mx-auto reveal" style="transition-delay: 0.2s" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!'; this.querySelector('input').value='';">
+        <input type="email" placeholder="Your email" required class="flex-1 px-6 py-4 bg-vol-black border border-vol-border rounded-full font-body text-vol-white placeholder-vol-gray focus:outline-none focus:border-vol-accent transition-colors">
+        <button type="submit" class="btn-primary whitespace-nowrap">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-vol-border py-16 px-6 md:px-10">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-10 mb-16">
+        <div>
+          <p class="text-vol-gray text-sm font-body mb-2">Let's Talk</p>
+          <a href="contact.html" class="font-display font-bold text-4xl md:text-6xl lg:text-7xl text-vol-white hover:text-vol-accent transition-colors">hello@volatilestudios.com</a>
+        </div>
+        <div class="flex gap-4">
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:instagram-logo" width="20"></iconify-icon></a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:twitter-logo" width="20"></iconify-icon></a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:linkedin-logo" width="20"></iconify-icon></a>
+          <a href="#" class="w-12 h-12 rounded-full border border-vol-border flex items-center justify-center hover:border-vol-accent hover:text-vol-accent transition-colors"><iconify-icon icon="ph:dribbble-logo" width="20"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-vol-border">
+        <p class="font-body text-vol-gray text-xs">&copy; 2026 Volatile Studios. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="font-body text-vol-gray text-xs hover:text-vol-white transition-colors">Privacy</a>
+          <a href="#" class="font-body text-vol-gray text-xs hover:text-vol-white transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('nav-open');
+      document.body.classList.toggle('nav-open-body');
+      bar1.style.transform = menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '';
+      bar2.style.opacity = menuOpen ? '0' : '1';
+      bar3.style.transform = menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : '';
+    });
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => { cursor.style.left = e.clientX + 'px'; cursor.style.top = e.clientY + 'px'; });
+    document.querySelectorAll('a, button, .blog-card, .btn-primary, .btn-outline').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+    });
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); }); }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

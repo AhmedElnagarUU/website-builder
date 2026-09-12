@@ -2,8 +2,8 @@ import Link from "next/link";
 import type { Locale } from "@/features/sites/types";
 
 const LOCALE_LABELS: Record<Locale, string> = {
-  en: "EN",
-  ar: "العربية",
+  en: "en",
+  ar: "ar",
 };
 
 interface LiveLocaleSwitcherProps {

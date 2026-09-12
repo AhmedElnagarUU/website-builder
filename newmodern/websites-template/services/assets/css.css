@@ -1,0 +1,179 @@
+:root {
+  --ink: #17191b;
+  --paper: #f1ebe1;
+  --signal: #e4572e;
+  --signal-soft: #f2a183;
+  --steel: #55626e;
+  --line: #d8d1c3;
+  --night: #101214;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Barlow', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-cond {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.tracking-mega {
+  letter-spacing: 0.32em;
+}
+
+/* --- Work-order ticket --- */
+.ticket {
+  position: relative;
+  background: #fbf7ef;
+  border: 1px solid var(--ink);
+  box-shadow: 6px 6px 0 0 var(--ink);
+}
+
+.ticket::after {
+  content: 'RL-2047';
+  position: absolute;
+  top: -10px;
+  right: 18px;
+  background: var(--signal);
+  color: #fff;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  padding: 2px 10px;
+  text-transform: uppercase;
+}
+
+/* --- Perforation divider --- */
+.perf {
+  position: relative;
+  border-top: 2px dashed var(--ink);
+}
+
+.perf::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background-image: radial-gradient(circle, var(--paper) 4px, transparent 5px);
+  background-size: 22px 12px;
+  background-position: 0 0;
+}
+
+.perf-lab {
+  position: absolute;
+  top: -11px;
+  right: 24px;
+  background: var(--paper);
+  padding: 0 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+/* --- Dotted leader rows --- */
+.dot-lead {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.dot-lead .dots {
+  flex: 1;
+  border-bottom: 2px dotted var(--ink);
+  opacity: 0.35;
+  transform: translateY(-4px);
+}
+
+/* --- Nav underline reveal --- */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+/* --- Reveal --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Hero image treatment: offset hard shadow frame --- */
+.img-frame {
+  border: 1px solid var(--ink);
+  box-shadow: 8px 8px 0 0 var(--ink);
+}
+
+/* --- Marquee strip --- */
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-track {
+  display: inline-block;
+  animation: marquee 28s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* --- Focus --- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--signal);
+  outline-offset: 3px;
+}
+
+/* --- Mobile menu open state --- */
+#mobileMenu.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .marquee-track { animation: none; }
+  html { scroll-behavior: auto; }
+}

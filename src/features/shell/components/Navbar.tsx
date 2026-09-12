@@ -60,6 +60,14 @@ export function Navbar({
           {isSignedIn ? (
             <>
               {planId && <PlanBadge plan={planId} />}
+              {planId !== "pro" && (
+                <a
+                  href={`/${locale}/pricing`}
+                  className="mono-display rounded-full border-2 border-ink bg-ink px-4 py-1 text-lg leading-none text-paper transition-colors hover:bg-paper hover:text-ink"
+                >
+                  {t("nav.upgrade")}
+                </a>
+              )}
               <a
                 href={`/${locale}/dashboard`}
                 className="mono-display rounded-full px-3 py-1 text-lg leading-none text-ink transition-colors hover:bg-paper-2"

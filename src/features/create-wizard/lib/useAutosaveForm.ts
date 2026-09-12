@@ -20,6 +20,9 @@ export function useAutosaveForm<T extends Record<string, unknown>>(
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const latest = useRef(values);
   latest.current = values;
+  const saveRef = useRef(save);
+  saveRef.current = save;
+  const dirty = useRef(false);
 
   const flush = useCallback(async () => {
     if (timer.current) {
@@ -27,26 +30,29 @@ export function useAutosaveForm<T extends Record<string, unknown>>(
       timer.current = null;
     }
     setState("saving");
-    const result = await save(latest.current);
+    const result = await saveRef.current(latest.current);
     setState(result.ok ? "saved" : "error");
-  }, [save]);
+  }, []);
 
   useEffect(() => {
+    if (!dirty.current) return;
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => {
       setState("saving");
-      save(latest.current).then((r) => setState(r.ok ? "saved" : "error"));
+      saveRef.current(latest.current).then((r) => setState(r.ok ? "saved" : "error"));
     }, delayMs);
     return () => {
       if (timer.current) clearTimeout(timer.current);
     };
-  }, [values, save, delayMs]);
+  }, [values, delayMs]);
 
   function setField<K extends keyof T>(key: K, value: T[K]) {
+    dirty.current = true;
     setValuesState((prev) => ({ ...prev, [key]: value }));
   }
 
   function setValues(next: Partial<T>) {
+    dirty.current = true;
     setValuesState((prev) => ({ ...prev, ...next }));
   }
 

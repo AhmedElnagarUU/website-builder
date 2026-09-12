@@ -4,6 +4,8 @@
 **Author:** Epic-14 execution (prompt/17-epic14-modern-redesign.md), document-only milestone.
 **Date:** 2026-09-07.
 
+> **SUPERSEDED (2026-09-12, user-confirmed):** The per-template visual *languages* described in §3 and §5 (family-level directions) are **replaced** as the visual source by the 10 `newmodern/` mockups. The user chose "use newmodern as design source". The binding 10→10 assignment and the full per-template design specs (exact palettes, fonts, signature patterns, header/hero/section/footer treatments) live in **`01-design-audit/newmodern-design-source.md`**. The `TemplateTheme` axis model (§4.1), whitespace system (§4.4), primitives (§4.2), typography utilities (§4.3), and the `theme` key/surface/headingFont/hero/accentRole assignments in §5 remain the engine contract and are unaffected. This file's §3/§5 visual *directions* are superseded by `newmodern-design-source.md` — implement that document.
+
 ---
 
 ## 1. Method

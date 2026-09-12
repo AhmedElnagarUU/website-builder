@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redline Service Co. — Home Repair &amp; Maintenance</title>
+  <meta name="description" content="Redline Service Co. provides reliable home repair, HVAC, plumbing, electrical, and general maintenance across Portland, OR. Same-day dispatch, honest pricing, licensed crews.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#17191b',
+          paper: '#f1ebe1',
+          signal: '#e4572e',
+          'signal-soft': '#f2a183',
+          steel: '#55626e',
+          line: '#d8d1c3',
+          night: '#101214',
+        },
+        fontFamily: {
+          cond: ['"Barlow Condensed"', 'sans-serif'],
+          body: ['Barlow', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-ink overflow-x-hidden">
+
+  <!-- NAV -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-colors duration-300">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-16 lg:h-[72px]">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-cond font-bold text-xl tracking-tight leading-none">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup></span>
+        <span class="hidden sm:inline font-cond font-semibold text-[10px] tracking-[0.26em] uppercase text-steel">Redline Service Co.</span>
+      </a>
+      <div class="hidden lg:flex items-center gap-7">
+        <a href="services.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Services</a>
+        <a href="work.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Our Work</a>
+        <a href="about.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">The Crew</a>
+        <a href="contact.html" class="nav-link font-cond font-medium text-sm tracking-[0.18em] uppercase text-ink/70 hover:text-ink transition-colors">Contact</a>
+        <a href="emergency.html" class="ml-2 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-[11px] tracking-[0.18em] uppercase px-4 py-2.5 hover:bg-signal/90 transition-colors">
+          <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>
+          24/7
+        </a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink transition-all duration-300"></span>
+        <span class="hamburger-line w-full h-[2px] bg-ink origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div id="mobileMenu" class="fixed inset-0 bg-paper z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-cond font-semibold text-3xl tracking-wide">Home</a>
+    <a href="services.html" class="font-cond font-semibold text-3xl tracking-wide">Services</a>
+    <a href="work.html" class="font-cond font-semibold text-3xl tracking-wide">Our Work</a>
+    <a href="about.html" class="font-cond font-semibold text-3xl tracking-wide">The Crew</a>
+    <a href="contact.html" class="font-cond font-semibold text-3xl tracking-wide">Contact</a>
+    <a href="emergency.html" class="mt-4 inline-flex items-center gap-2 bg-signal text-white font-cond font-semibold text-xs tracking-[0.18em] uppercase px-6 py-3">
+      <iconify-icon icon="ph:phone" class="text-sm"></iconify-icon>
+      24/7 Emergency
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <section class="pt-[72px] min-h-screen flex flex-col lg:flex-row relative bg-paper">
+    <!-- Left: headline -->
+    <div class="lg:w-[55%] flex flex-col justify-end px-6 lg:px-12 xl:px-16 pb-16 lg:pb-24 pt-14 lg:pt-0">
+      <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-steel mb-5 reveal">Est. 2011 · Portland, OR</p>
+      <h1 class="font-cond font-bold text-[clamp(2.8rem,7vw,5.4rem)] leading-[0.92] tracking-tight max-w-[560px] reveal reveal-delay-1">
+        The crew you call<br>
+        <span class="text-signal">when it matters.</span>
+      </h1>
+      <p class="text-steel/80 text-lg leading-relaxed max-w-md mt-6 reveal reveal-delay-2">
+        Honest estimates. Same-day dispatch. Licensed crews who show up on time and get it done right the first time.
+      </p>
+      <div class="mt-10 flex flex-wrap gap-4 reveal reveal-delay-3">
+        <a href="contact.html" class="inline-flex items-center gap-3 bg-ink text-paper font-cond font-semibold text-[11px] tracking-[0.2em] uppercase px-7 py-4 hover:bg-ink/85 transition-colors">
+          Request a Visit
+          <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+        </a>
+        <a href="emergency.html" class="inline-flex items-center gap-3 border-2 border-signal text-signal font-cond font-semibold text-[11px] tracking-[0.2em] uppercase px-7 py-4 hover:bg-signal hover:text-white transition-colors">
+          <iconify-icon icon="ph:warning-circle" class="text-sm"></iconify-icon>
+          24/7 Emergency
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: image + work order ticket -->
+    <div class="lg:w-[45%] relative px-6 lg:px-0 pb-16 lg:pb-0 flex flex-col items-end">
+      <!-- Image -->
+      <div class="w-full lg:absolute lg:top-0 lg:right-0 lg:w-full lg:h-full">
+        <div class="img-frame relative ml-auto lg:ml-0 w-full max-w-lg lg:max-w-none lg:w-full lg:h-full overflow-hidden reveal" style="clip-path: inset(0 0 0 0);">
+          <img src="https://images.pexels.com/photos/11293626/pexels-photo-11293626.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Crew building wooden framing structure on construction site" class="w-full h-[50vh] lg:h-full object-cover">
+        </div>
+      </div>
+
+      <!-- Ticket -->
+      <div class="ticket relative z-10 w-full max-w-[320px] mx-auto mt-8 p-5 bg-paper/95 backdrop-blur reveal reveal-delay-2" style="box-shadow:5px 5px 0 var(--ink);">
+        <div class="font-mono text-[10px] tracking-[0.18em] uppercase text-steel border-b border-ink/15 pb-3 mb-3 flex justify-between">
+          <span>Work Order</span>
+          <span class="text-signal font-medium">ACTIVE</span>
+        </div>
+        <div class="space-y-2 font-mono text-xs">
+          <div class="flex justify-between"><span class="text-steel">Requested</span><span class="text-ink font-medium">06:40 AM</span></div>
+          <div class="flex justify-between"><span class="text-steel">Priority</span><span class="text-signal font-medium">HIGH</span></div>
+          <div class="flex justify-between"><span class="text-steel">Crew</span><span class="text-ink font-medium">N. Alvarez · Team 7</span></div>
+          <div class="flex justify-between"><span class="text-steel">Job</span><span class="text-ink font-medium">#RL-2047</span></div>
+          <div class="mt-3 pt-3 border-t border-ink/15 flex justify-between">
+            <span class="text-steel">Status</span>
+            <span class="text-signal font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-signal animate-pulse"></span>
+              EN ROUTE
+            </span>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-ink/15 font-mono text-[10px] text-steel">
+          <div class="flex justify-between"><span>Jobs running today</span><span class="text-ink font-medium">14</span></div>
+          <div class="flex justify-between"><span>Slots available</span><span class="text-ink font-medium">Until 4:30 PM</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee band -->
+  <div class="bg-ink py-3 overflow-hidden">
+    <div class="marquee font-cond font-semibold text-[11px] tracking-[0.25em] uppercase text-paper/40">
+      <span class="marquee-track">
+        HVAC &nbsp;&nbsp;· &nbsp;PLUMBING &nbsp;&nbsp;· &nbsp;ELECTRICAL &nbsp;&nbsp;· &nbsp;ROOFING &nbsp;&nbsp;· &nbsp;DRYWALL &nbsp;&nbsp;· &nbsp;GENERAL REPAIR &nbsp;&nbsp;· &nbsp;FLOORING &nbsp;&nbsp;· &nbsp;PAINTING &nbsp;&nbsp;· &nbsp;HVAC &nbsp;&nbsp;· &nbsp;PLUMBING &nbsp;&nbsp;· &nbsp;ELECTRICAL &nbsp;&nbsp;· &nbsp;ROOFING &nbsp;&nbsp;· &nbsp;DRYWALL &nbsp;&nbsp;· &nbsp;GENERAL REPAIR &nbsp;&nbsp;· &nbsp;FLOORING &nbsp;&nbsp;· &nbsp;PAINTING &nbsp;&nbsp;·&nbsp;
+      </span>
+    </div>
+  </div>
+
+  <!-- SERVICES INDEX -->
+  <section class="py-24 lg:py-32 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-14 lg:mb-20">
+        <div class="reveal">
+          <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3">Service Manifest</p>
+          <h2 class="font-cond font-bold text-4xl lg:text-[3.4rem] leading-[0.95]">What we do</h2>
+        </div>
+        <p class="text-steel text-sm max-w-xs reveal reveal-delay-1">Every crew is licensed, insured, and backed by our same-day dispatch guarantee.</p>
+      </div>
+
+      <!-- Dotted-leader index list -->
+      <div class="max-w-2xl reveal">
+        <!-- Row -->
+        <div class="dot-lead py-4 border-t border-ink/15">
+          <span class="font-mono text-xs text-signal">01</span>
+          <span class="font-cond font-semibold text-xl tracking-wide">HVAC &amp; Climate Control</span>
+          <span class="dots"></span>
+          <span class="font-mono text-sm text-ink/60">from $120</span>
+          <iconify-icon icon="ph:arrow-right" class="text-signal text-base"></iconify-icon>
+        </div>
+        <div class="dot-lead py-4 border-t border-ink/15">
+          <span class="font-mono text-xs text-signal">02</span>
+          <span class="font-cond font-semibold text-xl tracking-wide">Plumbing</span>
+          <span class="dots"></span>
+          <span class="font-mono text-sm text-ink/60">from $95</span>
+          <iconify-icon icon="ph:arrow-right" class="text-signal text-base"></iconify-icon>
+        </div>
+        <div class="dot-lead py-4 border-t border-ink/15">
+          <span class="font-mono text-xs text-signal">03</span>
+          <span class="font-cond font-semibold text-xl tracking-wide">Electrical</span>
+          <span class="dots"></span>
+          <span class="font-mono text-sm text-ink/60">from $110</span>
+          <iconify-icon icon="ph:arrow-right" class="text-signal text-base"></iconify-icon>
+        </div>
+        <div class="dot-lead py-4 border-t border-ink/15">
+          <span class="font-mono text-xs text-signal">04</span>
+          <span class="font-cond font-semibold text-xl tracking-wide">Roofing</span>
+          <span class="dots"></span>
+          <span class="font-mono text-sm text-ink/60">from $175</span>
+          <iconify-icon icon="ph:arrow-right" class="text-signal text-base"></iconify-icon>
+        </div>
+        <div class="dot-lead py-4 border-t border-ink/15">
+          <span class="font-mono text-xs text-signal">05</span>
+          <span class="font-cond font-semibold text-xl tracking-wide">Drywall &amp; Finishing</span>
+          <span class="dots"></span>
+          <span class="font-mono text-sm text-ink/60">from $85</span>
+          <iconify-icon icon="ph:arrow-right" class="text-signal text-base"></iconify-icon>
+        </div>
+        <div class="dot-lead py-4 border-t border-b border-ink/15">
+          <span class="font-mono text-xs text-signal">06</span>
+          <span class="font-cond font-semibold text-xl tracking-wide">Painting</span>
+          <span class="dots"></span>
+          <span class="font-mono text-sm text-ink/60">from $90</span>
+          <iconify-icon icon="ph:arrow-right" class="text-signal text-base"></iconify-icon>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE STANDARD -->
+  <section class="bg-ink text-paper py-24 lg:py-32 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3 reveal">The Standard</p>
+      <h2 class="font-cond font-bold text-4xl lg:text-5xl leading-[0.95] max-w-lg mb-16 reveal reveal-delay-1">
+        We hold ourselves to something higher than "good enough."
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+        <div class="reveal">
+          <div class="font-mono text-signal text-[10px] tracking-[0.3em] uppercase mb-4 border border-signal/30 inline-block px-3 py-1">Commitment 01</div>
+          <h3 class="font-cond font-semibold text-2xl tracking-wide mb-3">Same-Day Dispatch</h3>
+          <p class="text-paper/60 text-sm leading-relaxed max-w-xs">Call before noon, see a crew by afternoon. We keep trucks stocked and crews on rotation so you're not waiting two weeks for a callback.</p>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="font-mono text-signal text-[10px] tracking-[0.3em] uppercase mb-4 border border-signal/30 inline-block px-3 py-1">Commitment 02</div>
+          <h3 class="font-cond font-semibold text-2xl tracking-wide mb-3">Estimate Before Work</h3>
+          <p class="text-paper/60 text-sm leading-relaxed max-w-xs">You'll get a written scope and fixed price before any tools come out. No surprises, no hourly guessing games, no "while we're here" upsells.</p>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="font-mono text-signal text-[10px] tracking-[0.3em] uppercase mb-4 border border-signal/30 inline-block px-3 py-1">Commitment 03</div>
+          <h3 class="font-cond font-semibold text-2xl tracking-wide mb-3">Licensed &amp; Guaranteed</h3>
+          <p class="text-paper/60 text-sm leading-relaxed max-w-xs">Every crew lead holds current state licensing and carries our two-year workmanship guarantee. If it fails, we come back — free of charge, no questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT WORK -->
+  <section class="py-24 lg:py-32 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-14 lg:mb-20">
+        <div class="reveal">
+          <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-signal mb-3">Recent Jobs</p>
+          <h2 class="font-cond font-bold text-4xl lg:text-[3.4rem] leading-[0.95]">On the board</h2>
+        </div>
+        <a href="work.html" class="font-mono text-xs text-steel hover:text-signal transition-colors flex items-center gap-2 reveal reveal-delay-1">
+          VIEW FULL LOG
+          <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <!-- Job 1 -->
+        <a href="work.html" class="group block reveal">
+          <div class="img-frame overflow-hidden aspect-[4/3]">
+            <img src="https://images.pexels.com/photos/36035073/pexels-photo-36035073.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Kitchen renovation in progress" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+          </div>
+          <div class="mt-4 font-mono text-[10px] tracking-[0.2em] uppercase text-steel">
+            <div class="flex justify-between">
+              <span>Job #RL-2031</span>
+              <span class="text-signal">Complete</span>
+            </div>
+          </div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1 group-hover:text-signal transition-colors">Full Kitchen Renovation — Pearl District</h3>
+          <p class="text-steel text-sm mt-1">Cabinetry, plumbing, electrical, drywall, finish</p>
+        </a>
+
+        <!-- Job 2 -->
+        <a href="work.html" class="group block reveal reveal-delay-1">
+          <div class="img-frame overflow-hidden aspect-[4/3]">
+            <img src="https://images.pexels.com/photos/6471913/pexels-photo-6471913.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="HVAC technician servicing outdoor unit" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+          </div>
+          <div class="mt-4 font-mono text-[10px] tracking-[0.2em] uppercase text-steel">
+            <div class="flex justify-between">
+              <span>Job #RL-2028</span>
+              <span class="text-signal">Complete</span>
+            </div>
+          </div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1 group-hover:text-signal transition-colors">HVAC System Overhaul — Hawthorne</h3>
+          <p class="text-steel text-sm mt-1">25-year-old system replaced, new ducting, NATE-certified install</p>
+        </a>
+
+        <!-- Job 3 -->
+        <a href="work.html" class="group block reveal reveal-delay-2">
+          <div class="img-frame overflow-hidden aspect-[4/3]">
+            <img src="https://images.pexels.com/photos/6419128/pexels-photo-6419128.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Plumber installing steel pipes" class="w-full h-full object-cover transition-transform duration-600 group-hover:scale-105">
+          </div>
+          <div class="mt-4 font-mono text-[10px] tracking-[0.2em] uppercase text-steel">
+            <div class="flex justify-between">
+              <span>Job #RL-2025</span>
+              <span class="text-signal">Complete</span>
+            </div>
+          </div>
+          <h3 class="font-cond font-semibold text-lg tracking-wide mt-1 group-hover:text-signal transition-colors">Repiping — 1920s Bungalow, Mississippi Ave</h3>
+          <p class="text-steel text-sm mt-1">Galvanized-to-PEX full-house repipe, two bathrooms</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="bg-paper border-y border-ink/10 py-16 lg:py-20 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="text-center reveal">
+        <span class="font-cond font-bold text-5xl lg:text-6xl text-signal" data-count="2400" data-suffix="+">0</span>
+        <p class="font-mono text-[10px] tracking-[0.2em] uppercase text-steel mt-2">Jobs Completed</p>
+      </div>
+      <div class="text-center reveal reveal-delay-1">
+        <span class="font-cond font-bold text-5xl lg:text-6xl text-signal" data-count="14">0</span>
+        <p class="font-mono text-[10px] tracking-[0.2em] uppercase text-steel mt-2">Licensed Crews</p>
+      </div>
+      <div class="text-center reveal reveal-delay-2">
+        <span class="font-cond font-bold text-5xl lg:text-6xl text-signal" data-count="98" data-suffix="%">0</span>
+        <p class="font-mono text-[10px] tracking-[0.2em] uppercase text-steel mt-2">On-Time Arrival</p>
+      </div>
+      <div class="text-center reveal reveal-delay-3">
+        <span class="font-cond font-bold text-5xl lg:text-6xl text-signal" data-count="12">0</span>
+        <p class="font-mono text-[10px] tracking-[0.2em] uppercase text-steel mt-2">Years in Business</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="bg-signal text-white py-20 lg:py-28 px-6 lg:px-10 text-center">
+    <div class="max-w-2xl mx-auto">
+      <p class="font-mono text-[10px] tracking-[0.25em] uppercase text-white/60 mb-4 reveal">Emergency Response</p>
+      <h2 class="font-cond font-bold text-4xl lg:text-6xl leading-[0.95] mb-6 reveal reveal-delay-1">
+        Something going wrong<br>right now?
+      </h2>
+      <p class="text-white/70 text-lg max-w-md mx-auto mb-10 reveal reveal-delay-2">Burst pipe. No heat. Sparking outlet. We're on call 24 hours a day, every day, including holidays.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal reveal-delay-3">
+        <a href="tel:+15035550124" class="inline-flex items-center gap-3 bg-white text-signal font-cond font-semibold text-[12px] tracking-[0.18em] uppercase px-8 py-4 hover:bg-paper transition-colors">
+          <iconify-icon icon="ph:phone" class="text-base"></iconify-icon>
+          503-555-0124
+        </a>
+        <a href="emergency.html" class="inline-flex items-center gap-3 border-2 border-white/40 text-white font-cond font-semibold text-[12px] tracking-[0.18em] uppercase px-8 py-4 hover:bg-white/10 transition-colors">
+          Learn More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink text-paper/60 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-cond font-bold text-2xl text-paper tracking-tight mb-4">RL<sup class="text-[9px] text-signal -top-1 relative">®</sup> <span class="text-sm font-semibold tracking-[0.22em] uppercase text-paper/40">Redline Service Co.</span></div>
+          <p class="text-sm leading-relaxed max-w-sm">Licensed home repair and maintenance for Portland, OR and the greater metro. Same-day dispatch, honest estimates, crews who get it right.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Navigate</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-sm hover:text-signal transition-colors">Services</a>
+            <a href="work.html" class="text-sm hover:text-signal transition-colors">Our Work</a>
+            <a href="about.html" class="text-sm hover:text-signal transition-colors">The Crew</a>
+            <a href="contact.html" class="text-sm hover:text-signal transition-colors">Contact</a>
+            <a href="emergency.html" class="text-sm text-signal hover:text-signal-soft transition-colors">24/7 Emergency</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Trades</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <span>HVAC</span>
+            <span>Plumbing</span>
+            <span>Electrical</span>
+            <span>Roofing</span>
+            <span>Drywall &amp; Finishing</span>
+            <span>Painting</span>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono text-[10px] tracking-[0.25em] uppercase text-paper/30 mb-4">Contact</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <p>1821 SE Division St.</p>
+            <p>Portland, OR 97202</p>
+            <a href="mailto:dispatch@redlineservice.co" class="text-signal hover:text-signal-soft transition-colors">dispatch@redlineservice.co</a>
+            <a href="tel:+15035550124" class="text-paper hover:text-signal transition-colors">503-555-0124</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-paper/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono text-[10px] text-paper/30">&copy; 2026 Redline Service Co. Licensed &amp; Insured, CCB #218745.</p>
+        <div class="flex gap-5">
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-paper/40 hover:text-signal transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

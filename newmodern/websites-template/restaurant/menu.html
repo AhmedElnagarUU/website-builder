@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu — Ember &amp; Oak Wood-Fired Italian Kitchen</title>
+  <meta name="description" content="The current Ember & Oak menu — antipasti, handmade pasta, wood-fired secondi, and dolci. Seasonal and written in pencil.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          soot: '#161110', coal: '#201a17', embers: '#df5b32', flame: '#f0a252',
+          crema: '#f2e6d3', herb: '#4a5531', line: '#3b2f27',
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <link rel="stylesheet" href="assets/css.css">
+</head>
+<body class="font-body antialiased text-crema overflow-x-hidden bg-soot">
+
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 border-b border-line/30 bg-soot/95 backdrop-blur">
+    <div class="max-w-[1320px] mx-auto px-5 lg:px-10 flex items-center justify-between h-20">
+      <a href="index.html" class="font-display text-2xl lg:text-[1.7rem] tracking-tight">Ember <span class="italic text-flame">&amp;</span> Oak</a>
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="menu.html" class="nav-link active text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Menu</a>
+        <a href="story.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Our Story</a>
+        <a href="private-dining.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">Private Dining</a>
+        <a href="journal.html" class="nav-link text-[11px] tracking-[0.24em] uppercase text-crema/70 hover:text-crema transition-colors">The Journal</a>
+        <a href="visit.html" class="ml-3 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-5 py-3 hover:bg-flame hover:text-soot transition-colors">Book a Table</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden relative w-7 h-5 flex flex-col justify-between" aria-label="Menu">
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema transition-all duration-300"></span>
+        <span class="w-full h-[2px] bg-crema origin-center transition-all duration-300"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobileMenu" class="fixed inset-0 bg-soot z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl">Home</a>
+    <a href="menu.html" class="font-display text-3xl">Menu</a>
+    <a href="story.html" class="font-display text-3xl">Our Story</a>
+    <a href="private-dining.html" class="font-display text-3xl">Private Dining</a>
+    <a href="journal.html" class="font-display text-3xl">The Journal</a>
+    <a href="visit.html" class="mt-4 border border-flame/60 text-flame font-mono2 text-[10px] tracking-[0.22em] uppercase px-6 py-3">Book a Table</a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="pt-40 lg:pt-52 pb-14 lg:pb-20 px-6 lg:px-10">
+    <div class="max-w-[880px] mx-auto text-center">
+      <div class="ember-div mb-8 reveal"><span class="ember-glyph">◆</span></div>
+      <p class="font-mono2 text-[10px] tracking-[0.35em] uppercase text-embers mb-5 reveal">La carta · Autumn MMXXVI</p>
+      <h1 class="font-display font-medium text-4xl lg:text-6xl leading-[1.0] reveal reveal-delay-1">Tonight's menu</h1>
+      <p class="text-crema/50 text-sm leading-relaxed max-w-md mx-auto mt-6 reveal reveal-delay-2">Written in pencil, not print. If the oven disagrees with anything below, the kitchen wins. Ask about the daily features before you order.</p>
+    </div>
+  </header>
+
+  <!-- MENU -->
+  <section class="px-6 lg:px-10 pb-28">
+    <div class="max-w-[680px] mx-auto">
+
+      <div class="reveal">
+        <div class="flex items-center justify-between border-b border-line mb-2">
+          <h2 class="font-mono2 text-[11px] tracking-[0.35em] uppercase text-flame pb-3">Antipasti</h2>
+          <span class="font-mono2 text-[9px] tracking-[0.2em] uppercase text-crema/30 pb-3">To share</span>
+        </div>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Pane del forno</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$9</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Wood-fired focaccia, whipped lardo, rosemary salt from the garden</p>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Crostini — fegatini</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$14</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Pork liver, pickled fennel, grilled sourdough</p>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Insalata di stagione</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$12</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Roasted squash, radicchio, hazelnuts, aged balsamico</p>
+      </div>
+
+      <div class="reveal mt-14">
+        <div class="flex items-center justify-between border-b border-line mb-2">
+          <h2 class="font-mono2 text-[11px] tracking-[0.35em] uppercase text-flame pb-3">Primi · Pasta fatta a mano</h2>
+          <span class="font-mono2 text-[9px] tracking-[0.2em] uppercase text-crema/30 pb-3">Handmade daily</span>
+        </div>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Tonarelli cacio e pepe</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$22</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Black pepper, pecorino romano — the only three ingredients allowed</p>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Agnolotti dal plin</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$29</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Braised lamb, sage brown butter, park of lemon</p>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Pappardelle al ragù di cinghiale</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$26</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Wild boar, porcini, dark chocolate, 12-hour red wine ragù</p>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Gnocchi — zucca</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$24</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Butternut squash, browned butter, amaretti crumble</p>
+      </div>
+
+      <div class="reveal mt-14">
+        <div class="flex items-center justify-between border-b border-line mb-2">
+          <h2 class="font-mono2 text-[11px] tracking-[0.35em] uppercase text-flame pb-3">La carta del forno</h2>
+          <span class="font-mono2 text-[9px] tracking-[0.2em] uppercase text-crema/30 pb-3">From the oven</span>
+        </div>
+        <div class="bg-coal border border-line/40 p-6 mb-6">
+          <p class="font-mono2 text-[9px] tracking-[0.25em] uppercase text-flame/70 mb-3">Baked 90 seconds · 412°C · 00 flour</p>
+          <div class="menu-lead py-3 border-b border-line/40">
+            <span class="font-display italic text-lg">Margherita</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$18</span>
+          </div>
+          <div class="menu-lead py-3 border-b border-line/40">
+            <span class="font-display italic text-lg">Funghi e taleggio</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$21</span>
+          </div>
+          <div class="menu-lead py-3 border-b border-line/40">
+            <span class="font-display italic text-lg">Salsiccia e friarielli</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$22</span>
+          </div>
+          <div class="menu-lead py-3">
+            <span class="font-display italic text-lg">Pistacchio e mortadella</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$23</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal mt-14">
+        <div class="flex items-center justify-between border-b border-line mb-2">
+          <h2 class="font-mono2 text-[11px] tracking-[0.35em] uppercase text-flame pb-3">Secondi</h2>
+          <span class="font-mono2 text-[9px] tracking-[0.2em] uppercase text-crema/30 pb-3">From the fire</span>
+        </div>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Pollo al forno</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$34</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Spatchcocked, meyer lemon, rosemary, drippings over soft polenta</p>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Bistecca alla brace</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$46</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Hanger steak, salsa verde, charred shallot, bone-marrow butter</p>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Spigola — branzino</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$38</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Whole-roasted, fennel, citrus, salsa romesco</p>
+      </div>
+
+      <div class="reveal mt-14">
+        <div class="flex items-center justify-between border-b border-line mb-2">
+          <h2 class="font-mono2 text-[11px] tracking-[0.35em] uppercase text-flame pb-3">Dolci</h2>
+          <span class="font-mono2 text-[9px] tracking-[0.2em] uppercase text-crema/30 pb-3">To finish</span>
+        </div>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Budino di ricotta</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$12</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Salted caramel, olive oil, sea salt</p>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Torta di mele dal forno</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$13</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Warm apple cake, baked in the wood oven, whipped mascarpone</p>
+        <div class="menu-lead py-4 border-b border-line/40">
+          <span class="font-display italic text-lg">Affogato</span><span class="dots"></span><span class="font-mono2 text-sm text-flame">$10</span>
+        </div>
+        <p class="text-crema/45 text-sm leading-relaxed pt-1.5">Espresso poured over vanilla gelato, amaretti</p>
+      </div>
+
+      <div class="mt-16 bg-coal border border-line/40 p-6 text-center reveal">
+        <p class="font-mono2 text-[9px] tracking-[0.25em] uppercase text-flame mb-3">The Chef's Table</p>
+        <p class="font-display italic text-xl text-crema mb-4">Five courses, fixed. Trust the kitchen.</p>
+        <p class="font-mono2 text-sm text-flame">$69 / person</p>
+        <p class="text-crema/45 text-sm leading-relaxed mt-3">No substitutions, no requests, no tears. Available nightly at the counter. Book at <a href="visit.html" class="text-flame underline underline-offset-4 hover:text-crema transition-colors">visit.html</a>.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-coal border-t border-line/40 pt-16 pb-10 px-6 lg:px-10">
+    <div class="max-w-[1320px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-14">
+        <div class="lg:col-span-5">
+          <div class="font-display text-3xl tracking-tight">Ember <span class="italic text-flame">&amp;</span> Oak</div>
+          <p class="text-crema/50 text-sm leading-relaxed max-w-sm mt-4">Wood-fired Italian kitchen and neighborly trattoria in Southeast Portland. Forty seats, one oven, and a menu written in pencil.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Visit</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="visit.html" class="hover:text-flame transition-colors">Reservations</a>
+            <a href="private-dining.html" class="hover:text-flame transition-colors">Private Dining</a>
+            <a href="visit.html" class="hover:text-flame transition-colors">Hours &amp; Directions</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Kitchen</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <a href="menu.html" class="hover:text-flame transition-colors">Menu</a>
+            <a href="story.html" class="hover:text-flame transition-colors">Our Story</a>
+            <a href="journal.html" class="hover:text-flame transition-colors">The Journal</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="font-mono2 text-[10px] tracking-[0.25em] uppercase text-crema/30 mb-4">Find us</h4>
+          <div class="flex flex-col gap-2 text-sm text-crema/60">
+            <p>2114 SE Morrison St.</p>
+            <p>Portland, OR 97214</p>
+            <a href="tel:+15035550170" class="text-flame hover:text-crema transition-colors">503-555-0170</a>
+            <a href="mailto:ciao@emberandoak.com" class="hover:text-flame transition-colors">ciao@emberandoak.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-line/40 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="font-mono2 text-[10px] text-crema/30 tracking-[0.18em] uppercase">&copy; 2026 Ember &amp; Oak. <span class="text-crema/40">Aperti in cucina.</span></p>
+        <div class="flex gap-5">
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:instagram-logo" class="text-lg"></iconify-icon></a>
+          <a href="#" class="text-crema/40 hover:text-flame transition-colors"><iconify-icon icon="ph:facebook-logo" class="text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>

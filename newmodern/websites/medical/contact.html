@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Book Appointment — Clearview Dental, Austin TX</title>
+  <meta name="description" content="Book your dental appointment at Clearview Dental in Austin, TX. Online scheduling, phone booking, and contact form available.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'clinic-bg': '#FAFBFC',
+          'clinic-text': '#1E293B',
+          'clinic-secondary': '#64748B',
+          'clinic-teal': '#0891B2',
+          'clinic-teal-dark': '#0E7490',
+          'clinic-surface': '#F1F5F9',
+          'clinic-white': '#FFFFFF',
+          'clinic-border': '#E2E8F0',
+          'clinic-green': '#059669',
+        },
+        fontFamily: {
+          display: ['Plus Jakarta Sans', 'sans-serif'],
+          body: ['Source Sans 3', 'sans-serif'],
+        },
+        borderRadius: { 'clinic': '12px' }
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Source Sans 3', sans-serif; color: #1E293B; background: #FAFBFC; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .nav-open { max-height: 400px !important; opacity: 1 !important; }
+    .mobile-nav { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #0891B2; transition: width 0.3s ease; }
+    .nav-link:hover::after { width: 100%; }
+    .btn-primary { transition: all 0.3s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(8,145,178,0.3); }
+    input.error, select.error, textarea.error { border-color: #EF4444 !important; }
+    .error-msg { color: #EF4444; font-size: 0.75rem; margin-top: 4px; display: none; }
+    .error-msg.show { display: block; }
+    .form-success { display: none; }
+    .form-success.show { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-clinic-white/90 backdrop-blur-md border-b border-clinic-border/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-18 py-4">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center group-hover:bg-clinic-teal-dark transition-colors">
+            <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+          </div>
+          <span class="font-display font-bold text-xl text-clinic-text">Clearview <span class="text-clinic-teal">Dental</span></span>
+        </a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="treatments.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Treatments</a>
+          <a href="doctors.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Our Team</a>
+          <a href="patient-info.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">Patient Info</a>
+          <a href="faqs.html" class="nav-link font-body font-semibold text-clinic-secondary hover:text-clinic-teal transition-colors">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal hover:bg-clinic-teal-dark text-white font-display font-semibold px-6 py-2.5 rounded-clinic transition-all hover:shadow-lg hover:shadow-clinic-teal/20">Book Now</a>
+          <a href="contact.html" class="nav-link font-body font-semibold text-clinic-teal transition-colors">Contact</a>
+        </div>
+        <button id="mobileToggle" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-clinic hover:bg-clinic-surface transition-colors" aria-label="Toggle menu">
+          <iconify-icon id="menuIcon" icon="mdi:menu" class="text-2xl text-clinic-text"></iconify-icon>
+          <iconify-icon id="closeIcon" icon="mdi:close" class="text-2xl text-clinic-text hidden"></iconify-icon>
+        </button>
+      </div>
+      <div id="mobileMenu" class="mobile-nav lg:hidden pb-4">
+        <div class="flex flex-col gap-1">
+          <a href="treatments.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Treatments</a>
+          <a href="doctors.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Our Team</a>
+          <a href="patient-info.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Patient Info</a>
+          <a href="faqs.html" class="font-body font-semibold text-clinic-secondary hover:text-clinic-teal hover:bg-clinic-surface px-4 py-3 rounded-clinic transition-all">FAQs</a>
+          <a href="contact.html" class="bg-clinic-teal text-white font-display font-semibold px-4 py-3 rounded-clinic text-center mt-2">Book Now</a>
+          <a href="contact.html" class="font-body font-semibold text-clinic-teal bg-clinic-surface px-4 py-3 rounded-clinic transition-all">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-16 lg:pt-40 lg:pb-20 bg-clinic-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="font-display font-semibold text-clinic-teal text-sm uppercase tracking-wider reveal">Get In Touch</span>
+      <h1 class="font-display font-extrabold text-4xl sm:text-5xl text-clinic-text leading-tight mt-3 mb-6 reveal">Contact Us & <span class="text-clinic-teal">Book Your Visit</span></h1>
+      <p class="font-body text-lg text-clinic-secondary max-w-2xl mx-auto reveal">Ready for a healthier smile? Book an appointment online, call us directly, or send us a message. We're here to help.</p>
+    </div>
+  </section>
+
+  <!-- Quick Contact Cards -->
+  <section class="py-8 bg-clinic-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-3 gap-6 -mt-12 relative z-10 reveal">
+        <div class="bg-clinic-white rounded-clinic p-6 border border-clinic-border/50 shadow-lg text-center hover:shadow-xl transition-shadow">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mx-auto mb-4">
+            <iconify-icon icon="mdi:phone" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-clinic-text mb-1">Call Us</h3>
+          <p class="font-body text-clinic-teal font-semibold text-lg">(512) 555-0147</p>
+          <p class="font-body text-clinic-secondary text-sm mt-1">Mon-Fri 7AM-6PM</p>
+        </div>
+        <div class="bg-clinic-white rounded-clinic p-6 border border-clinic-border/50 shadow-lg text-center hover:shadow-xl transition-shadow">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mx-auto mb-4">
+            <iconify-icon icon="mdi:email" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-clinic-text mb-1">Email Us</h3>
+          <p class="font-body text-clinic-teal font-semibold text-lg">hello@clearviewdental.com</p>
+          <p class="font-body text-clinic-secondary text-sm mt-1">We respond within 2 hours</p>
+        </div>
+        <div class="bg-clinic-white rounded-clinic p-6 border border-clinic-border/50 shadow-lg text-center hover:shadow-xl transition-shadow">
+          <div class="w-14 h-14 bg-clinic-teal/10 rounded-clinic flex items-center justify-center mx-auto mb-4">
+            <iconify-icon icon="mdi:map-marker" class="text-clinic-teal text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-clinic-text mb-1">Visit Us</h3>
+          <p class="font-body text-clinic-teal font-semibold text-lg">1200 Clearview Blvd</p>
+          <p class="font-body text-clinic-secondary text-sm mt-1">Austin, TX 78701</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form & Map -->
+  <section class="py-20 bg-clinic-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-5 gap-12">
+        <!-- Booking Form -->
+        <div class="lg:col-span-3 reveal">
+          <div class="bg-clinic-white rounded-[20px] p-8 sm:p-10 border border-clinic-border/50 shadow-sm">
+            <h2 class="font-display font-extrabold text-2xl text-clinic-text mb-2">Book an Appointment</h2>
+            <p class="font-body text-clinic-secondary mb-8">Fill out the form below and we'll confirm your appointment within 2 hours during business hours.</p>
+
+            <form id="bookingForm" class="space-y-5">
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="font-display font-semibold text-sm text-clinic-text mb-2 block">First Name *</label>
+                  <input type="text" name="firstName" required class="w-full px-4 py-3 rounded-clinic border border-clinic-border bg-clinic-bg font-body text-clinic-text focus:outline-none focus:ring-2 focus:ring-clinic-teal/30 focus:border-clinic-teal transition-all" placeholder="John">
+                  <p class="error-msg">Please enter your first name</p>
+                </div>
+                <div>
+                  <label class="font-display font-semibold text-sm text-clinic-text mb-2 block">Last Name *</label>
+                  <input type="text" name="lastName" required class="w-full px-4 py-3 rounded-clinic border border-clinic-border bg-clinic-bg font-body text-clinic-text focus:outline-none focus:ring-2 focus:ring-clinic-teal/30 focus:border-clinic-teal transition-all" placeholder="Smith">
+                  <p class="error-msg">Please enter your last name</p>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="font-display font-semibold text-sm text-clinic-text mb-2 block">Email Address *</label>
+                  <input type="email" name="email" required class="w-full px-4 py-3 rounded-clinic border border-clinic-border bg-clinic-bg font-body text-clinic-text focus:outline-none focus:ring-2 focus:ring-clinic-teal/30 focus:border-clinic-teal transition-all" placeholder="john@example.com">
+                  <p class="error-msg">Please enter a valid email address</p>
+                </div>
+                <div>
+                  <label class="font-display font-semibold text-sm text-clinic-text mb-2 block">Phone Number *</label>
+                  <input type="tel" name="phone" required class="w-full px-4 py-3 rounded-clinic border border-clinic-border bg-clinic-bg font-body text-clinic-text focus:outline-none focus:ring-2 focus:ring-clinic-teal/30 focus:border-clinic-teal transition-all" placeholder="(512) 555-0000">
+                  <p class="error-msg">Please enter a valid phone number</p>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="font-display font-semibold text-sm text-clinic-text mb-2 block">Preferred Date *</label>
+                  <input type="date" name="date" required class="w-full px-4 py-3 rounded-clinic border border-clinic-border bg-clinic-bg font-body text-clinic-text focus:outline-none focus:ring-2 focus:ring-clinic-teal/30 focus:border-clinic-teal transition-all">
+                  <p class="error-msg">Please select a date</p>
+                </div>
+                <div>
+                  <label class="font-display font-semibold text-sm text-clinic-text mb-2 block">Preferred Time *</label>
+                  <select name="time" required class="w-full px-4 py-3 rounded-clinic border border-clinic-border bg-clinic-bg font-body text-clinic-text focus:outline-none focus:ring-2 focus:ring-clinic-teal/30 focus:border-clinic-teal transition-all">
+                    <option value="">Select a time</option>
+                    <option value="7:00 AM">7:00 AM</option>
+                    <option value="8:00 AM">8:00 AM</option>
+                    <option value="9:00 AM">9:00 AM</option>
+                    <option value="10:00 AM">10:00 AM</option>
+                    <option value="11:00 AM">11:00 AM</option>
+                    <option value="12:00 PM">12:00 PM</option>
+                    <option value="1:00 PM">1:00 PM</option>
+                    <option value="2:00 PM">2:00 PM</option>
+                    <option value="3:00 PM">3:00 PM</option>
+                    <option value="4:00 PM">4:00 PM</option>
+                    <option value="5:00 PM">5:00 PM</option>
+                    <option value="6:00 PM">6:00 PM</option>
+                  </select>
+                  <p class="error-msg">Please select a time</p>
+                </div>
+              </div>
+              <div>
+                <label class="font-display font-semibold text-sm text-clinic-text mb-2 block">Treatment Type</label>
+                <select name="treatment" class="w-full px-4 py-3 rounded-clinic border border-clinic-border bg-clinic-bg font-body text-clinic-text focus:outline-none focus:ring-2 focus:ring-clinic-teal/30 focus:border-clinic-teal transition-all">
+                  <option value="">Select treatment (optional)</option>
+                  <option value="general">General Checkup & Cleaning</option>
+                  <option value="whitening">Teeth Whitening</option>
+                  <option value="invisalign">Invisalign Consultation</option>
+                  <option value="implants">Dental Implants</option>
+                  <option value="veneers">Porcelain Veneers</option>
+                  <option value="rootcanal">Root Canal</option>
+                  <option value="crown">Dental Crown</option>
+                  <option value="emergency">Emergency Care</option>
+                  <option value="other">Other / Not Sure</option>
+                </select>
+              </div>
+              <div>
+                <label class="font-display font-semibold text-sm text-clinic-text mb-2 block">New or Returning Patient?</label>
+                <div class="flex gap-4">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="radio" name="patientStatus" value="new" class="w-4 h-4 text-clinic-teal accent-clinic-teal" checked>
+                    <span class="font-body text-clinic-text">New Patient</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="radio" name="patientStatus" value="returning" class="w-4 h-4 text-clinic-teal accent-clinic-teal">
+                    <span class="font-body text-clinic-text">Returning Patient</span>
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="font-display font-semibold text-sm text-clinic-text mb-2 block">Additional Notes</label>
+                <textarea name="notes" rows="3" class="w-full px-4 py-3 rounded-clinic border border-clinic-border bg-clinic-bg font-body text-clinic-text focus:outline-none focus:ring-2 focus:ring-clinic-teal/30 focus:border-clinic-teal transition-all resize-none" placeholder="Tell us about your dental concerns or any special requests..."></textarea>
+              </div>
+              <div class="form-success bg-clinic-green/10 border border-clinic-green/20 rounded-clinic p-6 text-center" id="formSuccess">
+                <iconify-icon icon="mdi:check-circle" class="text-clinic-green text-4xl mb-3"></iconify-icon>
+                <h3 class="font-display font-bold text-clinic-text text-lg mb-1">Appointment Request Received!</h3>
+                <p class="font-body text-clinic-secondary">We'll confirm your appointment within 2 hours via email or phone. Check your inbox for next steps.</p>
+              </div>
+              <button type="submit" id="submitBtn" class="w-full bg-clinic-teal hover:bg-clinic-teal-dark text-white font-display font-bold py-4 rounded-clinic text-lg transition-all hover:shadow-lg hover:shadow-clinic-teal/20 flex items-center justify-center gap-2">
+                <iconify-icon icon="mdi:calendar-check" class="text-xl"></iconify-icon>
+                Request Appointment
+              </button>
+              <p class="font-body text-clinic-secondary text-xs text-center">By submitting this form, you agree to our privacy policy. We'll never share your information.</p>
+            </form>
+          </div>
+        </div>
+
+        <!-- Sidebar Info -->
+        <div class="lg:col-span-2 space-y-6">
+          <!-- Map Placeholder -->
+          <div class="reveal bg-clinic-surface rounded-[20px] overflow-hidden border border-clinic-border/50">
+            <div class="h-64 bg-clinic-border/30 flex items-center justify-center relative">
+              <div class="text-center">
+                <iconify-icon icon="mdi:map-marker-radius" class="text-clinic-teal text-5xl mb-3"></iconify-icon>
+                <p class="font-display font-bold text-clinic-text">1200 Clearview Blvd</p>
+                <p class="font-body text-clinic-secondary text-sm">Austin, TX 78701</p>
+                <a href="https://maps.google.com" target="_blank" class="inline-flex items-center gap-1 mt-3 text-clinic-teal font-display font-semibold text-sm hover:underline">
+                  Get Directions
+                  <iconify-icon icon="mdi:open-in-new" class="text-xs"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Office Hours -->
+          <div class="reveal bg-clinic-white rounded-[20px] p-8 border border-clinic-border/50">
+            <h3 class="font-display font-bold text-xl text-clinic-text mb-5 flex items-center gap-2">
+              <iconify-icon icon="mdi:clock-outline" class="text-clinic-teal text-xl"></iconify-icon>
+              Office Hours
+            </h3>
+            <div class="space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="font-body text-clinic-secondary">Monday</span>
+                <span class="font-body font-semibold text-clinic-text text-sm">7:00 AM – 6:00 PM</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-body text-clinic-secondary">Tuesday</span>
+                <span class="font-body font-semibold text-clinic-text text-sm">7:00 AM – 6:00 PM</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-body text-clinic-secondary">Wednesday</span>
+                <span class="font-body font-semibold text-clinic-text text-sm">7:00 AM – 7:00 PM</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-body text-clinic-secondary">Thursday</span>
+                <span class="font-body font-semibold text-clinic-text text-sm">7:00 AM – 6:00 PM</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-body text-clinic-secondary">Friday</span>
+                <span class="font-body font-semibold text-clinic-text text-sm">7:00 AM – 5:00 PM</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-body text-clinic-secondary">Saturday</span>
+                <span class="font-body font-semibold text-clinic-text text-sm">8:00 AM – 2:00 PM</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-body text-clinic-secondary">Sunday</span>
+                <span class="font-body font-semibold text-clinic-secondary text-sm">Closed</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Emergency Banner -->
+          <div class="reveal bg-clinic-teal rounded-[20px] p-8 text-white">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 bg-white/20 rounded-clinic flex items-center justify-center flex-shrink-0">
+                <iconify-icon icon="mdi:ambulance" class="text-white text-xl"></iconify-icon>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-lg mb-1">Dental Emergency?</h3>
+                <p class="font-body text-white/80 text-sm leading-relaxed mb-3">Severe toothache, broken tooth, or dental trauma? We reserve same-day emergency slots. Call now for immediate assistance.</p>
+                <a href="tel:5125550147" class="inline-flex items-center gap-2 bg-white text-clinic-teal font-display font-bold px-5 py-2.5 rounded-clinic text-sm hover:bg-clinic-bg transition-all">
+                  <iconify-icon icon="mdi:phone" class="text-base"></iconify-icon>
+                  (512) 555-0147
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-clinic-text pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <a href="index.html" class="flex items-center gap-2.5 mb-5">
+            <div class="w-10 h-10 bg-clinic-teal rounded-clinic flex items-center justify-center">
+              <iconify-icon icon="mdi:tooth" class="text-white text-xl"></iconify-icon>
+            </div>
+            <span class="font-display font-bold text-xl text-white">Clearview <span class="text-clinic-teal">Dental</span></span>
+          </a>
+          <p class="font-body text-slate-400 text-sm leading-relaxed">Modern, compassionate dental care for the whole family. Proudly serving Austin, Texas since 2015.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatments.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Treatments</a></li>
+            <li><a href="doctors.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Our Team</a></li>
+            <li><a href="patient-info.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Patient Info</a></li>
+            <li><a href="faqs.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">FAQs</a></li>
+            <li><a href="about.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">About Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Treatments</h4>
+          <ul class="space-y-2.5">
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">General Dentistry</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Teeth Whitening</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Invisalign</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Dental Implants</a></li>
+            <li><a href="treatment-detail.html" class="font-body text-slate-400 hover:text-clinic-teal text-sm transition-colors">Porcelain Veneers</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-white mb-4">Contact</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start gap-3">
+              <iconify-icon icon="mdi:map-marker" class="text-clinic-teal text-lg mt-0.5"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">1200 Clearview Blvd, Suite 200<br>Austin, TX 78701</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:phone" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">(512) 555-0147</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <iconify-icon icon="mdi:email" class="text-clinic-teal text-lg"></iconify-icon>
+              <span class="font-body text-slate-400 text-sm">hello@clearviewdental.com</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-700 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body text-slate-500 text-sm">&copy; 2026 Clearview Dental. All rights reserved.</p>
+        <div class="flex gap-4">
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Facebook"><iconify-icon icon="mdi:facebook" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Instagram"><iconify-icon icon="mdi:instagram" class="text-white text-lg"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-slate-700 hover:bg-clinic-teal rounded-clinic flex items-center justify-center transition-colors" aria-label="Twitter"><iconify-icon icon="mdi:twitter" class="text-white text-lg"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Nav
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('nav-open');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+
+    // Scroll Reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      reveals.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active');
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // Form Validation
+    const form = document.getElementById('bookingForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formSuccess = document.getElementById('formSuccess');
+
+    const validateField = (field) => {
+      const errorEl = field.parentElement.querySelector('.error-msg');
+      let isValid = true;
+
+      if (field.hasAttribute('required') && !field.value.trim()) {
+        isValid = false;
+      } else if (field.type === 'email' && field.value) {
+        isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value);
+      } else if (field.type === 'tel' && field.value) {
+        isValid = field.value.replace(/\D/g, '').length >= 10;
+      }
+
+      if (!isValid) {
+        field.classList.add('error');
+        if (errorEl) errorEl.classList.add('show');
+      } else {
+        field.classList.remove('error');
+        if (errorEl) errorEl.classList.remove('show');
+      }
+      return isValid;
+    };
+
+    // Live validation on blur
+    form.querySelectorAll('input, select, textarea').forEach(field => {
+      field.addEventListener('blur', () => validateField(field));
+      field.addEventListener('input', () => {
+        if (field.classList.contains('error')) validateField(field);
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let allValid = true;
+      form.querySelectorAll('[required]').forEach(field => {
+        if (!validateField(field)) allValid = false;
+      });
+      if (allValid) {
+        form.style.display = 'none';
+        formSuccess.classList.add('show');
+        window.scrollTo({ top: formSuccess.offsetTop - 120, behavior: 'smooth' });
+      }
+    });
+
+    // Set minimum date to today
+    const dateInput = document.querySelector('input[type="date"]');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.setAttribute('min', today);
+    }
+  </script>
+
+</body>
+</html>

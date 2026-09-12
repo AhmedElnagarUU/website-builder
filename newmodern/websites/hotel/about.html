@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — The Meridian, Santorini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'navy': '#0D1B2A',
+        'navy-light': '#1B2D45',
+        'navy-border': '#2A3F5F',
+        'cream': '#F0E6D3',
+        'cream-light': '#FAF8F5',
+        'gold': '#C8A96E',
+        'gold-muted': '#A09880',
+      },
+      fontFamily: {
+        display: ['Cormorant Garamond', 'serif'],
+        body: ['Lato', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lato', sans-serif; background: #0D1B2A; color: #F0E6D3; }
+  .gold-line { width: 60px; height: 1px; background: #C8A96E; }
+  .gold-line-wide { width: 100px; height: 1px; background: #C8A96E; }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #C8A96E; transition: width 0.3s ease; }
+  .nav-link:hover::after { width: 100%; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  .mobile-menu { transform: translateX(100%); transition: transform 0.4s ease; }
+  .mobile-menu.open { transform: translateX(0); }
+  .overlay { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+  .overlay.open { opacity: 1; pointer-events: all; }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="mainNav">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="rooms.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Stay</a>
+      <a href="dining.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Dining</a>
+      <a href="experiences.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Experiences</a>
+    </div>
+    <a href="index.html" class="font-display text-2xl md:text-3xl tracking-[0.3em] text-cream font-light">THE MERIDIAN</a>
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="gallery.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Gallery</a>
+      <a href="about.html" class="nav-link text-gold text-sm tracking-widest uppercase font-body">About</a>
+      <a href="contact.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Contact</a>
+    </div>
+    <button id="menuBtn" class="lg:hidden text-cream">
+      <iconify-icon icon="heroicons:bars-3" width="28"></iconify-icon>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="overlay fixed inset-0 bg-black/60 z-50" id="overlay"></div>
+<div class="mobile-menu fixed top-0 right-0 w-80 h-full bg-navy-light z-50 flex flex-col justify-center items-center space-y-8" id="mobileMenu">
+  <button id="closeMenu" class="absolute top-6 right-6 text-cream">
+    <iconify-icon icon="heroicons:x-mark" width="28"></iconify-icon>
+  </button>
+  <a href="index.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">HOME</a>
+  <a href="rooms.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">STAY</a>
+  <a href="dining.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">DINING</a>
+  <a href="experiences.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">EXPERIENCES</a>
+  <a href="gallery.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">GALLERY</a>
+  <a href="about.html" class="font-display text-xl tracking-[0.2em] text-gold">ABOUT</a>
+  <a href="contact.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">CONTACT</a>
+</div>
+
+<!-- Hero -->
+<section class="relative h-[60vh] flex items-center justify-center" style="background-image: url('https://images.pexels.com/photos/14841129/pexels-photo-14841129.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-navy/60"></div>
+  <div class="relative z-10 text-center px-6">
+    <div class="gold-line-wide mx-auto mb-6"></div>
+    <p class="text-gold-muted tracking-[0.4em] uppercase text-sm mb-3 font-body">Our Story</p>
+    <h1 class="font-display text-5xl md:text-7xl font-light text-cream mb-4">About The Meridian</h1>
+    <p class="font-display text-xl text-cream/60 font-light italic">Where luxury meets legend</p>
+  </div>
+</section>
+
+<!-- Story -->
+<section class="py-24 md:py-32 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <div class="gold-line mb-8"></div>
+        <h2 class="font-display text-4xl md:text-5xl font-light text-cream mb-8 leading-tight">A Vision Born from the Aegean</h2>
+        <p class="text-cream/70 font-body leading-relaxed mb-6 text-lg">The Meridian was conceived from a simple yet profound belief: that luxury should not simply be experienced — it should be felt. When our founders first stood on the volcanic cliffs of Oia and gazed across the shimmering caldera, they saw not just a hotel, but the possibility of creating something that would honor the extraordinary beauty of Santorini.</p>
+        <p class="text-cream/70 font-body leading-relaxed mb-6 text-lg">Built upon the ruins of a 19th-century captain's estate, every stone of The Meridian has been carefully preserved and reimagined. The original vaulted ceilings, hand-carved doorways, and volcanic stone walls remain, seamlessly integrated with contemporary luxury and modern comforts.</p>
+        <p class="text-cream/70 font-body leading-relaxed text-lg">Today, The Meridian stands as one of the most distinguished boutique resorts in the Mediterranean — a place where history and innovation coexist, where the ancient rhythms of island life meet the refined expectations of the world's most discerning travelers.</p>
+      </div>
+      <div class="reveal relative">
+        <img src="https://images.pexels.com/photos/14011664/pexels-photo-14011664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Meridian History" class="w-full h-[550px] object-cover">
+        <div class="absolute -bottom-6 -left-6 hidden md:block w-32 h-32 border border-gold/20"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="py-20 bg-navy-light">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div class="reveal">
+        <p class="font-display text-5xl text-gold mb-2">47</p>
+        <p class="text-cream/60 font-body text-sm tracking-widest uppercase">Luxury Suites & Villas</p>
+      </div>
+      <div class="reveal">
+        <p class="font-display text-5xl text-gold mb-2">3</p>
+        <p class="text-cream/60 font-body text-sm tracking-widest uppercase">Distinctive Restaurants</p>
+      </div>
+      <div class="reveal">
+        <p class="font-display text-5xl text-gold mb-2">120</p>
+        <p class="text-cream/60 font-body text-sm tracking-widest uppercase">Dedicated Team Members</p>
+      </div>
+      <div class="reveal">
+        <p class="font-display text-5xl text-gold mb-2">2018</p>
+        <p class="text-cream/60 font-body text-sm tracking-widest uppercase">Year Established</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="py-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal order-2 md:order-1 relative">
+        <img src="https://images.pexels.com/photos/3011575/pexels-photo-3011575.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Our Philosophy" class="w-full h-[550px] object-cover">
+        <div class="absolute -top-6 -right-6 hidden md:block w-32 h-32 border border-gold/20"></div>
+      </div>
+      <div class="reveal order-1 md:order-2">
+        <div class="gold-line mb-8"></div>
+        <h2 class="font-display text-4xl md:text-5xl font-light text-cream mb-8 leading-tight">Our Philosophy</h2>
+        <p class="text-cream/70 font-body leading-relaxed mb-6 text-lg">At The Meridian, we believe that true luxury lies in the details that others overlook. It's the warmth of genuine Greek hospitality — what we call "filoxenia" — combined with an unwavering commitment to perfection in every guest interaction.</p>
+        <p class="text-cream/70 font-body leading-relaxed mb-8 text-lg">We draw inspiration from our surroundings: the raw power of the volcanic landscape, the timeless rhythms of the Aegean, and the rich cultural heritage of the Cycladic islands. This philosophy infuses everything we do, from the locally sourced ingredients in our kitchens to the handmade textiles in our suites.</p>
+        <div class="space-y-4">
+          <div class="flex items-start">
+            <iconify-icon icon="heroicons:star" width="20" class="text-gold mr-4 mt-1 flex-shrink-0"></iconify-icon>
+            <div>
+              <h4 class="font-display text-lg text-cream mb-1">Authenticity</h4>
+              <p class="text-cream/60 font-body text-sm">Rooted in the genuine spirit of Santorini and Greek culture</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <iconify-icon icon="heroicons:star" width="20" class="text-gold mr-4 mt-1 flex-shrink-0"></iconify-icon>
+            <div>
+              <h4 class="font-display text-lg text-cream mb-1">Intimacy</h4>
+              <p class="text-cream/60 font-body text-sm">Personalized service that remembers and anticipates your preferences</p>
+            </div>
+          </div>
+          <div class="flex items-start">
+            <iconify-icon icon="heroicons:star" width="20" class="text-gold mr-4 mt-1 flex-shrink-0"></iconify-icon>
+            <div>
+              <h4 class="font-display text-lg text-cream mb-1">Sustainability</h4>
+              <p class="text-cream/60 font-body text-sm">Committed to preserving the natural beauty that makes this place extraordinary</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Team -->
+<section class="py-24 bg-navy-light">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="gold-line mx-auto mb-8"></div>
+      <h2 class="font-display text-4xl font-light text-cream mb-4">Leadership</h2>
+      <p class="text-cream/60 font-body text-lg max-w-2xl mx-auto">Meet the dedicated individuals who bring The Meridian to life every day.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center reveal">
+        <div class="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold/20">
+          <img src="https://images.pexels.com/photos/29870245/pexels-photo-29870245.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="General Manager" class="w-full h-full object-cover">
+        </div>
+        <h3 class="font-display text-2xl text-cream mb-1">Dimitris Papadopoulos</h3>
+        <p class="text-gold text-xs tracking-[0.2em] uppercase font-body mb-3">General Manager</p>
+        <p class="text-cream/60 font-body text-sm leading-relaxed max-w-sm mx-auto">With over 20 years in luxury hospitality, Dimitris brings warmth, vision, and an unwavering commitment to guest satisfaction. His philosophy: "Every guest should leave feeling they've discovered a hidden world."</p>
+      </div>
+      <div class="text-center reveal">
+        <div class="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold/20">
+          <img src="https://images.pexels.com/photos/14011664/pexels-photo-14011664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Executive Chef" class="w-full h-full object-cover">
+        </div>
+        <h3 class="font-display text-2xl text-cream mb-1">Nikos Stavridis</h3>
+        <p class="text-gold text-xs tracking-[0.2em] uppercase font-body mb-3">Executive Chef</p>
+        <p class="text-cream/60 font-body text-sm leading-relaxed max-w-sm mx-auto">A native of Santorini, Chef Nikos holds two Michelin stars and has worked in some of Europe's finest kitchens. His cuisine celebrates the volcanic terroir and maritime bounty of his island home.</p>
+      </div>
+      <div class="text-center reveal">
+        <div class="w-48 h-48 mx-auto mb-6 overflow-hidden rounded-full border-2 border-gold/20">
+          <img src="https://images.pexels.com/photos/6634828/pexels-photo-6634828.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Spa Director" class="w-full h-full object-cover">
+        </div>
+        <h3 class="font-display text-2xl text-cream mb-1">Elena Konstantinou</h3>
+        <p class="text-gold text-xs tracking-[0.2em] uppercase font-body mb-3">Spa Director</p>
+        <p class="text-cream/60 font-body text-sm leading-relaxed max-w-sm mx-auto">Elena brings a holistic approach to wellness, blending ancient Greek healing traditions with contemporary spa science. Her bespoke wellness journeys have earned international recognition.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sustainability -->
+<section class="py-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <div class="gold-line mb-8"></div>
+        <p class="text-gold-muted tracking-[0.3em] uppercase text-xs mb-4 font-body">Our Commitment</p>
+        <h2 class="font-display text-4xl font-light text-cream mb-8">Sustainability & Responsibility</h2>
+        <p class="text-cream/70 font-body leading-relaxed mb-6">Santorini's beauty is both our inspiration and our responsibility. The Meridian is committed to sustainable practices that protect the delicate volcanic ecosystem and support the local community.</p>
+        <div class="space-y-4">
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Solar panels provide 40% of our energy needs
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Zero single-use plastic policy across the resort
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Water recycling system for gardens and irrigation
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Farm-to-table sourcing from local producers
+          </div>
+          <div class="flex items-center text-cream/70 font-body">
+            <iconify-icon icon="heroicons:check-circle" width="20" class="text-gold mr-3 flex-shrink-0"></iconify-icon>
+            Annual scholarship for hospitality students
+          </div>
+        </div>
+      </div>
+      <div class="reveal relative">
+        <img src="https://images.pexels.com/photos/28542403/pexels-photo-28542403.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Sustainability" class="w-full h-[500px] object-cover">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Accordion -->
+<section class="py-24 bg-navy-light">
+  <div class="max-w-4xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="gold-line mx-auto mb-8"></div>
+      <h2 class="font-display text-4xl font-light text-cream">Frequently Asked Questions</h2>
+    </div>
+    <div class="space-y-4">
+      <div class="faq-item border border-navy-border reveal">
+        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+          <span class="font-display text-lg text-cream">What is the best time to visit Santorini?</span>
+          <iconify-icon icon="heroicons:plus" width="20" class="text-gold faq-icon transition-transform"></iconify-icon>
+        </button>
+        <div class="faq-content px-6 pb-6 hidden">
+          <p class="text-cream/60 font-body leading-relaxed">The Meridian welcomes guests year-round, but the ideal seasons are spring (April-June) and autumn (September-October), when the weather is warm, the crowds are thinner, and the light is extraordinary. Summer months (July-August) offer the quintessential Mediterranean experience with warm seas and vibrant nightlife.</p>
+        </div>
+      </div>
+      <div class="faq-item border border-navy-border reveal">
+        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+          <span class="font-display text-lg text-cream">Do you offer airport transfers?</span>
+          <iconify-icon icon="heroicons:plus" width="20" class="text-gold faq-icon transition-transform"></iconify-icon>
+        </button>
+        <div class="faq-content px-6 pb-6 hidden">
+          <p class="text-cream/60 font-body leading-relaxed">Yes, we arrange private luxury vehicle transfers from Santorini (Thira) National Airport or the port. Our complimentary transfer service is available for all suite and villa guests. Please provide your flight details at least 48 hours before arrival.</p>
+        </div>
+      </div>
+      <div class="faq-item border border-navy-border reveal">
+        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+          <span class="font-display text-lg text-cream">Is breakfast included in the room rate?</span>
+          <iconify-icon icon="heroicons:plus" width="20" class="text-gold faq-icon transition-transform"></iconify-icon>
+        </button>
+        <div class="faq-content px-6 pb-6 hidden">
+          <p class="text-cream/60 font-body leading-relaxed">Complimentary breakfast is included for all guests. Suite and villa guests enjoy breakfast served on their private terrace. All other guests are invited to enjoy our breakfast experience at Meridian Main, featuring an extensive buffet and à la carte options.</p>
+        </div>
+      </div>
+      <div class="faq-item border border-navy-border reveal">
+        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+          <span class="font-display text-lg text-cream">What is the cancellation policy?</span>
+          <iconify-icon icon="heroicons:plus" width="20" class="text-gold faq-icon transition-transform"></iconify-icon>
+        </button>
+        <div class="faq-content px-6 pb-6 hidden">
+          <p class="text-cream/60 font-body leading-relaxed">We offer free cancellation up to 72 hours before your scheduled arrival date. Cancellations made within 72 hours will be charged the first night's rate. For peak season bookings (June-September), we recommend our flexible rate option with full cancellation up to 7 days before arrival.</p>
+        </div>
+      </div>
+      <div class="faq-item border border-navy-border reveal">
+        <button class="faq-toggle w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+          <span class="font-display text-lg text-cream">Do you accommodate special dietary requirements?</span>
+          <iconify-icon icon="heroicons:plus" width="20" class="text-gold faq-icon transition-transform"></iconify-icon>
+        </button>
+        <div class="faq-content px-6 pb-6 hidden">
+          <p class="text-cream/60 font-body leading-relaxed">Absolutely. Our culinary team is experienced in accommodating all dietary requirements including vegetarian, vegan, gluten-free, kosher, and halal. Please inform us of any allergies or dietary needs when booking, and we'll ensure every meal is tailored to your preferences.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-navy border-t border-navy-border">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-4 gap-12">
+      <div>
+        <h4 class="font-display text-xl tracking-[0.2em] text-cream mb-6">THE MERIDIAN</h4>
+        <p class="text-cream/50 font-body text-sm leading-relaxed mb-6">An exclusive luxury beachfront resort overlooking the caldera in Santorini, Greece.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:instagram" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:facebook" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:twitter" width="18" class="text-gold"></iconify-icon>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Quick Links</h5>
+        <ul class="space-y-3">
+          <li><a href="rooms.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Dining</a></li>
+          <li><a href="experiences.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Experiences</a></li>
+          <li><a href="gallery.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Gallery</a></li>
+          <li><a href="about.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Contact</h5>
+        <ul class="space-y-3">
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:map-pin" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            Oia, Santorini 847 02, Greece
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:phone" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            +30 22860 71234
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:envelope" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            reservations@themeridian.gr
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Newsletter</h5>
+        <p class="text-cream/50 font-body text-sm mb-4">Subscribe for exclusive offers and updates.</p>
+        <div class="flex">
+          <input type="email" placeholder="Your email" class="bg-navy border border-navy-border px-4 py-3 text-cream text-sm font-body focus:outline-none focus:border-gold transition-colors w-full">
+          <button class="bg-gold text-navy px-4 py-3 hover:bg-gold-muted transition-colors">
+            <iconify-icon icon="heroicons:paper-airplane" width="16"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-navy-border mt-12 pt-8 text-center">
+      <p class="text-cream/30 font-body text-xs">© 2026 The Meridian. All rights reserved. | Oia, Santorini, Greece</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const closeMenu = document.getElementById('closeMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+const overlay = document.getElementById('overlay');
+menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); overlay.classList.add('open'); });
+closeMenu.addEventListener('click', () => { mobileMenu.classList.remove('open'); overlay.classList.remove('open'); });
+overlay.addEventListener('click', () => { mobileMenu.classList.remove('open'); overlay.classList.remove('open'); });
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 50) { nav.style.background = 'rgba(13, 27, 42, 0.95)'; nav.style.backdropFilter = 'blur(10px)'; }
+  else { nav.style.background = 'transparent'; nav.style.backdropFilter = 'none'; }
+});
+
+// FAQ Accordion
+function toggleFaq(btn) {
+  const content = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-icon');
+  const allContents = document.querySelectorAll('.faq-content');
+  const allIcons = document.querySelectorAll('.faq-icon');
+  allContents.forEach(c => { if (c !== content) c.classList.add('hidden'); });
+  allIcons.forEach(i => { if (i !== icon) i.style.transform = 'rotate(0deg)'; });
+  content.classList.toggle('hidden');
+  icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(45deg)';
+}
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const revealOnScroll = () => { reveals.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); }); };
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+</body>
+</html>

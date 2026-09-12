@@ -47,7 +47,7 @@ export default async function LocaleLayout({
         <PaywallProvider>
           <Navbar isSignedIn={!!session} planId={planId} locale={locale} />
           <main className="relative z-10 flex-1">{children}</main>
-          <Footer />
+          <Footer locale={locale} />
         </PaywallProvider>
       </NextIntlClientProvider>
     </div>

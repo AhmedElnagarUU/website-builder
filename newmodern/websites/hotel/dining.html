@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dining — The Meridian, Santorini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'navy': '#0D1B2A',
+        'navy-light': '#1B2D45',
+        'navy-border': '#2A3F5F',
+        'cream': '#F0E6D3',
+        'cream-light': '#FAF8F5',
+        'gold': '#C8A96E',
+        'gold-muted': '#A09880',
+      },
+      fontFamily: {
+        display: ['Cormorant Garamond', 'serif'],
+        body: ['Lato', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lato', sans-serif; background: #0D1B2A; color: #F0E6D3; }
+  .gold-line { width: 60px; height: 1px; background: #C8A96E; }
+  .gold-line-wide { width: 100px; height: 1px; background: #C8A96E; }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #C8A96E; transition: width 0.3s ease; }
+  .nav-link:hover::after { width: 100%; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  .mobile-menu { transform: translateX(100%); transition: transform 0.4s ease; }
+  .mobile-menu.open { transform: translateX(0); }
+  .overlay { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+  .overlay.open { opacity: 1; pointer-events: all; }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="mainNav">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="rooms.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Stay</a>
+      <a href="dining.html" class="nav-link text-gold text-sm tracking-widest uppercase font-body">Dining</a>
+      <a href="experiences.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Experiences</a>
+    </div>
+    <a href="index.html" class="font-display text-2xl md:text-3xl tracking-[0.3em] text-cream font-light">THE MERIDIAN</a>
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="gallery.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Gallery</a>
+      <a href="about.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">About</a>
+      <a href="contact.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Contact</a>
+    </div>
+    <button id="menuBtn" class="lg:hidden text-cream">
+      <iconify-icon icon="heroicons:bars-3" width="28"></iconify-icon>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="overlay fixed inset-0 bg-black/60 z-50" id="overlay"></div>
+<div class="mobile-menu fixed top-0 right-0 w-80 h-full bg-navy-light z-50 flex flex-col justify-center items-center space-y-8" id="mobileMenu">
+  <button id="closeMenu" class="absolute top-6 right-6 text-cream">
+    <iconify-icon icon="heroicons:x-mark" width="28"></iconify-icon>
+  </button>
+  <a href="index.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">HOME</a>
+  <a href="rooms.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">STAY</a>
+  <a href="dining.html" class="font-display text-xl tracking-[0.2em] text-gold">DINING</a>
+  <a href="experiences.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">EXPERIENCES</a>
+  <a href="gallery.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">GALLERY</a>
+  <a href="about.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">ABOUT</a>
+  <a href="contact.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">CONTACT</a>
+</div>
+
+<!-- Hero -->
+<section class="relative h-[60vh] flex items-center justify-center" style="background-image: url('https://images.pexels.com/photos/17057034/pexels-photo-17057034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-navy/60"></div>
+  <div class="relative z-10 text-center px-6">
+    <div class="gold-line-wide mx-auto mb-6"></div>
+    <p class="text-gold-muted tracking-[0.4em] uppercase text-sm mb-3 font-body">Culinary Excellence</p>
+    <h1 class="font-display text-5xl md:text-7xl font-light text-cream mb-4">Dining</h1>
+    <p class="font-display text-xl text-cream/60 font-light italic">Three distinctive restaurants, one unforgettable journey</p>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="py-20 bg-navy">
+  <div class="max-w-4xl mx-auto px-6 text-center reveal">
+    <p class="text-cream/70 font-body text-lg leading-relaxed">At The Meridian, dining is an art form. Our three restaurants each offer a unique perspective on Mediterranean cuisine, guided by Executive Chef Nikos Stavridis and his commitment to locally sourced ingredients, time-honored techniques, and creative innovation. From sun-drenched terrace lunches to candlelit caldera dinners, every meal is a celebration.</p>
+  </div>
+</section>
+
+<!-- Restaurant 1: Meridian Main -->
+<section class="pb-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-0 items-center reveal">
+      <div class="relative">
+        <img src="https://images.pexels.com/photos/17057034/pexels-photo-17057034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Meridian Main Restaurant" class="w-full h-[500px] md:h-[600px] object-cover">
+        <div class="absolute -bottom-6 -right-6 hidden md:block w-40 h-40 border border-gold/20"></div>
+      </div>
+      <div class="bg-navy-light p-10 md:p-16 md:-ml-12 relative z-10 mt-8 md:mt-0">
+        <div class="flex items-center space-x-3 mb-4">
+          <iconify-icon icon="mdi:silverware-fork-knife" width="20" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.3em] uppercase font-body">Fine Dining</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl text-cream mb-4">Meridian Main</h2>
+        <p class="text-gold-muted font-display text-lg italic mb-6">Mediterranean Cuisine</p>
+        <div class="gold-line mb-6"></div>
+        <p class="text-cream/70 font-body leading-relaxed mb-4">Our flagship restaurant is a temple of Mediterranean gastronomy, where Chef Nikos transforms the finest local ingredients into culinary poetry. The menu celebrates the flavors of the Cyclades — from Santorini's famous cherry tomatoes and white eggplant to the freshest catch of the Aegean.</p>
+        <p class="text-cream/70 font-body leading-relaxed mb-8">Set within our beautifully restored stone building, the intimate dining room features candlelit tables, exposed vaulted ceilings, and views into the open kitchen where our team works with quiet precision.</p>
+        <div class="flex items-center space-x-6 text-cream/50 font-body text-sm mb-8">
+          <span class="flex items-center"><iconify-icon icon="heroicons:clock" width="16" class="text-gold mr-2"></iconify-icon> Dinner: 19:00 – 23:00</span>
+          <span class="flex items-center"><iconify-icon icon="heroicons:star" width="16" class="text-gold mr-2"></iconify-icon> 2 Michelin Stars</span>
+        </div>
+        <a href="contact.html" class="inline-flex items-center border border-gold text-gold hover:bg-gold hover:text-navy px-8 py-3 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300">
+          Reserve a Table
+          <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Restaurant 2: Kai -->
+<section class="pb-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-0 items-center reveal">
+      <div class="bg-navy-light p-10 md:p-16 md:-mr-12 relative z-10 order-2 md:order-1 mt-8 md:mt-0">
+        <div class="flex items-center space-x-3 mb-4">
+          <iconify-icon icon="mdi:fish" width="20" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.3em] uppercase font-body">Seafood</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl text-cream mb-4">Kai</h2>
+        <p class="text-gold-muted font-display text-lg italic mb-6">Ocean to Table</p>
+        <div class="gold-line mb-6"></div>
+        <p class="text-cream/70 font-body leading-relaxed mb-4">Named after the Greek word for sea, Kai brings the bounty of the Aegean directly to your plate. Our seafood restaurant occupies a stunning waterfront position, where you can dine with your feet practically in the water as fishing boats glide past.</p>
+        <p class="text-cream/70 font-body leading-relaxed mb-8">The menu changes daily based on the morning's catch. Expect whole grilled fish, sea urchin pasta, octopus carpaccio, and an extraordinary raw bar featuring the pristine seafood of the Mediterranean, prepared simply to let the ingredients speak for themselves.</p>
+        <div class="flex items-center space-x-6 text-cream/50 font-body text-sm mb-8">
+          <span class="flex items-center"><iconify-icon icon="heroicons:clock" width="16" class="text-gold mr-2"></iconify-icon> Lunch: 12:00 – 15:00</span>
+          <span class="flex items-center"><iconify-icon icon="heroicons:clock" width="16" class="text-gold mr-2"></iconify-icon> Dinner: 18:30 – 22:30</span>
+        </div>
+        <a href="contact.html" class="inline-flex items-center border border-gold text-gold hover:bg-gold hover:text-navy px-8 py-3 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300">
+          Reserve a Table
+          <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2"></iconify-icon>
+        </a>
+      </div>
+      <div class="relative order-1 md:order-2">
+        <img src="https://images.pexels.com/photos/29962487/pexels-photo-29962487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Kai Seafood Restaurant" class="w-full h-[500px] md:h-[600px] object-cover">
+        <div class="absolute -bottom-6 -left-6 hidden md:block w-40 h-40 border border-gold/20"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Restaurant 3: Terrace -->
+<section class="pb-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-0 items-center reveal">
+      <div class="relative">
+        <img src="https://images.pexels.com/photos/24433378/pexels-photo-24433378.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Terrace Rooftop Bar" class="w-full h-[500px] md:h-[600px] object-cover">
+        <div class="absolute -bottom-6 -right-6 hidden md:block w-40 h-40 border border-gold/20"></div>
+      </div>
+      <div class="bg-navy-light p-10 md:p-16 md:-ml-12 relative z-10 mt-8 md:mt-0">
+        <div class="flex items-center space-x-3 mb-4">
+          <iconify-icon icon="mdi:cocktail" width="20" class="text-gold"></iconify-icon>
+          <span class="text-gold text-xs tracking-[0.3em] uppercase font-body">Cocktails & Bites</span>
+        </div>
+        <h2 class="font-display text-4xl md:text-5xl text-cream mb-4">The Terrace</h2>
+        <p class="text-gold-muted font-display text-lg italic mb-6">Rooftop Cocktails & Sunset</p>
+        <div class="gold-line mb-6"></div>
+        <p class="text-cream/70 font-body leading-relaxed mb-4">Perched atop The Meridian with unobstructed 360-degree views, The Terrace is the most coveted spot in Santorini for watching the legendary caldera sunset. As the sky transforms through shades of gold, rose, and violet, our mixologists craft extraordinary cocktails using local spirits, fresh herbs, and house-made infusions.</p>
+        <p class="text-cream/70 font-body leading-relaxed mb-8">The menu features refined bar bites — from Aegean shrimp skewers and truffle fries to artisanal cheese boards — designed to complement our cocktail program. Live acoustic music on select evenings adds to the enchantment.</p>
+        <div class="flex items-center space-x-6 text-cream/50 font-body text-sm mb-8">
+          <span class="flex items-center"><iconify-icon icon="heroicons:clock" width="16" class="text-gold mr-2"></iconify-icon> Open: 16:00 – 01:00</span>
+          <span class="flex items-center"><iconify-icon icon="heroicons:musical-note" width="16" class="text-gold mr-2"></iconify-icon> Live Music</span>
+        </div>
+        <a href="contact.html" class="inline-flex items-center border border-gold text-gold hover:bg-gold hover:text-navy px-8 py-3 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300">
+          Reserve a Table
+          <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Signature Dishes -->
+<section class="py-24 bg-navy-light">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="gold-line mx-auto mb-8"></div>
+      <h2 class="font-display text-4xl font-light text-cream">Signature Creations</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="reveal">
+        <div class="overflow-hidden aspect-[4/5] mb-6">
+          <img src="https://images.pexels.com/photos/14098680/pexels-photo-14098680.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Signature Dish" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </div>
+        <h3 class="font-display text-xl text-cream mb-2">Aegean Red Prawn Tartare</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed">Fresh Santorini prawns with avocado mousse, yuzu gel, and micro herbs from our rooftop garden</p>
+      </div>
+      <div class="reveal">
+        <div class="overflow-hidden aspect-[4/5] mb-6">
+          <img src="https://images.pexels.com/photos/17057034/pexels-photo-17057034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Signature Dish" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </div>
+        <h3 class="font-display text-xl text-cream mb-2">Slow-Cooked Lamb Kleftiko</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed">Twelve-hour braised lamb shoulder with wild oregano, lemon, and hand-rolled hilopites pasta</p>
+      </div>
+      <div class="reveal">
+        <div class="overflow-hidden aspect-[4/5] mb-6">
+          <img src="https://images.pexels.com/photos/24031226/pexels-photo-24031226.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Signature Dish" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+        </div>
+        <h3 class="font-display text-xl text-cream mb-2">Volcanic Chocolate Fondant</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed">Valrhona dark chocolate with volcanic salt caramel, Madagascar vanilla ice cream, and gold leaf</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- In-Room Dining -->
+<section class="py-24 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <img src="https://images.pexels.com/photos/24031226/pexels-photo-24031226.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="In-Room Dining" class="w-full h-[450px] object-cover">
+      </div>
+      <div class="reveal">
+        <div class="gold-line mb-8"></div>
+        <p class="text-gold-muted tracking-[0.3em] uppercase text-xs mb-4 font-body">24 Hours</p>
+        <h2 class="font-display text-4xl text-cream mb-6">In-Room Dining</h2>
+        <p class="text-cream/70 font-body leading-relaxed mb-6 text-lg">Enjoy the complete restaurant experience from the comfort of your suite or villa. Our in-room dining menu features selections from all three restaurants, available around the clock. Breakfast on your private terrace as the morning sun illuminates the caldera, or a midnight feast of fresh seafood and local wine.</p>
+        <p class="text-cream/50 font-body text-sm">In-room dining is available to all guests. For suite and villa guests, a dedicated breakfast service on your terrace is included with your stay.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Private Dining -->
+<section class="relative h-[50vh] flex items-center justify-center" style="background-image: url('https://images.pexels.com/photos/29962487/pexels-photo-29962487.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-navy/70"></div>
+  <div class="relative z-10 text-center px-6 max-w-4xl reveal">
+    <div class="gold-line-wide mx-auto mb-8"></div>
+    <h2 class="font-display text-4xl md:text-5xl font-light text-cream mb-6">Private Dining Experiences</h2>
+    <p class="text-cream/70 font-body text-lg leading-relaxed mb-10">Create an unforgettable evening with our bespoke private dining options. From candlelit dinners in our wine cellar to sunset banquets on a private terrace, our events team will craft a culinary experience tailored to your desires.</p>
+    <a href="contact.html" class="inline-flex items-center border border-gold text-gold hover:bg-gold hover:text-navy px-10 py-4 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300">
+      Inquire About Private Dining
+      <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2"></iconify-icon>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-navy border-t border-navy-border">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-4 gap-12">
+      <div>
+        <h4 class="font-display text-xl tracking-[0.2em] text-cream mb-6">THE MERIDIAN</h4>
+        <p class="text-cream/50 font-body text-sm leading-relaxed mb-6">An exclusive luxury beachfront resort overlooking the caldera in Santorini, Greece.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:instagram" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:facebook" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:twitter" width="18" class="text-gold"></iconify-icon>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Quick Links</h5>
+        <ul class="space-y-3">
+          <li><a href="rooms.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Dining</a></li>
+          <li><a href="experiences.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Experiences</a></li>
+          <li><a href="gallery.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Gallery</a></li>
+          <li><a href="about.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Contact</h5>
+        <ul class="space-y-3">
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:map-pin" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            Oia, Santorini 847 02, Greece
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:phone" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            +30 22860 71234
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:envelope" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            reservations@themeridian.gr
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Newsletter</h5>
+        <p class="text-cream/50 font-body text-sm mb-4">Subscribe for exclusive offers and updates.</p>
+        <div class="flex">
+          <input type="email" placeholder="Your email" class="bg-navy border border-navy-border px-4 py-3 text-cream text-sm font-body focus:outline-none focus:border-gold transition-colors w-full">
+          <button class="bg-gold text-navy px-4 py-3 hover:bg-gold-muted transition-colors">
+            <iconify-icon icon="heroicons:paper-airplane" width="16"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-navy-border mt-12 pt-8 text-center">
+      <p class="text-cream/30 font-body text-xs">© 2026 The Meridian. All rights reserved. | Oia, Santorini, Greece</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const closeMenu = document.getElementById('closeMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+const overlay = document.getElementById('overlay');
+menuBtn.addEventListener('click', () => { mobileMenu.classList.add('open'); overlay.classList.add('open'); });
+closeMenu.addEventListener('click', () => { mobileMenu.classList.remove('open'); overlay.classList.remove('open'); });
+overlay.addEventListener('click', () => { mobileMenu.classList.remove('open'); overlay.classList.remove('open'); });
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 50) { nav.style.background = 'rgba(13, 27, 42, 0.95)'; nav.style.backdropFilter = 'blur(10px)'; }
+  else { nav.style.background = 'transparent'; nav.style.backdropFilter = 'none'; }
+});
+const reveals = document.querySelectorAll('.reveal');
+const revealOnScroll = () => { reveals.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('active'); }); };
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+</body>
+</html>

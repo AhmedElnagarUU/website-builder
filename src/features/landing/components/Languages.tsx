@@ -20,7 +20,7 @@ export function Languages() {
           >
             <span className="mono-display mb-6 inline-flex w-max items-center gap-2.5 rounded-[4px] border-[1.5px] border-ink bg-paper px-3 py-1.5 text-xl">
               <span className="h-2.5 w-2.5 rounded-full bg-mono-red" />
-              EN — English
+              EN
             </span>
             <h3 className="mono-display text-[34px] font-bold leading-tight tracking-tight text-ink">
               {t("en.title")}
@@ -37,7 +37,7 @@ export function Languages() {
           >
             <span className="mono-display mb-6 inline-flex w-max items-center gap-2.5 rounded-[4px] border-[1.5px] border-ink bg-paper px-3 py-1.5 text-xl">
               <span className="h-2.5 w-2.5 rounded-full bg-mono-blue" />
-              AR — العربية
+              AR
             </span>
             <h3 className="mono-display text-[30px] font-bold leading-relaxed text-ink">
               {t("ar.title")}

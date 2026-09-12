@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Ironclad Builders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'iron-black': '#111111',
+          'iron-white': '#F5F5F5',
+          'iron-gray': '#999999',
+          'iron-amber': '#F59E0B',
+          'iron-amber-dark': '#D97706',
+          'iron-surface': '#1A1A1A',
+          'iron-surface-light': '#222222',
+          'iron-border': '#333333',
+          'iron-steel': '#64748B',
+        },
+        fontFamily: {
+          display: ['Barlow Condensed', 'sans-serif'],
+          body: ['IBM Plex Sans', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .hero-bg { background-image: linear-gradient(rgba(17,17,17,0.75), rgba(17,17,17,0.75)), url('https://images.pexels.com/photos/6615107/pexels-photo-6615107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center; }
+  </style>
+</head>
+<body class="bg-iron-black text-iron-white font-body">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-iron-black/90 backdrop-blur-md border-b border-iron-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="font-display font-extrabold text-2xl tracking-wider text-iron-amber">IRONCLAD <span class="text-iron-white">BUILDERS</span></a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="font-display text-sm tracking-widest uppercase text-iron-amber">About</a>
+          <a href="services.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+          <a href="projects.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Projects</a>
+          <a href="industries.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+          <a href="sustainability.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+          <a href="contact.html" class="bg-iron-amber hover:bg-iron-amber-dark text-iron-black font-display font-bold text-sm tracking-widest uppercase px-6 py-3 transition-colors">Contact</a>
+        </div>
+        <button id="menuBtn" class="lg:hidden text-iron-white" onclick="toggleMenu()">
+          <iconify-icon icon="lucide:menu" class="text-3xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-[60] bg-iron-black flex flex-col items-center justify-center gap-8 transform translate-x-full transition-transform duration-300">
+    <button class="absolute top-6 right-6 text-iron-white" onclick="toggleMenu()">
+      <iconify-icon icon="lucide:x" class="text-3xl"></iconify-icon>
+    </button>
+    <a href="index.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Home</a>
+    <a href="about.html" class="font-display text-2xl tracking-widest uppercase text-iron-amber">About</a>
+    <a href="services.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+    <a href="projects.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Projects</a>
+    <a href="industries.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+    <a href="sustainability.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+    <a href="contact.html" class="bg-iron-amber text-iron-black font-display font-bold text-lg tracking-widest uppercase px-8 py-3">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="hero-bg min-h-[60vh] flex items-end">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-3">Our Story</p>
+      <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl uppercase leading-[0.9]">About <span class="text-iron-amber">Us</span></h1>
+    </div>
+  </section>
+
+  <!-- Story -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-4">Our Origin</p>
+          <h2 class="font-display font-extrabold text-4xl uppercase leading-tight mb-6">Founded on <span class="text-iron-amber">Integrity</span></h2>
+          <p class="text-iron-gray leading-relaxed mb-4">In 1987, Robert Hartwell founded Ironclad Builders with a simple principle: deliver projects on time, on budget, and with a safety record that sets industry standards. What started as a small general contracting firm in Chicago has grown into one of the Midwest's most respected construction and engineering companies.</p>
+          <p class="text-iron-gray leading-relaxed mb-4">Over the past 37 years, we have completed more than 600 projects across commercial, industrial, and infrastructure sectors. Our portfolio includes hospitals, universities, manufacturing facilities, bridges, and mixed-use developments that collectively represent over $2.4 billion in construction value.</p>
+          <p class="text-iron-gray leading-relaxed">Today, with over 800 employees and operations spanning six states, Ironclad Builders remains family-owned and deeply committed to the communities where we live and work.</p>
+        </div>
+        <div class="reveal">
+          <img src="https://images.pexels.com/photos/31197870/pexels-photo-31197870.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Steel construction" class="w-full h-[450px] object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Values -->
+  <section class="py-24 bg-iron-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-12">
+        <div class="reveal">
+          <div class="w-14 h-14 bg-iron-amber/10 flex items-center justify-center mb-6">
+            <iconify-icon icon="lucide:target" class="text-iron-amber text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl uppercase mb-3">Our Mission</h3>
+          <p class="text-iron-gray text-sm leading-relaxed">To deliver construction and engineering solutions of the highest quality, with an unwavering commitment to safety, innovation, and the success of every client partnership.</p>
+        </div>
+        <div class="reveal">
+          <div class="w-14 h-14 bg-iron-amber/10 flex items-center justify-center mb-6">
+            <iconify-icon icon="lucide:eye" class="text-iron-amber text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl uppercase mb-3">Our Vision</h3>
+          <p class="text-iron-gray text-sm leading-relaxed">To be the most trusted construction partner in the Midwest, recognized for engineering excellence, sustainable practices, and a safety culture that protects every person on every jobsite.</p>
+        </div>
+        <div class="reveal">
+          <div class="w-14 h-14 bg-iron-amber/10 flex items-center justify-center mb-6">
+            <iconify-icon icon="lucide:shield-check" class="text-iron-amber text-2xl"></iconify-icon>
+          </div>
+          <h3 class="font-display font-bold text-xl uppercase mb-3">Safety First</h3>
+          <p class="text-iron-gray text-sm leading-relaxed">With over 2.1 million hours worked without a lost-time incident, our safety record speaks for itself. Every Ironclad employee is empowered to stop work if they see an unsafe condition.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-4">Leadership</p>
+        <h2 class="font-display font-extrabold text-4xl sm:text-5xl uppercase">Executive <span class="text-iron-amber">Team</span></h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-iron-surface border border-iron-border p-6 reveal">
+          <img src="https://images.pexels.com/photos/5582590/pexels-photo-5582590.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Robert Hartwell" class="w-full h-64 object-cover mb-6">
+          <h3 class="font-display font-bold text-lg uppercase">Robert Hartwell</h3>
+          <p class="font-display text-iron-amber text-sm tracking-widest uppercase">Chief Executive Officer</p>
+          <p class="text-iron-gray text-sm mt-3 leading-relaxed">Founded Ironclad Builders in 1987. Over 40 years of construction industry experience. Licensed Professional Engineer in Illinois, Indiana, and Wisconsin.</p>
+        </div>
+        <div class="bg-iron-surface border border-iron-border p-6 reveal">
+          <img src="https://images.pexels.com/photos/6082416/pexels-photo-6082416.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Sarah Mitchell" class="w-full h-64 object-cover mb-6">
+          <h3 class="font-display font-bold text-lg uppercase">Sarah Mitchell</h3>
+          <p class="font-display text-iron-amber text-sm tracking-widest uppercase">Chief Operating Officer</p>
+          <p class="text-iron-gray text-sm mt-3 leading-relaxed">Oversees daily operations across all divisions. MBA from Northwestern Kellogg. Previously VP of Operations at Turner Construction for 12 years.</p>
+        </div>
+        <div class="bg-iron-surface border border-iron-border p-6 reveal">
+          <img src="https://images.pexels.com/photos/33914927/pexels-photo-33914927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="James Kowalski" class="w-full h-64 object-cover mb-6">
+          <h3 class="font-display font-bold text-lg uppercase">James Kowalski</h3>
+          <p class="font-display text-iron-amber text-sm tracking-widest uppercase">VP of Engineering</p>
+          <p class="text-iron-gray text-sm mt-3 leading-relaxed">Leads all engineering operations. MS in Civil Engineering from University of Illinois. PE with 25+ years in structural and infrastructure engineering.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- By the Numbers -->
+  <section class="py-24 bg-iron-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 reveal">
+        <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-4">Track Record</p>
+        <h2 class="font-display font-extrabold text-4xl sm:text-5xl uppercase">By The <span class="text-iron-amber">Numbers</span></h2>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center reveal">
+          <p class="font-display font-extrabold text-5xl text-iron-amber counter" data-target="600">0</p>
+          <p class="font-display text-iron-gray text-sm tracking-widest uppercase mt-2">Projects Completed</p>
+        </div>
+        <div class="text-center reveal">
+          <p class="font-display font-extrabold text-5xl text-iron-amber">$2.4<span class="text-2xl">B</span></p>
+          <p class="font-display text-iron-gray text-sm tracking-widest uppercase mt-2">Construction Value</p>
+        </div>
+        <div class="text-center reveal">
+          <p class="font-display font-extrabold text-5xl text-iron-amber counter" data-target="800">0</p>
+          <p class="font-display text-iron-gray text-sm tracking-widest uppercase mt-2">Team Members</p>
+        </div>
+        <div class="text-center reveal">
+          <p class="font-display font-extrabold text-5xl text-iron-amber">6</p>
+          <p class="font-display text-iron-gray text-sm tracking-widest uppercase mt-2">States Served</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 bg-iron-amber">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
+      <h2 class="font-display font-extrabold text-4xl sm:text-5xl uppercase text-iron-black mb-6">Partner With <span class="underline decoration-2">Ironclad</span></h2>
+      <p class="text-iron-black/70 text-lg max-w-2xl mx-auto mb-8">Whether you're planning a new facility or need expert construction management, our team is ready to deliver results.</p>
+      <a href="contact.html" class="inline-flex items-center gap-2 bg-iron-black hover:bg-iron-surface text-iron-white font-display font-bold text-sm tracking-widest uppercase px-8 py-4 transition-colors">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-iron-surface border-t border-iron-border pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div>
+          <p class="font-display font-extrabold text-xl tracking-wider text-iron-amber mb-4">IRONCLAD <span class="text-iron-white">BUILDERS</span></p>
+          <p class="text-iron-gray text-sm leading-relaxed">Leading commercial construction and engineering firm based in Chicago, delivering excellence since 1987.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Quick Links</h4>
+          <div class="flex flex-col gap-2">
+            <a href="about.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">About Us</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Services</a>
+            <a href="projects.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Projects</a>
+            <a href="contact.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Services</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">General Contracting</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Design-Build</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Construction Management</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Pre-Construction</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Contact</h4>
+          <div class="flex flex-col gap-2">
+            <p class="text-iron-gray text-sm">200 W Adams Street, Suite 1200</p>
+            <p class="text-iron-gray text-sm">Chicago, IL 60606</p>
+            <p class="text-iron-gray text-sm">info@ironcladbuilders.com</p>
+            <p class="text-iron-gray text-sm">(312) 555-0187</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-iron-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-iron-gray text-xs">&copy; 2024 Ironclad Builders. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:linkedin" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:twitter" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:instagram" class="text-xl"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('translate-x-full');
+    }
+    function reveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+    function animateCounters() {
+      document.querySelectorAll('.counter').forEach(counter => {
+        if (counter.dataset.animated) return;
+        const rect = counter.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          counter.dataset.animated = 'true';
+          const target = +counter.dataset.target;
+          const duration = 2000;
+          const start = performance.now();
+          function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            counter.textContent = Math.floor(target * eased) + '+';
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+        }
+      });
+    }
+    window.addEventListener('scroll', animateCounters);
+    window.addEventListener('load', animateCounters);
+  </script>
+</body>
+</html>

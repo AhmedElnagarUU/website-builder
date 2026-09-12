@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Ironclad Builders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'iron-black': '#111111',
+          'iron-white': '#F5F5F5',
+          'iron-gray': '#999999',
+          'iron-amber': '#F59E0B',
+          'iron-amber-dark': '#D97706',
+          'iron-surface': '#1A1A1A',
+          'iron-surface-light': '#222222',
+          'iron-border': '#333333',
+          'iron-steel': '#64748B',
+        },
+        fontFamily: {
+          display: ['Barlow Condensed', 'sans-serif'],
+          body: ['IBM Plex Sans', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .hero-bg { background-image: linear-gradient(rgba(17,17,17,0.75), rgba(17,17,17,0.75)), url('https://images.pexels.com/photos/31161593/pexels-photo-31161593.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #F59E0B; }
+    .form-field { transition: border-color 0.3s ease; }
+  </style>
+</head>
+<body class="bg-iron-black text-iron-white font-body">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-iron-black/90 backdrop-blur-md border-b border-iron-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="font-display font-extrabold text-2xl tracking-wider text-iron-amber">IRONCLAD <span class="text-iron-white">BUILDERS</span></a>
+        <div class="hidden lg:flex items-center gap-8">
+          <a href="about.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+          <a href="services.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+          <a href="projects.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Projects</a>
+          <a href="industries.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+          <a href="sustainability.html" class="font-display text-sm tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+          <a href="contact.html" class="bg-iron-amber hover:bg-iron-amber-dark text-iron-black font-display font-bold text-sm tracking-widest uppercase px-6 py-3 transition-colors">Contact</a>
+        </div>
+        <button id="menuBtn" class="lg:hidden text-iron-white" onclick="toggleMenu()">
+          <iconify-icon icon="lucide:menu" class="text-3xl"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-[60] bg-iron-black flex flex-col items-center justify-center gap-8 transform translate-x-full transition-transform duration-300">
+    <button class="absolute top-6 right-6 text-iron-white" onclick="toggleMenu()">
+      <iconify-icon icon="lucide:x" class="text-3xl"></iconify-icon>
+    </button>
+    <a href="index.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Home</a>
+    <a href="about.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">About</a>
+    <a href="services.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Services</a>
+    <a href="projects.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Projects</a>
+    <a href="industries.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Industries</a>
+    <a href="sustainability.html" class="font-display text-2xl tracking-widest uppercase text-iron-gray hover:text-iron-amber transition-colors">Sustainability</a>
+    <a href="contact.html" class="bg-iron-amber text-iron-black font-display font-bold text-lg tracking-widest uppercase px-8 py-3">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="hero-bg min-h-[50vh] flex items-end">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <p class="font-display text-iron-amber text-sm tracking-[0.3em] uppercase mb-3">Get In Touch</p>
+      <h1 class="font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl uppercase leading-[0.9]">Contact <span class="text-iron-amber">Us</span></h1>
+      <p class="text-iron-gray text-lg max-w-xl mt-6">Ready to start your next project? Our team is here to discuss your needs and provide expert guidance.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-5 gap-16">
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-3 reveal">
+          <h2 class="font-display font-extrabold text-3xl uppercase mb-8">Send Us a <span class="text-iron-amber">Message</span></h2>
+          <form id="contactForm" class="space-y-6" onsubmit="handleSubmit(event)">
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label class="font-display text-sm tracking-widest uppercase text-iron-gray block mb-2">First Name *</label>
+                <input type="text" name="firstName" required class="form-field w-full bg-iron-surface border border-iron-border px-4 py-3 text-iron-white font-body text-sm placeholder-iron-gray">
+              </div>
+              <div>
+                <label class="font-display text-sm tracking-widest uppercase text-iron-gray block mb-2">Last Name *</label>
+                <input type="text" name="lastName" required class="form-field w-full bg-iron-surface border border-iron-border px-4 py-3 text-iron-white font-body text-sm placeholder-iron-gray">
+              </div>
+            </div>
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div>
+                <label class="font-display text-sm tracking-widest uppercase text-iron-gray block mb-2">Email *</label>
+                <input type="email" name="email" required class="form-field w-full bg-iron-surface border border-iron-border px-4 py-3 text-iron-white font-body text-sm placeholder-iron-gray">
+              </div>
+              <div>
+                <label class="font-display text-sm tracking-widest uppercase text-iron-gray block mb-2">Phone</label>
+                <input type="tel" name="phone" class="form-field w-full bg-iron-surface border border-iron-border px-4 py-3 text-iron-white font-body text-sm placeholder-iron-gray">
+              </div>
+            </div>
+            <div>
+              <label class="font-display text-sm tracking-widest uppercase text-iron-gray block mb-2">Company / Organization</label>
+              <input type="text" name="company" class="form-field w-full bg-iron-surface border border-iron-border px-4 py-3 text-iron-white font-body text-sm placeholder-iron-gray">
+            </div>
+            <div>
+              <label class="font-display text-sm tracking-widest uppercase text-iron-gray block mb-2">Project Type *</label>
+              <select name="projectType" required class="form-field w-full bg-iron-surface border border-iron-border px-4 py-3 text-iron-white font-body text-sm appearance-none cursor-pointer">
+                <option value="">Select a project type</option>
+                <option value="commercial">Commercial Construction</option>
+                <option value="industrial">Industrial Facility</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="education">Education</option>
+                <option value="infrastructure">Infrastructure</option>
+                <option value="mixed-use">Mixed-Use Development</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-display text-sm tracking-widest uppercase text-iron-gray block mb-2">Estimated Budget</label>
+              <select name="budget" class="form-field w-full bg-iron-surface border border-iron-border px-4 py-3 text-iron-white font-body text-sm appearance-none cursor-pointer">
+                <option value="">Select a budget range</option>
+                <option value="under-5m">Under $5 Million</option>
+                <option value="5-25m">$5 - $25 Million</option>
+                <option value="25-100m">$25 - $100 Million</option>
+                <option value="100m-plus">$100 Million+</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-display text-sm tracking-widest uppercase text-iron-gray block mb-2">Project Description *</label>
+              <textarea name="message" required rows="5" placeholder="Tell us about your project, timeline, and any specific requirements..." class="form-field w-full bg-iron-surface border border-iron-border px-4 py-3 text-iron-white font-body text-sm placeholder-iron-gray resize-none"></textarea>
+            </div>
+            <div>
+              <button type="submit" class="bg-iron-amber hover:bg-iron-amber-dark text-iron-black font-display font-bold text-sm tracking-widest uppercase px-10 py-4 transition-colors cursor-pointer">Submit Inquiry</button>
+            </div>
+          </form>
+          <div id="formSuccess" class="hidden bg-iron-surface border border-iron-amber p-8 mt-6">
+            <div class="flex items-center gap-3">
+              <iconify-icon icon="lucide:check-circle" class="text-iron-amber text-3xl"></iconify-icon>
+              <div>
+                <h3 class="font-display font-bold text-lg uppercase">Inquiry Submitted</h3>
+                <p class="text-iron-gray text-sm">Thank you for your interest in Ironclad Builders. A member of our team will contact you within one business day.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="lg:col-span-2 reveal">
+          <div class="sticky top-28">
+            <h2 class="font-display font-extrabold text-3xl uppercase mb-8">Contact <span class="text-iron-amber">Info</span></h2>
+
+            <!-- Office Address -->
+            <div class="mb-8">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-iron-amber/10 flex items-center justify-center flex-shrink-0">
+                  <iconify-icon icon="lucide:map-pin" class="text-iron-amber text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <h3 class="font-display font-bold text-sm tracking-widest uppercase mb-1">Headquarters</h3>
+                  <p class="text-iron-gray text-sm">200 W Adams Street, Suite 1200</p>
+                  <p class="text-iron-gray text-sm">Chicago, IL 60606</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="mb-8">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-iron-amber/10 flex items-center justify-center flex-shrink-0">
+                  <iconify-icon icon="lucide:phone" class="text-iron-amber text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <h3 class="font-display font-bold text-sm tracking-widest uppercase mb-1">Phone</h3>
+                  <p class="text-iron-gray text-sm">(312) 555-0187</p>
+                  <p class="text-iron-gray text-sm">Mon - Fri, 7:00 AM - 5:00 PM CT</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-8">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-iron-amber/10 flex items-center justify-center flex-shrink-0">
+                  <iconify-icon icon="lucide:mail" class="text-iron-amber text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <h3 class="font-display font-bold text-sm tracking-widest uppercase mb-1">Email</h3>
+                  <p class="text-iron-gray text-sm">info@ironcladbuilders.com</p>
+                  <p class="text-iron-gray text-sm">estimating@ironcladbuilders.com</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Emergency -->
+            <div class="mb-8">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-red-900/30 flex items-center justify-center flex-shrink-0">
+                  <iconify-icon icon="lucide:alert-triangle" class="text-red-400 text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <h3 class="font-display font-bold text-sm tracking-widest uppercase mb-1">Emergency Line</h3>
+                  <p class="text-iron-gray text-sm">(312) 555-0199</p>
+                  <p class="text-iron-gray text-sm">24/7 for active jobsite emergencies</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Regional Offices -->
+            <div class="border-t border-iron-border pt-8 mt-8">
+              <h3 class="font-display font-bold text-sm tracking-widest uppercase text-iron-amber mb-6">Regional Offices</h3>
+              <div class="space-y-4">
+                <div>
+                  <p class="font-display font-bold text-sm uppercase">Indianapolis, IN</p>
+                  <p class="text-iron-gray text-sm">401 N Michigan Ave, Suite 500</p>
+                </div>
+                <div>
+                  <p class="font-display font-bold text-sm uppercase">Milwaukee, WI</p>
+                  <p class="text-iron-gray text-sm">740 N Water Street, Suite 300</p>
+                </div>
+                <div>
+                  <p class="font-display font-bold text-sm uppercase">Detroit, MI</p>
+                  <p class="text-iron-gray text-sm">1001 Woodward Ave, Suite 1200</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Placeholder -->
+  <section class="h-96 bg-iron-surface border-y border-iron-border relative overflow-hidden">
+    <div class="absolute inset-0 flex items-center justify-center">
+      <div class="text-center">
+        <iconify-icon icon="lucide:map" class="text-iron-border text-8xl mb-4"></iconify-icon>
+        <p class="font-display text-iron-gray text-sm tracking-widest uppercase">Chicago, Illinois</p>
+        <p class="font-display text-iron-amber font-bold text-lg">41.8781° N, 87.6298° W</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-iron-surface border-t border-iron-border pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div>
+          <p class="font-display font-extrabold text-xl tracking-wider text-iron-amber mb-4">IRONCLAD <span class="text-iron-white">BUILDERS</span></p>
+          <p class="text-iron-gray text-sm leading-relaxed">Leading commercial construction and engineering firm based in Chicago, delivering excellence since 1987.</p>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Quick Links</h4>
+          <div class="flex flex-col gap-2">
+            <a href="about.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">About Us</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Services</a>
+            <a href="projects.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Projects</a>
+            <a href="contact.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Services</h4>
+          <div class="flex flex-col gap-2">
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">General Contracting</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Design-Build</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Construction Management</a>
+            <a href="services.html" class="text-iron-gray text-sm hover:text-iron-amber transition-colors">Pre-Construction</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="font-display font-bold text-sm tracking-widest uppercase text-iron-white mb-4">Contact</h4>
+          <div class="flex flex-col gap-2">
+            <p class="text-iron-gray text-sm">200 W Adams Street, Suite 1200</p>
+            <p class="text-iron-gray text-sm">Chicago, IL 60606</p>
+            <p class="text-iron-gray text-sm">info@ironcladbuilders.com</p>
+            <p class="text-iron-gray text-sm">(312) 555-0187</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-iron-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-iron-gray text-xs">&copy; 2024 Ironclad Builders. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:linkedin" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:twitter" class="text-xl"></iconify-icon></a>
+          <a href="#" class="text-iron-gray hover:text-iron-amber transition-colors"><iconify-icon icon="lucide:instagram" class="text-xl"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('translate-x-full');
+    }
+    function reveal() {
+      document.querySelectorAll('.reveal').forEach(el => {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - 80) {
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('formSuccess');
+      form.style.display = 'none';
+      success.classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>

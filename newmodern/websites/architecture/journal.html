@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal — Atelier Voss</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'warm-bg': '#F5F0EB',
+          'warm-text': '#1A1A1A',
+          'warm-secondary': '#6B6B6B',
+          'warm-accent': '#C4956A',
+          'warm-surface': '#E8E0D8',
+          'warm-border': '#D4CCC4',
+        },
+        fontFamily: {
+          display: ['Playfair Display', 'serif'],
+          body: ['Inter', 'sans-serif'],
+        },
+      }
+    }
+  }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .nav-open .menu-bar:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-open .menu-bar:nth-child(2) { opacity: 0; }
+    .nav-open .menu-bar:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  </style>
+</head>
+<body class="bg-warm-bg text-warm-text">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500 bg-warm-bg/0">
+    <div class="max-w-[1400px] mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-display text-2xl font-semibold tracking-tight">AV</span>
+        <span class="hidden sm:inline text-xs tracking-[0.3em] uppercase text-warm-secondary">Atelier Voss</span>
+      </a>
+      <div id="navMenu" class="hidden lg:flex items-center gap-8">
+        <a href="projects.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Projects</a>
+        <a href="studio.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Studio</a>
+        <a href="services.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Services</a>
+        <a href="process.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Process</a>
+        <a href="journal.html" class="text-xs tracking-[0.15em] uppercase text-warm-accent transition-colors">Journal</a>
+        <a href="contact.html" class="text-xs tracking-[0.15em] uppercase text-warm-secondary hover:text-warm-text transition-colors">Contact</a>
+      </div>
+      <button id="menuBtn" class="lg:hidden flex flex-col gap-1.5 w-7" aria-label="Menu">
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300"></span>
+        <span class="menu-bar w-full h-[1.5px] bg-warm-text transition-all duration-300 origin-center"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 bg-warm-bg z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+    <a href="index.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Home</a>
+    <a href="projects.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Projects</a>
+    <a href="studio.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Studio</a>
+    <a href="services.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Services</a>
+    <a href="process.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Process</a>
+    <a href="journal.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Journal</a>
+    <a href="contact.html" class="font-display text-3xl hover:text-warm-accent transition-colors">Contact</a>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="pt-32 lg:pt-40 pb-16 lg:pb-24 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">Journal</p>
+      <h1 class="font-display text-5xl lg:text-7xl font-medium leading-[1.05] max-w-3xl reveal reveal-delay-1">
+        Notes from the studio
+      </h1>
+      <p class="text-warm-secondary text-lg leading-relaxed max-w-2xl mt-6 reveal reveal-delay-2">
+        Essays, observations, and research from the Atelier Voss team on architecture, design, materials, and the spaces in between.
+      </p>
+    </div>
+  </section>
+
+  <!-- Featured Article -->
+  <section class="px-6 lg:px-12 mb-16 lg:mb-24">
+    <div class="max-w-[1400px] mx-auto">
+      <a href="journal.html" class="group block">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+          <div class="lg:col-span-8 overflow-hidden reveal">
+            <img src="https://images.pexels.com/photos/31888341/pexels-photo-31888341.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                 alt="Featured article image" 
+                 class="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <div class="lg:col-span-4 flex flex-col justify-center">
+            <p class="text-xs text-warm-accent tracking-[0.15em] uppercase mb-3 reveal reveal-delay-1">Featured · Design Thinking</p>
+            <h2 class="font-display text-3xl lg:text-4xl font-medium leading-tight group-hover:text-warm-accent transition-colors mb-4 reveal reveal-delay-2">
+              Choreographing Light: How We Shape Atmosphere Through Orientation
+            </h2>
+            <p class="text-warm-secondary leading-relaxed mb-6 reveal reveal-delay-2">
+              Natural light is the most powerful material in our palette — and the most difficult to control. In this essay, Elena Voss explains how the studio approaches orientation, apertures, and shading as instruments for shaping the emotional character of a space.
+            </p>
+            <div class="flex items-center gap-4 text-sm text-warm-secondary reveal reveal-delay-3">
+              <span class="w-10 h-10 rounded-full bg-warm-surface flex items-center justify-center font-display text-warm-accent flex-shrink-0">EV</span>
+              <div>
+                <p class="text-sm">Elena Voss</p>
+                <p class="text-xs">August 18, 2026 · 8 min read</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Article Grid -->
+  <section class="px-6 lg:px-12 pb-24">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+
+        <!-- Article 1 -->
+        <a href="journal.html" class="group reveal">
+          <div class="overflow-hidden aspect-[4/3] mb-5">
+            <img src="https://images.pexels.com/photos/276746/pexels-photo-276746.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                 alt="Raw concrete" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <p class="text-xs text-warm-accent tracking-[0.15em] uppercase mb-2">Material Studies</p>
+          <h3 class="font-display text-xl lg:text-2xl font-medium group-hover:text-warm-accent transition-colors leading-snug">The Return of Raw Concrete in Contemporary Design</h3>
+          <p class="text-warm-secondary text-sm mt-3 leading-relaxed">
+            Once associated with brutalism and utilitarian structures, exposed concrete has re-emerged as a material of warmth and sophistication in high-end residential design. We explore the techniques that make concrete surfaces feel intimate rather than imposing.
+          </p>
+          <div class="flex items-center gap-3 mt-5 text-sm">
+            <span class="text-warm-secondary">Marcus Voss</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">July 22, 2026</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">6 min read</span>
+          </div>
+        </a>
+
+        <!-- Article 2 -->
+        <a href="journal.html" class="group reveal reveal-delay-1">
+          <div class="overflow-hidden aspect-[4/3] mb-5">
+            <img src="https://images.pexels.com/photos/38413542/pexels-photo-38413542.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                 alt="Sustainable architecture" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <p class="text-xs text-warm-accent tracking-[0.15em] uppercase mb-2">Sustainability</p>
+          <h3 class="font-display text-xl lg:text-2xl font-medium group-hover:text-warm-accent transition-colors leading-snug">Net-Zero Architecture: Our Approach to Carbon-Neutral Design</h3>
+          <p class="text-warm-secondary text-sm mt-3 leading-relaxed">
+            Sustainability isn't a feature set — it's a design philosophy. A deep dive into the passive strategies, material choices, and energy systems behind our most ambitious sustainable projects to date.
+          </p>
+          <div class="flex items-center gap-3 mt-5 text-sm">
+            <span class="text-warm-secondary">Sarah Chen</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">June 14, 2026</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">9 min read</span>
+          </div>
+        </a>
+
+        <!-- Article 3 -->
+        <a href="journal.html" class="group reveal reveal-delay-2">
+          <div class="overflow-hidden aspect-[4/3] mb-5">
+            <img src="https://images.pexels.com/photos/17729218/pexels-photo-17729218.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                 alt="Geometric architecture" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <p class="text-xs text-warm-accent tracking-[0.15em] uppercase mb-2">Design Thinking</p>
+          <h3 class="font-display text-xl lg:text-2xl font-medium group-hover:text-warm-accent transition-colors leading-snug">The Discipline of Restraint in an Age of Excess</h3>
+          <p class="text-warm-secondary text-sm mt-3 leading-relaxed">
+            In a landscape dominated by visual noise, the most radical gesture may be subtraction. We reflect on why our most successful projects often involve removing more than they add.
+          </p>
+          <div class="flex items-center gap-3 mt-5 text-sm">
+            <span class="text-warm-secondary">Elena Voss</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">May 30, 2026</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">7 min read</span>
+          </div>
+        </a>
+
+        <!-- Article 4 -->
+        <a href="journal.html" class="group reveal">
+          <div class="overflow-hidden aspect-[4/3] mb-5">
+            <img src="https://images.pexels.com/photos/13926760/pexels-photo-13926760.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                 alt="Office design" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <p class="text-xs text-warm-accent tracking-[0.15em] uppercase mb-2">Workplace Design</p>
+          <h3 class="font-display text-xl lg:text-2xl font-medium group-hover:text-warm-accent transition-colors leading-snug">Designing the Post-Pandemic Workplace</h3>
+          <p class="text-warm-secondary text-sm mt-3 leading-relaxed">
+            The return to the office demands a fundamentally different approach to workplace design. We share insights from our work on flexible, human-centered office environments and what the future of work may look like.
+          </p>
+          <div class="flex items-center gap-3 mt-5 text-sm">
+            <span class="text-warm-secondary">Amara Osei</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">May 8, 2026</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">5 min read</span>
+          </div>
+        </a>
+
+        <!-- Article 5 -->
+        <a href="journal.html" class="group reveal reveal-delay-1">
+          <div class="overflow-hidden aspect-[4/3] mb-5">
+            <img src="https://images.pexels.com/photos/8082322/pexels-photo-8082322.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                 alt="Classical architecture" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <p class="text-xs text-warm-accent tracking-[0.15em] uppercase mb-2">History & Theory</p>
+          <h3 class="font-display text-xl lg:text-2xl font-medium group-hover:text-warm-accent transition-colors leading-snug">What Modernism Got Right — and What We Forgot</h3>
+          <p class="text-warm-secondary text-sm mt-3 leading-relaxed">
+            A century after the modernist movement reshaped our cities, we examine which of its principles still serve contemporary architecture — and which deserve a thoughtful reconsideration.
+          </p>
+          <div class="flex items-center gap-3 mt-5 text-sm">
+            <span class="text-warm-secondary">David Park</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">April 19, 2026</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">8 min read</span>
+          </div>
+        </a>
+
+        <!-- Article 6 -->
+        <a href="journal.html" class="group reveal reveal-delay-2">
+          <div class="overflow-hidden aspect-[4/3] mb-5">
+            <img src="https://images.pexels.com/photos/9617366/pexels-photo-9617366.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
+                 alt="Blueprints and sketches" 
+                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          </div>
+          <p class="text-xs text-warm-accent tracking-[0.15em] uppercase mb-2">Studio Life</p>
+          <h3 class="font-display text-xl lg:text-2xl font-medium group-hover:text-warm-accent transition-colors leading-snug">Sketching: Why We Still Draw by Hand</h3>
+          <p class="text-warm-secondary text-sm mt-3 leading-relaxed">
+            In an age of photorealistic rendering, the humble hand sketch remains our most powerful thinking tool. A celebration of drawing and its irreplaceable role in the design process.
+          </p>
+          <div class="flex items-center gap-3 mt-5 text-sm">
+            <span class="text-warm-secondary">Luca Moretti</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">March 27, 2026</span>
+            <span class="text-warm-border">·</span>
+            <span class="text-warm-secondary">4 min read</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="bg-warm-surface py-24 lg:py-32 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto text-center">
+      <p class="text-xs tracking-[0.4em] uppercase text-warm-accent mb-4 reveal">Stay in Touch</p>
+      <h2 class="font-display text-4xl lg:text-5xl font-medium mb-4 reveal reveal-delay-1">The Journal, delivered monthly</h2>
+      <p class="text-warm-secondary max-w-xl mx-auto mb-10 reveal reveal-delay-2">
+        Occasional essays on architecture, design, and the studio's work. No spam, no noise — unsubscribe anytime.
+      </p>
+      <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3 reveal reveal-delay-3" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+        <input type="email" required placeholder="Your email address" class="flex-1 bg-warm-bg border border-warm-border px-5 py-4 text-sm focus:outline-none focus:border-warm-accent transition-colors">
+        <button type="submit" class="bg-warm-accent text-white px-8 py-4 text-xs tracking-[0.2em] uppercase hover:bg-warm-accent/90 transition-colors whitespace-nowrap">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-warm-text text-white py-16 lg:py-20 px-6 lg:px-12">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+        <div class="lg:col-span-4">
+          <span class="font-display text-3xl font-semibold">AV</span>
+          <p class="text-white/50 text-sm mt-4 leading-relaxed max-w-xs">Architecture & Interior Design Studio based in New York. Creating spaces that endure since 2009.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Navigation</h4>
+          <div class="flex flex-col gap-3">
+            <a href="projects.html" class="text-sm text-white/60 hover:text-white transition-colors">Projects</a>
+            <a href="studio.html" class="text-sm text-white/60 hover:text-white transition-colors">Studio</a>
+            <a href="services.html" class="text-sm text-white/60 hover:text-white transition-colors">Services</a>
+            <a href="process.html" class="text-sm text-white/60 hover:text-white transition-colors">Process</a>
+            <a href="journal.html" class="text-sm text-white/60 hover:text-white transition-colors">Journal</a>
+            <a href="contact.html" class="text-sm text-white/60 hover:text-white transition-colors">Contact</a>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Contact</h4>
+          <div class="flex flex-col gap-3 text-sm text-white/60">
+            <p>245 West 17th Street, Suite 4</p>
+            <p>New York, NY 10011</p>
+            <p class="mt-2">studio@ateliervoss.com</p>
+            <p>+1 (212) 555-0187</p>
+          </div>
+        </div>
+        <div class="lg:col-span-3">
+          <h4 class="text-xs tracking-[0.2em] uppercase text-white/30 mb-5">Follow</h4>
+          <div class="flex gap-5">
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:instagram-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:linkedin-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:pinterest-logo" class="text-xl"></iconify-icon>
+            </a>
+            <a href="#" class="text-white/50 hover:text-warm-accent transition-colors">
+              <iconify-icon icon="ph:twitter-x-logo" class="text-xl"></iconify-icon>
+            </a>
+          </div>
+          <div class="mt-8">
+            <a href="contact.html" class="inline-flex items-center gap-2 text-xs tracking-[0.15em] uppercase text-warm-accent hover:text-white transition-colors">
+              Start a Project
+              <iconify-icon icon="ph:arrow-right" class="text-sm"></iconify-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-xs text-white/30">&copy; 2026 Atelier Voss. All rights reserved.</p>
+        <div class="flex gap-6">
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Privacy Policy</a>
+          <a href="#" class="text-xs text-white/30 hover:text-white/60 transition-colors">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navbar = document.getElementById('navbar');
+    let menuOpen = false;
+
+    menuBtn.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      menuBtn.classList.toggle('nav-open', menuOpen);
+      mobileMenu.classList.toggle('opacity-100', menuOpen);
+      mobileMenu.classList.toggle('pointer-events-auto', menuOpen);
+      mobileMenu.classList.toggle('opacity-0', !menuOpen);
+      mobileMenu.classList.toggle('pointer-events-none', !menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.remove('bg-warm-bg/0');
+      } else {
+        navbar.classList.remove('bg-warm-bg/95', 'backdrop-blur-sm', 'shadow-sm');
+        navbar.classList.add('bg-warm-bg/0');
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

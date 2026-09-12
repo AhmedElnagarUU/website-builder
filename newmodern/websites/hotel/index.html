@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Meridian — Luxury Beachfront Resort, Santorini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        'navy': '#0D1B2A',
+        'navy-light': '#1B2D45',
+        'navy-border': '#2A3F5F',
+        'cream': '#F0E6D3',
+        'cream-light': '#FAF8F5',
+        'gold': '#C8A96E',
+        'gold-muted': '#A09880',
+      },
+      fontFamily: {
+        display: ['Cormorant Garamond', 'serif'],
+        body: ['Lato', 'sans-serif'],
+      },
+    }
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@2/dist/iconify-icon.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Lato', sans-serif; background: #0D1B2A; color: #F0E6D3; }
+  .hero-bg { background-image: url('https://images.pexels.com/photos/14841129/pexels-photo-14841129.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); background-size: cover; background-position: center; }
+  .parallax-bg { background-attachment: fixed; background-size: cover; background-position: center; }
+  .gold-line { width: 60px; height: 1px; background: #C8A96E; }
+  .gold-line-wide { width: 100px; height: 1px; background: #C8A96E; }
+  .nav-link { position: relative; }
+  .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px; background: #C8A96E; transition: width 0.3s ease; }
+  .nav-link:hover::after { width: 100%; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  .mobile-menu { transform: translateX(100%); transition: transform 0.4s ease; }
+  .mobile-menu.open { transform: translateX(0); }
+  .overlay { opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+  .overlay.open { opacity: 1; pointer-events: all; }
+  .room-card:hover .room-overlay { opacity: 1; }
+  .room-overlay { opacity: 0; transition: opacity 0.5s ease; }
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="mainNav">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="rooms.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Stay</a>
+      <a href="dining.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Dining</a>
+      <a href="experiences.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Experiences</a>
+    </div>
+    <a href="index.html" class="font-display text-2xl md:text-3xl tracking-[0.3em] text-cream font-light">THE MERIDIAN</a>
+    <div class="hidden lg:flex items-center space-x-8">
+      <a href="gallery.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Gallery</a>
+      <a href="about.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">About</a>
+      <a href="contact.html" class="nav-link text-cream/80 hover:text-cream text-sm tracking-widest uppercase font-body transition-colors">Contact</a>
+    </div>
+    <button id="menuBtn" class="lg:hidden text-cream">
+      <iconify-icon icon="heroicons:bars-3" width="28"></iconify-icon>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div class="overlay fixed inset-0 bg-black/60 z-50" id="overlay"></div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu fixed top-0 right-0 w-80 h-full bg-navy-light z-50 flex flex-col justify-center items-center space-y-8" id="mobileMenu">
+  <button id="closeMenu" class="absolute top-6 right-6 text-cream">
+    <iconify-icon icon="heroicons:x-mark" width="28"></iconify-icon>
+  </button>
+  <a href="index.html" class="font-display text-xl tracking-[0.2em] text-gold">HOME</a>
+  <a href="rooms.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">STAY</a>
+  <a href="dining.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">DINING</a>
+  <a href="experiences.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">EXPERIENCES</a>
+  <a href="gallery.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">GALLERY</a>
+  <a href="about.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">ABOUT</a>
+  <a href="contact.html" class="font-display text-xl tracking-[0.2em] text-cream hover:text-gold transition-colors">CONTACT</a>
+</div>
+
+<!-- Hero Section -->
+<section class="hero-bg relative h-screen flex items-center justify-center">
+  <div class="absolute inset-0 bg-navy/50"></div>
+  <div class="relative z-10 text-center px-6">
+    <div class="gold-line-wide mx-auto mb-8"></div>
+    <p class="text-gold-muted tracking-[0.4em] uppercase text-sm mb-4 font-body">Santorini, Greece</p>
+    <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-light text-cream mb-6 leading-tight">The Meridian</h1>
+    <p class="font-display text-xl md:text-2xl text-cream/70 font-light italic mb-10">Where the Aegean meets unparalleled luxury</p>
+    <a href="rooms.html" class="inline-block border border-gold text-gold hover:bg-gold hover:text-navy px-10 py-4 text-sm tracking-[0.3em] uppercase font-body transition-all duration-300">Discover Our Suites</a>
+  </div>
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+    <iconify-icon icon="heroicons:chevron-down" width="24" class="text-gold/60"></iconify-icon>
+  </div>
+</section>
+
+<!-- Welcome Section -->
+<section class="py-24 md:py-32 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal">
+        <div class="gold-line mb-8"></div>
+        <p class="text-gold-muted tracking-[0.3em] uppercase text-xs mb-4 font-body">Welcome</p>
+        <h2 class="font-display text-4xl md:text-5xl font-light text-cream mb-8 leading-tight">A Sanctuary Above the Caldera</h2>
+        <p class="text-cream/70 font-body leading-relaxed mb-6 text-lg">Nestled on the volcanic cliffs of Santorini, The Meridian offers an intimate escape where timeless elegance meets the raw beauty of the Aegean Sea. Our 47 luxury suites and villas are designed to frame the breathtaking caldera views that have captivated travelers for centuries.</p>
+        <p class="text-cream/70 font-body leading-relaxed mb-10 text-lg">Every detail has been thoughtfully curated — from our world-class dining to our serene spa — to create moments that linger long after you depart.</p>
+        <a href="about.html" class="inline-flex items-center text-gold hover:text-gold-muted text-sm tracking-[0.2em] uppercase font-body transition-colors group">
+          Our Story
+          <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2 group-hover:translate-x-1 transition-transform"></iconify-icon>
+        </a>
+      </div>
+      <div class="reveal relative">
+        <img src="https://images.pexels.com/photos/14011664/pexels-photo-14011664.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="The Meridian Lobby" class="w-full h-[500px] object-cover">
+        <div class="absolute -bottom-6 -left-6 w-32 h-32 border border-gold/30"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Rooms Preview -->
+<section class="py-24 md:py-32 bg-navy-light">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="gold-line mx-auto mb-8"></div>
+      <p class="text-gold-muted tracking-[0.3em] uppercase text-xs mb-4 font-body">Accommodations</p>
+      <h2 class="font-display text-4xl md:text-5xl font-light text-cream">Suites & Villas</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="relative group overflow-hidden reveal cursor-pointer" onclick="location.href='room-detail.html'">
+        <img src="https://images.pexels.com/photos/34496715/pexels-photo-34496715.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Caldera Suite" class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-8">
+          <p class="text-gold text-xs tracking-[0.3em] uppercase mb-2 font-body">From €890 / night</p>
+          <h3 class="font-display text-2xl text-cream mb-2">Caldera Suite</h3>
+          <p class="text-cream/60 font-body text-sm">Panoramic caldera views with private terrace</p>
+        </div>
+      </div>
+      <div class="relative group overflow-hidden reveal cursor-pointer" onclick="location.href='room-detail.html'">
+        <img src="https://images.pexels.com/photos/34496702/pexels-photo-34496702.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Infinity Villa" class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-8">
+          <p class="text-gold text-xs tracking-[0.3em] uppercase mb-2 font-body">From €1,450 / night</p>
+          <h3 class="font-display text-2xl text-cream mb-2">Infinity Villa</h3>
+          <p class="text-cream/60 font-body text-sm">Private infinity pool with direct sunset views</p>
+        </div>
+      </div>
+      <div class="relative group overflow-hidden reveal cursor-pointer" onclick="location.href='room-detail.html'">
+        <img src="https://images.pexels.com/photos/97083/pexels-photo-97083.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Royal Penthouse" class="w-full h-96 object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-8">
+          <p class="text-gold text-xs tracking-[0.3em] uppercase mb-2 font-body">From €2,800 / night</p>
+          <h3 class="font-display text-2xl text-cream mb-2">Royal Penthouse</h3>
+          <p class="text-cream/60 font-body text-sm">Two-level penthouse with rooftop plunge pool</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-12 reveal">
+      <a href="rooms.html" class="inline-flex items-center border border-gold text-gold hover:bg-gold hover:text-navy px-8 py-3 text-sm tracking-[0.2em] uppercase font-body transition-all duration-300">
+        View All Accommodations
+        <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2"></iconify-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Full Width Image Break -->
+<section class="relative h-[60vh] parallax-bg" style="background-image: url('https://images.pexels.com/photos/2259226/pexels-photo-2259226.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
+  <div class="absolute inset-0 bg-navy/40 flex items-center justify-center">
+    <div class="text-center reveal">
+      <p class="text-gold font-display text-3xl md:text-5xl font-light italic">"Where every moment becomes a memory"</p>
+    </div>
+  </div>
+</section>
+
+<!-- Dining Section -->
+<section class="py-24 md:py-32 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+      <div class="reveal order-2 md:order-1 relative">
+        <img src="https://images.pexels.com/photos/17057034/pexels-photo-17057034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Fine Dining" class="w-full h-[500px] object-cover">
+        <div class="absolute -top-6 -right-6 w-32 h-32 border border-gold/30"></div>
+      </div>
+      <div class="reveal order-1 md:order-2">
+        <div class="gold-line mb-8"></div>
+        <p class="text-gold-muted tracking-[0.3em] uppercase text-xs mb-4 font-body">Culinary Excellence</p>
+        <h2 class="font-display text-4xl md:text-5xl font-light text-cream mb-8 leading-tight">Three Distinctive Dining Experiences</h2>
+        <p class="text-cream/70 font-body leading-relaxed mb-6 text-lg">From the Mediterranean masterpieces at Meridian Main to the ocean-to-table freshness of Kai and sunset cocktails on our rooftop Terrace, each venue offers a culinary journey inspired by the flavors of Greece and beyond.</p>
+        <a href="dining.html" class="inline-flex items-center text-gold hover:text-gold-muted text-sm tracking-[0.2em] uppercase font-body transition-colors group">
+          Explore Dining
+          <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2 group-hover:translate-x-1 transition-transform"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experiences Section -->
+<section class="py-24 md:py-32 bg-navy-light">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="gold-line mx-auto mb-8"></div>
+      <p class="text-gold-muted tracking-[0.3em] uppercase text-xs mb-4 font-body">Curated for You</p>
+      <h2 class="font-display text-4xl md:text-5xl font-light text-cream">Unforgettable Experiences</h2>
+    </div>
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="reveal text-center group">
+        <div class="w-16 h-16 border border-gold/40 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/10 transition-colors">
+          <iconify-icon icon="mdi:wine" width="28" class="text-gold"></iconify-icon>
+        </div>
+        <h3 class="font-display text-xl text-cream mb-3">Wine Tasting</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed">Private tours of Santorini's finest vineyards, sampling volcanic terroir wines</p>
+      </div>
+      <div class="reveal text-center group">
+        <div class="w-16 h-16 border border-gold/40 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/10 transition-colors">
+          <iconify-icon icon="mdi:sail-boat" width="28" class="text-gold"></iconify-icon>
+        </div>
+        <h3 class="font-display text-xl text-cream mb-3">Private Sailing</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed">Charter a catamaran to explore hidden coves and volcanic hot springs</p>
+      </div>
+      <div class="reveal text-center group">
+        <div class="w-16 h-16 border border-gold/40 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/10 transition-colors">
+          <iconify-icon icon="mdi:food-fork-drink" width="28" class="text-gold"></iconify-icon>
+        </div>
+        <h3 class="font-display text-xl text-cream mb-3">Cooking Classes</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed">Master traditional Greek recipes with our executive chef</p>
+      </div>
+      <div class="reveal text-center group">
+        <div class="w-16 h-16 border border-gold/40 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-gold/10 transition-colors">
+          <iconify-icon icon="mdi:spa" width="28" class="text-gold"></iconify-icon>
+        </div>
+        <h3 class="font-display text-xl text-cream mb-3">Wellness Retreats</h3>
+        <p class="text-cream/60 font-body text-sm leading-relaxed">Holistic spa journeys and mindfulness programs in serene settings</p>
+      </div>
+    </div>
+    <div class="text-center mt-12 reveal">
+      <a href="experiences.html" class="inline-flex items-center text-gold hover:text-gold-muted text-sm tracking-[0.2em] uppercase font-body transition-colors group">
+        Discover More
+        <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2 group-hover:translate-x-1 transition-transform"></iconify-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonial Section -->
+<section class="py-24 md:py-32 bg-cream-light text-navy">
+  <div class="max-w-4xl mx-auto px-6 text-center reveal">
+    <iconify-icon icon="heroicons:star" width="24" class="text-gold mx-auto mb-8"></iconify-icon>
+    <blockquote class="font-display text-3xl md:text-4xl font-light leading-relaxed mb-8 text-navy/80">"The Meridian redefined what luxury means to us. From the moment we arrived, every detail was perfect — the view, the service, the cuisine. We've already booked our return."</blockquote>
+    <div class="gold-line-wide mx-auto mb-6"></div>
+    <p class="text-navy/60 font-body text-sm tracking-widest uppercase">Victoria & James Ashworth</p>
+    <p class="text-gold-muted font-body text-xs mt-1">London, United Kingdom</p>
+  </div>
+</section>
+
+<!-- Instagram / Gallery Teaser -->
+<section class="py-24 md:py-32 bg-navy">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16 reveal">
+      <div class="gold-line mx-auto mb-8"></div>
+      <p class="text-gold-muted tracking-[0.3em] uppercase text-xs mb-4 font-body">@TheMeridianSantorini</p>
+      <h2 class="font-display text-4xl md:text-5xl font-light text-cream">Captured Moments</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
+      <div class="relative overflow-hidden group aspect-square">
+        <img src="https://images.pexels.com/photos/2222614/pexels-photo-2222614.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Gallery" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+        <div class="absolute inset-0 bg-navy/0 group-hover:bg-navy/40 transition-all duration-300 flex items-center justify-center">
+          <iconify-icon icon="heroicons:plus" width="24" class="text-cream opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+        </div>
+      </div>
+      <div class="relative overflow-hidden group aspect-square">
+        <img src="https://images.pexels.com/photos/3921395/pexels-photo-3921395.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Gallery" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+        <div class="absolute inset-0 bg-navy/0 group-hover:bg-navy/40 transition-all duration-300 flex items-center justify-center">
+          <iconify-icon icon="heroicons:plus" width="24" class="text-cream opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+        </div>
+      </div>
+      <div class="relative overflow-hidden group aspect-square">
+        <img src="https://images.pexels.com/photos/13871291/pexels-photo-13871291.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Gallery" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+        <div class="absolute inset-0 bg-navy/0 group-hover:bg-navy/40 transition-all duration-300 flex items-center justify-center">
+          <iconify-icon icon="heroicons:plus" width="24" class="text-cream opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+        </div>
+      </div>
+      <div class="relative overflow-hidden group aspect-square">
+        <img src="https://images.pexels.com/photos/10611880/pexels-photo-10611880.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Gallery" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+        <div class="absolute inset-0 bg-navy/0 group-hover:bg-navy/40 transition-all duration-300 flex items-center justify-center">
+          <iconify-icon icon="heroicons:plus" width="24" class="text-cream opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-10 reveal">
+      <a href="gallery.html" class="inline-flex items-center text-gold hover:text-gold-muted text-sm tracking-[0.2em] uppercase font-body transition-colors group">
+        View Full Gallery
+        <iconify-icon icon="heroicons:arrow-right" width="16" class="ml-2 group-hover:translate-x-1 transition-transform"></iconify-icon>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-navy border-t border-navy-border">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <div class="grid md:grid-cols-4 gap-12">
+      <div>
+        <h4 class="font-display text-xl tracking-[0.2em] text-cream mb-6">THE MERIDIAN</h4>
+        <p class="text-cream/50 font-body text-sm leading-relaxed mb-6">An exclusive luxury beachfront resort overlooking the caldera in Santorini, Greece.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:instagram" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:facebook" width="18" class="text-gold"></iconify-icon>
+          </a>
+          <a href="#" class="w-10 h-10 border border-navy-border rounded-full flex items-center justify-center hover:border-gold transition-colors">
+            <iconify-icon icon="mdi:twitter" width="18" class="text-gold"></iconify-icon>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Quick Links</h5>
+        <ul class="space-y-3">
+          <li><a href="rooms.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Rooms & Suites</a></li>
+          <li><a href="dining.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Dining</a></li>
+          <li><a href="experiences.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Experiences</a></li>
+          <li><a href="gallery.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">Gallery</a></li>
+          <li><a href="about.html" class="text-cream/50 hover:text-cream text-sm font-body transition-colors">About Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Contact</h5>
+        <ul class="space-y-3">
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:map-pin" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            Oia, Santorini 847 02, Greece
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:phone" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            +30 22860 71234
+          </li>
+          <li class="text-cream/50 text-sm font-body flex items-start">
+            <iconify-icon icon="heroicons:envelope" width="16" class="text-gold mr-2 mt-0.5 flex-shrink-0"></iconify-icon>
+            reservations@themeridian.gr
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-gold text-xs tracking-[0.3em] uppercase mb-6 font-body">Newsletter</h5>
+        <p class="text-cream/50 font-body text-sm mb-4">Subscribe for exclusive offers and updates.</p>
+        <div class="flex">
+          <input type="email" placeholder="Your email" class="bg-navy-light border border-navy-border px-4 py-3 text-cream text-sm font-body focus:outline-none focus:border-gold transition-colors w-full">
+          <button class="bg-gold text-navy px-4 py-3 hover:bg-gold-muted transition-colors">
+            <iconify-icon icon="heroicons:paper-airplane" width="16"></iconify-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-navy-border mt-12 pt-8 text-center">
+      <p class="text-cream/30 font-body text-xs">© 2026 The Meridian. All rights reserved. | Oia, Santorini, Greece</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile Menu
+const menuBtn = document.getElementById('menuBtn');
+const closeMenu = document.getElementById('closeMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+const overlay = document.getElementById('overlay');
+
+menuBtn.addEventListener('click', () => {
+  mobileMenu.classList.add('open');
+  overlay.classList.add('open');
+});
+
+closeMenu.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  overlay.classList.remove('open');
+});
+
+overlay.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  overlay.classList.remove('open');
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(13, 27, 42, 0.95)';
+    nav.style.backdropFilter = 'blur(10px)';
+  } else {
+    nav.style.background = 'transparent';
+    nav.style.backdropFilter = 'none';
+  }
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const revealOnScroll = () => {
+  reveals.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    if (elementTop < windowHeight - 80) {
+      el.classList.add('active');
+    }
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+</body>
+</html>
