@@ -60,11 +60,18 @@ export interface TemplateTheme {
   accentRole: "fill" | "edge";
 }
 
+export interface TemplateDesign {
+  palette: Record<string, string>;
+  fonts?: { heading?: string; body?: string; mono?: string };
+  signature: string;
+}
+
 export interface TemplateStyle {
   fontPair: "classic" | "modern" | "warm";
   radius: "sharp" | "soft";
   imagery: "photo" | "minimal";
   theme: TemplateTheme;
+  design?: TemplateDesign;
 }
 
 export interface BilingualText {

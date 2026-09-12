@@ -221,6 +221,188 @@ body {
   color: var(--foreground);
 }
 
+/* ============== Newmodern per-template signature primitives (07/01) ==============
+   Keyed off per-template palette CSS vars (--paper, --ink, --signal, --gold …) set on
+   the SiteRenderer root. Without those vars the declarations resolve invalid and no-op.
+   Namespaced site-*; additive only. */
+@keyframes site-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes site-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Marquee band: duplicated inline row scrolled inside its container. */
+.site-marquee-track {
+  display: inline-flex;
+  width: max-content;
+  animation: site-marquee 28s linear infinite;
+}
+.site-marquee-track > * {
+  flex-shrink: 0;
+}
+
+/* Hard offset shadows (Redline ticket/img-frame, Ferm specimen). */
+.site-sig-hard-shadow {
+  box-shadow: 6px 6px 0 0 var(--ink);
+}
+.site-sig-hard-shadow-lg {
+  box-shadow: 8px 8px 0 0 var(--ink);
+}
+.site-sig-hard-shadow-sm {
+  box-shadow: 4px 4px 0 0 var(--fern);
+}
+
+/* Dotted leaders for row-label → price menus. */
+.site-sig-dots {
+  border-bottom: 2px dotted var(--ink);
+  opacity: 0.35;
+  translate: 0 -4px;
+}
+.site-dot-rule {
+  border-bottom: 1px dotted var(--ink);
+}
+
+/* Registration marks: red 2px corners top-start / bottom-end (logical). */
+.site-sig-regs {
+  position: relative;
+}
+.site-sig-regs::before,
+.site-sig-regs::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--red);
+  z-index: 2;
+  pointer-events: none;
+}
+.site-sig-regs::before {
+  top: 0;
+  inset-inline-start: 0;
+  border-inline-end: none;
+  border-bottom: none;
+}
+.site-sig-regs::after {
+  bottom: 0;
+  inset-inline-end: 0;
+  border-inline-start: none;
+  border-top: none;
+}
+
+/* Specimen herbarium label card. */
+.site-sig-specimen {
+  background-color: var(--specimen, var(--paper));
+  border: 1px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--fern);
+  font-family: var(--font-mono), monospace;
+}
+
+/* Ledger card + single/double gold rules (Harlan). */
+.site-sig-ledger {
+  background-color: var(--parchment);
+  border-inline-start: 3px solid var(--brass);
+  box-shadow:
+    0 1px 0 var(--ledger-soft),
+    0 12px 40px -24px var(--ledger-deep);
+}
+.site-sig-ledger-rule {
+  border-top: 1px solid var(--brass-rule);
+}
+.site-sig-ledger-rule-thick {
+  border-top: 3px double var(--brass-rule);
+}
+
+/* Charred gradient headline text (Ember). */
+.site-sig-char {
+  background-image: linear-gradient(120deg, var(--flame) 0%, var(--embers) 55%, var(--charred) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Outlined display text (Volatile). */
+.site-sig-text-stroke {
+  -webkit-text-stroke: 1.5px var(--vol-text);
+  color: transparent;
+}
+.site-sig-text-stroke-accent {
+  -webkit-text-stroke: 1.5px var(--vol-accent);
+  color: transparent;
+}
+
+/* Gold hairlines (Meridian). */
+.site-sig-gold-line {
+  width: 60px;
+  height: 1px;
+  background-color: var(--gold);
+}
+.site-sig-gold-line-wide {
+  width: 100px;
+  height: 1px;
+  background-color: var(--gold);
+}
+
+/* Floating badge (Clearview hero). */
+.site-sig-float {
+  animation: site-float 3s ease-in-out infinite;
+}
+
+/* Mono label treatments: care tag, seal, stamp, plate. */
+.site-sig-care-tag {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid var(--moss);
+  color: var(--moss);
+  padding: 3px 8px;
+}
+.site-sig-seal {
+  width: 108px;
+  height: 108px;
+  border-radius: 9999px;
+  border: 2px solid var(--flame);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--flame);
+  rotate: -8deg;
+}
+.site-sig-stamp {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  rotate: -2.5deg;
+}
+.site-sig-plate {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-marquee-track,
+  .site-sig-float {
+    animation: none;
+  }
+}
+
 ::selection {
   background: var(--mono-yellow);
   color: var(--ink, var(--mono-ink));

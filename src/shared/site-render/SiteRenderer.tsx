@@ -148,7 +148,17 @@ export function SiteRenderer({
           <SiteStyleContext.Provider value={template.style}>
             <div
               className={`@container min-h-screen bg-background text-foreground ${siteBodyClass(template.style)} ${siteSurfaceClass(template.style)} ${fontClass} ${radiusClass}`}
-              style={{ ["--brand" as string]: brandColor }}
+              style={{
+                ["--brand" as string]: brandColor,
+                ...template.style.design?.palette,
+                ...(template.style.design?.fonts
+                  ? {
+                      ["--font-serif2" as string]: template.style.design.fonts.heading,
+                      ["--font-body" as string]: template.style.design.fonts.body,
+                      ["--font-mono" as string]: template.style.design.fonts.mono,
+                    }
+                  : null),
+              }}
               dir="inherit"
             >
             {headerSection && (

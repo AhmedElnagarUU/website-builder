@@ -19,6 +19,19 @@ export function siteSurfaceClass(style: TemplateStyle): string {
   return style.theme.surface === "deep" ? "site-surface-deep" : "";
 }
 
+export function hasDesign(style: TemplateStyle): boolean {
+  return Boolean(style.design);
+}
+
+export function signatureClass(style: TemplateStyle): string {
+  if (!style.design) return "";
+  const slug = style.design.signature
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return `site-sig-${slug}`;
+}
+
 export const RADIUS_CLASSES: Record<TemplateStyle["radius"], string> = {
   sharp: "rounded-none",
   soft: "rounded-[12px]",

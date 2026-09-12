@@ -1,5 +1,6 @@
 import type {
   TemplateDefinition,
+  TemplateDesign,
   TemplatePage,
   TemplateSection,
   TemplateField,
@@ -356,7 +357,8 @@ function def(
   category: "services" | "restaurant" | "retail" | "professional" | "portfolio",
   style: TemplateStyle,
   defaultAccent: string,
-  opts: BaseOpts
+  opts: BaseOpts,
+  design?: TemplateDesign
 ): TemplateDefinition {
   return {
     id,
@@ -364,7 +366,7 @@ function def(
     description,
     categories: [category],
     rtlValidated: true,
-    style,
+    style: design ? { ...style, design } : style,
     colors: { defaultAccent },
     pages: buildPages(opts, id),
     screenshot: `/templates/${id}/screenshot.png`,
@@ -384,7 +386,25 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "fill" },
     },
     "#1E40AF",
-    { svcCount: 3, testimonials: 2, extras: { gallery: 3, faq: 4 } }
+    { svcCount: 3, testimonials: 2, extras: { gallery: 3, faq: 4 } },
+    {
+      palette: {
+        "--paper": "#f1ebe1",
+        "--ticket": "#fbf7ef",
+        "--ink": "#17191b",
+        "--steel": "#55626e",
+        "--signal": "#e4572e",
+        "--signal-soft": "#f2a183",
+        "--line": "#d8d1c3",
+        "--night": "#101214",
+      },
+      fonts: {
+        heading: "var(--font-barlow-condensed)",
+        body: "var(--font-barlow)",
+        mono: "var(--font-ibm-plex-mono)",
+      },
+      signature: "ticket cards + hard offset shadows + dotted leaders + marquee",
+    }
   ),
 
   def(
@@ -399,7 +419,24 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "bold", surface: "deep", headingFont: "sans", hero: "split-deep", accentRole: "edge" },
     },
     "#0F172A",
-    { svcCount: 4, testimonials: 0, extras: { gallery: 4, team: 3 } }
+    { svcCount: 4, testimonials: 0, extras: { gallery: 4, team: 3 } },
+    {
+      palette: {
+        "--vol-bg": "#0A0A0A",
+        "--vol-surface": "#141414",
+        "--vol-surface-light": "#1A1A1A",
+        "--vol-text": "#F5F5F5",
+        "--vol-muted": "#888888",
+        "--vol-accent": "#E8FF00",
+        "--vol-accent-hover": "#CCFF00",
+        "--vol-border": "#2A2A2A",
+      },
+      fonts: {
+        heading: "var(--font-space-grotesk)",
+        body: "var(--font-inter)",
+      },
+      signature: "text-stroke + neon accent + marquee + pill buttons",
+    }
   ),
 
   def(
@@ -414,7 +451,25 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "warm", surface: "light", headingFont: "serif", hero: "photo-bleed", accentRole: "fill" },
     },
     "#B45309",
-    { svcCount: 3, testimonials: 1, extras: { menu: 6, hours: true, gallery: 3 } }
+    { svcCount: 3, testimonials: 1, extras: { menu: 6, hours: true, gallery: 3 } },
+    {
+      palette: {
+        "--soot": "#161110",
+        "--coal": "#201a17",
+        "--embers": "#df5b32",
+        "--flame": "#f0a252",
+        "--herb": "#4a5531",
+        "--crema": "#f2e6d3",
+        "--line": "#3b2f27",
+        "--charred": "#7a2c14",
+      },
+      fonts: {
+        heading: "var(--font-fraunces)",
+        body: "var(--font-karla)",
+        mono: "var(--font-spline-sans-mono)",
+      },
+      signature: "charred gradient text + fire-readout + seal + dotted menu leaders",
+    }
   ),
 
   def(
@@ -429,7 +484,23 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "warm", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "edge" },
     },
     "#7C2D12",
-    { svcCount: 4, testimonials: 0, extras: { menu: 8, hours: true, faq: 5 } }
+    { svcCount: 4, testimonials: 0, extras: { menu: 8, hours: true, faq: 5 } },
+    {
+      palette: {
+        "--navy": "#0D1B2A",
+        "--navy-light": "#1B2D45",
+        "--cream": "#F0E6D3",
+        "--cream-light": "#FAF8F5",
+        "--gold": "#C8A96E",
+        "--gold-muted": "#A09880",
+        "--navy-border": "#2A3F5F",
+      },
+      fonts: {
+        heading: "var(--font-cormorant)",
+        body: "var(--font-lato)",
+      },
+      signature: "gold hairlines + Cormorant light + parallax quote",
+    }
   ),
 
   def(
@@ -444,7 +515,25 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "retail", surface: "light", headingFont: "sans", hero: "split-light", accentRole: "fill" },
     },
     "#15803D",
-    { svcCount: 3, testimonials: 0, extras: { gallery: 3, faq: 4, pricing: 3 } }
+    { svcCount: 3, testimonials: 0, extras: { gallery: 3, faq: 4, pricing: 3 } },
+    {
+      palette: {
+        "--ivory": "#f6f3ea",
+        "--ink": "#1f2620",
+        "--fern": "#2f4433",
+        "--clay": "#c07754",
+        "--moss": "#5e7861",
+        "--stem": "#a6b79c",
+        "--line": "#dcd6c4",
+        "--specimen": "#fdfbf3",
+      },
+      fonts: {
+        heading: "var(--font-spectral)",
+        body: "var(--font-instrument-sans)",
+        mono: "var(--font-space-mono)",
+      },
+      signature: "specimen herbarium labels + care tags + dot leaders",
+    }
   ),
 
   def(
@@ -459,7 +548,25 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "retail", surface: "light", headingFont: "sans", hero: "photo-bleed", accentRole: "edge" },
     },
     "#0E7490",
-    { svcCount: 2, testimonials: 1, extras: { gallery: 4, pricing: 3 } }
+    { svcCount: 2, testimonials: 1, extras: { gallery: 4, pricing: 3 } },
+    {
+      palette: {
+        "--clinic-bg": "#FAFBFC",
+        "--clinic-surface": "#F1F5F9",
+        "--clinic-card": "#FFFFFF",
+        "--clinic-text": "#1E293B",
+        "--clinic-muted": "#64748B",
+        "--clinic-teal": "#0891B2",
+        "--clinic-teal-dark": "#0E7490",
+        "--clinic-success": "#059669",
+        "--clinic-border": "#E2E8F0",
+      },
+      fonts: {
+        heading: "var(--font-plus-jakarta-sans)",
+        body: "var(--font-source-sans-3)",
+      },
+      signature: "12px radius cards + float badge + teal glow lift",
+    }
   ),
 
   def(
@@ -474,7 +581,27 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "edge" },
     },
     "#1F2937",
-    { svcCount: 3, testimonials: 1, extras: { pricing: 3, faq: 5, team: 3 } }
+    { svcCount: 3, testimonials: 1, extras: { pricing: 3, faq: 5, team: 3 } },
+    {
+      palette: {
+        "--paper": "#f4efe3",
+        "--parchment": "#fbf7ec",
+        "--navy": "#10232e",
+        "--mist": "#5f7d96",
+        "--brass": "#b08d4a",
+        "--brass-rule": "#a8873f",
+        "--line": "#d8cfbb",
+        "--coal": "#0b141d",
+        "--ledger-soft": "rgba(15, 33, 56, 0.05)",
+        "--ledger-deep": "rgba(15, 33, 56, 0.25)",
+      },
+      fonts: {
+        heading: "var(--font-serif2)",
+        body: "var(--font-mulish)",
+        mono: "var(--font-fragment-mono)",
+      },
+      signature: "ledger card + double rule + Fragment Mono stamps",
+    }
   ),
 
   def(
@@ -489,7 +616,26 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "bold", surface: "deep", headingFont: "sans", hero: "split-deep", accentRole: "fill" },
     },
     "#4338CA",
-    { svcCount: 4, testimonials: 0, extras: { pricing: 4, faq: 4, team: 1 } }
+    { svcCount: 4, testimonials: 0, extras: { pricing: 4, faq: 4, team: 1 } },
+    {
+      palette: {
+        "--iron-black": "#111111",
+        "--iron-surface": "#1A1A1A",
+        "--iron-lighter": "#222222",
+        "--iron-text": "#F5F5F5",
+        "--iron-muted": "#999999",
+        "--iron-amber": "#F59E0B",
+        "--iron-amber-dark": "#D97706",
+        "--iron-steel": "#64748B",
+        "--iron-border": "#333333",
+      },
+      fonts: {
+        heading: "var(--font-barlow-condensed)",
+        body: "var(--font-ibm-plex-sans)",
+        mono: "var(--font-ibm-plex-mono)",
+      },
+      signature: "stat-border + amber on black + service cards",
+    }
   ),
 
   def(
@@ -504,7 +650,24 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "creative", surface: "light", headingFont: "sans", hero: "split-light", accentRole: "edge" },
     },
     "#7C3AED",
-    { svcCount: 2, testimonials: 0, extras: { gallery: 6, team: 3 } }
+    { svcCount: 2, testimonials: 0, extras: { gallery: 6, team: 3 } },
+    {
+      palette: {
+        "--bone": "#edeae0",
+        "--ink": "#1d1d1d",
+        "--ash": "#777777",
+        "--red": "#a63a2c",
+        "--line": "#d4cfc2",
+        "--sheet": "#e2dfd4",
+        "--sheet-pill": "rgba(23, 23, 23, 0.55)",
+      },
+      fonts: {
+        heading: "var(--font-archivo)",
+        body: "var(--font-archivo)",
+        mono: "var(--font-mono)",
+      },
+      signature: "contact sheets + registration marks (.regs) + plate labels",
+    }
   ),
 
   def(
@@ -519,6 +682,21 @@ export const TEMPLATES: TemplateDefinition[] = [
       theme: { key: "creative", surface: "deep", headingFont: "sans", hero: "photo-bleed", accentRole: "fill" },
     },
     "#DB2777",
-    { svcCount: 3, testimonials: 2, extras: { gallery: 6, team: 3 } }
+    { svcCount: 3, testimonials: 2, extras: { gallery: 6, team: 3 } },
+    {
+      palette: {
+        "--warm-bg": "#F5F0EB",
+        "--warm-surface": "#E8E0D8",
+        "--warm-text": "#1A1A1A",
+        "--warm-muted": "#6B6B6B",
+        "--warm-accent": "#C4956A",
+        "--warm-border": "#D4CCC4",
+      },
+      fonts: {
+        heading: "var(--font-playfair-display)",
+        body: "var(--font-inter)",
+      },
+      signature: "asymmetric grids + Playfair + gold counters",
+    }
   ),
 ];
