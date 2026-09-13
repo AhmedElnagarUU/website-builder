@@ -299,6 +299,8 @@
     "sign_up": "Create account",
     "sign_out": "Sign out",
     "language_switch_label": "Switch language",
+    "menu": "Menu",
+    "close": "Close",
     "upgrade": "Upgrade"
   },
   "pricing": {

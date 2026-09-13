@@ -56,6 +56,7 @@ export default async function EditorPage({
       status={site.status}
       publishedSnapshot={site.publishedSnapshot}
       hasUnpublishedChanges={site.hasUnpublishedChanges}
+      slug={site.slug ?? null}
     />
   );
 }

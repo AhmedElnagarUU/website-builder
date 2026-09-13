@@ -1,195 +1,363 @@
+Starting Next.js dev server...
 
-> website-version2@0.1.0 dev
-> next dev
+> monomastic@0.1.0 dev
+> next dev -p 3001
 
    ▲ Next.js 15.3.3
-   - Local:        http://localhost:3000
-   - Network:      http://192.168.1.3:3000
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.205.33:3001
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 10s
+ ✓ Ready in 7.2s
  ○ Compiling /api/health ...
- ✓ Compiled /api/health in 5.7s (366 modules)
- GET /api/health 200 in 7702ms
+ ✓ Compiled /api/health in 10s (366 modules)
+ GET /api/health 200 in 13761ms
  ○ Compiling /middleware ...
- ✓ Compiled /middleware in 785ms (127 modules)
- ○ Compiling /live/[slug]/[lang] ...
- ✓ Compiled /live/[slug]/[lang] in 6s (990 modules)
- GET /live/pharamcy-0581e0/en 200 in 10310ms
- GET /live/does-not-exist-xyz/en 404 in 213ms
- GET /live/pharamcy-0581e0/en 200 in 652ms
+ ✓ Compiled /middleware in 2.1s (127 modules)
+ ○ Compiling /preview/[templateId]/[[...slug]] ...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+ ✓ Compiled /preview/[templateId]/[[...slug]] in 19.1s (1247 modules)
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /preview/modern-studio 200 in 24527ms
+ GET /preview/consultant-page 200 in 250ms
+ GET /preview/bistro-menu 200 in 176ms
+ GET /preview/simple-shop 200 in 283ms
+ GET /preview/clean-portfolio 200 in 242ms
+ GET /preview/modern-studio 200 in 187ms
+ GET /preview/modern-studio?locale=ar 200 in 172ms
+ GET /preview/consultant-page 200 in 165ms
+ GET /preview/simple-shop?locale=ar 200 in 171ms
+ GET /preview/modern-studio 200 in 1109ms
+ GET /preview/modern-studio 200 in 315ms
+ GET /preview/modern-studio/about 200 in 275ms
+ GET /preview/modern-studio/services 200 in 256ms
+ GET /preview/consultant-page/about 200 in 331ms
+ GET /preview/consultant-page/services 200 in 275ms
+ GET /preview/bistro-menu/about 200 in 282ms
+ GET /preview/bistro-menu/services 200 in 366ms
+ GET /preview/simple-shop/about 200 in 288ms
+ GET /preview/simple-shop/services 200 in 366ms
+ GET /preview/clean-portfolio/about 200 in 262ms
+ GET /preview/clean-portfolio/services 200 in 263ms
+ GET /preview/consultant-page/about 200 in 257ms
+ GET /preview/consultant-page/services 200 in 227ms
+ GET /preview/modern-studio/services 200 in 240ms
+ GET /preview/clean-portfolio/about 200 in 230ms
+ GET /preview/simple-shop/services 200 in 240ms
  ○ Compiling /[locale] ...
- ✓ Compiled /live/[slug]/[lang]/[pageSlug] in 28.6s (1642 modules)
- GET /live/pharamcy-0581e0/ar/about 200 in 32405ms
- GET /en 307 in 38121ms
+ ✓ Compiled /[locale] in 34.2s (1707 modules)
+ GET /en 200 in 44459ms
+ GET /favicon.ico 404 in 830ms
+ GET /en 200 in 1264ms
+ GET /favicon.ico 404 in 1143ms
+ GET /ar 200 in 935ms
+ GET /en 200 in 1343ms
+ GET /ar 200 in 921ms
+ GET /en 200 in 874ms
+ GET /ar 200 in 513ms
+ GET /en 200 in 713ms
+ GET /ar 200 in 554ms
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /preview/modern-studio 200 in 3169ms
+ GET /favicon.ico 404 in 642ms
+ GET /preview/bistro-menu 200 in 560ms
+ GET /preview/consultant-page 200 in 835ms
+ GET /preview/simple-shop 200 in 818ms
+ GET /preview/clean-portfolio 200 in 619ms
+ GET /preview/classic-services 200 in 1659ms
+ GET /preview/warm-kitchen 200 in 1069ms
+ GET /preview/product-focus 200 in 663ms
+ GET /preview/professional-profile 200 in 347ms
+ GET /preview/visual-showcase 200 in 363ms
+ ○ Compiling /api/health ...
+ ✓ Compiled /api/health in 6.2s (1256 modules)
+ GET /api/health 200 in 7081ms
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /preview/modern-studio/about 200 in 1911ms
+ GET /preview/modern-studio/services 200 in 246ms
+ GET /preview/consultant-page/about 200 in 182ms
+ GET /preview/consultant-page/services 200 in 269ms
+ GET /preview/clean-portfolio/about 200 in 285ms
+ GET /preview/clean-portfolio/services 200 in 282ms
+ GET /api/health 200 in 712ms
+ GET /en 200 in 7281ms
+ GET /ar 200 in 1053ms
+ ○ Compiling /[locale]/pricing ...
+ ✓ Compiled /[locale]/pricing in 13.3s (1733 modules)
+ GET /en/pricing 200 in 14978ms
+ ✓ Compiled in 2.2s (471 modules)
+ ✓ Compiled in 1174ms (471 modules)
+ ✓ Compiled in 10.3s (471 modules)
+ GET /en 307 in 4235ms
  ○ Compiling /[locale]/dashboard ...
- ✓ Compiled /[locale]/dashboard in 3.8s (1639 modules)
- GET /en/dashboard 200 in 12810ms
- GET /favicon.ico 404 in 539ms
- ✓ Compiled in 2.4s (423 modules)
- GET /en/dashboard 200 in 887ms
+ ✓ Compiled /[locale]/dashboard in 18.2s (1730 modules)
+ GET /en/dashboard 200 in 30527ms
  ○ Compiling /[locale]/dashboard/templates ...
- ✓ Compiled /[locale]/dashboard/templates in 2.8s (1551 modules)
- GET /en/dashboard/templates 200 in 8444ms
- GET /en/dashboard 200 in 1842ms
- ○ Compiling /api/sites ...
- ✓ Compiled /api/sites in 4s (1570 modules)
- POST /api/sites 201 in 9227ms
- ○ Compiling /[locale]/create/business-info ...
- ✓ Compiled /[locale]/create/business-info in 5.8s (1594 modules)
- GET /en/create/business-info?site=6a994a1e959a07b37277cc6e 200 in 11461ms
- GET /en/create/business-info?site=6a994a1e959a07b37277cc6e 200 in 143ms
- ○ Compiling /api/sites/[siteId]/business-info ...
- ✓ Compiled /api/sites/[siteId]/business-info in 1591ms (1597 modules)
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 4389ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 5493ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 48ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 31ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 40ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 32ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 43ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 32ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 125ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 34ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 28ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 52ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 33ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 31ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 44ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 40ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 27ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 38ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 87ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 32ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 29ms
- ○ Compiling /[locale]/create/templates ...
- ✓ Compiled /[locale]/create/templates in 3.5s (1606 modules)
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 3103ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 3964ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 39ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 52ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 63ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 46ms
- GET /en/create/templates?site=6a994a1e959a07b37277cc6e 200 in 9348ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/business-info 200 in 155ms
- GET /en/create/templates?site=6a994a1e959a07b37277cc6e 200 in 272ms
- ○ Compiling /api/sites/[siteId]/template ...
- ✓ Compiled /api/sites/[siteId]/template in 1366ms (1609 modules)
- PATCH /api/sites/6a994a1e959a07b37277cc6e/template 200 in 5312ms
- ○ Compiling /[locale]/create/language ...
- ✓ Compiled /[locale]/create/language in 1604ms (1618 modules)
- GET /en/create/language?site=6a994a1e959a07b37277cc6e 200 in 6661ms
- GET /en/create/language?site=6a994a1e959a07b37277cc6e 200 in 143ms
- ○ Compiling /api/sites/[siteId]/languages ...
- ✓ Compiled /api/sites/[siteId]/languages in 2.1s (1621 modules)
- PATCH /api/sites/6a994a1e959a07b37277cc6e/languages 200 in 5733ms
- PATCH /api/sites/6a994a1e959a07b37277cc6e/languages 200 in 2935ms
- ○ Compiling /[locale]/create/generating ...
- ✓ Compiled /[locale]/create/generating in 1844ms (1633 modules)
- GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 6424ms
- GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 99ms
- GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 101ms
- GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 84ms
- ○ Compiling /api/sites/[siteId]/generation-status ...
- ✓ Compiled /api/sites/[siteId]/generation-status in 6.5s (1647 modules)
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 9794ms
- POST /api/sites/6a994a1e959a07b37277cc6e/generate 202 in 9906ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 184ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 80ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 26ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 38ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 33ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 38ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 60ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 43ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 38ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 85ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 60ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 54ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 45ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 37ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 37ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 61ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 40ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 35ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 37ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 78ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 35ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 58ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 58ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 44ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 876ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 44ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 54ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 42ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 33ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 52ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 60ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 45ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 54ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 29ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 39ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 53ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 27ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 28ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 36ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 42ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 47ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 81ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 41ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 42ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 49ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 35ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 43ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 52ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 45ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 53ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 51ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 42ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 51ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 40ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 62ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 48ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 34ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 51ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 47ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 48ms
- GET /en/create/generating?site=6a994a1e959a07b37277cc6e 200 in 2364ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 738ms
- POST /api/sites/6a994a1e959a07b37277cc6e/generate 409 in 79ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 92ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 173ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 75ms
-runGeneration: site 6a994a1e959a07b37277cc6e completed in 169971ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 67ms
- GET /api/sites/6a994a1e959a07b37277cc6e/generation-status 200 in 33ms
+ ✓ Compiled /[locale]/dashboard/templates in 6.8s (1744 modules)
+ GET /en/dashboard 200 in 4541ms
+ GET /en/dashboard/templates 200 in 18616ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 18s (1734 modules)
+ GET /templates/bistro-menu/screenshot.png 404 in 21377ms
+ GET /templates/classic-services/screenshot.png 404 in 21378ms
+ GET /templates/clean-portfolio/screenshot.png 404 in 21361ms
+ GET /templates/modern-studio/screenshot.png 404 in 21350ms
+ GET /templates/product-focus/screenshot.png 404 in 21337ms
+ GET /templates/consultant-page/screenshot.png 404 in 21360ms
+ GET /templates/professional-profile/screenshot.png 404 in 670ms
+ GET /templates/simple-shop/screenshot.png 404 in 666ms
+ GET /templates/visual-showcase/screenshot.png 404 in 664ms
+ GET /templates/warm-kitchen/screenshot.png 404 in 223ms
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /preview/classic-services 200 in 2078ms
+ GET /preview/product-focus 200 in 372ms
+ GET /preview/warm-kitchen 200 in 355ms
+ GET /en/dashboard 200 in 2974ms
  ○ Compiling /[locale]/sites/[siteId]/editor ...
- ✓ Compiled /[locale]/sites/[siteId]/editor in 33.7s (1877 modules)
- GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 49214ms
- GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 336ms
- GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 415ms
- ○ Compiling /api/sites/[siteId]/content ...
- ✓ Compiled /api/sites/[siteId]/content in 6s (1861 modules)
- PATCH /api/sites/6a994a1e959a07b37277cc6e/content 200 in 11758ms
- ○ Compiling /api/sites/[siteId]/publish ...
- ✓ Compiled /api/sites/[siteId]/publish in 7.8s (1877 modules)
- ✓ Compiled in 3.5s (560 modules)
- GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 1757ms
- GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 169ms
- POST /api/sites/6a994a1e959a07b37277cc6e/publish 200 in 14924ms
- GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 126ms
- ○ Compiling /live/[slug]/[lang] ...
- ✓ Compiled /live/[slug]/[lang] in 2.2s (1378 modules)
- GET /live/digitel-produc-creation-eb9051/localhost:3000 404 in 3393ms
+ ✓ Compiled /[locale]/sites/[siteId]/editor in 12.5s (1982 modules)
+ GET /preview/warm-kitchen 200 in 4024ms
+ GET /preview/classic-services 200 in 4024ms
+ GET /preview/product-focus 200 in 4023ms
+ GET /en/dashboard 200 in 4179ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 22655ms
  ○ Compiling /live/[slug] ...
- ✓ Compiled /live/[slug] in 4.9s (1910 modules)
- GET /live/digitel-produc-creation-eb9051/localhost:3000 200 in 694ms
- GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 2901ms
- GET /live/digitel-produc-creation-eb9051 307 in 6521ms
- GET /live/digitel-produc-creation-eb9051/en 200 in 628ms
+ ✓ Compiled /live/[slug] in 5.2s (1984 modules)
+ GET /preview/warm-kitchen 200 in 5811ms
+ GET /preview/classic-services 200 in 5819ms
+ GET /preview/product-focus 200 in 5823ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 5840ms
+ GET /live/digitel-produc-creation-ffa824 307 in 14777ms
+ ○ Compiling /live/[slug]/[lang] ...
+ ✓ Compiled /live/[slug]/[lang] in 7.1s (1995 modules)
+ GET /preview/classic-services 200 in 3511ms
+ GET /preview/product-focus 200 in 3514ms
+ GET /preview/warm-kitchen 200 in 3518ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 3607ms
+ GET /live/digitel-produc-creation-ffa824/en 200 in 15199ms
+ GET /live/digitel-produc-creation-ffa824/en 200 in 410ms
+ GET /live/digitel-produc-creation-ffa824/ar 200 in 156ms
+ ✓ Compiled in 13.1s (597 modules)
+ ✓ Compiled in 3s (597 modules)
+ ✓ Compiled in 3s (597 modules)
+ GET /preview/product-focus 200 in 200ms
+ GET /preview/classic-services 200 in 102ms
+ GET /live/digitel-produc-creation-ffa824/ar 200 in 220ms
+ ✓ Compiled in 4.9s (597 modules)
+ ✓ Compiled in 1045ms (597 modules)
+ ✓ Compiled in 1118ms (597 modules)
+ GET /preview/classic-services 200 in 101ms
+ GET /preview/classic-services 200 in 89ms
+ ✓ Compiled in 819ms (597 modules)
+ ✓ Compiled in 1372ms (597 modules)
+ ✓ Compiled in 916ms (597 modules)
+ ✓ Compiled in 737ms (597 modules)
+ ✓ Compiled in 895ms (597 modules)
+ ✓ Compiled in 717ms (597 modules)
+ ✓ Compiled in 906ms (597 modules)
+ ✓ Compiled in 706ms (597 modules)
+ ✓ Compiled in 1017ms (597 modules)
+ ✓ Compiled in 3s (597 modules)
+ ✓ Compiled in 1079ms (597 modules)
+ ✓ Compiled in 2.5s (597 modules)
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 2230ms
+ GET /live/digitel-produc-creation-ffa824/ar 200 in 683ms
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /preview/warm-kitchen 200 in 1614ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 12.7s (1983 modules)
+ GET /templates/classic-services/screenshot.png 404 in 14665ms
+ GET /templates/modern-studio/screenshot.png 404 in 14653ms
+ GET /templates/warm-kitchen/screenshot.png 404 in 14651ms
+ GET /templates/bistro-menu/screenshot.png 404 in 14650ms
+ GET /templates/simple-shop/screenshot.png 404 in 14649ms
+ GET /templates/product-focus/screenshot.png 404 in 14649ms
+ GET /templates/professional-profile/screenshot.png 404 in 789ms
+ GET /templates/consultant-page/screenshot.png 404 in 811ms
+ GET /templates/visual-showcase/screenshot.png 404 in 805ms
+ GET /templates/clean-portfolio/screenshot.png 404 in 810ms
+Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone
+    at PreviewSite (src\features\template-preview\components\TemplatePreviewShell.tsx:43:27)
+  41 |   setLocale: (locale: Locale) => void;
+  42 | }) {
+> 43 |   const t = useTranslations();
+     |                           ^
+  44 |
+  45 |   const demo = useMemo(() => buildTemplateDemo(template, locale), [template, locale]);
+  46 | {
+  code: 'ENVIRONMENT_FALLBACK',
+  originalMessage: 'There is no `timeZone` configured, this can lead to markup mismatches caused by environment differences. Consider adding a global default: https://next-intl.dev/docs/configuration#time-zone'
+}
+ GET /preview/warm-kitchen 200 in 8496ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 8597ms
+ ✓ Compiled in 8.4s (600 modules)
+ ✓ Compiled in 4.1s (600 modules)
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 1725ms
+ ✓ Compiled in 4.8s (600 modules)
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 286ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 261ms
+ ✓ Compiled in 3s (600 modules)
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 237ms
+ ✓ Compiled in 1368ms (600 modules)
+ GET /preview/warm-kitchen 200 in 195ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 305ms
+ ✓ Compiled in 1500ms (600 modules)
+ ✓ Compiled in 2.3s (600 modules)
+ ✓ Compiled in 1621ms (600 modules)
+ GET /preview/warm-kitchen 200 in 1208ms
+ ✓ Compiled in 1710ms (600 modules)
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 170ms
+ GET /preview/warm-kitchen 200 in 64ms
+ GET /preview/warm-kitchen 200 in 95ms
+ GET /preview/warm-kitchen 200 in 99ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 150ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 132ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 119ms
+ ✓ Compiled in 1024ms (600 modules)
+ GET /preview/warm-kitchen 200 in 86ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 161ms
+ ✓ Compiled in 870ms (600 modules)
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 169ms
+ GET /preview/warm-kitchen 200 in 105ms
+ ✓ Compiled in 10.9s (600 modules)
+ ✓ Compiled in 2.7s (600 modules)
+ GET /preview/warm-kitchen 200 in 685ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 1443ms
+ GET /preview/warm-kitchen 200 in 130ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 134ms
+ ✓ Compiled in 2.9s (597 modules)

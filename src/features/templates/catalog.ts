@@ -294,9 +294,13 @@ function buildPages(opts: BaseOpts, templateId: string): TemplatePage[] {
   const hero = buildHero(templateId);
   const testi = buildTestimonials(opts.testimonials);
   const cta = buildCta();
-  const homeSections: TemplateSection[] = [hero];
-  if (testi) homeSections.push(testi);
-  homeSections.push(cta);
+  const homeSections: TemplateSection[] = [
+    hero,
+    buildServices(opts.svcCount),
+    buildAbout(),
+    ...(testi ? [testi] : []),
+    cta,
+  ];
 
   const extraPages: TemplatePage[] = [];
   if (opts.extras.menu) extraPages.push(buildMenu(opts.extras.menu));
@@ -330,14 +334,14 @@ function buildPages(opts: BaseOpts, templateId: string): TemplatePage[] {
     slug: "about",
     name: NAMES.about,
     nav: true,
-    sections: [buildAbout()],
+    sections: [buildAbout(), buildCta()],
   });
   pages.push({
     id: "services",
     slug: "services",
     name: NAMES.services,
     nav: true,
-    sections: [buildServices(opts.svcCount)],
+    sections: [buildServices(opts.svcCount), buildCta()],
   });
   pages.push({
     id: "contact",

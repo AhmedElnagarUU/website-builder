@@ -15,6 +15,7 @@ import { LanguageTabs } from "./LanguageTabs";
 import { PageTabs } from "./PageTabs";
 import { LiveStatusIndicator } from "./LiveStatusIndicator";
 import { PublishControl } from "@/features/publishing/components/PublishControl";
+import { nextUrl } from "@/features/publishing/live-url";
 import { dirFor } from "@/shared/i18n/config";
 import { sectionForFieldKey, findImageSlotInTemplate, homePage } from "@/features/templates/pages";
 import { setContentField, localeContentOf } from "@/features/sites/lib/content";
@@ -34,6 +35,25 @@ interface EditingTarget {
   fieldKey: string;
 }
 
+function EyeIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
 export function EditorShell({
   siteId,
   appLocale,
@@ -47,6 +67,7 @@ export function EditorShell({
   status,
   publishedSnapshot,
   hasUnpublishedChanges,
+  slug,
 }: {
   siteId: string;
   appLocale: Locale;
@@ -60,6 +81,7 @@ export function EditorShell({
   status: SiteStatus;
   publishedSnapshot: PublishedSnapshot | null;
   hasUnpublishedChanges: boolean;
+  slug: string | null;
 }) {
   return (
     <SaveProvider siteId={siteId}>
@@ -76,6 +98,7 @@ export function EditorShell({
         status={status}
         publishedSnapshot={publishedSnapshot}
         hasUnpublishedChanges={hasUnpublishedChanges}
+        slug={slug}
       />
     </SaveProvider>
   );
@@ -94,6 +117,7 @@ function EditorContent({
   status,
   publishedSnapshot,
   hasUnpublishedChanges,
+  slug,
 }: {
   siteId: string;
   appLocale: Locale;
@@ -107,6 +131,7 @@ function EditorContent({
   status: SiteStatus;
   publishedSnapshot: PublishedSnapshot | null;
   hasUnpublishedChanges: boolean;
+  slug: string | null;
 }) {
   const t = useTranslations();
   const router = useRouter();
@@ -252,6 +277,19 @@ function EditorContent({
             onDone={() => router.refresh()}
           />
           <RegenerateSiteControl siteId={siteId} onDone={() => router.refresh()} />
+          {status === "published" && publishedSnapshot !== null && slug && (
+            <a
+              href={nextUrl(slug)}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={t("publish.open_live")}
+              aria-label={t("publish.open_live")}
+              className="inline-flex items-center gap-1.5 rounded-full border border-ink/30 bg-paper-2 px-3 py-1 text-xs font-medium text-ink transition-colors hover:border-ink"
+            >
+              <EyeIcon />
+              <span className="hidden lg:inline">{t("publish.open_live")}</span>
+            </a>
+          )}
           <LiveStatusIndicator status={status} publishedSnapshot={publishedSnapshot} />
           <PublishControl
             siteId={siteId}
