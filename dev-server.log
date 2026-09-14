@@ -361,3 +361,8 @@ Error: ENVIRONMENT_FALLBACK: There is no `timeZone` configured, this can lead to
  GET /preview/warm-kitchen 200 in 130ms
  GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 134ms
  ✓ Compiled in 2.9s (597 modules)
+ ✓ Compiled in 1522ms (597 modules)
+ GET /preview/warm-kitchen 200 in 802ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 723ms
+ GET /preview/warm-kitchen 200 in 68ms
+ GET /en/sites/6a994a1e959a07b37277cc6e/editor 200 in 137ms
