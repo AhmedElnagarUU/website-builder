@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/features/auth/lib/session";
 import {
+  enforceTrialStatus,
   getAccountStatus,
   resolveSubscriptionForUser,
+  restoreAccount,
 } from "../repository";
 import { getPlanById } from "../plans";
 import { checkLimit } from "./checkLimit";
@@ -58,8 +60,20 @@ export async function withEntitlement<THandler extends (ctx: EntitlementGranted)
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
 
+  // Lazy trial enforcement: if the user's trial just expired, suspend
+  // their account immediately. Any subsequent checkLimit call will
+  // return account_suspended (403).
+  await enforceTrialStatus(session.user.id);
+
   const subscription = await resolveSubscriptionForUser(session.user.id);
   const accountStatus = await getAccountStatus(session.user.id);
+
+  // If the user's subscription is active (paid) but their account is
+  // suspended from trial expiry, restore access automatically.
+  if (accountStatus === "suspended" && subscription.status === "active") {
+    await restoreAccount(session.user.id);
+  }
+
   const plan = getPlanById(subscription.planId);
   if (!plan) {
     return NextResponse.json(

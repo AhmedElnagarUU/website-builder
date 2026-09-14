@@ -9,55 +9,137 @@ import { Input } from "@/shared/ui/Input";
 import { Label } from "@/shared/ui/Label";
 import { Card } from "@/shared/ui/Card";
 import { SectionHead } from "@/shared/ui/SectionHead";
+import { validateAndNormalizePhone } from "@/features/auth/lib/phone";
+
+type Step = "phone" | "verify" | "account";
 
 export function SignUpForm({ locale }: { locale: string }) {
   const t = useTranslations();
   const router = useRouter();
+
+  const [step, setStep] = useState<Step>("phone");
+  const [phone, setPhone] = useState("");
+  const [otp, setOtp] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [sendingOtp, setSendingOtp] = useState(false);
 
-  function clientValidate(): string | null {
-    if (password.length < 8) {
-      return t("auth.hint.password");
-    }
-    if (password !== confirm) {
-      return t("auth.error.password_mismatch");
-    }
+  function clientValidatePhone(): string | null {
+    if (!phone.trim()) return t("auth.field.phone");
+    const normalized = validateAndNormalizePhone(phone);
+    if (!normalized) return t("auth.error.invalid_phone");
     return null;
   }
 
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setError(null);
+  function clientValidateAccount(): string | null {
+    if (password.length < 8) return t("auth.hint.password");
+    if (password !== confirm) return t("auth.error.password_mismatch");
+    return null;
+  }
 
-    const validationError = clientValidate();
-    if (validationError) {
-      setError(validationError);
+  async function onSendOtp(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    const err = clientValidatePhone();
+    if (err) { setError(err); return; }
+
+    setSendingOtp(true);
+    try {
+      const { error: otpError } = await authClient.phoneNumber.sendOtp({
+        phoneNumber: phone,
+      });
+      if (otpError) {
+        setError(otpError.message || t("common.error.generic"));
+        setSendingOtp(false);
+        return;
+      }
+      setStep("verify");
+      setSendingOtp(false);
+    } catch {
+      setError(t("common.error.generic"));
+      setSendingOtp(false);
+    }
+  }
+
+  async function onVerifyOtp(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+    if (!otp || otp.length < 6) {
+      setError(t("auth.error.otp_required"));
       return;
     }
 
     setLoading(true);
-    const { error: authError } = await authClient.signUp.email({
-      email,
-      password,
-      name,
-    });
-
-    if (authError) {
-      const message = authError.message?.toLowerCase().includes("already")
-        ? t("auth.error.email_exists")
-        : t("common.error.generic");
-      setError(message);
+    try {
+      const { error: verifyError } = await authClient.phoneNumber.verify({
+        phoneNumber: phone,
+        code: otp,
+      });
+      if (verifyError) {
+        setError(verifyError.message || t("auth.error.otp_invalid"));
+        setLoading(false);
+        return;
+      }
+      // Check phone uniqueness via our API
+      const checkRes = await fetch("/api/auth/check-phone", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phoneNumber: phone }),
+      });
+      const check = await checkRes.json();
+      if (check.available === false) {
+        setError(t("auth.error.phone_registered"));
+        setLoading(false);
+        return;
+      }
+      setStep("account");
       setLoading(false);
-      return;
+    } catch {
+      setError(t("common.error.generic"));
+      setLoading(false);
     }
+  }
 
-    router.push(`/${locale}/dashboard`);
-    router.refresh();
+  async function onSignUp(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setError(null);
+
+    const accountErr = clientValidateAccount();
+    if (accountErr) { setError(accountErr); return; }
+
+    setLoading(true);
+    try {
+      const { error: authError } = await authClient.signUp.email({
+        email,
+        password,
+        name,
+      });
+      if (authError) {
+        const message = authError.message?.toLowerCase().includes("already")
+          ? t("auth.error.email_exists")
+          : t("common.error.generic");
+        setError(message);
+        setLoading(false);
+        return;
+      }
+      // Store the verified phone identity now that the account exists.
+      // The /api/auth/store-phone endpoint reads the session for userId
+      // and uses the phone number's unique index to prevent races.
+      await fetch("/api/auth/store-phone", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phoneNumber: phone }),
+      });
+      router.push(`/${locale}/dashboard`);
+      router.refresh();
+    } catch {
+      setError(t("common.error.generic"));
+      setLoading(false);
+    }
   }
 
   return (
@@ -67,70 +149,145 @@ export function SignUpForm({ locale }: { locale: string }) {
           <span>{t("app.name")}</span>
           <span className="mono-display text-lg text-mono-red">✱</span>
         </div>
-        <SectionHead title={t("auth.sign_up.title")} />
-        <form onSubmit={onSubmit} className="flex flex-col gap-4">
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="name">{t("auth.field.name")}</Label>
-            <Input
-              id="name"
-              name="name"
-              type="text"
-              autoComplete="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="email">{t("auth.field.email")}</Label>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="password">{t("auth.field.password")}</Label>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="new-password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <p className="text-xs text-ink-3">{t("auth.hint.password")}</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <Label htmlFor="confirm">{t("auth.field.password_confirm")}</Label>
-            <Input
-              id="confirm"
-              name="confirm"
-              type="password"
-              autoComplete="new-password"
-              required
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-            />
-          </div>
-          {error && (
-            <p role="alert" className="text-sm font-medium text-mono-red">
-              {error}
+
+        {step === "phone" && (
+          <>
+            <SectionHead title={t("auth.sign_up.title")} />
+            <form onSubmit={onSendOtp} className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="phone">{t("auth.field.phone")}</Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+1 234 567 8900"
+                  autoComplete="tel"
+                  required
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+                <p className="text-xs text-ink-3">
+                  {t("auth.hint.phone")}
+                </p>
+              </div>
+              {error && (
+                <p role="alert" className="text-sm font-medium text-mono-red">
+                  {error}
+                </p>
+              )}
+              <Button type="submit" disabled={sendingOtp}>
+                {sendingOtp ? t("common.loading") : t("auth.action.send_code")}
+              </Button>
+            </form>
+          </>
+        )}
+
+        {step === "verify" && (
+          <>
+            <SectionHead title={t("auth.verify_phone_title")} />
+            <p className="font-serif2 text-sm text-ink-2">
+              {t("auth.verify_phone_body", { phone })}
             </p>
-          )}
-          <Button type="submit" disabled={loading} className="mt-1">
-            {loading ? t("common.loading") : t("auth.action.sign_up")}
-          </Button>
-          <p className="text-center text-sm text-ink-3">
-            <a href={`/${locale}/auth/sign-in`} className="underline hover:text-mono-red">
-              {t("auth.link.to_sign_in")}
-            </a>
-          </p>
-        </form>
+            <form onSubmit={onVerifyOtp} className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="otp">{t("auth.field.otp")}</Label>
+                <Input
+                  id="otp"
+                  name="otp"
+                  type="text"
+                  inputMode="numeric"
+                  placeholder="000000"
+                  maxLength={6}
+                  required
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value)}
+                />
+              </div>
+              {error && (
+                <p role="alert" className="text-sm font-medium text-mono-red">
+                  {error}
+                </p>
+              )}
+              <Button type="submit" disabled={loading}>
+                {loading ? t("common.loading") : t("auth.action.verify")}
+              </Button>
+              <button
+                type="button"
+                onClick={() => setStep("phone")}
+                className="text-center text-sm text-ink-2 underline hover:text-mono-red"
+              >
+                {t("auth.link.change_phone")}
+              </button>
+            </form>
+          </>
+        )}
+
+        {step === "account" && (
+          <>
+            <SectionHead title={t("auth.sign_up.title")} />
+            <p className="font-serif2 text-sm text-ink-2">
+              {t("auth.phone_verified", { phone })}
+            </p>
+            <form onSubmit={onSignUp} className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="name">{t("auth.field.name")}</Label>
+                <Input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="email">{t("auth.field.email")}</Label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="password">{t("auth.field.password")}</Label>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="new-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <p className="text-xs text-ink-3">{t("auth.hint.password")}</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="confirm">{t("auth.field.password_confirm")}</Label>
+                <Input
+                  id="confirm"
+                  name="confirm"
+                  type="password"
+                  autoComplete="new-password"
+                  required
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                />
+              </div>
+              {error && (
+                <p role="alert" className="text-sm font-medium text-mono-red">
+                  {error}
+                </p>
+              )}
+              <Button type="submit" disabled={loading} className="mt-1">
+                {loading ? t("common.loading") : t("auth.action.sign_up")}
+              </Button>
+            </form>
+          </>
+        )}
       </div>
     </Card>
   );

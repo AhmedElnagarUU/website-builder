@@ -1,5 +1,6 @@
 import { betterAuth, BetterAuthOptions } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { phoneNumber } from "better-auth/plugins";
 import { getDb } from "@/shared/db/database";
 
 const secret = process.env.BETTER_AUTH_SECRET;
@@ -12,7 +13,8 @@ if (!url) {
   throw new Error("BETTER_AUTH_URL is not defined in environment variables");
 }
 
-let authInstance: ReturnType<typeof betterAuth> | null = null;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let authInstance: any = null;
 
 export async function getAuth() {
   if (authInstance) return authInstance;
@@ -25,6 +27,18 @@ export async function getAuth() {
     baseURL: url,
     secret,
   };
-  authInstance = betterAuth(options);
+  authInstance = betterAuth({
+    ...options,
+    plugins: [
+      phoneNumber({
+        sendOTP: async ({ phoneNumber: phone, code }) => {
+          // DEV: log OTP to console.
+          // PROD: replace with a real SMS provider (Twilio, SNS, etc.).
+          console.log(`[SMS] To ${phone}: OTP is ${code}`);
+        },
+        requireVerification: false,
+      }),
+    ],
+  });
   return authInstance;
 }

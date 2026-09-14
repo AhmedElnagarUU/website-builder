@@ -28,4 +28,9 @@ export async function ensureIndexes(db: Db): Promise<void> {
       { providerEventId: 1 },
       { unique: true, sparse: true }
     );
+
+  // Phone identity uniqueness — prevents duplicate trial-eligible accounts
+  await db
+    .collection("phoneIdentities")
+    .createIndex({ phoneNumber: 1 }, { unique: true });
 }

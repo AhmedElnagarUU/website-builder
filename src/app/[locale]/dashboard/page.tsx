@@ -3,6 +3,7 @@ import { requireSession } from "@/features/auth/lib/session";
 import { listSitesByOwner, toSiteDTO } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
 import { getSiteAnalytics } from "@/features/analytics/api/get-site-analytics";
+import { getTrialStatus, getAccountStatus } from "@/features/monetization/repository";
 import { CreateSiteButton } from "@/features/dashboard/components/CreateSiteButton";
 import { SiteCard } from "@/features/dashboard/components/SiteCard";
 import { SiteAnalyticsPanel } from "@/features/dashboard/components/SiteAnalyticsPanel";
@@ -34,6 +35,11 @@ export default async function DashboardPage({
   setRequestLocale(locale);
   const t = await getTranslations("dashboard");
   const session = await requireSession(locale);
+
+  const [trial, accountStatus] = await Promise.all([
+    getTrialStatus(session.user.id),
+    getAccountStatus(session.user.id),
+  ]);
 
   const sites = (await listSitesByOwner(session.user.id)).map(toSiteDTO);
   sites.sort(
@@ -90,6 +96,43 @@ export default async function DashboardPage({
           {cards.length > 0 && <CreateSiteButton />}
         </div>
       </div>
+
+      {accountStatus === "suspended" && trial.hasTrial && trial.isExpired && (
+        <div className="mb-6 rounded-[4px] border-2 border-mono-red bg-paper-2 p-4 shadow-mono">
+          <p className="mono-display text-lg font-semibold text-mono-red">
+            {t("trial.suspended_title")}
+          </p>
+          <p className="mt-1 font-serif2 text-sm text-ink-2">
+            {t("trial.suspended_body")}
+          </p>
+          <div className="mt-3 flex gap-3">
+            <a
+              href={`/${locale}/pricing`}
+              className="mono-display inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink bg-mono-red px-4 py-2 text-lg font-semibold text-paper transition-colors hover:bg-ink hover:text-paper"
+            >
+              {t("trial.upgrade")}
+            </a>
+          </div>
+        </div>
+      )}
+
+      {trial.isActive && trial.hasTrial && (
+        <div className="mb-6 mono-display flex items-center justify-between rounded-[4px] border-2 border-ink bg-paper-2 px-4 py-2 text-sm text-ink shadow-mono">
+          <span>
+            {t("trial.remaining", {
+              count: Math.ceil(
+                (trial.expiresAt!.getTime() - Date.now()) / (1000 * 60 * 60 * 24)
+              ),
+            })}
+          </span>
+          <a
+            href={`/${locale}/pricing`}
+            className="text-sm font-semibold text-mono-red underline hover:text-ink"
+          >
+            {t("trial.upgrade")}
+          </a>
+        </div>
+      )}
 
       {cards.length === 0 ? (
         <div className="rounded-[4px] border-[1.5px] border-ink bg-paper-2 p-10 text-center shadow-mono">

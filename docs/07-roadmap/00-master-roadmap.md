@@ -77,17 +77,26 @@ The system can be safely deployed and operated: owner-scoped access on all route
 ## Dependency Graph
 
 ```
-EPIC-17 (MVP Stabilization)
-       │
-       ▼
+EPIC-17 (MVP Stabilization) ✅ COMPLETE
+         │
+         ▼
 EPIC-18 (Production Hardening)
-       │
-       ▼
+         │
+         ▼
 EPIC-19 (Testing)     EPIC-12 (Super Admin)     EPIC-13 (Template Preview)
-       │                      │
-       │                      ▼ (depends on E11 monetization)
-       │
-       ▼
+         │                      │
+         │                      ▼ (depends on E11 monetization)
+         │
+         ▼
+MISSION 03:
+├── EPIC-20 (Trial & Subscription)    🟡 PLANNED
+├── EPIC-21 (Phone Identity)          🟡 PLANNED
+└── EPIC-22 (Popup UI)                🟡 PLANNED
+         │
+         ▼
+Future: Payment Gateway (Stripe)
+         │
+         ▼
 PRODUCTION READY
 ```
 
@@ -106,9 +115,12 @@ PRODUCTION READY
 | EPIC-14 (Template Redesign) | Historical | ✅ COMPLETE | Implemented (new design system, richer templates) |
 | EPIC-15 (Notes Fixes) | Historical | ✅ COMPLETE | Implemented (navbar mobile, pricing, privacy, terms, super-admin removal) |
 | EPIC-16 (Notes Round 2) | Historical | 🟡 PARTIAL | Navbar mobile done, S3 diagnosis done, template richness via Epic 14, editor live link done |
-| **EPIC-17** | **Wave 1** | **🟡 PLANNED** | **6 tasks to fix MVP blockers** |
-| **EPIC-18** | **Wave 2** | **🟡 PLANNED** | **6 tasks for production hardening** |
-| **EPIC-19** | **Wave 3** | **🟡 PLANNED** | **6 tasks for testing infrastructure** |
+|| **EPIC-17** | **Wave 1** | ✅ COMPLETE | **6 tasks: S3 fix, regen semantics, i18n, settings page, html lang/dir, save-error UI** |
+|| **EPIC-18** | **Wave 2** | 🟡 PLANNED | **6 tasks for production hardening** |
+|| **EPIC-19** | **Wave 3** | 🟡 PLANNED | **6 tasks for testing infrastructure** |
+|| **EPIC-20** | **Mission 03** | 🟡 PLANNED | **15-day free trial + subscription enforcement** |
+|| **EPIC-21** | **Mission 03** | 🟡 PLANNED | **Phone number identity + trial abuse prevention** |
+|| **EPIC-22** | **Mission 03** | 🟡 PLANNED | **Template/plan popup UI improvement** |
 
 ---
 

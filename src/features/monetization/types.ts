@@ -137,8 +137,18 @@ export interface CreateSubscriptionInput {
   providerSubscriptionId?: string;
   currency?: string;
   amountMinorUnits?: number;
+  currentPeriodStart?: Date;
+  currentPeriodEnd?: Date;
+  trialEndsAt?: Date;
 }
 
 export type UpdateSubscriptionPatch = Partial<
   Omit<Subscription, "_id" | "userId" | "createdAt">
 >;
+
+export interface TrialStatus {
+  isActive: boolean;
+  isExpired: boolean;
+  expiresAt: Date | null;
+  hasTrial: boolean;
+}
