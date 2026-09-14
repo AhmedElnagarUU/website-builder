@@ -1,7 +1,7 @@
 ﻿import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import { getMessages, setRequestLocale } from "next-intl/server";
-import { locales, isLocale, dirFor } from "@/shared/i18n/config";
+import { locales, isLocale } from "@/shared/i18n/config";
 import { getSession } from "@/features/auth/lib/session";
 import { resolveSubscriptionForUser } from "@/features/monetization/repository";
 import { PaywallProvider } from "@/features/monetization/components/paywall-context";
@@ -38,11 +38,7 @@ export default async function LocaleLayout({
   }
 
   return (
-    <div
-      lang={locale}
-      dir={dirFor(locale)}
-      className="mono-page flex min-h-screen flex-col"
-    >
+    <div className="mono-page flex min-h-screen flex-col">
       <NextIntlClientProvider messages={messages}>
         <PaywallProvider>
           <Navbar isSignedIn={!!session} planId={planId} locale={locale} />

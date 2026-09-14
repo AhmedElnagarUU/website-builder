@@ -54,7 +54,7 @@ export function LanguageChoice({
       return;
     }
     if (!res.ok) {
-      setError("Could not save");
+      setError(t("wizard.common.error.save"));
       return;
     }
     startTransition(() => {

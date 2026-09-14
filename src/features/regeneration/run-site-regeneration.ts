@@ -5,7 +5,11 @@ import { pageContentOf, setPageContent } from "@/features/sites/lib/content";
 import { mergePageContent } from "@/features/generation/lib/merge-content";
 import type { Locale } from "@/features/sites/types";
 
-export async function runSiteRegeneration(siteId: string, pageIds?: string[]): Promise<void> {
+export async function runSiteRegeneration(
+  siteId: string,
+  pageIds?: string[],
+  forceRegenerate = false
+): Promise<void> {
   const aiConfig = getAiConfig();
   const { getSiteById } = await import("@/features/sites/repository");
   const site = await getSiteById(siteId);
@@ -42,7 +46,7 @@ export async function runSiteRegeneration(siteId: string, pageIds?: string[]): P
       const existingPage = pageContentOf(newContent, page.id);
       newContent = setPageContent(newContent, page.id, {
         ...existingPage,
-        [locale]: mergePageContent(existingPage[locale] ?? {}, result.content),
+        [locale]: mergePageContent(existingPage[locale] ?? {}, result.content, forceRegenerate),
       });
       await updateSite(siteId, { content: newContent });
     }

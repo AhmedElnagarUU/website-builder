@@ -372,7 +372,10 @@
       }
     },
     "common": {
-      "continue": "Continue"
+      "continue": "Continue",
+      "error": {
+        "save": "Could not save. Please try again."
+      }
     },
     "stepper": {
       "business": "Your business",
@@ -485,8 +488,25 @@
       "progress": "{done} of {total} languages done",
       "failed": "Something went wrong applying the template.",
       "retry": "Try again",
-      "close": "Close"
+      "close": "Close",
+      "error": "Couldn't switch template — try again."
     }
+  },
+  "settings": {
+    "title": "Site settings",
+    "business_title": "Business information",
+    "languages_title": "Languages",
+    "languages_note": "Your site is published for each language you selected. Changing languages after content is generated will overwrite existing copy.",
+    "languages_change": "Change languages",
+    "site_not_live": "Not live",
+    "site_live": "Live",
+    "status": "Status",
+    "slug": "Site URL",
+    "slug_placeholder": "your-site-name",
+    "save": "Save",
+    "saved": "Saved",
+    "error_save": "Couldn't save settings — try again.",
+    "back_to_editor": "Back to editor"
   },
   "preview": {
     "view": "View template",

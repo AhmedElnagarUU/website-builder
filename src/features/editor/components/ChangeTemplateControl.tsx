@@ -70,10 +70,10 @@ export function ChangeTemplateControl({
         setPendingTemplate(templateId);
         return;
       }
-      setError("Couldn't switch template — try again.");
+      setError(t("editor.template.error"));
       return;
     }
-    setError("Couldn't switch template — try again.");
+    setError(t("editor.template.error"));
   };
 
   const confirmApply = async () => {
@@ -83,7 +83,7 @@ export function ChangeTemplateControl({
     if (res.status === 202) {
       startWorking();
     } else {
-      setError("Couldn't switch template — try again.");
+      setError(t("editor.template.error"));
     }
   };
 

@@ -38,7 +38,7 @@ export async function regenerateSite(
   await updateSite(siteId, { generation: { status: "running", startedAt: new Date() } });
 
   const { runSiteRegeneration } = await import("../run-site-regeneration");
-  void runSiteRegeneration(siteId).catch((e) => {
+  void runSiteRegeneration(siteId, undefined, confirmed).catch((e) => {
     console.error("runSiteRegeneration uncaught error:", e);
   });
 

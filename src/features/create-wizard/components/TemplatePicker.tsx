@@ -40,7 +40,7 @@ export function TemplatePicker({
       body: JSON.stringify({ templateId: selectedId }),
     });
     if (!res.ok) {
-      setError("Could not save template");
+      setError(t("wizard.common.error.save"));
       return;
     }
     startTransition(() => {

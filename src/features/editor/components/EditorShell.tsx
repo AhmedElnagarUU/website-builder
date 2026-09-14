@@ -135,7 +135,7 @@ function EditorContent({
 }) {
   const t = useTranslations();
   const router = useRouter();
-  const { save, flush, savedAt, saving } = useAutosave();
+  const { save, flush, savedAt, saving, errors } = useAutosave();
 
   const [device, setDevice] = useState<DeviceMode>("desktop");
   const [activeLocale, setActiveLocale] = useState<Locale>(
@@ -261,6 +261,12 @@ function EditorContent({
             <span className="flex items-center gap-1.5 text-xs font-medium text-mono-green">
               <span className="h-2 w-2 rounded-full bg-mono-green" />
               {t("common.saved")}
+            </span>
+          )}
+          {errors[activeLocale] && (
+            <span className="flex items-center gap-1.5 text-xs font-medium text-mono-red">
+              <span className="h-2 w-2 rounded-full bg-mono-red" />
+              {t("editor.edit.save_error")}
             </span>
           )}
           <LanguageTabs

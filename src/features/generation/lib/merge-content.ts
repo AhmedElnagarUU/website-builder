@@ -83,12 +83,13 @@ export function mergeGeneratedContent(
 
 export function mergePageContent(
   existing: Record<string, ContentField>,
-  generated: Record<string, ContentField>
+  generated: Record<string, ContentField>,
+  force = false
 ): Record<string, ContentField> {
   const out: Record<string, ContentField> = { ...existing };
   for (const [key, field] of Object.entries(generated)) {
     const prev = existing[key];
-    if (prev?.edited) {
+    if (prev?.edited && !force) {
       out[key] = prev;
       continue;
     }

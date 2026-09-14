@@ -98,12 +98,6 @@
    `s3.us-east-1.amazonaws.com`.
 2. *(fix, config)* Set `S3_PUBLIC_BASE_URL` (e.g. the bucket's region endpoint or a CDN) so
    uploaded images render in the editor preview.
-3. *(fix, AWS)* Grant object-level public read and confirm IAM `s3:PutObject` on `sites/*`
-   (per the checklist), or shift to CloudFront + signed URLs.
-4. *(hardening, code)* Make `uploadImage.ts:133`'s `bucket_rejected` surface distinguish a 301
-   redirect (region mismatch) from a policy/CORS denial, and have `createS3Client()` validate the
-   region (e.g. via `HeadBucket`) so misconfiguration surfaces as `config_error` with an accurate
-   message instead of a misleading CORS hint.
 
 ## Verdict
 
