@@ -43,12 +43,13 @@ Returns `{ isActive: boolean, expiresAt: Date | null, isExpired: boolean }`:
 ### Step 4: Trial creation on signup (auth event hook)
 Add a `better-auth` hook or post-signup callback that calls `resolveSubscriptionForUser` for new users. Since better-auth `emailAndPassword` doesn't have a direct signup hook in v1.7.2, we'll create the trial subscription lazily — `resolveSubscriptionForUser` already creates one on first call, so it will issue a trial for any user who doesn't have one yet (including existing users).
 
-## Acceptance Criteria
-- [ ] New user's first `resolveSubscriptionForUser` call creates `Subscription{status:"trialing", trialEndsAt: +15d}`
-- [ ] `getTrialStatus` correctly reports active/expired
-- [ ] Existing users without subscription get a trial on next `resolveSubscriptionForUser` call
-- [ ] `npx tsc --noEmit` passes
-- [ ] `npm run lint` passes
+| Acceptance Criteria | Status |
+|---|---|
+| New user's first `resolveSubscriptionForUser` creates trial with `trialEndsAt: +15d` | ✅ DONE |
+| `getTrialStatus` correctly reports active/expired | ✅ DONE |
+| Existing users without subscription get a trial on next call | ✅ DONE |
+| `npx tsc --noEmit` passes | ✅ PASS |
+| `npm run lint` passes | ✅ PASS |
 
 ## Validation
 1. `npx tsc --noEmit` — must pass with 0 errors

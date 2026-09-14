@@ -95,17 +95,18 @@ Analysis complete in MM01. Current problems: `bg-black/40` backdrop too transpar
 ### Step 5: Use existing Button component
 Check `@/shared/ui/Button` — it has `variant` prop. Use `variant="primary"` for upgrade, `variant="secondary"` for close.
 
-## Acceptance Criteria
-- [ ] Backdrop is `bg-black/70` (sufficiently opaque)
-- [ ] Modal background is solid `bg-paper` (not translucent)
-- [ ] Clear title for each paywall reason
-- [ ] Visual hierarchy: title → explanation → restriction → primary → secondary
-- [ ] Primary action button triggers upgrade/reactivation flow
-- [ ] Secondary action (Close) dismisses the popup
-- [ ] Responsive: mobile full-width with padding
-- [ ] All 4 paywall reasons render with appropriate messaging
-- [ ] `npx tsc --noEmit` passes
-- [ ] `npm run lint` passes
+## Acceptance Criteria | Status |
+|---|---|
+| Backdrop is `bg-black/70` (sufficiently opaque) | ✅ DONE |
+| Modal background is solid `bg-paper` (not translucent) | ✅ DONE |
+| Clear title for each paywall reason | ✅ DONE |
+| Visual hierarchy: title → explanation → restriction → primary → secondary | ✅ DONE |
+| Primary action button triggers upgrade/reactivation flow | ✅ DONE |
+| Secondary action (Close) dismisses the popup | ✅ DONE |
+| Responsive: mobile full-width with padding | ✅ DONE |
+| All 4 paywall reasons render with appropriate messaging | ✅ DONE |
+| `npx tsc --noEmit` passes | ✅ PASS |
+| `npm run lint` passes | ✅ PASS |
 
 ## Validation
 1. `npx tsc --noEmit` — 0 errors

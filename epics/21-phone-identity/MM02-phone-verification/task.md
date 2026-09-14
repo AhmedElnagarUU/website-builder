@@ -68,15 +68,16 @@ On submit:
 
 **Important:** Phone verification happens BEFORE better-auth account creation. If the phone is a duplicate, we reject before creating a new user account.
 
-## Acceptance Criteria
-- [ ] `phone-number` plugin configured in better-auth with `sendOTP` callback
-- [ ] `sendOTP` callback logs OTP to console (dev) / documented for prod SMS swap
-- [ ] SignUpForm collects phone, sends OTP, verifies, then signs up
-- [ ] Verified phone stored in `phoneIdentities` collection
-- [ ] Duplicate phone → rejected before account creation
-- [ ] `authClient.phoneNumber` methods work (sendOtp, verify)
-- [ ] `npx tsc --noEmit` passes
-- [ ] `npm run lint` passes
+| Acceptance Criteria | Status |
+|---|---|
+| `phone-number` plugin configured in better-auth with `sendOTP` callback | ✅ DONE |
+| `sendOTP` callback logs OTP to console (dev) / documented for prod SMS swap | ✅ DONE |
+| SignUpForm collects phone, sends OTP, verifies, then signs up | ✅ DONE |
+| Verified phone stored in `phoneIdentities` collection | ✅ DONE |
+| Duplicate phone → rejected before account creation | ✅ DONE |
+| `authClient.phoneNumber` methods available (sendOtp, verify) | ✅ DONE |
+| `npx tsc --noEmit` passes | ✅ PASS |
+| `npm run lint` passes | ✅ PASS |
 
 ## Validation
 1. `npx tsc --noEmit` — 0 errors

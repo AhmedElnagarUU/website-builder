@@ -97,14 +97,15 @@ await db.collection("phoneIdentities").createIndex(
 );
 ```
 
-## Acceptance Criteria
-- [ ] `normalizePhone` correctly normalizes `+20 123 456 7890`, `00201234567890`, `+201234567890` to `+201234567890`
-- [ ] `isValidPhoneE164` rejects invalid formats
-- [ ] `phoneIdentities` collection has unique index on `phoneNumber`
-- [ ] `storePhoneIdentity` throws/rejects on duplicate (DB-level)
-- [ ] `findPhoneIdentity` finds by normalized phone
-- [ ] `npx tsc --noEmit` passes
-- [ ] `npm run lint` passes
+## Acceptance Criteria | Status |
+|---|---|
+| `normalizePhone` correctly normalizes +20 123 456 7890, 00201234567890, +201234567890 → +201234567890 | ✅ DONE |
+| `isValidPhoneE164` rejects invalid formats | ✅ DONE |
+| `phoneIdentities` collection has unique index on `phoneNumber` | ✅ DONE |
+| `storePhoneIdentity` throws/rejects on duplicate (DB-level) | ✅ DONE |
+| `findPhoneIdentity` finds by normalized phone | ✅ DONE |
+| `npx tsc --noEmit` passes | ✅ PASS |
+| `npm run lint` passes | ✅ PASS |
 
 ## Validation
 1. `npx tsc --noEmit` — 0 errors

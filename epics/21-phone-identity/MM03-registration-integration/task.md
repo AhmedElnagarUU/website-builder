@@ -54,14 +54,15 @@ Body: { phoneNumber: string, userId: string }
 - Existing users have no phone in `phoneIdentities`. They are NOT blocked — they can still log in and use the app with their existing trial.
 - The phone requirement applies only to NEW signups.
 
-## Acceptance Criteria
-- [ ] `/api/auth/check-phone` endpoint works (normalize + lookup)
-- [ ] `/api/auth/store-phone` endpoint works (atomic insert + handles duplicates)
-- [ ] SignUpForm flows: phone → OTP → verify → check → store → account creation
-- [ ] Duplicate phone → "phone already registered" error
-- [ ] Existing users not affected
-- [ ] `npx tsc --noEmit` passes
-- [ ] `npm run lint` passes
+| Acceptance Criteria | Status |
+|---|---|
+| `/api/auth/check-phone` endpoint works (normalize + lookup) | ✅ DONE |
+| `/api/auth/store-phone` endpoint works (atomic insert + handles duplicates) | ✅ DONE |
+| SignUpForm flows: phone → OTP → verify → check → store → account creation | ✅ DONE |
+| Duplicate phone → "phone already registered" error | ✅ DONE |
+| Existing users not affected | ✅ DONE |
+| `npx tsc --noEmit` passes | ✅ PASS |
+| `npm run lint` passes | ✅ PASS |
 
 ## Validation
 1. `npx tsc --noEmit` — 0 errors

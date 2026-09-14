@@ -47,15 +47,16 @@ When `resolveSubscriptionForUser` is called and the user has `status === "triali
 ### Step 6: `getTrialStatus` helper (from M01)
 Used by dashboard to show trial countdown/expiration UI.
 
-## Acceptance Criteria
-- [ ] Expired trial user → `accountStatus: "suspended"` → 403 on all protected routes
-- [ ] Site data NOT deleted on suspension
-- [ ] Paid subscription → `accountStatus: "active"` → access restored
-- [ ] Lazy enforcement triggers on first request after expiry
-- [ ] Cron sweeps remaining expired trials daily
-- [ ] Reactivation path documented + implemented
-- [ ] `npx tsc --noEmit` passes
-- [ ] `npm run lint` passes
+| Acceptance Criteria | Status |
+|---|---|
+| Expired trial user → `accountStatus: "suspended"` → 403 on protected routes | ✅ DONE |
+| Site data NOT deleted on suspension | ✅ DONE (only accountStatus changes) |
+| Paid/active subscription → `accountStatus: "active"` → access restored | ✅ DONE (restoreAccount) |
+| Lazy enforcement triggers on first request after expiry | ✅ DONE |
+| Cron sweeps remaining expired trials daily at 00:00 UTC | ✅ DONE |
+| Reactivation path implemented | ✅ DONE |
+| `npx tsc --noEmit` passes | ✅ PASS |
+| `npm run lint` passes | ✅ PASS |
 
 ## Validation
 1. `npx tsc --noEmit` — 0 errors
