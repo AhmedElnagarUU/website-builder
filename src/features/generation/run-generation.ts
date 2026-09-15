@@ -11,7 +11,7 @@ import type { TemplatePage } from "@/features/templates/types";
 export function getAiConfig() {
   const geminiKey = process.env.GEMINI_KEY;
   if (geminiKey) {
-    const model = "gemini-2.0-flash";
+    const model = "gemini-3.6-flash";
     const baseUrl =
       process.env.AI_GEMINI_BASE_URL || "https://generativelanguage.googleapis.com/v1beta";
     return { baseUrl, apiKey: geminiKey, model, useStructuredOutput: true };
