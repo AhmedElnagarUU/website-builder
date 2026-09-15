@@ -5,70 +5,80 @@
  *
  * Finds all subscriptions where:
  *   status === "trialing" AND trialEndsAt < now
- * And sets the associated account's status to "suspended" in the
- * memberships collection.
+ * And sets the associated Membership.accountStatus = "suspended".
  *
- * This is a safety net — the lazy enforcement in withEntitlement
- * handles active users. This catches users who haven't made any
- * requests since their trial expired.
+ * This is a fallback for users whose trial expired but who never
+ * hit a protected endpoint (lazy enforcement didn't trigger).
+ *
+ * NOTE: Run from project root: `node scripts/trial-sweep.js`
+ * Uses a standalone MongoDB connection (does not import Next.js aliases).
  */
 const { MongoClient } = require("mongodb");
+const path = require("path");
+const fs = require("fs");
 
-const MONGODB_URI = process.env.MONGODB_URI;
-const MONGODB_DB_NAME = process.env.MONGODB_DB_NAME;
-
-if (!MONGODB_URI || !MONGODB_DB_NAME) {
-  console.error("MONGODB_URI and MONGODB_DB_NAME must be set");
-  process.exit(1);
+// Load .env manually (cron runs outside of Next.js)
+const envPath = path.join(__dirname, "..", ".env");
+if (fs.existsSync(envPath)) {
+  const envContent = fs.readFileSync(envPath, "utf8");
+  for (const line of envContent.split("\n")) {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith("#") && trimmed.includes("=")) {
+      const [key, ...valParts] = trimmed.split("=");
+      const val = valParts.join("=").trim();
+      if (!process.env[key]) process.env[key] = val;
+    }
+  }
 }
 
-async function main() {
-  const client = new MongoClient(MONGODB_URI);
+const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost:27017";
+const DB_NAME = process.env.MONGODB_DB_NAME || "website_builder";
+
+async function runSweep() {
+  const client = new MongoClient(MONGO_URI);
   try {
     await client.connect();
-    const db = client.db(MONGODB_DB_NAME);
+    const db = client.db(DB_NAME);
 
     const now = new Date();
+    console.log(`[trial-sweep] Running sweep at ${now.toISOString()}`);
 
-    // Find expired-trial subscriptions
-    const expired = await db
-      .collection("subscriptions")
+    const subsCollection = db.collection("subscriptions");
+    const membershipsCollection = db.collection("memberships");
+
+    // Find all trialing subscriptions with expired trials
+    const expiredSubs = await subsCollection
       .find({
         status: "trialing",
         trialEndsAt: { $lt: now },
       })
       .toArray();
 
-    let suspendedCount = 0;
-    for (const sub of expired) {
-      const result = await db
-        .collection("memberships")
-        .updateOne(
-          { userId: sub.userId },
-          {
-            $set: { accountStatus: "suspended", updatedAt: now },
-            $setOnInsert: {
-              userId: sub.userId,
-              createdAt: now,
-            },
-          },
-          { upsert: true }
-        );
-      if (result.upsertedId || result.modifiedCount > 0) {
-        suspendedCount++;
-      }
+    if (expiredSubs.length === 0) {
+      console.log("[trial-sweep] No expired trials found.");
+      return;
     }
 
-    console.log(
-      `[Trial Sweep] ${expired.length} expired subscriptions found, ` +
-      `${suspendedCount} accounts suspended.`
-    );
+    console.log(`[trial-sweep] Found ${expiredSubs.length} expired trial(s).`);
+
+    for (const sub of expiredSubs) {
+      const userId = sub.userId;
+      // Set account to suspended
+      await membershipsCollection.updateOne(
+        { userId },
+        { $set: { accountStatus: "suspended", updatedAt: now } },
+        { upsert: true }
+      );
+      console.log(`[trial-sweep] Suspended user ${userId} (trial expired at ${sub.trialEndsAt})`);
+    }
+
+    console.log(`[trial-sweep] Sweep complete. ${expiredSubs.length} account(s) suspended.`);
   } finally {
     await client.close();
   }
 }
 
-main().catch((err) => {
-  console.error("[Trial Sweep] Error:", err);
+runSweep().catch((err) => {
+  console.error("[trial-sweep] ERROR:", err);
   process.exit(1);
 });
