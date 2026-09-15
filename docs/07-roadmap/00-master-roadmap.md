@@ -89,9 +89,9 @@ EPIC-19 (Testing)     EPIC-12 (Super Admin)     EPIC-13 (Template Preview)
          │
          ▼
 MISSION 03:
-├── EPIC-20 (Trial & Subscription)    🟡 PLANNED
-├── EPIC-21 (Phone Identity)          🟡 PLANNED
-└── EPIC-22 (Popup UI)                🟡 PLANNED
+├── EPIC-20 (Trial & Subscription)    ✅ COMPLETE
+├── EPIC-21 (Phone Identity)          ✅ COMPLETE
+└── EPIC-22 (Popup UI)                ✅ COMPLETE
          │
          ▼
 Future: Payment Gateway (Stripe)
@@ -118,9 +118,9 @@ PRODUCTION READY
 || **EPIC-17** | **Wave 1** | ✅ COMPLETE | **6 tasks: S3 fix, regen semantics, i18n, settings page, html lang/dir, save-error UI** |
 || **EPIC-18** | **Wave 2** | 🟡 PLANNED | **6 tasks for production hardening** |
 || **EPIC-19** | **Wave 3** | 🟡 PLANNED | **6 tasks for testing infrastructure** |
-|| **EPIC-20** | **Mission 03** | 🟡 PLANNED | **15-day free trial + subscription enforcement** |
-|| **EPIC-21** | **Mission 03** | 🟡 PLANNED | **Phone number identity + trial abuse prevention** |
-|| **EPIC-22** | **Mission 03** | 🟡 PLANNED | **Template/plan popup UI improvement** |
+|| **EPIC-20** | **Mission 03** | ✅ COMPLETE | **15-day free trial + subscription enforcement** |
+|| **EPIC-21** | **Mission 03** | ✅ COMPLETE | **Phone number identity + trial abuse prevention** |
+|| **EPIC-22** | **Mission 03** | ✅ COMPLETE | **Template/plan popup UI improvement** |
 
 ---
 
