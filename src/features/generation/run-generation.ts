@@ -5,48 +5,13 @@ import { buildGenerationMessages } from "./lib/prompt-builder";
 import { validateAndSanitize } from "./lib/field-validation";
 import { mergeGeneratedContent, mergePageContent } from "./lib/merge-content";
 import { pageContentOf, setPageContent } from "@/features/sites/lib/content";
+import { getAiConfig, classifyError } from "./lib/ai-config";
+import type { AiConfig } from "./lib/ai-config";
 import type { ContentField, Locale, Site } from "@/features/sites/types";
+
+export { getAiConfig, classifyError };
+export type { AiConfig };
 import type { TemplatePage } from "@/features/templates/types";
-
-export function getAiConfig() {
-  const geminiKey = process.env.GEMINI_KEY;
-  if (geminiKey) {
-    const model = "gemini-3.6-flash";
-    const baseUrl =
-      process.env.AI_GEMINI_BASE_URL || "https://generativelanguage.googleapis.com/v1beta";
-    return { baseUrl, apiKey: geminiKey, model, useStructuredOutput: true };
-  }
-
-  const baseUrl = process.env.AI_API_BASE_URL;
-  const apiKey = process.env.OPENROUTER_API_KEY || process.env.AI_API_KEY;
-  const model = process.env.AI_MODEL;
-  if (!baseUrl) throw new Error("AI_API_BASE_URL is not defined");
-  if (!apiKey) throw new Error("AI_API_KEY (or OPENROUTER_API_KEY) is not defined");
-  if (!model) throw new Error("AI_MODEL is not defined");
-
-  const extraHeaders: Record<string, string> = {};
-  const referer = process.env.NEXT_PUBLIC_APP_URL;
-  if (referer) extraHeaders["HTTP-Referer"] = referer;
-  const appName = process.env.AI_APP_NAME || "Monomastic";
-  extraHeaders["X-Title"] = appName;
-
-  return { baseUrl, apiKey, model, extraHeaders, useStructuredOutput: true };
-}
-
-export function classifyError(e: unknown): "timeout" | "provider_error" | "bad_response" {
-  const name = (e as Error)?.name;
-  if (name === "TimeoutError") return "timeout";
-  if (name === "BadResponseError") return "bad_response";
-  return "provider_error";
-}
-
-export interface AiConfig {
-  baseUrl: string;
-  apiKey: string;
-  model: string;
-  extraHeaders?: Record<string, string>;
-  useStructuredOutput?: boolean;
-}
 
 export async function generatePage(
   site: Pick<Site, "businessInfo">,

@@ -1,48 +1,8 @@
+import { SystemMessage, HumanMessage } from "@langchain/core/messages";
+import { createChatModel } from "./model-factory";
 import { BadResponseError, ProviderError, TimeoutError } from "../types";
 import type { ParsedFields } from "../types";
-
-const TIMEOUT_MS = 180_000;
-
-interface ChatMessage {
-  role: "system" | "user";
-  content: string;
-}
-
-interface ChatRequest {
-  model: string;
-  messages: ChatMessage[];
-  temperature: number;
-  response_format?: { type: "json_object" };
-}
-
-interface ChatResponse {
-  choices?: Array<{
-    message?: {
-      content?: string;
-    };
-  }>;
-}
-
-interface GeminiRequest {
-  system_instruction?: { parts: Array<{ text: string }> };
-  contents: Array<{ role: string; parts: Array<{ text: string }> }>;
-  generationConfig: {
-    temperature: number;
-    responseMimeType?: string;
-  };
-}
-
-interface GeminiResponse {
-  candidates?: Array<{
-    content?: {
-      parts?: Array<{ text?: string }>;
-    };
-  }>;
-}
-
-function isGemini(baseUrl: string): boolean {
-  return baseUrl.includes("generativelanguage.googleapis.com");
-}
+import type { AiConfig } from "./ai-config";
 
 function stripFences(s: string): string {
   const trimmed = s.trim();
@@ -83,111 +43,23 @@ function requireJson(text: string): ParsedFields {
 
 export async function generateFields(
   messages: { system: string; user: string },
-  config: {
-    baseUrl: string;
-    apiKey: string;
-    model: string;
-    extraHeaders?: Record<string, string>;
-    useStructuredOutput?: boolean;
-    fetchImpl?: typeof fetch;
-  }
+  config: AiConfig
 ): Promise<ParsedFields> {
-  const fetchImpl = config.fetchImpl ?? fetch;
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
-  const start = Date.now();
-
-  let url: string;
-  let headers: Record<string, string>;
-  let body: unknown;
-
-  if (isGemini(config.baseUrl)) {
-    const base = config.baseUrl.replace(/\/$/, "");
-    url = `${base}/models/${encodeURIComponent(config.model)}:generateContent?key=${encodeURIComponent(
-      config.apiKey
-    )}`;
-    const req: GeminiRequest = {
-      contents: [{ role: "user", parts: [{ text: messages.user }] }],
-      generationConfig: { temperature: 0.7 },
-    };
-    if (messages.system) {
-      req.system_instruction = { parts: [{ text: messages.system }] };
-    }
-    if (config.useStructuredOutput !== false) {
-      req.generationConfig.responseMimeType = "application/json";
-    }
-    headers = { "Content-Type": "application/json" };
-    body = req;
-  } else {
-    const req: ChatRequest = {
-      model: config.model,
-      messages: [
-        { role: "system", content: messages.system },
-        { role: "user", content: messages.user },
-      ],
-      temperature: 0.7,
-    };
-    if (config.useStructuredOutput !== false) {
-      req.response_format = { type: "json_object" };
-    }
-    url = `${config.baseUrl.replace(/\/$/, "")}/chat/completions`;
-    headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${config.apiKey}`,
-      ...(config.extraHeaders ?? {}),
-    };
-    body = req;
-  }
-
-  let res: Response;
+  const model = createChatModel(config);
+  const chatMessages = [new SystemMessage(messages.system), new HumanMessage(messages.user)];
+  let response;
   try {
-    res = await fetchImpl(url, {
-      method: "POST",
-      headers,
-      body: JSON.stringify(body),
-      signal: controller.signal,
-    });
+    response = await model.invoke(chatMessages);
   } catch (e) {
-    clearTimeout(timer);
-    if (controller.signal.aborted) {
-      throw new TimeoutError(`AI provider timed out after ${TIMEOUT_MS}ms`);
+    const name = (e as Error)?.name ?? "";
+    if (/timeout|abort/i.test(name)) {
+      throw new TimeoutError("AI provider timed out after 180000ms");
     }
     throw new ProviderError(`AI provider request failed: ${(e as Error).message}`);
   }
-  clearTimeout(timer);
-
-  if (!res.ok) {
-    const duration = Date.now() - start;
-    const detail = await res.text().catch(() => "");
-    console.error(`AI provider returned status ${res.status} in ${duration}ms: ${detail}`);
-    throw new ProviderError(`AI provider returned status ${res.status}`);
-  }
-
-  if (isGemini(config.baseUrl)) {
-    let data: GeminiResponse;
-    try {
-      data = (await res.json()) as GeminiResponse;
-    } catch {
-      throw new BadResponseError("AI response was not valid JSON");
-    }
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (typeof text !== "string" || text.length === 0) {
-      throw new BadResponseError("AI response missing message content");
-    }
-    return requireJson(text);
-  }
-
-  let data: ChatResponse;
-  try {
-    data = (await res.json()) as ChatResponse;
-  } catch {
-    throw new BadResponseError("AI response was not valid JSON");
-  }
-
-  const content = data.choices?.[0]?.message?.content;
-  if (typeof content !== "string" || content.length === 0) {
+  const content = typeof response.content === "string" ? response.content : "";
+  if (content.length === 0) {
     throw new BadResponseError("AI response missing message content");
   }
-
   return requireJson(content);
 }
