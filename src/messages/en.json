@@ -349,6 +349,24 @@
     "choose_pro": "Upgrade to Pro",
     "coming_soon": "Payments open soon — check back shortly for upgrade options."
   },
+  "checkout": {
+    "title": "Upgrade to Pro",
+    "subtitle": "Pay securely with card, Google Pay, or Apple Pay.",
+    "phone_label": "Phone number",
+    "phone_placeholder": "+20 10X XXX XXXX",
+    "name_label": "Name (optional)",
+    "pay_button": "Continue to payment",
+    "loading": "Preparing your checkout…",
+    "processing": "Confirming your payment…",
+    "cancelled": "Payment cancelled. You can try again.",
+    "failed": "We couldn't process your payment. Please try again.",
+    "success": "Payment confirmed — you're now on Pro.",
+    "already_pro": "Your plan is already active on Pro.",
+    "provider_error": "Payment is temporarily unavailable. Please try again.",
+    "phone_invalid": "Please enter a valid phone number with country code.",
+    "retry": "Try again",
+    "dashboard": "Go to dashboard"
+  },
   "plan": {
     "current_plan": "Plan",
     "free": "Free",

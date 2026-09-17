@@ -19,6 +19,8 @@ export interface PlanDefinition {
   id: PlanId;
   name: BilingualText;
   limits: PlanLimits;
+  priceMinorUnits?: number;
+  currency?: string;
 }
 
 export type PlanId = "free" | "pro";
@@ -30,7 +32,7 @@ export type SubscriptionStatus =
   | "canceled"
   | "ended";
 
-export type PaymentProvider = "manual" | "stripe";
+export type PaymentProvider = "manual" | "stripe" | "paymob";
 
 export type AccountStatus = "active" | "suspended" | "frozen";
 

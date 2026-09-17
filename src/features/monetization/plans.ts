@@ -33,6 +33,8 @@ export const PLANS: PlanDefinition[] = [
       dailyAiGenerations: 50,
       customDomain: true,
     },
+    priceMinorUnits: 49900,
+    currency: "EGP",
   },
 ];
 
