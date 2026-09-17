@@ -1,5 +1,4 @@
-import { ObjectId } from "mongodb";
-import { getDb } from "@/shared/db/database";
+import mongoose from "mongoose";
 import type {
   AccountStatus,
   BillingRecord,
@@ -10,15 +9,15 @@ import type {
   TrialStatus,
 } from "./types";
 import { FREE_PLAN_ID, PRO_PLAN_ID, TRIAL_DURATION_DAYS } from "./const";
-
-const SUBSCRIPTIONS_COLLECTION = "subscriptions";
-const MEMBERSHIPS_COLLECTION = "memberships";
-const BILLING_COLLECTION = "billing";
-const PHONE_IDENTITIES_COLLECTION = "phoneIdentities";
+import { SubscriptionModel } from "./subscription.schema";
+import { MembershipModel } from "./membership.schema";
+import { BillingModel } from "./billing.schema";
+import { PhoneIdentityModel } from "./phone-identity.schema";
+import { UserReadModel } from "./user.schema";
 
 interface Membership {
-  _id: ObjectId;
-  userId: ObjectId;
+  _id: mongoose.Types.ObjectId;
+  userId: mongoose.Types.ObjectId;
   accountStatus: AccountStatus;
   createdAt: Date;
   updatedAt: Date;
@@ -26,8 +25,8 @@ interface Membership {
 
 /** A verified phone number linked to a user account. */
 export interface PhoneIdentity {
-  _id: ObjectId;
-  userId: ObjectId;
+  _id: mongoose.Types.ObjectId;
+  userId: mongoose.Types.ObjectId;
   phoneNumber: string; // normalized E.164
   verifiedAt: Date;
   createdAt: Date;
@@ -36,20 +35,16 @@ export interface PhoneIdentity {
 export async function getSubscriptionForUser(
   userId: string
 ): Promise<Subscription | null> {
-  const db = await getDb();
-  const userOid = new ObjectId(userId);
-  const doc = await db
-    .collection<Subscription>(SUBSCRIPTIONS_COLLECTION)
-    .findOne({ userId: userOid });
-  return doc ?? null;
+  const userOid = new mongoose.Types.ObjectId(userId);
+  const doc = await SubscriptionModel.findOne({ userId: userOid }).lean();
+  return (doc as unknown as Subscription) ?? null;
 }
 
 export async function upsertSubscription(
   input: CreateSubscriptionInput
 ): Promise<Subscription> {
-  const db = await getDb();
   const now = new Date();
-  const userOid = new ObjectId(input.userId);
+  const userOid = new mongoose.Types.ObjectId(input.userId);
   const updateDoc: Partial<Subscription> = {
     planId: input.planId,
     status: input.status,
@@ -62,46 +57,19 @@ export async function upsertSubscription(
     trialEndsAt: input.trialEndsAt,
     updatedAt: now,
   };
-  const existing = await db
-    .collection<Subscription>(SUBSCRIPTIONS_COLLECTION)
-    .findOne({ userId: userOid });
-  if (existing) {
-    await db
-      .collection<Subscription>(SUBSCRIPTIONS_COLLECTION)
-      .updateOne({ userId: userOid }, { $set: updateDoc });
-    const updated = await db
-      .collection<Subscription>(SUBSCRIPTIONS_COLLECTION)
-      .findOne({ userId: userOid });
-    return updated!;
-  }
-  const doc: Omit<Subscription, "_id"> = {
-    userId: userOid,
-    planId: input.planId,
-    status: input.status,
-    provider: input.provider,
-    providerSubscriptionId: input.providerSubscriptionId,
-    currency: input.currency,
-    amountMinorUnits: input.amountMinorUnits,
-    currentPeriodStart: input.currentPeriodStart,
-    currentPeriodEnd: input.currentPeriodEnd,
-    trialEndsAt: input.trialEndsAt,
-    createdAt: now,
-    updatedAt: now,
-  };
-  const result = await db
-    .collection<Omit<Subscription, "_id">>(SUBSCRIPTIONS_COLLECTION)
-    .insertOne(doc);
-  return { _id: result.insertedId, ...doc };
+  const doc = await SubscriptionModel.findOneAndUpdate(
+    { userId: userOid },
+    { $set: updateDoc, $setOnInsert: { createdAt: now } },
+    { upsert: true, new: true }
+  ).lean();
+  return doc as unknown as Subscription;
 }
 
 export async function getAccountStatus(userId: string): Promise<AccountStatus> {
-  const db = await getDb();
-  const userOid = new ObjectId(userId);
-  const doc = await db
-    .collection<Membership>(MEMBERSHIPS_COLLECTION)
-    .findOne({ userId: userOid });
+  const userOid = new mongoose.Types.ObjectId(userId);
+  const doc = await MembershipModel.findOne({ userId: userOid }).lean();
   if (!doc) return "active";
-  return doc.accountStatus;
+  return (doc as unknown as Membership).accountStatus;
 }
 
 /**
@@ -109,38 +77,32 @@ export async function getAccountStatus(userId: string): Promise<AccountStatus> {
  * If no membership record exists, creates one with "suspended" status.
  */
 export async function suspendAccount(userId: string): Promise<void> {
-  const db = await getDb();
-  const userOid = new ObjectId(userId);
+  const userOid = new mongoose.Types.ObjectId(userId);
   const now = new Date();
-  await db
-    .collection<Membership>(MEMBERSHIPS_COLLECTION)
-    .updateOne(
-      { userId: userOid },
-      {
-        $set: { accountStatus: "suspended", updatedAt: now },
-        $setOnInsert: { userId: userOid, createdAt: now },
-      },
-      { upsert: true }
-    );
+  await MembershipModel.updateOne(
+    { userId: userOid },
+    {
+      $set: { accountStatus: "suspended", updatedAt: now },
+      $setOnInsert: { userId: userOid, createdAt: now },
+    },
+    { upsert: true }
+  );
 }
 
 /**
  * Clears the suspended status for a user (e.g. after they upgrade).
  */
 export async function restoreAccount(userId: string): Promise<void> {
-  const db = await getDb();
-  const userOid = new ObjectId(userId);
+  const userOid = new mongoose.Types.ObjectId(userId);
   const now = new Date();
-  await db
-    .collection<Membership>(MEMBERSHIPS_COLLECTION)
-    .updateOne(
-      { userId: userOid },
-      {
-        $set: { accountStatus: "active", updatedAt: now },
-        $setOnInsert: { userId: userOid, createdAt: now },
-      },
-      { upsert: true }
-    );
+  await MembershipModel.updateOne(
+    { userId: userOid },
+    {
+      $set: { accountStatus: "active", updatedAt: now },
+      $setOnInsert: { userId: userOid, createdAt: now },
+    },
+    { upsert: true }
+  );
 }
 
 /**
@@ -153,12 +115,10 @@ export async function storePhoneIdentity(
   phoneNumber: string,
   verifiedAt: Date
 ): Promise<{ success: boolean; duplicate: boolean }> {
-  const db = await getDb();
   const now = new Date();
   try {
-    await db.collection<PhoneIdentity>(PHONE_IDENTITIES_COLLECTION).insertOne({
-      _id: new ObjectId(),
-      userId: new ObjectId(userId),
+    await PhoneIdentityModel.create({
+      userId: new mongoose.Types.ObjectId(userId),
       phoneNumber,
       verifiedAt,
       createdAt: now,
@@ -179,11 +139,8 @@ export async function storePhoneIdentity(
 export async function findPhoneIdentity(
   phoneNumber: string
 ): Promise<PhoneIdentity | null> {
-  const db = await getDb();
-  const doc = await db
-    .collection<PhoneIdentity>(PHONE_IDENTITIES_COLLECTION)
-    .findOne({ phoneNumber });
-  return doc ?? null;
+  const doc = await PhoneIdentityModel.findOne({ phoneNumber }).lean();
+  return (doc as unknown as PhoneIdentity) ?? null;
 }
 
 export async function resolveSubscriptionForUser(
@@ -245,20 +202,18 @@ export async function enforceTrialStatus(userId: string): Promise<TrialStatus> {
 }
 
 export async function userExists(userId: string): Promise<boolean> {
-  const db = await getDb();
-  const userOid = new ObjectId(userId);
-  const user = await db.collection("user").findOne({ _id: userOid }, { projection: { _id: 1 } });
-  return user !== null;
+  const userOid = new mongoose.Types.ObjectId(userId);
+  const found = await UserReadModel.exists({ _id: userOid });
+  return found !== null;
 }
 
 export async function appendBillingRecord(
   input: CreateBillingRecordInput
 ): Promise<BillingRecord> {
-  const db = await getDb();
   const now = new Date();
   const doc: Omit<BillingRecord, "_id"> = {
-    userId: new ObjectId(input.userId),
-    siteId: input.siteId ? new ObjectId(input.siteId) : undefined,
+    userId: new mongoose.Types.ObjectId(input.userId),
+    siteId: input.siteId ? new mongoose.Types.ObjectId(input.siteId) : undefined,
     kind: input.kind,
     amountMinor: input.amountMinor,
     currency: input.currency,
@@ -268,42 +223,40 @@ export async function appendBillingRecord(
     createdBy: input.createdBy,
     createdAt: now,
   };
-  const result = await db
-    .collection<Omit<BillingRecord, "_id">>(BILLING_COLLECTION)
-    .insertOne(doc);
-  return { _id: result.insertedId, ...doc };
+  const created = await BillingModel.create(doc as Omit<BillingRecord, "_id">);
+  return { _id: created._id as mongoose.Types.ObjectId, ...doc };
 }
 
 export async function listBillingForUser(userId: string): Promise<BillingRecord[]> {
-  const db = await getDb();
-  const userOid = new ObjectId(userId);
-  return db
-    .collection<BillingRecord>(BILLING_COLLECTION)
-    .find({ userId: userOid })
+  const userOid = new mongoose.Types.ObjectId(userId);
+  const docs = await BillingModel.find({ userId: userOid })
     .sort({ createdAt: -1 })
-    .toArray();
+    .lean();
+  return docs as unknown as BillingRecord[];
 }
 
 export async function sumBillingForUser(
   userId: string,
   since?: Date
 ): Promise<CurrencyTotal[]> {
-  const db = await getDb();
-  const match: Record<string, unknown> = { userId: new ObjectId(userId) };
+  const match: Record<string, unknown> = {
+    userId: new mongoose.Types.ObjectId(userId),
+  };
   if (since) match.createdAt = { $gte: since };
-  const rows = await db
-    .collection<BillingRecord>(BILLING_COLLECTION)
-    .aggregate<{ _id: string; totalMinor: number; count: number }>([
-      { $match: match },
-      {
-        $group: {
-          _id: "$currency",
-          totalMinor: { $sum: "$amountMinor" },
-          count: { $sum: 1 },
-        },
+  const rows = await BillingModel.aggregate<{
+    _id: string;
+    totalMinor: number;
+    count: number;
+  }>([
+    { $match: match },
+    {
+      $group: {
+        _id: "$currency",
+        totalMinor: { $sum: "$amountMinor" },
+        count: { $sum: 1 },
       },
-    ])
-    .toArray();
+    },
+  ]);
   return rows.map((r) => ({
     currency: r._id,
     totalMinor: r.totalMinor,

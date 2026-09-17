@@ -1,7 +1,7 @@
-import type { ObjectId } from "mongodb";
+import type { Types } from "mongoose";
 
 export interface PageviewDay {
-  siteId: ObjectId;
+  siteId: Types.ObjectId;
   date: string;
   page: string;
   locale: "en" | "ar";

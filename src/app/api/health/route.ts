@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { getMongoClient } from "@/shared/db/client";
+import { getMongooseConnection } from "@/shared/db/mongoose";
 
 export async function GET(): Promise<NextResponse> {
   try {
-    const client = await getMongoClient();
-    await client.db().command({ ping: 1 });
+    const conn = await getMongooseConnection();
+    await conn.db!.admin().command({ ping: 1 });
     return NextResponse.json({ status: "ok", db: true });
   } catch {
     return NextResponse.json({ status: "error", db: false }, { status: 503 });

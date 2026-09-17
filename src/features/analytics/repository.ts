@@ -1,11 +1,9 @@
-import { ObjectId } from "mongodb";
-import { getDb } from "@/shared/db/database";
+import mongoose from "mongoose";
+import { PageviewModel } from "./pageview.schema";
 import type { PageviewDay } from "./types";
 
-const COLLECTION = "pageviews";
-
-function toObjectId(id: string): ObjectId {
-  return new ObjectId(id);
+function toObjectId(id: string): mongoose.Types.ObjectId {
+  return new mongoose.Types.ObjectId(id);
 }
 
 function todayUTC(): string {
@@ -17,10 +15,9 @@ export async function recordPageview(input: {
   page: string;
   locale: "en" | "ar";
 }): Promise<void> {
-  const db = await getDb();
   const siteId = toObjectId(input.siteId);
   const date = todayUTC();
-  await db.collection<PageviewDay>(COLLECTION).updateOne(
+  await PageviewModel.updateOne(
     { siteId, date, page: input.page, locale: input.locale },
     { $inc: { views: 1 } },
     { upsert: true }
@@ -32,18 +29,17 @@ export async function listSitePageviewDays(
   fromDate?: string,
   toDate?: string
 ): Promise<PageviewDay[]> {
-  const db = await getDb();
   const oid = toObjectId(siteId);
   const dateRange: Record<string, string> = {};
   if (fromDate) dateRange.$gte = fromDate;
   if (toDate) dateRange.$lte = toDate;
   const hasDateRange = Object.keys(dateRange).length > 0;
   const query = hasDateRange ? { siteId: oid, date: dateRange } : { siteId: oid };
-  return db.collection<PageviewDay>(COLLECTION).find(query).toArray();
+  const docs = await PageviewModel.find(query).lean();
+  return docs as unknown as PageviewDay[];
 }
 
 export async function deleteSitePageviews(siteId: string): Promise<void> {
-  const db = await getDb();
   const oid = toObjectId(siteId);
-  await db.collection<PageviewDay>(COLLECTION).deleteMany({ siteId: oid });
+  await PageviewModel.deleteMany({ siteId: oid });
 }

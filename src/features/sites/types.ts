@@ -1,4 +1,4 @@
-import type { ObjectId } from "mongodb";
+import type { Types } from "mongoose";
 
 export type CategoryId =
   | "services"
@@ -91,8 +91,8 @@ export interface SiteGeneration {
 }
 
 export interface Site {
-  _id: ObjectId;
-  ownerId: ObjectId;
+  _id: Types.ObjectId;
+  ownerId: Types.ObjectId;
   status: SiteStatus;
   currentStep: WizardStep;
   businessInfo: SiteBusinessInfo;

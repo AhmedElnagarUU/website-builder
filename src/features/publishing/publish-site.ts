@@ -1,4 +1,3 @@
-import { MongoError } from "mongodb";
 import { getSession } from "@/features/auth/lib/session";
 import { getSiteForOwner, updateSite, toSiteDTO } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
@@ -15,6 +14,14 @@ import type {
 export type PublishSiteResult =
   | { ok: true; site: SiteDTO; slug: string }
   | { ok: false; error: "unauthorized" | "not_found" | "validation_error" };
+
+function isDuplicateKeyError(err: unknown): boolean {
+  return (
+    typeof err === "object" &&
+    err !== null &&
+    (err as { code?: number }).code === 11000
+  );
+}
 
 function slugify(name: string): string {
   return name
@@ -80,7 +87,7 @@ export async function publishSite(siteId: string): Promise<PublishSiteResult> {
       if (!updated) return { ok: false, error: "not_found" };
       return { ok: true, site: toSiteDTO(updated), slug };
     } catch (err) {
-      if (err instanceof MongoError && err.code === 11000) {
+      if (isDuplicateKeyError(err)) {
         lastError = err;
         continue;
       }

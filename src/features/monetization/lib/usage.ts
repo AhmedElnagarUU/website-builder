@@ -1,13 +1,10 @@
-import { ObjectId } from "mongodb";
-import { getDb } from "@/shared/db/database";
+import mongoose from "mongoose";
 import { listSitesByOwner } from "@/features/sites/repository";
+import { SiteModel } from "@/features/sites/site.schema";
 import type { UsageSnapshot } from "../types";
-
-const SITES_COLLECTION = "sites";
 
 export async function getUsageForUser(userId: string): Promise<UsageSnapshot> {
   const sites = await listSitesByOwner(userId);
-  const db = await getDb();
 
   const pagesPerSite: Record<string, number> = {};
   const languagesPerSite: Record<string, number> = {};
@@ -25,13 +22,11 @@ export async function getUsageForUser(userId: string): Promise<UsageSnapshot> {
 
   const startOfToday = new Date();
   startOfToday.setHours(0, 0, 0, 0);
-  const ownerOid = new ObjectId(userId);
-  const aiGenerationsToday = await db
-    .collection(SITES_COLLECTION)
-    .countDocuments({
-      ownerId: ownerOid,
-      "generation.startedAt": { $gte: startOfToday },
-    });
+  const ownerOid = new mongoose.Types.ObjectId(userId);
+  const aiGenerationsToday = await SiteModel.countDocuments({
+    ownerId: ownerOid,
+    "generation.startedAt": { $gte: startOfToday },
+  });
 
   return {
     totalSites: sites.length,

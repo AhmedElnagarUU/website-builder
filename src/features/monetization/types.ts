@@ -1,4 +1,4 @@
-import type { ObjectId } from "mongodb";
+import type { Types } from "mongoose";
 
 export interface BilingualText {
   en: string;
@@ -43,9 +43,9 @@ export type BillingKind =
   | "credit";
 
 export interface BillingRecord {
-  _id: ObjectId;
-  userId: ObjectId;
-  siteId?: ObjectId;
+  _id: Types.ObjectId;
+  userId: Types.ObjectId;
+  siteId?: Types.ObjectId;
   kind: BillingKind;
   amountMinor: number;
   currency: string;
@@ -113,8 +113,8 @@ export type CheckLimitResult =
 export type CheckLimitRejected = Extract<CheckLimitResult, { ok: false }>;
 
 export interface Subscription {
-  _id: ObjectId;
-  userId: ObjectId;
+  _id: Types.ObjectId;
+  userId: Types.ObjectId;
   planId: PlanId;
   status: SubscriptionStatus;
   provider?: PaymentProvider;
