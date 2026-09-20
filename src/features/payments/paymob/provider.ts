@@ -4,7 +4,12 @@ import type {
   PaymentSession,
   PaymentWebhookResult,
 } from "../types";
-import { PAYMOB_HMAC_SECRET, PAYMOB_PAYMENT_METHODS, PAYMOB_PUBLIC_KEY } from "./config";
+import {
+  PAYMOB_HMAC_SECRET,
+  PAYMOB_INTEGRATION_ID,
+  PAYMOB_PAYMENT_METHODS,
+  PAYMOB_PUBLIC_KEY,
+} from "./config";
 import { createPaymobIntention, PaymobProviderError } from "./client";
 import { verifyTransactionHmac } from "./hmac";
 import { statusFromTransaction } from "./status-map";
@@ -64,7 +69,7 @@ export class PaymobProvider implements PaymentProvider {
     const result = await createPaymobIntention({
       amount: input.amountMinorUnits,
       currency: input.currency,
-      paymentMethods: PAYMOB_PAYMENT_METHODS,
+      paymentMethods: [PAYMOB_INTEGRATION_ID],
       items: [{ name: input.description, amount: input.amountMinorUnits }],
       billingData: {
         first_name: first,

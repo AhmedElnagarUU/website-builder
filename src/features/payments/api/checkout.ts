@@ -90,7 +90,11 @@ export async function createCheckoutSession(
         phoneNumber: input.phoneNumber,
       },
     });
-  } catch {
+  } catch (error) {
+    console.error(
+      `checkout: payment provider rejected the session (plan ${input.planId})`,
+      error instanceof Error ? error.message : String(error)
+    );
     return { ok: false, code: "provider_error", status: 502 };
   }
 

@@ -8,6 +8,13 @@ interface WebhookPayload {
   obj?: unknown;
 }
 
+export async function GET(): Promise<NextResponse> {
+  return NextResponse.json(
+    { ok: true, message: "Paymob webhook endpoint is ready" },
+    { status: 200 }
+  );
+}
+
 export async function POST(request: NextRequest): Promise<NextResponse> {
   const hmac = request.nextUrl.searchParams.get("hmac");
 

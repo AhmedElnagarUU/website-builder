@@ -22,6 +22,7 @@ export async function POST(request: Request): Promise<NextResponse> {
   }
 
   const result = await createCheckoutSession(session.user, parsed.data);
+  
   if (!result.ok) {
     return NextResponse.json({ error: result.code }, { status: result.status });
   }

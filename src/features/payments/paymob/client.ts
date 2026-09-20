@@ -3,7 +3,7 @@ import { PAYMOB_BASE_URL, PAYMOB_SECRET_KEY } from "./config";
 export interface PaymobIntentionRequest {
   amount: number; // minor units (EGP 499 → 49900)
   currency: string; // "EGP"
-  paymentMethods: string[]; // names: "card" | "google-pay" | "apple-pay"
+  paymentMethods: number[]; // Paymob Integration ID(s), not UI method names
   items: { name: string; amount: number; description?: string }[];
   billingData: {
     first_name?: string;
