@@ -32,7 +32,7 @@ export type SubscriptionStatus =
   | "canceled"
   | "ended";
 
-export type PaymentProvider = "manual" | "stripe" | "paymob";
+export type PaymentProvider = "manual" | "stripe" | "paymob" | "polar";
 
 export type AccountStatus = "active" | "suspended" | "frozen";
 

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import type {
   CreatePaymentRecordInput,
+  PaymentProviderId,
   PaymentRecord,
   PaymentStatus,
 } from "./types";
@@ -40,7 +41,7 @@ export async function getPaymentRecordForUser(
 export async function updatePaymentAfterProviderSession(
   paymentId: string,
   patch: {
-    provider: "paymob";
+    provider: PaymentProviderId;
     providerPaymentId: string;
     providerOrderId?: string;
     providerMetadata?: Record<string, unknown>;

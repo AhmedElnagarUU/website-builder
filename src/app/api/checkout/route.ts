@@ -37,6 +37,7 @@ export async function POST(request: Request): Promise<NextResponse> {
       clientSecret: result.clientSecret,
       publicKey: result.publicKey,
       paymentMethods: result.paymentMethods,
+      ...(result.url ? { url: result.url } : {}),
     },
     { status: 201 }
   );

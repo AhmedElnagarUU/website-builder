@@ -6,5 +6,10 @@ import type {
 
 export interface PaymentProvider {
   createPayment(input: CreatePaymentInput): Promise<PaymentSession>;
-  handleWebhook(input: unknown, hmac?: string): Promise<PaymentWebhookResult>;
+  handleWebhook(
+    input: unknown,
+    hmac?: string,
+    timestamp?: string,
+    webhookId?: string
+  ): Promise<PaymentWebhookResult>;
 }

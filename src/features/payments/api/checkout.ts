@@ -20,6 +20,7 @@ export type CheckoutSessionResult =
       clientSecret: string;
       publicKey: string;
       paymentMethods: string[];
+      url?: string; // hosted checkout URL (Polar); undefined for Paymob's pixel flow
     }
   | {
       ok: false;
@@ -99,7 +100,7 @@ export async function createCheckoutSession(
   }
 
   await updatePaymentAfterProviderSession(record._id.toString(), {
-    provider: "paymob",
+    provider: session.provider,
     providerPaymentId: session.providerPaymentId,
     providerOrderId: session.providerOrderId,
     providerMetadata: { clientSecret: session.clientSecret },
@@ -115,6 +116,7 @@ export async function createCheckoutSession(
     clientSecret: session.clientSecret,
     publicKey: session.publicKey,
     paymentMethods: session.paymentMethods,
+    url: session.url,
   };
 }
 

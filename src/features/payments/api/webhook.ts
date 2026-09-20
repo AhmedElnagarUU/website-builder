@@ -1,4 +1,9 @@
-import type { PaymentRecord, PaymentStatus, PaymentWebhookResult } from "../types";
+import type {
+  PaymentProviderId,
+  PaymentRecord,
+  PaymentStatus,
+  PaymentWebhookResult,
+} from "../types";
 import {
   findPaymentByProviderTransactionId,
   findPaymentByReference,
@@ -36,6 +41,10 @@ function isDuplicateKeyError(err: unknown): boolean {
   );
 }
 
+function providerLabel(provider: PaymentProviderId): string {
+  return provider === "polar" ? "Polar" : "Paymob";
+}
+
 // +30 days via setDate, mirroring the trial pattern in
 // monetization/repository.ts resolveSubscriptionForUser (not calendar months).
 function nextPeriodEnd(now: Date): Date {
@@ -71,7 +80,7 @@ export async function processPaymobWebhook(
   }
   const byReference = await findPaymentByReference(result.providerOrderId);
   if (!byReference) {
-    console.error("paymob webhook: unknown payment reference (ignored)");
+    console.error(`${result.provider} webhook: unknown payment reference (ignored)`);
     return { outcome: "payment_not_found" };
   }
   if (isTerminal(byReference.status)) {
@@ -112,7 +121,7 @@ async function transition(
       userId,
       planId: "pro",
       status: "active",
-      provider: "paymob",
+      provider: result.provider,
       providerSubscriptionId: result.providerTransactionId,
       currency,
       amountMinorUnits,
@@ -127,10 +136,10 @@ async function transition(
         kind: "gateway_charge",
         amountMinor: amountMinorUnits,
         currency,
-        provider: "paymob",
+        provider: result.provider,
         providerEventId: result.providerTransactionId,
         createdBy: "gateway",
-        description: "Paymob charge (Pro monthly)",
+        description: `${providerLabel(result.provider)} charge (Pro monthly)`,
       });
     } catch (err) {
       if (isDuplicateKeyError(err)) {
