@@ -1,17 +1,14 @@
-import { createHmac, timingSafeEqual } from "node:crypto";
+﻿import { createHmac, timingSafeEqual } from "node:crypto";
 
-// Polar webhooks follow the Standard Webhooks spec (Polar secrets generated on
-// or after 8 Sep 2026, 00:00 UTC — which is now, so this is the live form).
-// The message covered by the signature is:
-//
-//   `<webhook-id>.<webhook-timestamp>.<payload>`
-//
-// where `<webhook-id>` is the `webhook-id` header and `<payload>` is the EXACT
-// raw request body bytes Polar signed (never a re-serialised object). The
-// `webhook-signature` header carries one or more `v1,<base64signature>` values
-// separated by spaces; the HMAC secret is the base64-decoded bytes of the full
-// `whsec_…` value. `webhook-timestamp` must fall inside the replay window to
-// prevent replay attacks.
+// Polar webhooks — Standard Webhooks scheme (all Polar webhook secrets generated
+// on or after 8 Sep 2026 are Standard-Webhooks secrets, the only live form now).
+// The HMAC key is the full `whsec_…` string used DIRECTLY (never base64-decoded
+// — that legacy decoding was Polar's old dual-key scheme). The message covered
+// by the signature is `<webhook-id>.<webhook-timestamp>.<payload>` where
+// `<payload>` is the EXACT raw bodies bytes Polar signed. The
+// `webhook-signature` header carries one or more `v1,<base64>` values
+// (space/comma separated, key-rotation safe). `webhook-timestamp` must fall
+// inside the replay window to defeat replay attacks.
 const REPLAY_WINDOW_MS = 5 * 60 * 1000;
 
 function withinReplayWindow(timestamp: string): boolean {
@@ -20,19 +17,16 @@ function withinReplayWindow(timestamp: string): boolean {
   return Math.abs(Date.now() - seconds * 1000) <= REPLAY_WINDOW_MS;
 }
 
-function fromBase64(value: string): Buffer {
-  return Buffer.from(value, "base64");
-}
-
-function timingSafeMatch(a: Buffer, b: Buffer): boolean {
-  if (a.length !== b.length) return false;
-  return timingSafeEqual(a, b);
+function base64Equal(computed: Buffer, received: Buffer): boolean {
+  return (
+    computed.length === received.length && timingSafeEqual(computed, received)
+  );
 }
 
 export function verifyPolarWebhookHmac(
   payload: string, // RAW body string (exact bytes Polar signed)
-  receivedSignature: string, // `webhook-signature` header: `v1,<base64> v1,<base64> …`
-  secret: string, // full `whsec_…` value; base64-decoded for the HMAC key
+  receivedSignature: string, // `webhook-signature` header: `v1,<base64> v1,<base64>…`
+  secret: string, // full `whsec_…` value, used DIRECTLY as the HMAC key
   timestamp?: string, // `webhook-timestamp` header
   webhookId?: string // `webhook-id` header
 ): boolean {
@@ -41,20 +35,18 @@ export function verifyPolarWebhookHmac(
   }
   if (!withinReplayWindow(timestamp)) return false;
 
-  const computed = createHmac("sha256", fromBase64(secret))
+  const computed = createHmac("sha256", secret)
     .update(`${webhookId}.${timestamp}.${payload}`)
     .digest();
-  const expected = Buffer.from(computed.toString("base64"), "utf8");
+  const expectedB64 = Buffer.from(computed.toString("base64"), "utf8");
 
-  // Accept if ANY `v1,<base64>` entry matches (supports key rotation). Entries
-  // are space- and/or comma-separated; each `v1,` value is the base64 digest.
-  const entries = receivedSignature.trim().split(/[\s,]+/);
-  for (const entry of entries) {
+  // Accept if ANY `v1,<base64>` entry matches (survives key rotation). Entries
+  // are space- and/or comma-separated.
+  for (const entry of receivedSignature.split(/[\s,]+/)) {
     const match = /^v1,(.+)$/.exec(entry);
     if (!match) continue;
     const received = Buffer.from(match[1], "utf8");
-    if (!timingSafeMatch(expected, received)) continue;
-    return true;
+    if (base64Equal(expectedB64, received)) return true;
   }
   return false;
 }

@@ -38,13 +38,28 @@ export interface CheckoutStatusResult {
 }
 
 /**
- * Lazily constructs the real PaymobProvider. The module chain (provider →
- * config) runs `requireEnv` at import time and throws when PAYMOB_* is unset,
- * so it is imported only here, at call time, never at module scope. Without
- * credentials this rejects with provider_error/502 at runtime; the app still
- * builds and boots.
+ * Lazily constructs the real provider. The module chain (provider → config)
+ * runs `requireEnv` at import time and throws when the corresponding secrets
+ * are unset, so it is imported only here, at call time, never at module scope.
+ * Provider selection is env-driven so the app can flip between Paymob and
+ * Polar by editing `.env` alone (rollback = revert the env, no code change):
+ *
+ *   - Polar is used when BOTH the pro product AND pro price IDs are configured
+ *     (POLAR_PRODUCT_ID_PRO + POLAR_PRICE_ID_PRO); the app then redirects the
+ *     customer to Polar's hosted checkout `url`.
+ *   - Otherwise Paymob is used (pixel flow with clientSecret/publicKey).
+ *
+ * Without ANY credentials this rejects with provider_error/502 at runtime; the
+ * app still builds and boots.
  */
 async function getDefaultProvider(): Promise<PaymentProvider> {
+  const { isPolarProCheckoutConfigured } = await import(
+    "@/features/payments/polar"
+  );
+  if (isPolarProCheckoutConfigured()) {
+    const { PolarProvider } = await import("@/features/payments/polar");
+    return new PolarProvider();
+  }
   const { PaymobProvider } = await import("@/features/payments/paymob");
   return new PaymobProvider();
 }
