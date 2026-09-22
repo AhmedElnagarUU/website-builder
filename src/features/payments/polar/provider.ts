@@ -38,7 +38,6 @@ export class PolarProvider implements PaymentProvider {
   async createPayment(input: CreatePaymentInput): Promise<PaymentSession> {
     const result = await createCheckoutSession({
       productId: getPolarProductIdPro(),
-      priceId: getPolarPriceIdPro(),
       customerExternalId: input.internalPaymentId,
       successUrl: `${APP_URL}/pricing?paymentId=${input.internalPaymentId}`,
       currency: input.currency,

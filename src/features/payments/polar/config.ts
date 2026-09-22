@@ -24,9 +24,6 @@ export function getPolarProductIdPro(): string {
   return requireEnv("POLAR_PRODUCT_ID_PRO");
 }
 
-export function getPolarPriceIdPro(): string {
-  return requireEnv("POLAR_PRICE_ID_PRO");
-}
 
 /**
  * True when the operator has completed Polar's ENV wiring: an org + the Pro
@@ -74,11 +71,15 @@ export function isPolarProCheckoutConfigured(): boolean {
     const value = process.env[name];
     return typeof value === "string" && value.trim() !== "";
   };
+  // Polar's standard hosted checkout only needs the PRODUCT id
+  // (`products: [POLAR_PRODUCT_ID_PRO]`) — Polar resolves the applicable catalog
+  // price server-side (polar.md §16: Price ID is NOT required for checkout; the
+  // deprecated `product_price_id`/Price-ID-only model is Stripe-shaped). If a
+  // PRICE id is ever required later, add its gate HERE only.
   return (
     has("POLAR_ACCESS_TOKEN") &&
     has("POLAR_WEBHOOK_SECRET") &&
     has("POLAR_ORGANIZATION_ID") &&
-    has("POLAR_PRODUCT_ID_PRO") &&
-    has("POLAR_PRICE_ID_PRO")
+    has("POLAR_PRODUCT_ID_PRO")
   );
 }
