@@ -71,6 +71,7 @@ You must NOT add any npm package that is not on the approved list below. If you 
 | `zod` | Request/schema validation |
 | `@aws-sdk/client-s3` | S3 API access |
 | `@aws-sdk/s3-request-presigner` | Presigned upload URLs |
+| `@polar-sh/sdk` | Polar payment provider integration |
 
 Dev tooling: `typescript`, `eslint`, `@types/*`. Nothing else without approval.
 

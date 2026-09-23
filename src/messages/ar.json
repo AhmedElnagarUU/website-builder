@@ -221,6 +221,12 @@
         "professional": "محترف",
         "portfolio": "معرض أعمال"
       }
+    },
+    "trial": {
+      "suspended_title": "تم تعليق الحساب",
+      "suspended_body": "انتهت فترة التجربة المجانية. قم بترقية الخطة لتظل موقعك نشطًا.",
+      "upgrade": "ترقية",
+      "remaining": "{count, plural, one {# يوم متبقٍ من تجربتك المجانية} other {# أيام متبقية من تجربتك المجانية}}"
     }
   },
   "delete": {
@@ -610,6 +616,102 @@
       "trusted_clients": "موثوق من أكثر من ٥٠٠ عميل",
       "jobs_today": "أعمال اليوم",
       "testimonials": "آراء العملاء"
+    }
+  },
+  "business": {
+    "nav": {
+      "overview": "نظرة عامة",
+      "website": "الموقع",
+      "services": "الخدمات",
+      "customers": "العملاء",
+      "requests": "الطلبات",
+      "settings": "الإعدادات"
+    },
+    "overview": {
+      "welcome": "مرحباً بعودتك",
+      "stats": {
+        "customers": "العملاء",
+        "requests": "الطلبات",
+        "pending": "قيد الانتظار",
+        "completed": "مكتملة"
+      },
+      "recent": "الطلبات الأخيرة",
+      "no_recent": "لا توجد طلبات حديثة",
+      "view_all": "عرض الكل"
+    },
+    "services": {
+      "title": "الخدمات",
+      "title_manage": "إدارة الخدمات",
+      "name": "الاسم",
+      "description": "الوصف",
+      "active": "نشط",
+      "inactive": "غير نشط",
+      "sort_order": "ترتيب العرض",
+      "create": "إنشاء خدمة",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "reorder": "إعادة ترتيب",
+      "saving": "جارٍ الحفظ...",
+      "saved": "تم الحفظ",
+      "empty_title": "لا توجد خدمات بعد",
+      "empty_body": "أضف أول خدمة لك لبدء استقبال طلبات الخدمة.",
+      "add_first": "أضف أول خدمة لك",
+      "confirm_delete": "هل أنت متأكد من رغبتك في حذف هذه الخدمة؟",
+      "has_requests": "هذه الخدمة لديها طلبات مرتبطة ولا يمكن حذفها.",
+      "name_placeholder": "اسم الخدمة",
+      "desc_placeholder": "وصف الخدمة (اختياري)"
+    },
+    "customers": {
+      "title": "العملاء",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "requests": "الطلبات",
+      "since": "عميل منذ",
+      "search": "بحث عن عملاء...",
+      "no_customers": "لا يوجد عملاء بعد",
+      "no_customers_desc": "عندما يتواصل الزوار مع عملك عبر موقعك، ستظهر معلوماتهم هنا.",
+      "notes": "الملاحظات",
+      "add_note": "إضافة ملاحظة",
+      "save_note": "حفظ الملاحظة",
+      "customer_since": "عميل منذ"
+    },
+    "requests": {
+      "title": "الطلبات",
+      "customer": "العميل",
+      "service": "الخدمة",
+      "status": "الحالة",
+      "date": "التاريخ",
+      "message": "الرسالة",
+      "search": "بحث عن طلبات...",
+      "all_statuses": "جميع الحالات",
+      "filter_by_service": "تصفية حسب الخدمة",
+      "status_values": {
+        "all_statuses": "جميع الحالات",
+        "new": "جديد",
+        "contacted": "تم التواصل",
+        "in_progress": "قيد المعالجة",
+        "completed": "مكتمل",
+        "cancelled": "ملغي"
+      },
+      "no_requests": "لا توجد طلبات خدمة بعد",
+      "no_requests_desc": "الطلبات المرسلة عبر موقعك ستظهر هنا.",
+      "activity": "النشاط",
+      "request_created": "تم إنشاء الطلب",
+      "status_changed": "تم تغيير الحالة",
+      "note_added": "تمت إضافة ملاحظة",
+      "internal_notes": "ملاحظات داخلية",
+      "change_status": "تغيير الحالة",
+      "add_note": "إضافة ملاحظة",
+      "save": "حفظ",
+      "saving": "جارٍ الحفظ...",
+      "request_id": "الطلب",
+      "created": "أنشئ في",
+      "edit_customer": "تعديل العميل",
+      "back_to_list": "العودة إلى الطلبات",
+      "back_to_customers": "العودة إلى العملاء"
     }
   }
 }

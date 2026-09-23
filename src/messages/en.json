@@ -221,6 +221,12 @@
         "professional": "Professional",
         "portfolio": "Portfolio"
       }
+    },
+    "trial": {
+      "suspended_title": "Account suspended",
+      "suspended_body": "Your trial period has expired. Upgrade to keep your site live.",
+      "upgrade": "Upgrade",
+      "remaining": "{count, plural, one {# day left in your free trial} other {# days left in your free trial}}"
     }
   },
   "delete": {
@@ -610,6 +616,102 @@
       "trusted_clients": "Trusted by 500+ clients",
       "jobs_today": "Jobs today",
       "testimonials": "Testimonials"
+    }
+  },
+  "business": {
+    "nav": {
+      "overview": "Overview",
+      "website": "Website",
+      "services": "Services",
+      "customers": "Customers",
+      "requests": "Requests",
+      "settings": "Settings"
+    },
+    "overview": {
+      "welcome": "Welcome back",
+      "stats": {
+        "customers": "Customers",
+        "requests": "Requests",
+        "pending": "Pending",
+        "completed": "Completed"
+      },
+      "recent": "Recent Requests",
+      "no_recent": "No recent requests",
+      "view_all": "View all"
+    },
+    "services": {
+      "title": "Services",
+      "title_manage": "Manage Services",
+      "name": "Name",
+      "description": "Description",
+      "active": "Active",
+      "inactive": "Inactive",
+      "sort_order": "Sort Order",
+      "create": "Create Service",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "reorder": "Reorder",
+      "saving": "Saving...",
+      "saved": "Saved",
+      "empty_title": "No services yet",
+      "empty_body": "Add your first service to start receiving service requests.",
+      "add_first": "Add your first service",
+      "confirm_delete": "Are you sure you want to delete this service?",
+      "has_requests": "This service has existing requests and cannot be deleted.",
+      "name_placeholder": "Service name",
+      "desc_placeholder": "Service description (optional)"
+    },
+    "customers": {
+      "title": "Customers",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "requests": "Requests",
+      "since": "Customer Since",
+      "search": "Search customers...",
+      "no_customers": "No customers yet",
+      "no_customers_desc": "When visitors contact your business through your website, their information will appear here.",
+      "notes": "Notes",
+      "add_note": "Add Note",
+      "save_note": "Save Note",
+      "customer_since": "Customer since"
+    },
+    "requests": {
+      "title": "Requests",
+      "customer": "Customer",
+      "service": "Service",
+      "status": "Status",
+      "date": "Date",
+      "message": "Message",
+      "search": "Search requests...",
+      "all_statuses": "All Statuses",
+      "filter_by_service": "Filter by service",
+      "status_values": {
+        "all_statuses": "All Statuses",
+        "new": "New",
+        "contacted": "Contacted",
+        "in_progress": "In Progress",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "no_requests": "No service requests yet",
+      "no_requests_desc": "Requests submitted through your website will appear here.",
+      "activity": "Activity",
+      "request_created": "Request created",
+      "status_changed": "Status changed",
+      "note_added": "Note added",
+      "internal_notes": "Internal Notes",
+      "change_status": "Change Status",
+      "add_note": "Add Note",
+      "save": "Save",
+      "saving": "Saving...",
+      "request_id": "Request",
+      "created": "Created",
+      "edit_customer": "Edit Customer",
+      "back_to_list": "Back to Requests",
+      "back_to_customers": "Back to Customers"
     }
   }
 }

@@ -3,6 +3,7 @@ import { F } from "../internals";
 import { useSiteStyle } from "../context";
 import { SectionHead } from "../atoms";
 import type { SectionRenderProps } from "./types";
+import { ServiceRequestForm } from "@/features/requests/components/ServiceRequestForm";
 
 function getSigName(signature?: string): string {
   if (!signature) return "";
@@ -471,18 +472,30 @@ export function ContactSection({ content, businessInfo }: SectionRenderProps) {
     rows.push({ label: t("labels.address"), node: <span>{businessInfo.location}</span> });
   }
 
-  if (sig === "redline") return <RedlineContact content={content} rows={rows} />;
-  if (sig === "volatile") return <VolatileContact content={content} rows={rows} />;
-  if (sig === "ember") return <EmberContact content={content} rows={rows} />;
-  if (sig === "meridian") return <MeridianContact content={content} rows={rows} />;
-  if (sig === "arbor") return <ArborContact content={content} rows={rows} />;
-  if (sig === "clearview") return <ClearviewContact content={content} rows={rows} />;
-  if (sig === "harlan") return <HarlanContact content={content} rows={rows} />;
-  if (sig === "ironclad") return <IroncladContact content={content} rows={rows} />;
-  if (sig === "mara") return <MaraContact content={content} rows={rows} />;
-  if (sig === "atelier") return <AtelierContact content={content} rows={rows} />;
+  let inner: React.ReactNode;
 
-  return (
+  if (sig === "redline") {
+    inner = <RedlineContact content={content} rows={rows} />;
+  } else if (sig === "volatile") {
+    inner = <VolatileContact content={content} rows={rows} />;
+  } else if (sig === "ember") {
+    inner = <EmberContact content={content} rows={rows} />;
+  } else if (sig === "meridian") {
+    inner = <MeridianContact content={content} rows={rows} />;
+  } else if (sig === "arbor") {
+    inner = <ArborContact content={content} rows={rows} />;
+  } else if (sig === "clearview") {
+    inner = <ClearviewContact content={content} rows={rows} />;
+  } else if (sig === "harlan") {
+    inner = <HarlanContact content={content} rows={rows} />;
+  } else if (sig === "ironclad") {
+    inner = <IroncladContact content={content} rows={rows} />;
+  } else if (sig === "mara") {
+    inner = <MaraContact content={content} rows={rows} />;
+  } else if (sig === "atelier") {
+    inner = <AtelierContact content={content} rows={rows} />;
+  } else {
+    inner = (
     <section id="contact" className="py-20">
       <div className="mx-auto grid max-w-5xl gap-12 px-4 @4xl:grid-cols-2">
         <div className="flex flex-col items-start justify-center gap-4">
@@ -508,5 +521,15 @@ export function ContactSection({ content, businessInfo }: SectionRenderProps) {
         </div>
       </div>
     </section>
+  );
+  }
+
+  return (
+    <>
+      {inner}
+      <div className="mx-auto max-w-5xl px-4 pb-12">
+        <ServiceRequestForm />
+      </div>
+    </>
   );
 }

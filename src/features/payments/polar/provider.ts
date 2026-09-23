@@ -5,26 +5,14 @@ import type {
   PaymentWebhookResult,
 } from "../types";
 import {
-  getPolarPriceIdPro,
   getPolarProductIdPro,
   getPolarWebhookSecret,
 } from "./config";
 import { createCheckoutSession, PolarProviderError } from "./client";
-import { verifyPolarWebhookHmac } from "./hmac";
+import { verifyAndParsePolarWebhook, WebhookVerificationError } from "./hmac";
 import { statusFromPolarEvent } from "./status-map";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-
-interface PolarWebhookPayload {
-  type?: unknown;
-  data?: Record<string, unknown>;
-}
-
-function asRecord(value: unknown): Record<string, unknown> | undefined {
-  return value && typeof value === "object"
-    ? (value as Record<string, unknown>)
-    : undefined;
-}
 
 function toNumber(value: unknown): number | undefined {
   if (typeof value === "number") return value;
@@ -68,47 +56,45 @@ export class PolarProvider implements PaymentProvider {
       throw new PolarProviderError("invalid_hmac");
     }
 
-    const valid = verifyPolarWebhookHmac(
-      input,
-      hmac,
-      getPolarWebhookSecret(),
-      timestamp,
-      webhookId
-    );
-    if (!valid) throw new PolarProviderError("invalid_hmac");
+    const headers: Record<string, string> = {
+      "webhook-signature": hmac,
+      "webhook-timestamp": timestamp,
+      "webhook-id": webhookId,
+    };
 
-    let parsed: unknown;
+    let parsed;
     try {
-      parsed = JSON.parse(input);
-    } catch {
-      throw new PolarProviderError("invalid_hmac");
+      parsed = verifyAndParsePolarWebhook(
+        input,
+        headers,
+        getPolarWebhookSecret()
+      );
+    } catch (err) {
+      if (err instanceof WebhookVerificationError) {
+        throw new PolarProviderError("invalid_hmac");
+      }
+      throw err;
     }
-    const payload =
-      parsed && typeof parsed === "object"
-        ? (parsed as PolarWebhookPayload)
-        : {};
 
-    const type = typeof payload.type === "string" ? payload.type : "";
-    const data = asRecord(payload.data);
-    if (!type || !data) throw new PolarProviderError("invalid_hmac");
-
-    const orderId = asRecord(data.order)?.id;
-    const transactionId = String(data.id ?? "");
+    const data = parsed.data;
+    const orderId = data.order;
     const orderReferenceId =
-      typeof orderId === "string" ? orderId : undefined;
+      orderId && typeof orderId === "object" && typeof (orderId as Record<string, unknown>).id === "string"
+        ? String((orderId as Record<string, unknown>).id)
+        : undefined;
 
     return {
       provider: "polar",
-      providerTransactionId: transactionId,
+      providerTransactionId: String(data.id ?? ""),
       providerOrderId: orderReferenceId,
-      status: statusFromPolarEvent(type),
+      status: statusFromPolarEvent(parsed.type),
       amountMinorUnits: toNumber(data.net_amount) ?? toNumber(data.total_amount),
       currency: typeof data.currency === "string" ? data.currency : undefined,
       paymentMethod:
         typeof data.payment_processor === "string"
           ? data.payment_processor
           : undefined,
-      metadata: { raw: data, event: type },
+      metadata: { raw: data, event: parsed.type },
     };
   }
 }
