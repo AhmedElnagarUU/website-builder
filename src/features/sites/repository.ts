@@ -13,7 +13,18 @@ function toObjectId(id: string): mongoose.Types.ObjectId {
 }
 
 async function maybeMigrateContent(site: Site): Promise<Site> {
-  if (!isLegacyFlatContent(site.content)) return site;
+  if (!site.content || !isLegacyFlatContent(site.content)) {
+    // Normalize null/undefined content to empty object so downstream
+    // consumers (Object.keys, Object.values) never crash.
+    if (!site.content) {
+      await SiteModel.updateOne(
+        { _id: site._id },
+        { $set: { content: {}, updatedAt: new Date() } }
+      );
+      return { ...site, content: {} };
+    }
+    return site;
+  }
   const content = migrateFlatContent(site.content);
   await SiteModel.updateOne(
     { _id: site._id },

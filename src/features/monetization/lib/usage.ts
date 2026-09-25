@@ -12,7 +12,7 @@ export async function getUsageForUser(userId: string): Promise<UsageSnapshot> {
   let publishedSites = 0;
   for (const site of sites) {
     const siteId = site._id.toString();
-    pagesPerSite[siteId] = Object.keys(site.content).length;
+    pagesPerSite[siteId] = Object.keys(site.content || {}).length;
     languagesPerSite[siteId] = site.activeLanguages.length;
     if (site.status === "published") {
       publishedSites += 1;
