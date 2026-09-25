@@ -55,11 +55,31 @@ export async function generateFields(
     if (/timeout|abort/i.test(name)) {
       throw new TimeoutError("AI provider timed out after 180000ms");
     }
-    throw new ProviderError(`AI provider request failed: ${(e as Error).message}`);
+    const msg = (e as Error)?.message ?? "";
+    // Structured output not supported by this model — retry without it
+    if (config.useStructuredOutput !== false && (/structured-outputs|response_format|400 Provider/i.test(msg))) {
+      const fallbackConfig = { ...config, useStructuredOutput: false };
+      const fallbackModel = createChatModel(fallbackConfig);
+      try {
+        response = await fallbackModel.invoke(chatMessages);
+      } catch (e2) {
+        const name2 = (e2 as Error)?.name ?? "";
+        if (/timeout|abort/i.test(name2)) {
+          throw new TimeoutError("AI provider timed out after 180000ms");
+        }
+        throw new ProviderError(`AI provider request failed: ${(e2 as Error).message}`);
+      }
+    } else {
+      throw new ProviderError(`AI provider request failed: ${msg}`);
+    }
   }
   const content = typeof response.content === "string" ? response.content : "";
   if (content.length === 0) {
     throw new BadResponseError("AI response missing message content");
   }
-  return requireJson(content);
+  try {
+    return requireJson(content);
+  } catch (e) {
+    throw e;
+  }
 }
