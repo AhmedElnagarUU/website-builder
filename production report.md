@@ -1,100 +1,94 @@
 # Production Readiness Report — website-builder
 
 **Date:** 2026-09-25
-**Repo:** https://github.com/AhmedElnagarUU/website-builder (`origin` remote configured ✓)
+**Repo:** https://github.com/AhmedElnagarUU/website-builder
+**Branch:** `main` (working tree divergent)
 **Stack:** Next.js 15.3.3 (App Router) · better-auth · MongoDB/Mongoose · AWS S3 · Tailwind · next-intl (en/ar)
 
 ---
 
-## 1. Current State
+## 1. Summary
 
-### What exists (✓ built)
-- **Create-wizard flow** with business-info form, language selection (en/ar), template picker, AI generation progress, and autosave.
-- **Full editor UX**: inline field editing, brand color control, template switching, image slot editor, device toggle, language tabs.
-- **Site rendering engine**: 15+ section types (header, hero, services, about, testimonials, menu, gallery, FAQ, hours, pricing, team, contact, CTA, footer), font pairs, design tokens.
-- **Features**: analytics, customers, dashboard, images, publishing (live sites), regeneration (site/section/impact), requests, services, templates, monetization (Polar + Paymob), payments, trial/status.
-- **Auth**: better-auth email/password + phone flows.
-- **i18n**: en + ar with RTL via next-intl; locale-prefixed routes (`/en/...`, `/ar/...`); logical CSS properties; Arabic treated as first-class.
-- **Payments**: dual providers (Paymob + Polar) with webhook handlers and HMAC validation for both.
-- **S3**: presigned PUT uploads; `shared/s3.ts` upload lib present.
-- **API surface**: ~50+ route handlers across sites, templates, auth, checkout, webhooks, etc.
-- **Code hygiene**: ESLint + Prettier configured; TypeScript strict; KISS and feature-based structure enforced via `CODE_RULES.md` + `AGENTS.md`.
-
-### Verification (this session)
-| Check                | Result                                     |
-|----------------------|--------------------------------------------|
-| `npm run lint`       | ✓ No warnings/errors                       |
-| `npx tsc --noEmit`   | ✓ No type errors                           |
-| `npm run build`      | ⚠️ Compiles, but **prerender fails** (see §4)|
+- The codebase has a **substantially complete MVP** (Epics 01–10 implemented in the working tree), plus a **fully implemented Monetization layer** (Epic 11, 9/9 tasks) — but **none of it is committed** (`git log` shows only 2 scaffold commits from before implementation began).
+- With MongoDB running (verified live at `http://localhost:3000`), `npm run lint` ✓ · `npx tsc --noEmit` ✓ · `npm run build` ✓ all pass.
+- **Three hard blockers to a production deploy:** (1) the entire implementation is uncommitted (data-loss risk); (2) no CI pipeline; (3) `next.config.ts` lacks production hardening (`output: 'standalone'`, `images.remotePatterns`, security headers).
 
 ---
 
-## 2. Missing for Production MVP
+## 2. What's Built (✅ verified)
+
+### Code quality (this session)
+| Check | Result |
+|---|---|
+| `npm run lint` | ✓ No ESLint warnings/errors |
+| `npx tsc --noEmit` | ✓ No type errors |
+| `npm run build` | ✓ Compiles, all pages prerendered |
+| `GET /api/health` (dev server) | ✓ `{"status":"ok","db":true}` |
+| `GET /en` | ✓ HTTP 200, correct i18n hreflang + RTL headers |
+
+### Features implemented (per `codebaseStrucher.md` + `docs/04-status`)
+- **Epics 01–06 (MVP core):** auth, site creation wizard, AI generation (Gemini/OpenAI-compatible), editor (inline editing, images, brand color, template switch), publishing (`/live/[slug]`), analytics.
+- **Epics 07–09:** editor fidelity fixes, multi-page templates, template discovery UX.
+- **Epic 10 (Analytics):** pageview recording + dashboard panel — **implemented but uncommitted**.
+- **Epic 11 (Monetization):** plans, subscriptions, guard layer, paywall UX (bilingual), billing ledger, admin APIs — **9/9 tasks complete, uncommitted**.
+- **Features present in `src/features/`:** auth, sites, create-wizard, templates, generation, regeneration, editor, publishing, images, dashboard, monetization, analytics, requests, services, landing, template-preview.
+
+---
+
+## 3. Missing for Production MVP
 
 ### 🔴 Critical blockers
 
-1. **Build/prerender failure on static pages**
-   - Pages (e.g. `/auth/sign-in`) call `getMongooseConnection()` at module/route-load time during SSG, causing `ECONNREFUSED` because MongoDB is not reachable at build time.
-   - **Fix needed**: defer DB connection to request time (wrap in route-handler bodies, not module-level), OR exclude DB-dependent pages from static prerender (`dynamic = 'force-dynamic'` / `export const fetch = 'force-no-store'`), OR provide a build-time MongoDB stub. Without this, `next build` produces no usable output in CI.
+1. **Nothing is committed to git**
+   - `git log` shows 2 commits only (`first commit`, `add proplem.md`). The entire Epics 01–11 implementation lives in the working tree as uncommitted/staged-modified/untracked files.
+   - Includes the `production report.md` I wrote this session — also uncommitted.
+   - **Fix:** commit in logical units; ensure `.env` stays ignored (`.gitignore` present, but verify).
 
-2. **No `next.config.js` / `next.config.mjs` production hardening**
-   - File is `next.config.ts` with only `reactStrictMode: true`. Missing: `output: 'standalone'` (needed for containerization), `images.remotePatterns` for S3/image domains, `compress`, `poweredByHeader: false`, CSP/security headers, and `trailingSlash`/asset prefix for live-site subfolder routing.
+2. **No CI pipeline**
+   - No `.github/workflows/`. Lint + typecheck + build are not automated on push.
+   - **Fix:** add `.github/workflows/ci.yml` running `npm ci && npm run lint && npx tsc --noEmit && npm run build`.
 
-3. **Missing `next/image` remote patterns**
-   - Published live sites render user/AI-generated images from S3. The config has no `images.remotePatterns` entry for `S3_PUBLIC_BASE_URL` or `*.s3.*.amazonaws.com`, so production will 403/blank those images.
-
-4. **No production server component / runtime guards**
-   - No `VERCEL`/node server config or `next start` health check baked in; the `api/health` endpoint exists but isn't wired as a readiness probe.
+3. **`next.config.ts` lacks production hardening**
+   - Minimal config (`reactStrictMode: true` only). Missing:
+     - `output: 'standalone'` (for containerization)
+     - `images.remotePatterns` (for S3-hosted published images — will 403/blank in production)
+     - `compress`, `poweredByHeader: false`
+     - Security headers (CSP, X-Frame-Options, etc.)
 
 ### 🟡 High-priority gaps
 
-5. **No CI pipeline**
-   - No `.github/workflows/`. Nothing runs lint + typecheck + build on push; nothing prevents the prerender failure above from landing on `main`.
+4. **Build requires a running MongoDB**
+   - `npm run build` succeeds when MongoDB is running (verified), but the build-time prerender pulls in the Mongoose module. In a CI environment without MongoDB, the build will fail with `ECONNREFUSED`.
+   - Options: (a) run MongoDB in CI (slow, heavy), (b) mark DB-dependent pages `dynamic = 'force-dynamic'`, (c) build-time stub.
 
-6. **No `output: 'standalone'` / Dockerfile**
-   - No containerization path. Production deploy story (VPS, Render, Fly, etc.) is undefined.
+5. **No env-var validation at startup**
+   - Missing required vars (`MONGODB_URI`, `BETTER_AUTH_SECRET`, S3/AI keys) cause opaque crashes, not clear errors.
 
-7. **Env var drift risk**
-   - `next.config.ts` does not consume env vars (e.g. `NEXT_PUBLIC_SITES_DOMAIN`), so the live-site subfolder domain and S3 base URL must be set in `.env.local` only — fine, but there is **no runtime validation** that required vars are present. App will crash at runtime with opaque mongoose/env errors rather than a clear startup message.
+6. **No Dockerfile / container path**
+   - No `output: 'standalone'` means no clean containerization story.
 
-8. **No `scripts/` deploy or seed hooks**
-   - DB schema is code-first via Mongoose schemas; there is no migration/seed CLI, so index creation on Mongo Atlas must be handled manually.
+### 🟢 Known minor gaps (from audit docs)
 
-### 🟢 Nice-to-have for post-MVP
-
-9. **No Sentry / error observability** — server-side errors (e.g. during generation) are not reported externally.
-10. **No rate limiting / CSRF hardening** on auth routes beyond better-auth defaults.
-11. **No `robots.txt` / sitemap.xml** generated for live published sites (SEO).
-
----
-
-## 3. Risk Areas (code-level)
-
-| Area            | Notes                                                                 |
-|-----------------|-----------------------------------------------------------------------|
-| `shared/db/mongoose.ts` | Module-level `mongoose.connect` runs during SSG import — root cause of build failure. Must move to per-request singleton. |
-| `next.config.ts`         | Minimal. Needs image domains + standalone.                       |
-| Route handlers          | Confirmed thin (parse → delegate → respond) per `CODE_RULES.md` §2; good. |
-| Payments                | Dual-provider branch is live but `POLAR_SERVER=sandbox` default and `PAYMOB_*` coexist with no runtime switch guard — verify intended migration EPIC 24 state. |
+- Hardcoded English strings in 3 components (violates CODE_RULES §6 i18n invariant).
+- `<html lang/dir>` hardcoded as `en/ltr` in root layout (not set per-locale for RTL).
+- Full-site regeneration preserves "edited" fields even after the confirm dialog (spec deviation).
+- Analytics 31-day vs 30-day window inconsistency; unbounded history read.
+- `zod` used but not declared in `package.json` (transitive via better-auth).
+- No automated tests anywhere in the repository.
 
 ---
 
-## 4. Recommended Fix Sequence (to unblock production build)
+## 4. Environment Notes
 
-1. **`next.config.ts`** — add:
-   ```ts
-   images: { remotePatterns: [{ protocol: 'https', hostname: '**.s3.**.amazonaws.com' }, { protocol: 'https', hostname: new URL(process.env.S3_PUBLIC_BASE_URL).hostname }] }
-   output: 'standalone',
-   ```
-2. **DB import hygiene** — ensure no page or layout opens a Mongoose connection at import time; use `getMongooseConnection()` only inside route handlers / `getServerSideProps` / `dynamic = 'force-dynamic'` components.
-3. **Add `.github/workflows/ci.yml`** — `npm ci && npm run lint && npx tsc --noEmit && npm run build` on push to `main`.
-4. **Optional env validator** — small `lib/env.ts` that asserts required keys or throws a clear message at startup.
+- **Dev server** was live at `http://localhost:3000` with MongoDB running locally on `localhost:27017`.
+- **OpenCode 1.18.32** installed and available at `/root/.opencode/bin/opencode` (added to PATH via `.bashrc`, not yet exported in this shell).
 
 ---
 
-## 5. Summary
+## 5. Recommended Next Steps
 
-- **Code is functionally complete** for the MVP feature set; lint + typecheck are green.
-- **Production build is currently broken** due to DB-at-prerender; this is the only hard blocker.
-- Next: fix prerender + harden `next.config`, add CI, then cut v1.0.0 tag.
-
+1. **Commit current state** (Epics 01–11) in logical commits; verify `.env` gitignored.
+2. **Hardening:** update `next.config.ts` (image domains, standalone, security headers).
+3. **CI:** add `.github/workflows/ci.yml`.
+4. **Build reliability:** decide on the MongoDB-at-build approach (force-dynamic pages vs CI MongoDB service).
+5. **Push** the committed state + this report to GitHub (requires auth token setup).
