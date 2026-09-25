@@ -7,6 +7,8 @@ import { resolveSubscriptionForUser } from "@/features/monetization/repository";
 import { PaywallProvider } from "@/features/monetization/components/paywall-context";
 import { Navbar } from "@/features/shell/components/Navbar";
 import { Footer } from "@/features/shell/components/Footer";
+import { TutorialProvider } from "@/features/tutorial/components/TutorialProvider";
+import { TutorialRenderer } from "@/features/tutorial/TutorialRenderer";
 import type { PlanId } from "@/features/monetization/types";
 
 export function generateStaticParams() {
@@ -41,9 +43,12 @@ export default async function LocaleLayout({
     <div className="mono-page flex min-h-screen flex-col">
       <NextIntlClientProvider messages={messages}>
         <PaywallProvider>
-          <Navbar isSignedIn={!!session} planId={planId} locale={locale} />
-          <main className="relative z-10 flex-1">{children}</main>
-          <Footer locale={locale} />
+          <TutorialProvider>
+            <Navbar isSignedIn={!!session} planId={planId} locale={locale} />
+            <main className="relative z-10 flex-1">{children}</main>
+            <Footer locale={locale} />
+            <TutorialRenderer locale={locale} />
+          </TutorialProvider>
         </PaywallProvider>
       </NextIntlClientProvider>
     </div>

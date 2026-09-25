@@ -2,6 +2,33 @@
   "app": {
     "name": "Monomastic"
   },
+  "tutorial": {
+    "step": {
+      "label": "Step {num} of {total}"
+    },
+    "skip": "Skip",
+    "back": "Back",
+    "done": "Got it",
+    "complete": {
+      "hint": "You can revisit this any time from the ? button."
+    },
+    "dashboard_title": "Your Dashboard",
+    "dashboard_what": "All your sites are listed here.",
+    "dashboard_how": "Click a site to continue editing, or use New Site to start fresh.",
+    "dashboard_next": "Next",
+    "wizard_title": "The Create Wizard",
+    "wizard_what": "Answer questions about your business in four quick steps.",
+    "wizard_how": "Fill in your details, pick a style, choose your language, then watch Monomastic write your site.",
+    "wizard_next": "Next",
+    "editor_title": "The Editor",
+    "editor_what": "Edit text inline, change colors, and upload images — right here.",
+    "editor_how": "Click any field on the preview to edit it. Use the accent color to match your brand.",
+    "editor_next": "Next",
+    "publish_title": "Publishing",
+    "publish_what": "When you're ready, publish your site to go live.",
+    "publish_how": "Hit Publish and share your live URL. You can republish anytime after edits.",
+    "publish_next": "Done"
+  },
   "common": {
     "loading": "Loading…",
     "saved": "Saved",
