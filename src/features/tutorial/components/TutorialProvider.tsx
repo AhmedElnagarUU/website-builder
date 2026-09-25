@@ -38,8 +38,12 @@ function saveCompleted(v: boolean): void {
 }
 
 export function TutorialProvider({ children }: { children: ReactNode }) {
-  const [completed, setCompleted] = useState(loadCompleted);
+  const [completed, setCompleted] = useState(false);
   const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    setCompleted(loadCompleted());
+  }, []);
   const [currentStep, setCurrentStep] = useState<TutorialStepKey>("dashboard");
 
   useEffect(() => {

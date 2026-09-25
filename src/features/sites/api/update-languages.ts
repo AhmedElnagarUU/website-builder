@@ -49,7 +49,7 @@ export async function updateLanguages(
   const { languageChoice, advance } = parsed.data;
 
   // Check if any locale has content
-  const hasContent = Object.values(site.content).some(
+  const hasContent = Object.values(site.content || {}).some(
     (localeContent) => localeContent && Object.keys(localeContent).length > 0
   );
   if (hasContent) {

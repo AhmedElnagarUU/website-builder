@@ -17,6 +17,7 @@ export function localeContentOf(
   pageId: string,
   locale: Locale
 ): Record<string, ContentField> {
+  if (!content) return {};
   return pageContentOf(content, pageId)[locale] ?? {};
 }
 
@@ -34,6 +35,7 @@ export function setLocaleContent(
   locale: Locale,
   fields: Record<string, ContentField>
 ): SiteContent {
+  if (!content) content = {};
   const page = pageContentOf(content, pageId);
   return setPageContent(content, pageId, { ...page, [locale]: fields });
 }
@@ -53,6 +55,7 @@ export function setContentField(
 }
 
 export function countEditedFieldsInContent(content: SiteContent): number {
+  if (!content) return 0;
   let count = 0;
   for (const page of Object.values(content)) {
     for (const locale of Object.values(page)) {

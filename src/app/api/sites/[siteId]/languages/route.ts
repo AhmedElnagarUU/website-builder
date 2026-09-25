@@ -21,20 +21,25 @@ export async function PATCH(
       requestedScope: { siteId, amount: targetLanguageCount(body) },
     },
     async () => {
-      const result = await updateLanguages(siteId, body);
-      if (result.ok) {
-        return NextResponse.json(result.site, { status: 200 });
+      try {
+        const result = await updateLanguages(siteId, body);
+        if (result.ok) {
+          return NextResponse.json(result.site, { status: 200 });
+        }
+        if (result.error === "unauthorized") {
+          return NextResponse.json({ error: result.error }, { status: 401 });
+        }
+        if (result.error === "not_found") {
+          return NextResponse.json({ error: result.error }, { status: 404 });
+        }
+        if (result.error === "content_exists") {
+          return NextResponse.json({ error: result.error }, { status: 409 });
+        }
+        return NextResponse.json({ error: result.error }, { status: 422 });
+      } catch (e) {
+        console.error("updateLanguages error:", e);
+        return NextResponse.json({ error: "server_error" }, { status: 500 });
       }
-      if (result.error === "unauthorized") {
-        return NextResponse.json({ error: result.error }, { status: 401 });
-      }
-      if (result.error === "not_found") {
-        return NextResponse.json({ error: result.error }, { status: 404 });
-      }
-      if (result.error === "content_exists") {
-        return NextResponse.json({ error: result.error }, { status: 409 });
-      }
-      return NextResponse.json({ error: result.error }, { status: 422 });
     }
   );
 }
