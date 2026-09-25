@@ -280,15 +280,13 @@
       "name": "Your name (optional)",
       "email": "Email",
       "phone": "Phone number",
-      "otp": "Verification code",
       "password": "Password",
       "password_confirm": "Confirm password"
     },
     "action": {
       "sign_in": "Sign in",
       "sign_up": "Create account",
-      "send_code": "Send code",
-      "verify": "Verify & continue"
+      "continue": "Continue"
     },
     "hint": {
       "password": "At least 8 characters.",
@@ -299,18 +297,13 @@
       "email_exists": "An account with this email already exists.",
       "password_mismatch": "Passwords do not match.",
       "invalid_phone": "Please enter a valid phone number with country code.",
-      "otp_required": "Please enter the verification code.",
-      "otp_invalid": "The code you entered is incorrect. Try again.",
       "phone_registered": "This phone number is already registered. Try signing in."
     },
     "link": {
       "to_sign_up": "Don't have an account? Create one",
       "to_sign_in": "Already have an account? Sign in",
       "change_phone": "Change phone number"
-    },
-    "verify_phone_title": "Verify your phone",
-    "verify_phone_body": "Enter the 6-digit code we sent to {phone}.",
-    "phone_verified": "Phone number {phone} verified."
+    }
   },
   "nav": {
     "dashboard": "Dashboard",

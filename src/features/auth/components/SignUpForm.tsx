@@ -11,7 +11,7 @@ import { Card } from "@/shared/ui/Card";
 import { SectionHead } from "@/shared/ui/SectionHead";
 import { validateAndNormalizePhone } from "@/features/auth/lib/phone";
 
-type Step = "phone" | "verify" | "account";
+type Step = "phone" | "account";
 
 export function SignUpForm({ locale }: { locale: string }) {
   const t = useTranslations();
@@ -19,14 +19,12 @@ export function SignUpForm({ locale }: { locale: string }) {
 
   const [step, setStep] = useState<Step>("phone");
   const [phone, setPhone] = useState("");
-  const [otp, setOtp] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [sendingOtp, setSendingOtp] = useState(false);
 
   function clientValidatePhone(): string | null {
     if (!phone.trim()) return t("auth.field.phone");
@@ -41,49 +39,14 @@ export function SignUpForm({ locale }: { locale: string }) {
     return null;
   }
 
-  async function onSendOtp(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmitPhone(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     const err = clientValidatePhone();
     if (err) { setError(err); return; }
 
-    setSendingOtp(true);
-    try {
-      const { error: otpError } = await authClient.phoneNumber.sendOtp({
-        phoneNumber: phone,
-      });
-      if (otpError) {
-        setError(otpError.message || t("common.error.generic"));
-        setSendingOtp(false);
-        return;
-      }
-      setStep("verify");
-      setSendingOtp(false);
-    } catch {
-      setError(t("common.error.generic"));
-      setSendingOtp(false);
-    }
-  }
-
-  async function onVerifyOtp(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setError(null);
-    if (!otp || otp.length < 6) {
-      setError(t("auth.error.otp_required"));
-      return;
-    }
-
     setLoading(true);
     try {
-      const { error: verifyError } = await authClient.phoneNumber.verify({
-        phoneNumber: phone,
-        code: otp,
-      });
-      if (verifyError) {
-        setError(verifyError.message || t("auth.error.otp_invalid"));
-        setLoading(false);
-        return;
-      }
       // Check phone uniqueness via our API
       const checkRes = await fetch("/api/auth/check-phone", {
         method: "POST",
@@ -126,7 +89,7 @@ export function SignUpForm({ locale }: { locale: string }) {
         setLoading(false);
         return;
       }
-      // Store the verified phone identity now that the account exists.
+      // Store the phone identity now that the account exists.
       // The /api/auth/store-phone endpoint reads the session for userId
       // and uses the phone number's unique index to prevent races.
       await fetch("/api/auth/store-phone", {
@@ -153,7 +116,7 @@ export function SignUpForm({ locale }: { locale: string }) {
         {step === "phone" && (
           <>
             <SectionHead title={t("auth.sign_up.title")} />
-            <form onSubmit={onSendOtp} className="flex flex-col gap-4">
+            <form onSubmit={onSubmitPhone} className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
                 <Label htmlFor="phone">{t("auth.field.phone")}</Label>
                 <Input
@@ -175,49 +138,9 @@ export function SignUpForm({ locale }: { locale: string }) {
                   {error}
                 </p>
               )}
-              <Button type="submit" disabled={sendingOtp}>
-                {sendingOtp ? t("common.loading") : t("auth.action.send_code")}
-              </Button>
-            </form>
-          </>
-        )}
-
-        {step === "verify" && (
-          <>
-            <SectionHead title={t("auth.verify_phone_title")} />
-            <p className="font-serif2 text-sm text-ink-2">
-              {t("auth.verify_phone_body", { phone })}
-            </p>
-            <form onSubmit={onVerifyOtp} className="flex flex-col gap-4">
-              <div className="flex flex-col gap-2">
-                <Label htmlFor="otp">{t("auth.field.otp")}</Label>
-                <Input
-                  id="otp"
-                  name="otp"
-                  type="text"
-                  inputMode="numeric"
-                  placeholder="000000"
-                  maxLength={6}
-                  required
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value)}
-                />
-              </div>
-              {error && (
-                <p role="alert" className="text-sm font-medium text-mono-red">
-                  {error}
-                </p>
-              )}
               <Button type="submit" disabled={loading}>
-                {loading ? t("common.loading") : t("auth.action.verify")}
+                {loading ? t("common.loading") : t("auth.action.continue")}
               </Button>
-              <button
-                type="button"
-                onClick={() => setStep("phone")}
-                className="text-center text-sm text-ink-2 underline hover:text-mono-red"
-              >
-                {t("auth.link.change_phone")}
-              </button>
             </form>
           </>
         )}
@@ -225,9 +148,6 @@ export function SignUpForm({ locale }: { locale: string }) {
         {step === "account" && (
           <>
             <SectionHead title={t("auth.sign_up.title")} />
-            <p className="font-serif2 text-sm text-ink-2">
-              {t("auth.phone_verified", { phone })}
-            </p>
             <form onSubmit={onSignUp} className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
                 <Label htmlFor="name">{t("auth.field.name")}</Label>
@@ -285,6 +205,13 @@ export function SignUpForm({ locale }: { locale: string }) {
               <Button type="submit" disabled={loading} className="mt-1">
                 {loading ? t("common.loading") : t("auth.action.sign_up")}
               </Button>
+              <button
+                type="button"
+                onClick={() => setStep("phone")}
+                className="text-center text-sm text-ink-2 underline hover:text-mono-red"
+              >
+                {t("auth.link.change_phone")}
+              </button>
             </form>
           </>
         )}
