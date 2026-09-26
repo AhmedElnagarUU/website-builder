@@ -77,14 +77,14 @@ export function PublishControl({
     <>
       {showConfirm && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/60 p-4"
           onClick={() => setShowConfirm(false)}
         >
           <div
-            className="mono-surface w-full max-w-sm p-6"
+            className="mono-surface w-full max-w-sm border-[1.5px] border-ink bg-paper-2 p-6 shadow-mono"
             onClick={(e) => e.stopPropagation()}
           >
-            <p className="mb-4 text-start text-sm text-ink">{confirmText}</p>
+            <p className="mb-4 text-start text-sm text-ink font-serif2">{confirmText}</p>
             {error && (
               <p role="alert" className="mb-4 text-sm font-medium text-mono-red">
                 {error}
@@ -94,7 +94,7 @@ export function PublishControl({
               <button
                 type="button"
                 onClick={() => setShowConfirm(false)}
-                className="rounded border border-input px-3 py-2 text-sm"
+                className="rounded-[4px] border-2 border-ink bg-paper-2 px-3 py-2 text-sm text-ink transition-colors hover:bg-ink hover:text-paper"
               >
                 {t("publish.cancel")}
               </button>
@@ -102,7 +102,7 @@ export function PublishControl({
                 type="button"
                 onClick={confirm}
                 disabled={working}
-                className="rounded bg-ink px-3 py-2 text-sm text-paper"
+                className="rounded-[4px] bg-ink px-3 py-2 text-sm font-semibold text-paper"
               >
                 {working ? t("common.loading") : confirmButtonLabel}
               </button>

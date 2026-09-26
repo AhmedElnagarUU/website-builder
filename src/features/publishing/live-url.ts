@@ -4,6 +4,7 @@ export function nextUrl(
   host?: string
 ): string {
   const base =
+    process.env.NEXT_PUBLIC_APP_URL ||
     process.env.NEXT_PUBLIC_SITES_DOMAIN ||
     process.env.VERCEL_URL ||
     host ||
@@ -15,6 +16,7 @@ export function nextUrl(
 
 export function livePageBaseUrl(slug: string, lang: string, host?: string): string {
   const base =
+    process.env.NEXT_PUBLIC_APP_URL ||
     process.env.NEXT_PUBLIC_SITES_DOMAIN ||
     process.env.VERCEL_URL ||
     host ||
