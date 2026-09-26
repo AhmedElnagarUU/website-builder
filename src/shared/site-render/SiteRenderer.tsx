@@ -96,7 +96,7 @@ export function SiteRenderer({
   pageId = "home",
   content,
   businessInfo,
-  images,
+  images = {},
   brandColor,
   editMode = false,
   onRequestEdit = () => {},
