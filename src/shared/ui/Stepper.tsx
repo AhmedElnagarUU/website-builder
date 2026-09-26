@@ -24,7 +24,7 @@ export function Stepper({
 
   return (
     <ol
-      className={`flex items-center gap-2 overflow-x-auto ${className}`}
+      className={`flex flex-wrap items-center gap-2 ${className}`}
       aria-label="progress"
     >
       {steps.map((step, i) => {
