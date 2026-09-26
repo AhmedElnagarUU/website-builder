@@ -16,6 +16,8 @@ function getRestrictionHint(
       return t("upgrade_hint");
     case "account_suspended":
       return t("site_not_deleted");
+    case "trial_expired":
+      return t("trial_expired_body");
     case "account_frozen":
       return t("frozen_body");
     default:
@@ -41,6 +43,8 @@ export function PaywallPrompt({
         return t("title_requires_upgrade");
       case "account_suspended":
         return t("title_account_suspended");
+      case "trial_expired":
+        return t("title_trial_expired");
       case "account_frozen":
         return t("title_account_frozen");
       default:
@@ -56,6 +60,8 @@ export function PaywallPrompt({
         return t("requires_upgrade_body");
       case "account_suspended":
         return t("suspended_body");
+      case "trial_expired":
+        return t("trial_expired_body");
       case "account_frozen":
         return t("frozen_body");
       default:
@@ -107,8 +113,8 @@ export function PaywallPrompt({
             onClick={handleUpgrade}
           >
             {paywall.reason === "account_suspended"
-              ? t("reactivate")
-              : t("upgrade")}
+                ? t("reactivate")
+                : t("upgrade")}
           </Button>
           <Button
             variant="default"

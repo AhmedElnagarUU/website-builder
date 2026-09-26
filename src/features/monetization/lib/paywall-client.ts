@@ -2,7 +2,8 @@ export type PaywallReason =
   | "limit_reached"
   | "requires_upgrade"
   | "account_frozen"
-  | "account_suspended";
+  | "account_suspended"
+  | "trial_expired";
 
 export interface PaywallInfo {
   reason: PaywallReason;
@@ -15,6 +16,7 @@ const PAYWALL_REASONS: PaywallReason[] = [
   "requires_upgrade",
   "account_frozen",
   "account_suspended",
+  "trial_expired",
 ];
 
 export async function paywallFromResponse(

@@ -13,6 +13,7 @@ export type UploadErrorKind =
   | "requires_upgrade"
   | "account_frozen"
   | "account_suspended"
+  | "trial_expired"
   | "unauthorized"
   | "not_found"
   | "unknown_slot"
@@ -58,6 +59,7 @@ function mapApiError(status: number, body: { error?: string } | null): UploadErr
     return "unauthorized";
   }
   if (status === 402) {
+    if (body?.error === "trial_expired") return "trial_expired";
     if (body?.error === "requires_upgrade") return "requires_upgrade";
     return "limit_reached";
   }
@@ -84,7 +86,8 @@ function paywallFromBody(
     body.error !== "limit_reached" &&
     body.error !== "requires_upgrade" &&
     body.error !== "account_frozen" &&
-    body.error !== "account_suspended"
+    body.error !== "account_suspended" &&
+    body.error !== "trial_expired"
   ) {
     return null;
   }

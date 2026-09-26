@@ -88,7 +88,8 @@ export type LimitReason =
   | "limit_reached"
   | "requires_upgrade"
   | "account_frozen"
-  | "account_suspended";
+  | "account_suspended"
+  | "trial_expired";
 
 export interface UsageSnapshot {
   totalSites: number;

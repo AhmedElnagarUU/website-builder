@@ -146,6 +146,8 @@ export function ImageSlotEditor({
         return t("paywall.account_frozen");
       case "account_suspended":
         return t("paywall.account_suspended");
+      case "trial_expired":
+        return t("paywall.trial_expired_body");
       case "unauthorized":
         return t("editor.image.error.unauthorized");
       case "not_found":

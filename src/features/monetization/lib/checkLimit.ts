@@ -67,15 +67,16 @@ export function checkLimit(
   switch (limitKey) {
     case "maxSites":
       return apply(limitKey, ctx.plan.limits.maxSites, usage.totalSites, amount);
-    case "maxPagesPerSite":
-      return apply(
-        limitKey,
-        ctx.plan.limits.maxPagesPerSite,
-        0,
-        amount
-      );
-    case "maxLanguages":
-      return apply(limitKey, ctx.plan.limits.maxLanguages, 0, amount);
+    case "maxPagesPerSite": {
+      const pageSiteId = scopeSiteId(requestedScope);
+      const used = usage.pagesPerSite[pageSiteId] ?? 0;
+      return apply(limitKey, ctx.plan.limits.maxPagesPerSite, used, amount);
+    }
+    case "maxLanguages": {
+      const langSiteId = scopeSiteId(requestedScope);
+      const used = usage.languagesPerSite[langSiteId] ?? 0;
+      return apply(limitKey, ctx.plan.limits.maxLanguages, used, amount);
+    }
     case "maxPublishedSites": {
       const siteId = scopeSiteId(requestedScope);
       const alreadyPublished = usage.publishedSiteIds.includes(siteId);

@@ -807,4 +807,303 @@ export const TEMPLATES: TemplateDefinition[] = [
       signature: "clean cards + blue accent + schedule grid + instructor profiles",
     }
   ),
+
+  def(
+    "modern-interiors",
+    { en: "Modern Interiors", ar: "الديكور الحديث" },
+    { en: "A stylish, image-forward layout for interior design studios.", ar: "تصميم أنيق يركز على الصور لاستوديوهات الديكور الداخلي." },
+    "interior_design",
+    {
+      fontPair: "warm",
+      radius: "soft",
+      imagery: "photo",
+      theme: { key: "creative", surface: "light", headingFont: "serif", hero: "photo-bleed", accentRole: "fill" },
+    },
+    "#7C3AED",
+    { svcCount: 3, testimonials: 2, extras: { gallery: 6, team: 2 } },
+    {
+      palette: {
+        "--cream": "#FAF7F2",
+        "--cream-dark": "#F0EBE0",
+        "--ink": "#2C2420",
+        "--muted": "#8A7E74",
+        "--accent": "#A855F7",
+        "--accent-soft": "#E9D5FF",
+        "--line": "#D6CFC2",
+        "--deep": "#1A1412",
+      },
+      fonts: {
+        heading: "var(--font-playfair-display)",
+        body: "var(--font-karla)",
+        mono: "var(--font-ibm-plex-mono)",
+      },
+      signature: "overflow images + muted neutrals + lavender accent + editorial spacing",
+    }
+  ),
+
+  def(
+    "dev-platform",
+    { en: "Dev Platform", ar: "منصة المطورين" },
+    { en: "A technical, fast layout for software and IT services.", ar: "تصميم تقني سريع لخدمات البرمجة وتقنية المعلومات." },
+    "software_it",
+    {
+      fontPair: "modern",
+      radius: "sharp",
+      imagery: "minimal",
+      theme: { key: "bold", surface: "deep", headingFont: "sans", hero: "split-deep", accentRole: "edge" },
+    },
+    "#06B6D4",
+    { svcCount: 4, testimonials: 1, extras: { faq: 6, pricing: 3, team: 4 } },
+    {
+      palette: {
+        "--bg": "#0B0F14",
+        "--surface": "#131A22",
+        "--surface-light": "#1B2430",
+        "--text": "#E8EDF2",
+        "--muted": "#6B7A8D",
+        "--accent": "#06B6D4",
+        "--accent-hover": "#22D3EE",
+        "--accent-soft": "#0E4A5C",
+        "--border": "#1E2D3D",
+      },
+      fonts: {
+        heading: "var(--font-space-grotesk)",
+        body: "var(--font-inter)",
+        mono: "var(--font-ibm-plex-mono)",
+      },
+      signature: "terminal-green accents + grid lines + code snippets + dark surface",
+    }
+  ),
+
+  def(
+    "property-finder",
+    { en: "Property Finder", ar: "باحث عن العقارات" },
+    { en: "A clean, trust-focused layout for real estate agencies.", ar: "تصميم نظيف يركز على الثقة لشركات الوسط العقاري." },
+    "real_estate",
+    {
+      fontPair: "classic",
+      radius: "soft",
+      imagery: "photo",
+      theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "fill" },
+    },
+    "#059669",
+    { svcCount: 3, testimonials: 3, extras: { gallery: 6, faq: 4 } },
+    {
+      palette: {
+        "--paper": "#F8F6F1",
+        "--parchment": "#FDFCF8",
+        "--ink": "#1A2332",
+        "--steel": "#5A6B7A",
+        "--accent": "#059669",
+        "--accent-soft": "#D1FAE5",
+        "--line": "#D8D0C0",
+        "--night": "#0F1923",
+      },
+      fonts: {
+        heading: "var(--font-barlow-condensed)",
+        body: "var(--font-barlow)",
+        mono: "var(--font-ibm-plex-mono)",
+      },
+      signature: "property cards + hard offset shadows + key specs row + map placeholder",
+    }
+  ),
+
+  def(
+    "glow-studio",
+    { en: "Glow Studio", ar: "استوديو التألق" },
+    { en: "A luminous, welcoming layout for beauty salons and fitness studios.", ar: "تصميم مضيء ومرحب لصالونات الجمال واستوديوهات اللياقة." },
+    "beauty_fitness",
+    {
+      fontPair: "modern",
+      radius: "sharp",
+      imagery: "minimal",
+      theme: { key: "warm", surface: "light", headingFont: "sans", hero: "photo-bleed", accentRole: "edge" },
+    },
+    "#EC4899",
+    { svcCount: 4, testimonials: 3, extras: { hours: true, team: 3 } },
+    {
+      palette: {
+        "--bg": "#FFFBFE",
+        "--surface": "#F5E6F0",
+        "--surface-light": "#FDF2F8",
+        "--text": "#1F1A24",
+        "--muted": "#8B7B8E",
+        "--accent": "#EC4899",
+        "--accent-hover": "#DB2777",
+        "--accent-soft": "#FCE7F3",
+        "--border": "#E9D5E0",
+      },
+      fonts: {
+        heading: "var(--font-plus-jakarta-sans)",
+        body: "var(--font-source-sans-3)",
+      },
+      signature: "pink glow cards + soft rounded images + rose accent + schedule grid",
+    }
+  ),
+
+  def(
+    "auto-garage",
+    { en: "Auto Garage", ar: "مرآب السيارات" },
+    { en: "A rugged, bold layout for auto repair and car dealerships.", ar: "تصميم قوي وجريء لمرائب السيارات ووكالات السيارات." },
+    "automotive",
+    {
+      fontPair: "modern",
+      radius: "sharp",
+      imagery: "photo",
+      theme: { key: "bold", surface: "deep", headingFont: "sans", hero: "photo-bleed", accentRole: "fill" },
+    },
+    "#F97316",
+    { svcCount: 3, testimonials: 2, extras: { gallery: 4, faq: 3 } },
+    {
+      palette: {
+        "--night": "#0A0A0A",
+        "--surface": "#141414",
+        "--surface-light": "#1E1E1E",
+        "--text": "#F5F5F5",
+        "--muted": "#888888",
+        "--accent": "#F97316",
+        "--accent-hover": "#EA580C",
+        "--accent-soft": "#7C2D12",
+        "--border": "#2A2A2A",
+      },
+      fonts: {
+        heading: "var(--font-space-grotesk)",
+        body: "var(--font-inter)",
+      },
+      signature: "full-bleed car photos + orange accent + bold stats + wrench icon rows",
+    }
+  ),
+
+  def(
+    "event-planner",
+    { en: "Event Planner", ar: "منظم الفعاليات" },
+    { en: "A vibrant, celebratory layout for event planning and coordination.", ar: "تصميم نابض بالحياة واحتفائي لتنظيم الفعاليات والأحداث." },
+    "events",
+    {
+      fontPair: "warm",
+      radius: "soft",
+      imagery: "photo",
+      theme: { key: "creative", surface: "light", headingFont: "serif", hero: "photo-bleed", accentRole: "fill" },
+    },
+    "#F59E0B",
+    { svcCount: 3, testimonials: 2, extras: { gallery: 6, faq: 4 } },
+    {
+      palette: {
+        "--blush": "#FEF3C7",
+        "--blush-deep": "#FDE68A",
+        "--ink": "#1F2937",
+        "--muted": "#6B7280",
+        "--accent": "#F59E0B",
+        "--accent-hover": "#D97706",
+        "--accent-soft": "#FEF3C7",
+        "--line": "#D1D5DB",
+        "--card": "#FFFFFF",
+      },
+      fonts: {
+        heading: "var(--font-fraunces)",
+        body: "var(--font-karla)",
+      },
+      signature: "golden celebration cards + date badges + testimonial ribbons + warm photo bleed",
+    }
+  ),
+
+  def(
+    "wanderlust",
+    { en: "Wanderlust", ar: "رحلات" },
+    { en: "An adventurous, scenic layout for travel agencies and guides.", ar: "تصميم مغامرة وبانورامي لوكالات السفر والمرشدين." },
+    "travel",
+    {
+      fontPair: "modern",
+      radius: "soft",
+      imagery: "photo",
+      theme: { key: "creative", surface: "light", headingFont: "sans", hero: "photo-bleed", accentRole: "edge" },
+    },
+    "#0891B2",
+    { svcCount: 3, testimonials: 2, extras: { gallery: 6, faq: 4 } },
+    {
+      palette: {
+        "--sky": "#EFF6FF",
+        "--ocean": "#DBEAFE",
+        "--deep": "#0C4A6E",
+        "--text": "#164E63",
+        "--muted": "#64748B",
+        "--accent": "#0891B2",
+        "--accent-hover": "#0E7490",
+        "--accent-soft": "#CFFAFE",
+        "--line": "#BAE6FD",
+        "--card": "#FFFFFF",
+      },
+      fonts: {
+        heading: "var(--font-space-grotesk)",
+        body: "var(--font-inter)",
+      },
+      signature: "full-bleed destination photos + cyan ocean accent + itinerary cards + compass rose",
+    }
+  ),
+
+  def(
+    "b2b-connect",
+    { en: "B2B Connect", ar: "تواصل B2B" },
+    { en: "A professional, trust-first layout for B2B service providers.", ar: "تصميم مهني يركز على الثقة لمقدمي خدمات B2B." },
+    "b2b",
+    {
+      fontPair: "classic",
+      radius: "soft",
+      imagery: "minimal",
+      theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "edge" },
+    },
+    "#1E40AF",
+    { svcCount: 4, testimonials: 2, extras: { pricing: 3, faq: 5, team: 4 } },
+    {
+      palette: {
+        "--paper": "#F4F6F9",
+        "--parchment": "#FFFFFF",
+        "--navy": "#1E3A5F",
+        "--mist": "#64748B",
+        "--brass": "#3B82F6",
+        "--brass-rule": "#2563EB",
+        "--line": "#D0D7E2",
+        "--coal": "#0B141D",
+      },
+      fonts: {
+        heading: "var(--font-serif2)",
+        body: "var(--font-mulish)",
+        mono: "var(--font-ibm-plex-mono)",
+      },
+      signature: "ledger card + blue brass rules + stat bars + clean white space",
+    }
+  ),
+
+  def(
+    "health-clinic",
+    { en: "Health Clinic", ar: "العيادة الصحية" },
+    { en: "A clean, reassuring layout for medical clinics and healthcare providers.", ar: "تصميم نظيف ومطمئن للعيادات الطبية ومقدمي الرعاية الصحية." },
+    "clinics",
+    {
+      fontPair: "classic",
+      radius: "soft",
+      imagery: "minimal",
+      theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "fill" },
+    },
+    "#059669",
+    { svcCount: 3, testimonials: 2, extras: { hours: true, faq: 5, team: 3 } },
+    {
+      palette: {
+        "--clinic-bg": "#F8FAFC",
+        "--clinic-surface": "#F1F5F9",
+        "--clinic-card": "#FFFFFF",
+        "--clinic-text": "#1E293B",
+        "--clinic-muted": "#64748B",
+        "--clinic-teal": "#0891B2",
+        "--clinic-teal-dark": "#0E7490",
+        "--clinic-success": "#059669",
+        "--clinic-border": "#E2E8F0",
+      },
+      fonts: {
+        heading: "var(--font-plus-jakarta-sans)",
+        body: "var(--font-source-sans-3)",
+      },
+      signature: "12px radius cards + teal glow lift + schedule grid + practitioner profiles",
+    }
+  ),
 ];

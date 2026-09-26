@@ -66,14 +66,14 @@ function TemplateGalleryCard({
           aria-label={template.colors.defaultAccent}
         />
       </div>
-      <div className="mt-3 flex flex-wrap items-center gap-2 border-t-[1.5px] border-dashed border-ink/25 pt-3">
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t-[1.5px] border-dashed border-ink/25 pt-3">
         <span className="rounded-full border border-ink px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.06em] text-ink-3">
           {categoryLabel}
         </span>
         <span className="font-mono text-[10px] uppercase tracking-[0.06em] text-ink-3">
           {t("dashboard.gallery.style")}: {styleLabel}
         </span>
-        <span className="ms-auto">
+        <span className="shrink-0">
           <TemplatePreviewLink template={template} />
         </span>
       </div>

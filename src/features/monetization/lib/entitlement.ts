@@ -5,6 +5,7 @@ import {
   getAccountStatus,
   resolveSubscriptionForUser,
   restoreAccount,
+  getTrialStatus,
 } from "../repository";
 import { getPlanById } from "../plans";
 import { checkLimit } from "./checkLimit";
@@ -18,7 +19,7 @@ import type {
 } from "../types";
 
 export interface EntitlementErrorBody {
-  error: "limit_reached" | "requires_upgrade" | "account_frozen" | "account_suspended";
+  error: "limit_reached" | "requires_upgrade" | "account_frozen" | "account_suspended" | "trial_expired";
   plan: "free" | "pro";
   limitKey: LimitKey;
 }
@@ -74,12 +75,33 @@ export async function withEntitlement<THandler extends (ctx: EntitlementGranted)
     await restoreAccount(session.user.id);
   }
 
+  // Re-fetch accountStatus after potential restoration so checkLimit
+  // and the trial-expiration check see the latest value.
+  const currentAccountStatus = await getAccountStatus(session.user.id);
+
   const plan = getPlanById(subscription.planId);
   if (!plan) {
     return NextResponse.json(
       { error: "unknown_plan" },
       { status: 500 }
     );
+  }
+
+  // Explicit trial-expiration check: return a clear trial_expired error
+  // (402) so the UI can show an upgrade CTA instead of a generic
+  // "account suspended" message.
+  if (currentAccountStatus === "suspended") {
+    const trial = await getTrialStatus(session.user.id);
+    if (trial.hasTrial && trial.isExpired) {
+      return NextResponse.json(
+        {
+          error: "trial_expired",
+          plan: subscription.planId,
+          limitKey: context.limitKey,
+        },
+        { status: 402 }
+      );
+    }
   }
 
   const usage = await getUsageForUser(session.user.id);
@@ -92,7 +114,7 @@ export async function withEntitlement<THandler extends (ctx: EntitlementGranted)
       ? context.requestedScope
       : { siteId: context.siteId, amount: 1 };
   const result = checkLimit(
-    { plan, accountStatus },
+    { plan, accountStatus: currentAccountStatus },
     usage,
     context.limitKey,
     requestedScope
