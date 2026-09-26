@@ -1,27 +1,31 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { authClient } from "@/shared/auth/client";
-
-const POLAR_PRODUCT_ID_PRO =
-  process.env.NEXT_PUBLIC_POLAR_PRODUCT_ID_PRO || "a46de6f5-57cb-466d-9afa-ca08c1704dae";
+import { CheckoutSection } from "@/features/payments/components/checkout-section";
 
 export function PricingCta() {
   const t = useTranslations("pricing");
   const router = useRouter();
   const locale = useLocale();
   const { data: session, isPending } = authClient.useSession();
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   function handleUpgrade() {
     if (session?.user) {
-      window.location.assign(
-        `/api/checkout?products=${encodeURIComponent(POLAR_PRODUCT_ID_PRO)}`
-      );
+      setCheckoutOpen(true);
       return;
     }
     if (isPending) return;
     router.push(`/${locale}/auth/sign-in`);
+  }
+
+  if (checkoutOpen) {
+    return (
+      <CheckoutSection initialOpen={true} />
+    );
   }
 
   return (

@@ -8,6 +8,7 @@ import type {
   BilingualText,
   TemplateStyle,
 } from "./types";
+import type { CategoryId } from "@/features/sites/types";
 
 // Semantic Key Registry (single source of truth, max length per key)
 const REGISTRY = {
@@ -358,7 +359,7 @@ function def(
   id: string,
   name: BilingualText,
   description: BilingualText,
-  category: "services" | "restaurant" | "retail" | "professional" | "portfolio",
+  category: CategoryId,
   style: TemplateStyle,
   defaultAccent: string,
   opts: BaseOpts,
@@ -701,6 +702,109 @@ export const TEMPLATES: TemplateDefinition[] = [
         body: "var(--font-inter)",
       },
       signature: "asymmetric grids + Playfair + gold counters",
+    }
+  ),
+
+  def(
+    "law-profile",
+    { en: "Law & Trust", ar: "القانون والثقة" },
+    { en: "A credible, profile-first layout for law firms and B2B consultants.", ar: "تصميم موثوق يركز على البروفايل للشركات القانونية والاستشارية." },
+    "law",
+    {
+      fontPair: "classic",
+      radius: "soft",
+      imagery: "minimal",
+      theme: { key: "corporate", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "edge" },
+    },
+    "#1E3A5F",
+    { svcCount: 3, testimonials: 3, extras: { faq: 5, team: 3 } },
+    {
+      palette: {
+        "--paper": "#f4efe3",
+        "--parchment": "#fbf7ec",
+        "--navy": "#10232e",
+        "--mist": "#5f7d96",
+        "--brass": "#b08d4a",
+        "--brass-rule": "#a8873f",
+        "--line": "#d8cfbb",
+        "--coal": "#0b141d",
+        "--ledger-soft": "rgba(15, 33, 56, 0.05)",
+        "--ledger-deep": "rgba(15, 33, 56, 0.25)",
+      },
+      fonts: {
+        heading: "var(--font-serif2)",
+        body: "var(--font-mulish)",
+        mono: "var(--font-fragment-mono)",
+      },
+      signature: "ledger card + double rule + Fragment Mono stamps",
+    }
+  ),
+
+  def(
+    "construction-gallery",
+    { en: "Construction Gallery", ar: "معرض البناء والتشييد" },
+    { en: "A visual-heavy layout for construction firms and real estate agencies.", ar: "تصميم مكثف بالصور لشركات البناء والوساطة العقارية." },
+    "construction",
+    {
+      fontPair: "modern",
+      radius: "sharp",
+      imagery: "photo",
+      theme: { key: "bold", surface: "deep", headingFont: "sans", hero: "photo-bleed", accentRole: "fill" },
+    },
+    "#C2410C",
+    { svcCount: 2, testimonials: 0, extras: { gallery: 6 } },
+    {
+      palette: {
+        "--vol-bg": "#0A0A0A",
+        "--vol-surface": "#1A1A1A",
+        "--vol-surface-light": "#252525",
+        "--vol-text": "#F5F5F5",
+        "--vol-muted": "#888888",
+        "--vol-accent": "#F97316",
+        "--vol-accent-hover": "#EA580C",
+        "--vol-border": "#333333",
+      },
+      fonts: {
+        heading: "var(--font-space-grotesk)",
+        body: "var(--font-inter)",
+      },
+      signature: "full-bleed images + orange accent + bold typography",
+    }
+  ),
+
+  def(
+    "education-academy",
+    { en: "Education Academy", ar: "أكاديمية التعليم" },
+    { en: "A warm, structured layout for schools, academies, and fitness studios.", ar: "تصميم دافئ ومنظم للمدارس والأكاديميات واستوديوهات اللياقة." },
+    "education",
+    {
+      fontPair: "warm",
+      radius: "soft",
+      imagery: "minimal",
+      theme: { key: "warm", surface: "light", headingFont: "serif", hero: "split-light", accentRole: "fill" },
+    },
+    "#1D4ED8",
+    { svcCount: 4, testimonials: 0, extras: { hours: true, faq: 4, team: 3 } },
+    {
+      palette: {
+        "--clinic-bg": "#FAFBFC",
+        "--clinic-surface": "#F1F5F9",
+        "--clinic-card": "#FFFFFF",
+        "--clinic-text": "#1E293B",
+        "--clinic-muted": "#64748B",
+        "--clinic-teal": "#0891B2",
+        "--clinic-teal-dark": "#0E7490",
+        "--clinic-success": "#059669",
+        "--clinic-border": "#E2E8F0",
+        "--academy-blue": "#1D4ED8",
+        "--academy-light": "#DBEAFE",
+        "--academy-surface": "#F0F4FF",
+      },
+      fonts: {
+        heading: "var(--font-plus-jakarta-sans)",
+        body: "var(--font-source-sans-3)",
+      },
+      signature: "clean cards + blue accent + schedule grid + instructor profiles",
     }
   ),
 ];

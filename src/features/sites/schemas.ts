@@ -6,6 +6,18 @@ export const CATEGORY_IDS = [
   "retail",
   "professional",
   "portfolio",
+  "construction",
+  "interior_design",
+  "law",
+  "software_it",
+  "real_estate",
+  "beauty_fitness",
+  "education",
+  "automotive",
+  "events",
+  "travel",
+  "b2b",
+  "clinics",
 ] as const;
 
 const trimmedString = (max: number) =>

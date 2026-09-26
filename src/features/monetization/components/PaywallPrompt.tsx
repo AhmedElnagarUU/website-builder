@@ -2,7 +2,26 @@
 
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { Button } from "@/shared/ui/Button";
 import type { PaywallInfo } from "../lib/paywall-client";
+
+function getRestrictionHint(
+  reason: PaywallInfo["reason"],
+  t: (key: string) => string,
+): string {
+  switch (reason) {
+    case "limit_reached":
+      return t("upgrade_hint");
+    case "requires_upgrade":
+      return t("upgrade_hint");
+    case "account_suspended":
+      return t("site_not_deleted");
+    case "account_frozen":
+      return t("frozen_body");
+    default:
+      return t("upgrade_hint");
+  }
+}
 
 export function PaywallPrompt({
   paywall,
@@ -44,23 +63,6 @@ export function PaywallPrompt({
     }
   })();
 
-  const restriction = (() => {
-    if (paywall.reason === "account_suspended") {
-      return t("site_preserved");
-    }
-    if (paywall.plan === "pro") {
-      return t("plan_pro");
-    }
-    return t("plan_free");
-  })();
-
-  const primaryLabel = (() => {
-    if (paywall.reason === "account_suspended") {
-      return t("reactivate");
-    }
-    return t("upgrade");
-  })();
-
   function handleUpgrade() {
     onClose();
     router.push("/pricing");
@@ -74,7 +76,7 @@ export function PaywallPrompt({
       aria-modal="true"
     >
       <div
-        className="mono-surface w-full max-w-md border-2 border-ink bg-paper p-6 shadow-mono"
+        className="mono-surface w-full max-w-md rounded-[4px] border-2 border-ink bg-paper p-6 shadow-mono"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Title */}
@@ -89,27 +91,32 @@ export function PaywallPrompt({
 
         {/* Restriction info */}
         <div className="mt-4 rounded-[4px] border-2 border-mono-red/30 bg-paper-2 p-3">
-          <p className="mono-display text-sm font-semibold text-ink">
-            {restriction}
+          <p className="mono-display text-sm text-ink">
+            {paywall.plan === "pro" ? t("plan_pro") : t("plan_free")}
+          </p>
+          <p className="mt-1 font-serif2 text-xs text-ink-2">
+            {getRestrictionHint(paywall.reason, t)}
           </p>
         </div>
 
         {/* Actions */}
         <div className="mt-6 flex gap-3">
-          <button
-            type="button"
+          <Button
+            variant="primary"
+            className="flex-1"
             onClick={handleUpgrade}
-            className="mono-display flex-1 rounded-full border-2 border-ink bg-mono-red px-4 py-2.5 text-lg font-semibold text-paper transition-colors hover:bg-ink hover:text-paper"
           >
-            {primaryLabel}
-          </button>
-          <button
-            type="button"
+            {paywall.reason === "account_suspended"
+              ? t("reactivate")
+              : t("upgrade")}
+          </Button>
+          <Button
+            variant="default"
+            className="flex-1"
             onClick={onClose}
-            className="mono-display flex-1 rounded-full border-2 border-ink bg-paper px-4 py-2.5 text-lg font-semibold text-ink transition-colors hover:bg-ink hover:text-paper"
           >
             {t("close")}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <rect width="400" height="500" fill="#FAFBFC"/>
+  <rect width="400" height="56" fill="#FFFFFF"/>
+  <rect x="0" y="56" width="400" height="1.5" fill="#E2E8F0"/>
+  <rect x="20" y="17" width="22" height="22" rx="4" fill="#1D4ED8"/>
+  <rect x="20" y="22" width="10" height="12" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="312" cy="28" r="3.5" fill="#CBD5E1"/>
+  <circle cx="330" cy="28" r="3.5" fill="#CBD5E1"/>
+  <circle cx="348" cy="28" r="3.5" fill="#CBD5E1"/>
+  <rect x="20" y="86" width="280" height="22" rx="2" fill="#1E293B"/>
+  <rect x="20" y="116" width="200" height="12" rx="2" fill="#64748B"/>
+  <rect x="20" y="148" width="240" height="10" rx="2" fill="#E2E8F0"/>
+  <rect x="20" y="168" width="170" height="10" rx="2" fill="#E2E8F0"/>
+  <rect x="20" y="196" width="130" height="30" rx="6" fill="#1D4ED8"/>
+  <rect x="292" y="84" width="88" height="186" rx="8" fill="#DBEAFE"/>
+  <rect x="292" y="84" width="88" height="186" rx="8" fill="none" stroke="#1D4ED8" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <rect x="300" y="116" width="72" height="36" rx="4" fill="#BFDBFE"/>
+  <rect x="304" y="246" width="64" height="14" rx="4" fill="#1D4ED8"/>
+  <rect x="20" y="334" width="26" height="26" rx="4" fill="#BFDBFE"/>
+  <text x="29" y="352" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8">01</text>
+  <rect x="58" y="342" width="220" height="10" rx="5" fill="#E2E8F0"/>
+  <rect x="20" y="372" width="26" height="26" rx="4" fill="#BFDBFE"/>
+  <text x="29" y="390" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8">02</text>
+  <rect x="20" y="410" width="26" height="26" rx="4" fill="#BFDBFE"/>
+  <text x="29" y="428" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="bold" fill="#1D4ED8">03</text>
+  <rect x="58" y="418" width="160" height="10" rx="5" fill="#E2E8F0"/>
+  <rect x="0" y="446" width="400" height="40" fill="#1D4ED8"/>
+  <rect x="140" y="460" width="120" height="12" rx="6" fill="#FFFFFF" opacity="0.9"/>
+  <rect x="0" y="486" width="400" height="14" fill="#FAFBFC"/>
+  <text x="200" y="497" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle">education-academy</text>
+</svg>

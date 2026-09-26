@@ -5,7 +5,19 @@ export type CategoryId =
   | "restaurant"
   | "retail"
   | "professional"
-  | "portfolio";
+  | "portfolio"
+  | "construction"
+  | "interior_design"
+  | "law"
+  | "software_it"
+  | "real_estate"
+  | "beauty_fitness"
+  | "education"
+  | "automotive"
+  | "events"
+  | "travel"
+  | "b2b"
+  | "clinics";
 
 export const CATEGORIES: CategoryId[] = [
   "services",
@@ -13,6 +25,18 @@ export const CATEGORIES: CategoryId[] = [
   "retail",
   "professional",
   "portfolio",
+  "construction",
+  "interior_design",
+  "law",
+  "software_it",
+  "real_estate",
+  "beauty_fitness",
+  "education",
+  "automotive",
+  "events",
+  "travel",
+  "b2b",
+  "clinics",
 ];
 
 export type Locale = "en" | "ar";

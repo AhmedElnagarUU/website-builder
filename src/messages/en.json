@@ -407,6 +407,7 @@
     "upgrade_hint": "Upgrade to Pro to unlock more — coming soon.",
     "plan_free": "Current plan: Free",
     "plan_pro": "Current plan: Pro",
+    "title_trial_expired": "Your trial has expired",
     "close": "Close",
     "title_limit_reached": "You've hit a limit",
     "title_requires_upgrade": "Upgrade required",
@@ -417,8 +418,10 @@
     "suspended_body": "Your trial has expired. Your site data is preserved, but it is currently suspended. Upgrade to restore access.",
     "frozen_body": "Your account is temporarily frozen. Contact support if you believe this is a mistake.",
     "site_preserved": "Your site data is preserved — not deleted.",
+    "site_not_deleted": "Your site data is preserved — just upgrade to reactivate.",
+    "trial_expired_body": "Your 15-day trial has ended. Your website content is safe, but it's currently suspended. Upgrade to Pro to restore access.",
     "upgrade": "Upgrade to Pro",
-    "reactivate": "Reactivate"
+    "reactivate": "Reactivate your site"
   },
   "wizard": {
     "business": {
