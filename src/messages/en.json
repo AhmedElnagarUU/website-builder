@@ -246,7 +246,19 @@
         "restaurant": "Restaurant",
         "retail": "Retail",
         "professional": "Professional",
-        "portfolio": "Portfolio"
+        "portfolio": "Portfolio",
+        "construction": "Construction",
+        "interior_design": "Interior Design",
+        "law": "Law",
+        "software_it": "Software & IT",
+        "real_estate": "Real Estate",
+        "beauty_fitness": "Beauty & Fitness",
+        "education": "Education",
+        "automotive": "Automotive",
+        "events": "Events",
+        "travel": "Travel",
+        "b2b": "B2B Services",
+        "clinics": "Clinics"
       }
     },
     "trial": {

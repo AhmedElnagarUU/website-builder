@@ -246,7 +246,19 @@
         "restaurant": "مطعم",
         "retail": "متجر",
         "professional": "محترف",
-        "portfolio": "معرض أعمال"
+        "portfolio": "معرض أعمال",
+        "construction": "بناء",
+        "interior_design": "تصميم داخلي",
+        "law": "قانون",
+        "software_it": "برمجة وتقنية",
+        "real_estate": "عقارات",
+        "beauty_fitness": "جمال ولياقة",
+        "education": "تعليم",
+        "automotive": "سيارات",
+        "events": "فعاليات",
+        "travel": "سفر",
+        "b2b": "خدمات B2B",
+        "clinics": "عيادات"
       }
     },
     "trial": {
