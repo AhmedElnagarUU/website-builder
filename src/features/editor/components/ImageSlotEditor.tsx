@@ -28,6 +28,11 @@ function formatBytes(bytes: number): string {
 
 type Phase = "idle" | "uploading" | "done";
 
+function normalizeBaseUrl(value?: string): string | undefined {
+  if (!value) return undefined;
+  return value.replace(/\/+$/, "");
+}
+
 export function ImageSlotEditor({
   slot,
   siteId,
@@ -51,6 +56,61 @@ export function ImageSlotEditor({
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [uploadedImage, setUploadedImage] = useState<SiteImage | undefined>(current);
+  const [resolvedImageUrl, setResolvedImageUrl] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    if (!uploadedImage?.s3Key) {
+      setResolvedImageUrl(undefined);
+      return;
+    }
+
+    let ignored = false;
+
+    const directUrl = s3PublicBaseUrl
+      ? `${normalizeBaseUrl(s3PublicBaseUrl)}/${uploadedImage.s3Key.replace(/^\/+/, "")}`
+      : undefined;
+
+    const resolveUrl = async () => {
+      const trySignedUrl = async () => {
+        try {
+          const res = await fetch(
+            `/api/sites/${siteId}/images/sign-url?key=${encodeURIComponent(uploadedImage.s3Key)}`
+          );
+          const body = (await res.json().catch(() => null)) as { signedUrl?: string } | null;
+          if (!ignored && res.ok && body?.signedUrl) {
+            setResolvedImageUrl(body.signedUrl);
+            return;
+          }
+        } catch {
+          // ignore and fall through to the current direct URL if available
+        }
+
+        if (!ignored && directUrl) {
+          setResolvedImageUrl(directUrl);
+        }
+      };
+
+      if (directUrl) {
+        try {
+          const probe = await fetch(directUrl, { method: "HEAD" });
+          if (!ignored && probe.ok) {
+            setResolvedImageUrl(directUrl);
+            return;
+          }
+        } catch {
+          // fall through to signed URL generation
+        }
+      }
+
+      await trySignedUrl();
+    };
+
+    void resolveUrl();
+
+    return () => {
+      ignored = true;
+    };
+  }, [siteId, s3PublicBaseUrl, uploadedImage?.s3Key]);
 
   const lowRes = Boolean(
     uploadedImage &&
@@ -238,14 +298,13 @@ export function ImageSlotEditor({
             <p className="text-sm font-medium text-ink">{t("editor.image.done")}</p>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={
-                s3PublicBaseUrl
-                  ? `${s3PublicBaseUrl}/${uploadedImage.s3Key}`
-                  : undefined
-              }
+              src={resolvedImageUrl}
               alt=""
               className="aspect-[4/3] w-full rounded-[4px] border-[1.5px] border-ink object-cover"
               onError={(e) => {
+                if (uploadedImage?.s3Key) {
+                  setResolvedImageUrl(undefined);
+                }
                 (e.target as HTMLImageElement).style.display = "none";
               }}
             />
