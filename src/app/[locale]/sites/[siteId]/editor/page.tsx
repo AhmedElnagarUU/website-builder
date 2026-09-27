@@ -4,6 +4,7 @@ import { getSession } from "@/features/auth/lib/session";
 import { getSiteForOwner } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
 import { EditorShell } from "@/features/editor/components/EditorShell";
+import { withSignedImageUrls } from "@/features/images/lib/signed-image-urls";
 import { isLocale } from "@/shared/i18n/config";
 import type { Locale } from "@/features/sites/types";
 
@@ -48,7 +49,7 @@ export default async function EditorPage({
       appLocale={locale}
       template={template}
       businessInfo={site.businessInfo}
-      images={site.images}
+      images={await withSignedImageUrls(site.images)}
       brandColor={site.brandColor || template.colors.defaultAccent}
       s3PublicBaseUrl={process.env.S3_PUBLIC_BASE_URL}
       initialContent={site.content}

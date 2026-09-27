@@ -83,6 +83,8 @@ export type Position9 =
 
 export interface SiteImage {
   s3Key: string;
+  /** Short-lived signed URL for reading the object. Resolved on demand, never persisted. */
+  url?: string;
   width?: number;
   height?: number;
   position?: Position9;

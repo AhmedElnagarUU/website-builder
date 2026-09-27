@@ -1,0 +1,13 @@
+{
+  "Version": "2012-10-17",
+  "Id": "FullAccessPolicy",
+  "Statement": [
+    {
+      "Sid": "AllowAllS3Actions",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:*",
+      "Resource": "arn:aws:s3:::ecommerctestbucket"
+    }
+  ]
+}

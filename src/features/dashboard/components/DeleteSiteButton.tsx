@@ -35,11 +35,18 @@ export function DeleteSiteButton({
     setError(null);
     try {
       const res = await fetch(`/api/sites/${siteId}`, { method: "DELETE" });
-      if (res.ok) {
-        router.refresh();
-      } else {
+      if (!res.ok) {
         setError(t("delete.error"));
+        return;
       }
+      const body = (await res.json().catch(() => null)) as {
+        imagesFailed?: number;
+      } | null;
+      if (body?.imagesFailed) {
+        setError(t("delete.images_kept", { count: body.imagesFailed }));
+        return;
+      }
+      router.refresh();
     } catch {
       setError(t("delete.error"));
     } finally {

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { uploadImage, validateImageFile, UploadFlowError, type UploadErrorKind } from "../lib/uploadImage";
 import { Button } from "@/shared/ui/Button";
+import { slotImageSrc } from "@/shared/site-render/internals";
 import { usePaywall } from "@/features/monetization/components/paywall-context";
 import type { ImageSlot } from "@/features/templates/types";
 import type { SiteImage, Position9 } from "@/features/sites/types";
@@ -26,12 +27,7 @@ function formatBytes(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-type Phase = "idle" | "uploading" | "done";
-
-function normalizeBaseUrl(value?: string): string | undefined {
-  if (!value) return undefined;
-  return value.replace(/\/+$/, "");
-}
+type Phase = "pick" | "uploading" | "adjust";
 
 export function ImageSlotEditor({
   slot,
@@ -52,65 +48,17 @@ export function ImageSlotEditor({
   const { showPaywall } = usePaywall();
   const inputRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState<UploadErrorKind | null>(null);
-  const [phase, setPhase] = useState<Phase>("idle");
-  const [file, setFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [phase, setPhase] = useState<Phase>("pick");
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
+  const [progress, setProgress] = useState(0);
+  const [dragging, setDragging] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<SiteImage | undefined>(current);
   const [resolvedImageUrl, setResolvedImageUrl] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    if (!uploadedImage?.s3Key) {
-      setResolvedImageUrl(undefined);
-      return;
-    }
-
-    let ignored = false;
-
-    const directUrl = s3PublicBaseUrl
-      ? `${normalizeBaseUrl(s3PublicBaseUrl)}/${uploadedImage.s3Key.replace(/^\/+/, "")}`
-      : undefined;
-
-    const resolveUrl = async () => {
-      const trySignedUrl = async () => {
-        try {
-          const res = await fetch(
-            `/api/sites/${siteId}/images/sign-url?key=${encodeURIComponent(uploadedImage.s3Key)}`
-          );
-          const body = (await res.json().catch(() => null)) as { signedUrl?: string } | null;
-          if (!ignored && res.ok && body?.signedUrl) {
-            setResolvedImageUrl(body.signedUrl);
-            return;
-          }
-        } catch {
-          // ignore and fall through to the current direct URL if available
-        }
-
-        if (!ignored && directUrl) {
-          setResolvedImageUrl(directUrl);
-        }
-      };
-
-      if (directUrl) {
-        try {
-          const probe = await fetch(directUrl, { method: "HEAD" });
-          if (!ignored && probe.ok) {
-            setResolvedImageUrl(directUrl);
-            return;
-          }
-        } catch {
-          // fall through to signed URL generation
-        }
-      }
-
-      await trySignedUrl();
-    };
-
-    void resolveUrl();
-
-    return () => {
-      ignored = true;
-    };
-  }, [siteId, s3PublicBaseUrl, uploadedImage?.s3Key]);
+    const src = slotImageSrc(uploadedImage, s3PublicBaseUrl, "");
+    setResolvedImageUrl(src || undefined);
+  }, [s3PublicBaseUrl, uploadedImage]);
 
   const lowRes = Boolean(
     uploadedImage &&
@@ -118,42 +66,17 @@ export function ImageSlotEditor({
         (uploadedImage.height !== undefined && uploadedImage.height < slot.minHeight))
   );
 
-  useEffect(() => {
-    const url = previewUrl;
-    return () => {
-      if (url) URL.revokeObjectURL(url);
-    };
-  }, [previewUrl]);
-
-  const selectText = current ? t("editor.image.replace") : t("editor.image.upload");
-
-  const pickFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const picked = e.target.files?.[0];
-    e.target.value = "";
-    if (!picked) return;
-    const checked = validateImageFile(picked);
-    if ("error" in checked) {
-      setError(checked.error);
-      return;
-    }
+  const startUpload = async (target: File) => {
     setError(null);
-    setPhase("idle");
-    if (previewUrl) URL.revokeObjectURL(previewUrl);
-    setFile(picked);
-    setPreviewUrl(URL.createObjectURL(picked));
-  };
-
-  const runUpload = async () => {
-    if (!file) return;
-    setError(null);
+    setPendingFile(target);
+    setProgress(0);
     setPhase("uploading");
     try {
-      const image = await uploadImage(siteId, slot.slotId, file);
-      setUploadedImage(image);
-      setPhase("done");
+      const image = await uploadImage(siteId, slot.slotId, target, setProgress);
       onChanged(image);
+      onClose();
     } catch (err) {
-      setPhase("idle");
+      setPhase("pick");
       if (err instanceof UploadFlowError && err.paywall) {
         showPaywall(err.paywall);
         return;
@@ -162,12 +85,14 @@ export function ImageSlotEditor({
     }
   };
 
-  const cancelUpload = () => {
-    if (previewUrl) URL.revokeObjectURL(previewUrl);
-    setPreviewUrl(null);
-    setFile(null);
-    setPhase("idle");
-    setError(null);
+  const acceptFile = (picked?: File) => {
+    if (!picked) return;
+    const checked = validateImageFile(picked);
+    if ("error" in checked) {
+      setError(checked.error);
+      return;
+    }
+    void startUpload(picked);
   };
 
   const setPosition = async (position: Position9) => {
@@ -185,8 +110,9 @@ export function ImageSlotEditor({
         setError("unknown");
         return;
       }
-      setUploadedImage(body.images[slot.slotId] as SiteImage);
-      onChanged(body.images[slot.slotId] as SiteImage);
+      const next = { ...(body.images[slot.slotId] as SiteImage), url: target.url };
+      setUploadedImage(next);
+      onChanged(next);
     } catch {
       setError("network");
     }
@@ -227,126 +153,177 @@ export function ImageSlotEditor({
     }
   };
 
+  const busy = phase === "uploading";
+  const dismiss = () => {
+    if (!busy) onClose();
+  };
+  const selectText = current ? t("editor.image.replace") : t("editor.image.upload");
+  const titleText = phase === "adjust" ? t("editor.image.reposition") : selectText;
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+      onClick={dismiss}
     >
       <div
-        className="mono-surface w-full max-w-md p-6"
+        role="dialog"
+        aria-modal="true"
+        aria-label={titleText}
+        className="mono-surface flex max-h-[90vh] w-full max-w-md flex-col gap-4 overflow-y-auto rounded-[4px] border-2 border-ink bg-paper p-6 shadow-mono"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="mono-display mb-4 text-lg font-semibold text-ink">{selectText}</div>
+        <div className="flex items-start justify-between gap-4">
+          <h2 className="mono-display text-lg font-semibold leading-tight text-ink">
+            {titleText}
+          </h2>
+          <button
+            type="button"
+            onClick={dismiss}
+            disabled={busy}
+            aria-label={t("editor.image.close")}
+            className="-mt-1 -me-1 grid h-8 w-8 shrink-0 place-items-center rounded-full border-2 border-ink text-xl leading-none text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-40"
+          >
+            &times;
+          </button>
+        </div>
 
         <input
           ref={inputRef}
           type="file"
           accept="image/jpeg,image/png,image/webp"
           className="hidden"
-          onChange={pickFile}
+          onChange={(e) => {
+            const picked = e.target.files?.[0];
+            e.target.value = "";
+            acceptFile(picked);
+          }}
         />
 
-        {phase === "idle" && !previewUrl && (
-          <Button
-            type="button"
-            variant="default"
-            className="w-full"
-            onClick={() => inputRef.current?.click()}
-          >
-            {selectText}
-          </Button>
-        )}
+        {phase === "pick" && (
+          <div className="flex flex-col gap-4">
+            {current && resolvedImageUrl && (
+              <div className="flex flex-col gap-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={resolvedImageUrl}
+                  alt=""
+                  className="aspect-[4/3] w-full rounded-[4px] border-[1.5px] border-ink object-cover"
+                />
+                {lowRes && (
+                  <p className="text-xs text-amber-700">{t("editor.image.low_res")}</p>
+                )}
+              </div>
+            )}
 
-        {previewUrl && phase === "idle" && (
-          <div className="flex flex-col gap-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={previewUrl}
-              alt=""
-              className="aspect-[4/3] w-full rounded-[4px] border-[1.5px] border-ink object-cover"
-            />
-            <div className="flex flex-col gap-1 text-sm">
-              <span className="font-medium text-ink">{file?.name}</span>
-              <span className="font-mono text-xs text-ink-3">
-                {file ? formatBytes(file.size) : ""}
-              </span>
-            </div>
-            <p className="text-xs text-ink-2">{t("editor.image.ready")}</p>
-            <div className="flex gap-2">
-              <Button type="button" variant="default" className="flex-1" onClick={cancelUpload}>
-                {t("editor.image.cancel")}
-              </Button>
-              <Button type="button" className="flex-1" onClick={runUpload}>
-                {t("editor.image.confirm_upload")}
+            <div
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDragging(true);
+              }}
+              onDragLeave={() => setDragging(false)}
+              onDrop={(e) => {
+                e.preventDefault();
+                setDragging(false);
+                acceptFile(e.dataTransfer.files?.[0]);
+              }}
+              className={`flex flex-col items-center gap-3 rounded-[4px] border-2 border-dashed px-4 py-8 text-center transition-colors ${
+                dragging ? "border-mono-red bg-mono-red/5" : "border-ink/40"
+              }`}
+            >
+              <p className="mono-display text-base font-semibold text-ink">{selectText}</p>
+              <p className="text-xs text-ink-3">{t("editor.image.hint")}</p>
+              <Button type="button" onClick={() => inputRef.current?.click()}>
+                {selectText}
               </Button>
             </div>
+
+            {current && (
+              <div className="flex justify-end">
+                <Button
+                  type="button"
+                  variant="default"
+                  onClick={() => setPhase("adjust")}
+                >
+                  {t("editor.image.reposition")}
+                </Button>
+              </div>
+            )}
           </div>
         )}
 
         {phase === "uploading" && (
-          <div className="flex flex-col items-center gap-3 py-6 text-center">
+          <div className="flex flex-col items-center gap-3 py-4 text-center">
+            <p className="text-sm font-medium text-ink">{t("editor.image.uploading")}</p>
+            {pendingFile && (
+              <p className="font-mono text-xs text-ink-3">
+                {pendingFile.name} &middot; {formatBytes(pendingFile.size)}
+              </p>
+            )}
             <div
-              aria-hidden
-              className="h-8 w-8 animate-spin rounded-full border-2 border-dashed border-mono-red"
-            />
-            <p className="text-sm text-ink">{t("editor.image.uploading")}</p>
+              role="progressbar"
+              aria-valuenow={progress}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              className="h-2 w-full overflow-hidden rounded-full bg-paper-2 ring-1 ring-inset ring-ink/30"
+            >
+              <div
+                className="h-full bg-mono-red transition-[width] duration-200"
+                style={{ width: `${Math.max(progress, 5)}%` }}
+              />
+            </div>
+            <p className="font-mono text-xs text-ink-2">{progress}%</p>
           </div>
         )}
 
-        {phase === "done" && uploadedImage && (
-          <div className="flex flex-col gap-3">
-            <p className="text-sm font-medium text-ink">{t("editor.image.done")}</p>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={resolvedImageUrl}
-              alt=""
-              className="aspect-[4/3] w-full rounded-[4px] border-[1.5px] border-ink object-cover"
-              onError={(e) => {
-                if (uploadedImage?.s3Key) {
-                  setResolvedImageUrl(undefined);
-                }
-                (e.target as HTMLImageElement).style.display = "none";
-              }}
-            />
-            {lowRes && (
-              <p className="text-xs text-amber-700">{t("editor.image.low_res")}</p>
+        {phase === "adjust" && (
+          <div className="flex flex-col gap-4">
+            {resolvedImageUrl && (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={resolvedImageUrl}
+                alt=""
+                className="aspect-[4/3] w-full rounded-[4px] border-[1.5px] border-ink object-cover"
+              />
             )}
+            {lowRes && <p className="text-xs text-amber-700">{t("editor.image.low_res")}</p>}
+
             <div className="text-start">
-              <div className="mb-1 text-xs text-ink-3">{t("editor.image.reposition")}</div>
-              <div className="grid w-24 grid-cols-3 gap-1">
+              <div className="mb-2 text-xs text-ink-3">{t("editor.image.reposition")}</div>
+              <div className="grid w-28 grid-cols-3 gap-1.5">
                 {POSITIONS.map((pos) => (
                   <button
                     key={pos}
                     type="button"
                     aria-label={pos}
                     onClick={() => setPosition(pos)}
-                    className={`aspect-square rounded border-[1.5px] ${
-                      uploadedImage.position === pos
-                        ? "border-mono-red bg-mono-red/10"
-                        : "border-ink/40"
+                    className={`aspect-square rounded-[3px] border-[1.5px] transition-colors ${
+                      uploadedImage?.position === pos
+                        ? "border-mono-red bg-mono-red/15"
+                        : "border-ink/40 hover:border-ink"
                     }`}
                   />
                 ))}
               </div>
             </div>
+
             <div className="flex justify-end">
-              <Button type="button" variant="default" onClick={onClose}>
-                {t("editor.template.close")}
+              <Button type="button" onClick={onClose}>
+                {t("editor.image.close")}
               </Button>
             </div>
           </div>
         )}
 
         {error && (
-          <div className="mt-3 flex items-start justify-between gap-3 rounded-[4px] border-[1.5px] border-mono-red/40 bg-mono-red/5 p-3">
+          <div className="flex items-start justify-between gap-3 rounded-[4px] border-[1.5px] border-mono-red/40 bg-mono-red/5 p-3">
             <p role="alert" className="text-start text-sm text-mono-red">
               {errorMessage(error)}
             </p>
-            {file && phase === "idle" && (
+            {pendingFile && phase === "pick" && (
               <button
                 type="button"
-                onClick={runUpload}
-                className="shrink-0 rounded-full border-2 border-ink bg-ink px-3 py-1 text-xs font-semibold text-paper hover:bg-mono-red hover:border-mono-red"
+                onClick={() => void startUpload(pendingFile)}
+                className="shrink-0 rounded-full border-2 border-ink bg-ink px-3 py-1 text-xs font-semibold text-paper transition-colors hover:border-mono-red hover:bg-mono-red"
               >
                 {t("editor.image.retry")}
               </button>

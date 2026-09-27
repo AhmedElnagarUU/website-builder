@@ -6,6 +6,15 @@ This repository contains **planning artifacts** (an Agile breakdown into Epics �
 
 Stack: Next.js (App Router) · better-auth · MongoDB · Amazon S3 · Tailwind · next-intl.
 
+## Start here
+
+**`docs/agent-context/00-START-HERE.md`** — the curated context index. Read it first. It lists the
+reading order, tells you what **not** to read, and states the product invariants.
+
+This repo accumulated **331 markdown files / 1.6 MB**, most of it superseded planning, past audits and
+session scratch notes. It is now curated: the live context lives in `docs/agent-context/`, and
+everything historical sits in `docs/agent-context/91-ARCHIVE/` (read-only, load only if asked).
+
 ## Mandatory reading order — enforced for every sub-agent
 
 1. **`CODE_RULES.md`** — read IN FULL before writing or modifying any code. Non-negotiable.
@@ -14,9 +23,17 @@ Stack: Next.js (App Router) · better-auth · MongoDB · Amazon S3 · Tailwind �
 
 That is all. You need nothing else.
 
+Consult `docs/agent-context/02-ARCHITECTURE.md` when you need to know *where something lives* (route
+map, feature boundaries, "where do I fix X"), and `03-DATA-MODELS.md` when you touch the site, content
+or payment contracts. Do not read `91-ARCHIVE/`, and never bulk-read `epics/`.
+
 ## Do NOT look for the PRD
 
 There is no PRD in this repo on purpose. Every task file is written to be fully self-contained: context, scope, API paths, data shapes, dependencies, out-of-scope boundaries, and acceptance criteria. If you think you are missing information, re-read your task file and its parent MILESTONE.md first — the answer is almost certainly there. Only escalate to a human if genuinely contradictory instructions exist between files.
+
+(An early product-requirements draft does exist, but it is archived at
+`docs/agent-context/91-ARCHIVE/planning/01-overview/` precisely because task files supersede it. Do not
+treat it as current.)
 
 ## Folder convention & execution order
 

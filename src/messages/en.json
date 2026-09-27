@@ -274,7 +274,8 @@
     "dialog_placeholder": "Type the site name",
     "cancel": "Cancel",
     "confirm": "Delete permanently",
-    "error": "Couldn't delete the site. Please try again."
+    "error": "Couldn't delete the site. Please try again.",
+    "images_kept": "The site was deleted, but {count} image(s) couldn't be removed from storage. Contact support to clean them up."
   },
   "legal": {
     "privacy": {
@@ -546,12 +547,10 @@
       "too_large": "File is too large (max 10 MB).",
       "low_res": "This image may look blurry when enlarged.",
       "reposition": "Position",
+      "hint": "Drag a photo here, or pick one from your device. JPG, PNG or WebP, up to 10 MB.",
       "upload_error": "Couldn't upload — try again",
       "uploading": "Uploading…",
-      "ready": "Ready to upload",
-      "done": "Upload complete",
-      "confirm_upload": "Upload",
-      "cancel": "Cancel",
+      "close": "Close",
       "retry": "Retry",
       "error": {
         "network": "Network error — check your connection and try again.",

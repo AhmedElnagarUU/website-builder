@@ -67,6 +67,18 @@ export function F({
   return <Tag className={className}>{value}</Tag>;
 }
 
+export function slotImageSrc(
+  image: SiteImage | undefined,
+  publicBaseUrl: string | undefined,
+  defaultAsset: string
+): string {
+  if (image?.url) return image.url;
+  if (image?.s3Key && publicBaseUrl) {
+    return `${publicBaseUrl.replace(/\/+$/, "")}/${image.s3Key.replace(/^\/+/, "")}`;
+  }
+  return defaultAsset;
+}
+
 export function SlotImage({
   slotId,
   image,
@@ -83,11 +95,7 @@ export function SlotImage({
   const t = useTranslations();
   const edit = useSiteEditMode();
   const brand = useSiteBrand();
-  const src = image?.s3Key
-    ? edit.s3PublicBaseUrl
-      ? `${edit.s3PublicBaseUrl}/${image.s3Key}`
-      : `s3://${image.s3Key}`
-    : defaultAsset;
+  const src = slotImageSrc(image, edit.s3PublicBaseUrl, defaultAsset);
 
   if (edit.enabled && !image) {
     return (

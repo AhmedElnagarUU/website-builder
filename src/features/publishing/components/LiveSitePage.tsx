@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getTemplate } from "@/features/templates/api/list-templates";
 import { SiteRenderer } from "@/shared/site-render/SiteRenderer";
+import { withSignedImageUrls } from "@/features/images/lib/signed-image-urls";
 import { dirFor } from "@/shared/i18n/config";
 import { nextUrl, livePageBaseUrl } from "../live-url";
 import { getTemplatePages } from "../page-shape";
@@ -80,7 +81,7 @@ export async function LiveSitePage({
           pageId={pageId}
           content={snapshot.content}
           businessInfo={businessInfo}
-          images={snapshot.images}
+          images={await withSignedImageUrls(snapshot.images)}
           brandColor={snapshot.brandColor}
           editMode={false}
           s3PublicBaseUrl={process.env.S3_PUBLIC_BASE_URL}

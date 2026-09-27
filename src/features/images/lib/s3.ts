@@ -1,5 +1,6 @@
 import { randomUUID } from "node:crypto";
-import { S3Client } from "@aws-sdk/client-s3";
+import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { MIME_EXT } from "@/shared/lib/image-upload";
 
 export const S3_BUCKET = process.env.S3_BUCKET;
@@ -23,4 +24,17 @@ export function buildImageKey(siteId: string, slotId: string, mimeType: string):
 
 export function isImageKeyForSite(siteId: string, key: string): boolean {
   return key.startsWith(`sites/${siteId}/`);
+}
+
+export async function presignImageUrl(key: string, expiresIn = 3600): Promise<string | undefined> {
+  if (!S3_BUCKET || !key) return undefined;
+  try {
+    return await getSignedUrl(
+      createS3Client(),
+      new GetObjectCommand({ Bucket: S3_BUCKET, Key: key }),
+      { expiresIn }
+    );
+  } catch {
+    return undefined;
+  }
 }

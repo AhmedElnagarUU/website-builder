@@ -6,22 +6,13 @@ import type { PaywallInfo } from "@/features/monetization/lib/paywall-client";
 
 export type ImageFileError = "unsupported" | "too_large";
 
+export type UploadProgressHandler = (percent: number) => void;
+
 export type UploadErrorKind =
-  | "unsupported"
-  | "too_large"
-  | "limit_reached"
-  | "requires_upgrade"
-  | "account_frozen"
-  | "account_suspended"
-  | "trial_expired"
-  | "unauthorized"
-  | "not_found"
-  | "unknown_slot"
-  | "unsupported_format"
-  | "config_error"
-  | "bucket_rejected"
-  | "network"
-  | "unknown";
+  | "unsupported" | "too_large" | "limit_reached" | "requires_upgrade"
+  | "account_frozen" | "account_suspended" | "trial_expired" | "unauthorized"
+  | "not_found" | "unknown_slot" | "unsupported_format" | "config_error"
+  | "bucket_rejected" | "network" | "unknown";
 
 export class UploadFlowError extends Error {
   readonly kind: UploadErrorKind;
@@ -51,6 +42,43 @@ function measureImage(src: string): Promise<{ width: number; height: number }> {
   });
 }
 
+function measureLocalImage(file: File): Promise<{ width?: number; height?: number }> {
+  const url = URL.createObjectURL(file);
+  return measureImage(url).then(
+    (dims) => {
+      URL.revokeObjectURL(url);
+      return dims;
+    },
+    () => {
+      URL.revokeObjectURL(url);
+      return {};
+    }
+  );
+}
+
+function putToBucket(
+  uploadUrl: string,
+  file: File,
+  mime: string,
+  onProgress: UploadProgressHandler
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", uploadUrl);
+    xhr.setRequestHeader("Content-Type", mime);
+    xhr.upload.onprogress = (event) => {
+      if (event.lengthComputable) onProgress(Math.round((event.loaded / event.total) * 92));
+    };
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) resolve();
+      else reject(new UploadFlowError("bucket_rejected"));
+    };
+    xhr.onerror = () => reject(new UploadFlowError("bucket_rejected"));
+    xhr.onabort = () => reject(new UploadFlowError("network"));
+    xhr.send(file);
+  });
+}
+
 function mapApiError(status: number, body: { error?: string } | null): UploadErrorKind {
   if (status === 401) return "unauthorized";
   if (status === 403) {
@@ -65,14 +93,10 @@ function mapApiError(status: number, body: { error?: string } | null): UploadErr
   }
   if (status === 404) return "not_found";
   switch (body?.error) {
-    case "unknown_slot":
-      return "unknown_slot";
-    case "unsupported_format":
-      return "unsupported_format";
-    case "config_error":
-      return "config_error";
-    default:
-      return "unknown";
+    case "unknown_slot": return "unknown_slot";
+    case "unsupported_format": return "unsupported_format";
+    case "config_error": return "config_error";
+    default: return "unknown";
   }
 }
 
@@ -83,10 +107,8 @@ function paywallFromBody(
   if (status !== 402 && status !== 403) return null;
   if (!body?.error) return null;
   if (
-    body.error !== "limit_reached" &&
-    body.error !== "requires_upgrade" &&
-    body.error !== "account_frozen" &&
-    body.error !== "account_suspended" &&
+    body.error !== "limit_reached" && body.error !== "requires_upgrade" &&
+    body.error !== "account_frozen" && body.error !== "account_suspended" &&
     body.error !== "trial_expired"
   ) {
     return null;
@@ -98,10 +120,23 @@ function paywallFromBody(
   };
 }
 
+async function fetchSignedImageUrl(siteId: string, s3Key: string): Promise<string | undefined> {
+  try {
+    const res = await fetch(
+      `/api/sites/${siteId}/images/sign-url?key=${encodeURIComponent(s3Key)}`
+    );
+    const body = (await res.json().catch(() => null)) as { signedUrl?: string } | null;
+    return res.ok ? body?.signedUrl : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export async function uploadImage(
   siteId: string,
   slotId: string,
-  file: File
+  file: File,
+  onProgress: UploadProgressHandler = () => {}
 ): Promise<SiteImage> {
   const checked = validateImageFile(file);
   if ("error" in checked) throw new UploadFlowError(checked.error);
@@ -128,23 +163,15 @@ export async function uploadImage(
   }
 
   try {
-    const put = await fetch(ticket.uploadUrl, {
-      method: "PUT",
-      body: file,
-      headers: { "Content-Type": mime },
-    });
-    if (!put.ok) throw new UploadFlowError("bucket_rejected");
+    await putToBucket(ticket.uploadUrl, file, mime, onProgress);
   } catch (e) {
     if (e instanceof UploadFlowError) throw e;
     throw new UploadFlowError("bucket_rejected");
   }
 
-  let dims: { width?: number; height?: number } = {};
-  try {
-    dims = await measureImage(URL.createObjectURL(file));
-  } catch {
-    dims = {};
-  }
+  onProgress(95);
+
+  const dims = await measureLocalImage(file);
 
   try {
     const res = await fetch(`/api/sites/${siteId}/images`, {
@@ -156,7 +183,10 @@ export async function uploadImage(
     if (!res.ok || !body?.images?.[slotId]) {
       throw new UploadFlowError(mapApiError(res.status, body));
     }
-    return body.images[slotId] as SiteImage;
+    onProgress(100);
+    const image = body.images[slotId] as SiteImage;
+    const url = await fetchSignedImageUrl(siteId, image.s3Key);
+    return url ? { ...image, url } : image;
   } catch (e) {
     if (e instanceof UploadFlowError) throw e;
     throw new UploadFlowError("network");

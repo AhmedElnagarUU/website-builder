@@ -24,7 +24,10 @@ export async function DELETE(
   const { siteId } = await params;
   const result = await deleteSiteForCurrentUser(siteId);
   if (result.ok) {
-    return NextResponse.json({ ok: true }, { status: 200 });
+    return NextResponse.json(
+      { ok: true, imagesFailed: result.imagesFailed },
+      { status: 200 }
+    );
   }
   if (result.error === "unauthorized") {
     return NextResponse.json({ error: result.error }, { status: 401 });
