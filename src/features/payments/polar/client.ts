@@ -53,8 +53,8 @@ export async function createCheckoutSession(req: PolarCheckoutRequest): Promise<
   };
   // Preselect a catalog price by mapping the product to that price (current
   // Polar `/v1/checkouts/` schema: `prices` keyed by product id).
-  if (req.priceId) payload.prices = { [req.productId]: [req.priceId] };
-  if (req.currency) payload.currency = req.currency;
+  // if (req.priceId) payload.prices = { [req.productId]: [req.priceId] };
+  // if (req.currency) payload.currency = req.currency;
   if (req.customerEmail) payload.customer_email = req.customerEmail;
   if (req.customerName) payload.customer_name = req.customerName;
   if (req.metadata) payload.metadata = req.metadata;

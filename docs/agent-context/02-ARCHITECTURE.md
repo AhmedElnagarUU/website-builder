@@ -59,7 +59,7 @@ Standard feature layout: `types.ts` (contract) · `schemas.ts` (zod) · `reposit
 | `create-wizard` | 4-step onboarding: business-info → templates → language → generating | 7 |
 | `publishing` | Publish/unpublish → slug + snapshot + public live site | 8 |
 | `monetization` | Plans, entitlements, paywalls (402/403), trials | 17 |
-| `payments` | **Provider abstraction** — `paymob` + `polar` behind one `PaymentProvider` interface | 22 |
+| `payments` | Polar-only — one `PaymentProvider` implementation, hosted checkout, Standard-Webhooks verification | 22 |
 | `images` | S3 presigned uploads + signed read URLs | 4 |
 | `analytics` | Pageview recording + aggregation | 4 |
 | `auth` | Session helpers (`getSession`, `requireSession`) | 4 |
@@ -94,7 +94,7 @@ services · services/[serviceId] · services/reorder · dashboard/overview
 
 Others: `auth/[...all]` + `auth/{check-phone,store-phone}` · `health` · `templates` +
 `templates/[templateId]` · `checkout` + `checkout/[paymentId]` · `trial/status` ·
-`live/[slug]/{requests,services}` · **`webhooks/paymob`** · **`webhooks/polar`**
+`live/[slug]/{requests,services}` · **`webhooks/polar`**
 
 **Security invariant:** every owner-scoped route verifies the session and `ownerId`, else `401`
 (no session) or `404` (not owner). Webhooks are the only unauthenticated routes and authenticate
@@ -102,24 +102,23 @@ via **HMAC signature**, not session.
 
 ---
 
-## 5. Payments: one interface, two providers
+## 5. Payments: Polar only
 
-`features/payments/` implements a `PaymentProvider` interface so Paymob and Polar are swappable at
-runtime **by environment**, not by code:
+`features/payments/` implements a `PaymentProvider` interface. Polar is the sole provider; there is
+no fallback and no Paymob code remains:
 
 ```
 features/payments/
 ├── provider.ts        the PaymentProvider contract (createPayment, handleWebhook)
-├── types.ts           PaymentRecord, PaymentSession, PaymentProviderId = "paymob" | "polar"
-├── api/checkout.ts    the SEAM — getDefaultProvider() picks the provider from env
-├── paymob/            iframe/pixel integration
+├── types.ts           PaymentRecord, PaymentSession, PaymentProviderId = "polar"
+├── api/checkout.ts    the SEAM — getDefaultProvider() always returns PolarProvider
+├── api/webhook.ts     processWebhook() — idempotent paid/failed transitions
 └── polar/             hosted-checkout redirect integration
 ```
 
-- `isPolarProCheckoutConfigured()` (in `polar/config.ts`) is the flip condition. When Polar's
-  credentials are present, checkout creates a **Polar hosted checkout session** and returns
-  `session.url` for the client to redirect to. Otherwise it falls back to Paymob — that fallback is
-  the rollback path, so **Paymob must not be deleted until Polar is proven in production.**
+- `POST /api/checkout` (auth required) creates a **Polar hosted checkout session** and returns
+  `session.url`; the browser navigates to it with `window.location.href`. The server resolves the
+  product from `POLAR_PRODUCT_ID_PRO` — nothing product-specific is trusted from the client.
 - **Payment success is authoritative only from a signed webhook** (`order.paid`), never from the
   browser redirect. Webhook handling is idempotent so retries cannot double-grant Pro.
 - Polar webhooks use the **Standard Webhooks** signature scheme: message =

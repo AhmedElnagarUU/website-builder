@@ -17,10 +17,7 @@ export type CheckoutSessionResult =
       amountMinorUnits: number;
       currency: string;
       status: PaymentStatus;
-      clientSecret: string;
-      publicKey: string;
-      paymentMethods: string[];
-      url?: string; // hosted checkout URL (Polar); undefined for Paymob's pixel flow
+      url: string; // Polar hosted checkout URL the browser should navigate to
     }
   | {
       ok: false;
@@ -41,27 +38,12 @@ export interface CheckoutStatusResult {
  * Lazily constructs the real provider. The module chain (provider → config)
  * runs `requireEnv` at import time and throws when the corresponding secrets
  * are unset, so it is imported only here, at call time, never at module scope.
- * Provider selection is env-driven so the app can flip between Paymob and
- * Polar by editing `.env` alone (rollback = revert the env, no code change):
- *
- *   - Polar is used when BOTH the pro product AND pro price IDs are configured
- *     (POLAR_PRODUCT_ID_PRO + POLAR_PRICE_ID_PRO); the app then redirects the
- *     customer to Polar's hosted checkout `url`.
- *   - Otherwise Paymob is used (pixel flow with clientSecret/publicKey).
- *
- * Without ANY credentials this rejects with provider_error/502 at runtime; the
- * app still builds and boots.
+ * Polar is the ONLY payment provider; missing POLAR_* credentials reject with
+ * provider_error/502 at runtime, but the app still builds and boots.
  */
 async function getDefaultProvider(): Promise<PaymentProvider> {
-  const { isPolarProCheckoutConfigured } = await import(
-    "@/features/payments/polar"
-  );
-  if (isPolarProCheckoutConfigured()) {
-    const { PolarProvider } = await import("@/features/payments/polar");
-    return new PolarProvider();
-  }
-  const { PaymobProvider } = await import("@/features/payments/paymob");
-  return new PaymobProvider();
+  const { PolarProvider } = await import("@/features/payments/polar");
+  return new PolarProvider();
 }
 
 export async function createCheckoutSession(
@@ -88,7 +70,7 @@ export async function createCheckoutSession(
   });
 
   // Provider resolution AND the provider call happen here, after the record is
-  // persisted. On any provider failure (including missing PAYMOB_* credentials,
+  // persisted. On any provider failure (including missing POLAR_* credentials,
   // which surface only now) the PaymentRecord stays pending with no provider
   // refs — an orphaned-pending record; the client only ever sees provider_error.
   let session: PaymentSession;
@@ -106,10 +88,17 @@ export async function createCheckoutSession(
         phoneNumber: input.phoneNumber,
       },
     });
-  } catch (error) {
+    } catch (error) {
     console.error(
       `checkout: payment provider rejected the session (plan ${input.planId})`,
-      error instanceof Error ? error.message : String(error)
+      error instanceof Error
+        ? {
+            message: error.message,
+            name: error.name,
+            cause: (error as { cause?: unknown }).cause,
+            stack: error.stack,
+          }
+        : error
     );
     return { ok: false, code: "provider_error", status: 502 };
   }
@@ -118,7 +107,10 @@ export async function createCheckoutSession(
     provider: session.provider,
     providerPaymentId: session.providerPaymentId,
     providerOrderId: session.providerOrderId,
-    providerMetadata: { clientSecret: session.clientSecret },
+    providerMetadata: {
+      hosted_checkout_url: session.url,
+      checkout_id: session.providerPaymentId,
+    },
   });
 
   return {
@@ -128,9 +120,6 @@ export async function createCheckoutSession(
     amountMinorUnits: plan.priceMinorUnits,
     currency: plan.currency,
     status: "pending",
-    clientSecret: session.clientSecret,
-    publicKey: session.publicKey,
-    paymentMethods: session.paymentMethods,
     url: session.url,
   };
 }

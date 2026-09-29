@@ -1,7 +1,7 @@
 // Server-only constants — never import from client code.
 // All getters are lazy: they throw at call time, never at module import, so the
-// app builds and boots without the POLAR_* secrets set (mirrors the Paymob
-// lazy-import pattern in checkout.ts; empty env values are fine).
+// app builds and boots without the POLAR_* secrets set (empty env values are
+// fine; only checkout/webhook calls surface a provider_error at runtime).
 function requireEnv(name: string): string {
   const value = process.env[name];
   if (!value) throw new Error(`${name} is not defined`);
@@ -25,22 +25,6 @@ export function getPolarProductIdPro(): string {
 }
 
 
-/**
- * True when the operator has completed Polar's ENV wiring: an org + the Pro
- * product AND price IDs are all configured. This is the seam's flip-condition —
- * `getDefaultProvider()` routes checkout to Polar only when this reads true and
- * falls back to Paymob otherwise, so the app keeps working (and can be rolled
- * back by clearing the IDs) until all POLAR_* values are live.
- */
-export function isPolarConfigured(): boolean {
-  const token = (process.env.POLAR_ACCESS_TOKEN || "").trim();
-  const org = (process.env.POLAR_ORGANIZATION_ID || "").trim();
-  const product = (process.env.POLAR_PRODUCT_ID_PRO || "").trim();
-  const price = (process.env.POLAR_PRICE_ID_PRO || "").trim();
-  const secret = (process.env.POLAR_WEBHOOK_SECRET || "").trim();
-  return Boolean(token && org && product && price && secret);
-}
-
 export function getPolarServer(): "sandbox" | "production" {
   const raw = (process.env.POLAR_SERVER || "production").trim();
   if (raw === "sandbox") return "sandbox";
@@ -59,12 +43,10 @@ export function getPolarBaseUrl(): string {
 }
 
 /**
- * True when the operator has finished wiring Polar's real checkout credentials
- * (access token + webhook secret + org + Pro product + Pro price). This is the
- * seam's flip-condition: `getDefaultProvider()` in `api/checkout.ts` routes
- * checkout to Polar only when this reads true, falling back to Paymob
- * otherwise — so the app keeps building AND keeps serving Paymob until every
- * POLAR_* value is live, and rolls back the instant any is cleared.
+ * True when the operator has finished wiring Polar's checkout credentials
+ * (access token + webhook secret + org + Pro product). Polar is the only
+ * payment provider; this check lets UI/ops report whether checkout is live
+ * before the first payment attempt (unset values surface as provider_error).
  */
 export function isPolarProCheckoutConfigured(): boolean {
   const has = (name: string): boolean => {

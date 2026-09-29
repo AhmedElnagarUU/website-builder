@@ -125,7 +125,7 @@ site until publish runs again.
 `src/features/payments/types.ts`
 
 ```ts
-type PaymentProviderId = "paymob" | "polar";
+type PaymentProviderId = "polar";
 type PaymentStatus = "pending" | "paid" | "failed" | "cancelled" | "refunded" | "voided";
 
 interface PaymentRecord {
@@ -145,8 +145,7 @@ interface PaymentSession {         // what the provider hands back to the client
   provider: PaymentProviderId;
   providerPaymentId: string;
   providerOrderId?: string;
-  clientSecret: string; publicKey: string; paymentMethods: string[];
-  url?: string;   // hosted-checkout redirect (Polar). Paymob uses the pixel instead.
+  url: string;    // Polar hosted-checkout redirect URL the browser follows
 }
 ```
 

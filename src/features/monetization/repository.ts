@@ -172,7 +172,7 @@ export async function resolveSubscriptionForUser(
  *
  * External blocker: real email/SMS OTP delivery is not implemented in this MVP.
  * The phone identity model and verification flow exist, but sending OTP codes
- * requires an external provider (e.g. Twilio, Paymob SMS, or an email gateway).
+ * requires an external provider (e.g. Twilio, an SMS gateway, or an email gateway).
  * Without this, users cannot complete phone-based auth flows that depend on OTP.
  */
 export async function getTrialStatus(userId: string): Promise<TrialStatus> {

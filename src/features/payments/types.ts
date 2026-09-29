@@ -1,6 +1,6 @@
 import type { Types } from "mongoose";
 
-export type PaymentProviderId = "paymob" | "polar";
+export type PaymentProviderId = "polar";
 
 export type PaymentStatus =
   | "pending" // initial, waiting on provider
@@ -53,10 +53,7 @@ export interface PaymentSession {
   provider: PaymentProviderId;
   providerPaymentId: string;
   providerOrderId?: string;
-  clientSecret: string;
-  publicKey: string;
-  paymentMethods: string[];
-  url?: string; // hosted checkout redirect URL (Polar); Paymob uses the pixel instead
+  url: string; // Polar hosted checkout redirect URL
 }
 
 export interface PaymentWebhookResult {

@@ -56,8 +56,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
-    const { processPaymobWebhook } = await import("@/features/payments/api/webhook");
-    const handed = await processPaymobWebhook(result);
+    const { processWebhook } = await import("@/features/payments/api/webhook");
+    const handed = await processWebhook(result);
     return NextResponse.json(
       { received: true, outcome: handed.outcome },
       { status: 202 }

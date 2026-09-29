@@ -12,7 +12,7 @@ import { createCheckoutSession, PolarProviderError } from "./client";
 import { verifyAndParsePolarWebhook, WebhookVerificationError } from "./hmac";
 import { statusFromPolarEvent } from "./status-map";
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL ;
 
 function toNumber(value: unknown): number | undefined {
   if (typeof value === "number") return value;
@@ -31,14 +31,15 @@ export class PolarProvider implements PaymentProvider {
       currency: input.currency,
       customerEmail: input.customer.email || undefined,
       customerName: input.customer.name || undefined,
+      metadata: {
+        internal_payment_id: input.internalPaymentId,
+        billing_phone_number: input.customer.phoneNumber,
+      },
     });
 
     return {
       provider: "polar",
       providerPaymentId: result.checkoutId,
-      clientSecret: result.clientSecret,
-      publicKey: "",
-      paymentMethods: [],
       url: result.url,
     };
   }

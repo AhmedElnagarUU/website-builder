@@ -58,19 +58,22 @@ not a claim of completion.
 | 20-monetization-trial | 0 | `app/api/trial/status` present |
 | 21-phone-identity | 0 | `app/api/auth/{check-phone,store-phone}` present |
 | 22-popup-ui | 0 | no distinct module found |
-| 23-paymob-payments | 6 | `features/payments/paymob` + `app/api/webhooks/paymob` |
-| 24-polar-migration | 0 | `features/payments/polar` + `app/api/webhooks/polar` — **in flight, see below** |
+| 23-paymob-payments | 6 | **REMOVED** — Paymob fully removed (code, pixel, webhook route, `PAYMOB_*` env) |
+| 24-polar-migration | 0 | `features/payments/polar` + `app/api/webhooks/polar` — **Polar-only**, see below |
 
-### Where payments work stands (24-polar-migration)
+### Where payments work stands (24-polar-migration) — POLAR-ONLY
 
 Done: provider abstraction + Polar provider · hosted-checkout `url` through the seam · Standard
-Webhooks HMAC verification · idempotent `order.paid` processing · env-gated flip to Polar with a
-Paymob fallback · self-hosted fonts (removes the Google Fonts build failure).
+Webhooks HMAC verification · idempotent `order.paid` processing · `POST /api/checkout` returns the
+session and the browser follows `url` · return-from-Polar poll on `/pricing?paymentId=` · self-hosted
+fonts (removes the Google Fonts build failure).
+
+Done (Paymob removal): `paymob/` module, Paymob pixel, `/api/webhooks/paymob` route and all
+`PAYMOB_*` env vars removed; checkout is Polar-only with no fallback logic.
 
 Not done: Polar dashboard webhook endpoint must be **registered by a human** (URL
 `https://<domain>/api/webhooks/polar`, subscribe `order.paid` + `subscription.*`), and a real
-`order.paid` round-trip has not yet been verified. **Paymob stays until Polar is proven in
-production** — that fallback is the rollback path.
+`order.paid` round-trip has not yet been verified.
 
 ---
 

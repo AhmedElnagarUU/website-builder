@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { authClient } from "@/shared/auth/client";
@@ -12,6 +12,13 @@ export function PricingCta() {
   const locale = useLocale();
   const { data: session, isPending } = authClient.useSession();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  // Returning from Polar's hosted checkout: successUrl appends ?paymentId=;
+  // re-open the checkout panel so it reflects the authoritative webhook result.
+  useEffect(() => {
+    const paymentId = new URLSearchParams(window.location.search).get("paymentId");
+    if (paymentId) setCheckoutOpen(true);
+  }, []);
 
   function handleUpgrade() {
     if (session?.user) {

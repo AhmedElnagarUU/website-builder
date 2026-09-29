@@ -30,7 +30,7 @@ Renders only: business name, category, language display, site status, slug. No i
 
 ### What Already Exists
 - **Analytics:** Pageview tracking (en/ar) with daily aggregation, per-page, 7/30-day trends
-- **Payments:** Paymob pixel + Polar hosted checkout for subscription only
+- **Payments:** Polar hosted checkout for subscription only (Paymob fully removed)
 - **Customers:** CRUD, search by name/email/phone, request count
 - **Requests:** Full service request lifecycle with status, notes, dashboard overview
 - **Monetization:** Free/Pro plans, subscriptions, billing records
@@ -68,7 +68,7 @@ Renders only: business name, category, language display, site status, slug. No i
 - **Not needed until orders are implemented**
 
 ### Payments (beyond subscriptions)
-- **Status:** Subscription payments via Paymob/Polar exist
+- **Status:** Subscription payments via Polar (Paymob fully removed)
 - **Gap:** No order-level payment capture, no refund handling, no payout flow
 - **Depends on:** Orders
 
@@ -101,7 +101,9 @@ src/features/analytics/
   pageview.schema.ts        # Pageview tracking
   repository.ts             # recordPageview, listSitePageviewDays
 src/features/payments/
-  components/paymob-pixel.tsx  # Paymob checkout pixel
+  api/checkout.ts       # Polar hosted-checkout seam
+  polar/                # Polar provider (hosted checkout, Standard Webhooks)
+  components/           # Polar-only CheckoutSection (redirects to hosted checkout)
 src/features/customers/     # Customer CRUD
 src/features/requests/      # Service request lifecycle
 src/features/monetization/  # Plans, subscriptions, billing

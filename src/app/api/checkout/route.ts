@@ -1,7 +1,51 @@
-import { Checkout } from "@polar-sh/nextjs";
+import { NextResponse } from "next/server";
+import { getSession } from "@/features/auth/lib/session";
+import { createCheckoutSession } from "@/features/payments/api/checkout";
+import { checkoutSchema } from "@/features/payments/schema";
 
-export const GET = Checkout({
-  accessToken: process.env.POLAR_ACCESS_TOKEN!,
-  successUrl: process.env.SUCCESS_URL,
-  server: "sandbox",
-});
+export async function POST(request: Request): Promise<NextResponse> {
+  const session = await getSession();
+  if (!session) {
+    return NextResponse.json({ error: "unauthorized" }, { status: 401 });
+  }
+
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "invalid_request" }, { status: 400 });
+  }
+
+  const parsed = checkoutSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json({ error: "phone_required" }, { status: 400 });
+  }
+
+  const result = await createCheckoutSession(
+    {
+      id: session.user.id,
+      email: session.user.email,
+      name: session.user.name,
+    },
+    {
+      planId: parsed.data.planId,
+      phoneNumber: parsed.data.phoneNumber,
+    }
+  );
+
+  if (!result.ok) {
+    return NextResponse.json({ error: result.code }, { status: result.status });
+  }
+
+  return NextResponse.json(
+    {
+      paymentId: result.paymentId,
+      planId: result.planId,
+      amountMinorUnits: result.amountMinorUnits,
+      currency: result.currency,
+      status: result.status,
+      url: result.url,
+    },
+    { status: 200 }
+  );
+}

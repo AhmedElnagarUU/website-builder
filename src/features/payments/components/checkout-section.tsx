@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { authClient } from "@/shared/auth/client";
-import { PaymobPixel } from "./paymob-pixel";
 
 interface CheckoutSession {
   paymentId: string;
@@ -11,17 +10,14 @@ interface CheckoutSession {
   amountMinorUnits: number;
   currency: string;
   status: string;
-  clientSecret: string;
-  publicKey: string;
-  paymentMethods: string[];
+  url: string;
 }
 
 type CheckoutStep =
   | "idle"
   | "form"
-  | "creating"
-  | "ready"
-  | "processing"
+  | "submitting"
+  | "checking"
   | "success"
   | "failed"
   | "cancelled"
@@ -43,10 +39,11 @@ export function CheckoutSection({ initialOpen = false }: { initialOpen?: boolean
   const [step, setStep] = useState<CheckoutStep>(initialOpen ? "form" : "idle");
   const [phone, setPhone] = useState("");
   const [name, setName] = useState("");
-  const [session, setSession] = useState<CheckoutSession | null>(null);
   const [messageKey, setMessageKey] = useState("failed");
   const [formErrorKey, setFormErrorKey] = useState<string | null>(null);
   const prefilledNameRef = useRef(false);
+  const pollTimerRef = useRef<number | null>(null);
+  const cancelledRef = useRef(false);
 
   useEffect(() => {
     const userName = sessionData?.user?.name;
@@ -56,18 +53,62 @@ export function CheckoutSection({ initialOpen = false }: { initialOpen?: boolean
     }
   }, [sessionData]);
 
-  function handlePixelComplete() {
-    setStep("processing");
+  function pollUntilDone(paymentId: string) {
+    let attempts = 0;
+    const maxAttempts = Math.ceil(POLL_MAX_MS / POLL_INTERVAL_MS);
+
+    async function tick() {
+      if (cancelledRef.current) return;
+      attempts += 1;
+      try {
+        const response = await fetch(`/api/checkout/${paymentId}`);
+        if (cancelledRef.current) return;
+        if (response.ok) {
+          const data = (await response.json()) as { status?: string };
+          if (data.status === "paid") {
+            setStep("success");
+            return;
+          }
+          if (data.status === "failed") {
+            setMessageKey("failed");
+            setStep("failed");
+            return;
+          }
+          if (data.status === "cancelled") {
+            setStep("cancelled");
+            return;
+          }
+        }
+      } catch {
+        if (cancelledRef.current) return;
+      }
+      if (attempts < maxAttempts) {
+        pollTimerRef.current = window.setTimeout(tick, POLL_INTERVAL_MS);
+      } else {
+        setMessageKey("failed");
+        setStep("failed");
+      }
+    }
+
+    tick();
   }
 
-  function handlePixelCancel() {
-    setStep("cancelled");
-  }
-
-  function handlePixelError(messageKey: string) {
-    setMessageKey(messageKey.replace(/^checkout\./, ""));
-    setStep("failed");
-  }
+  // Returning from Polar's hosted checkout: the session's successUrl appends
+  // ?paymentId=. Poll the payment status — the Polar webhook is the source of
+  // truth; this just reflects its authoritative outcome.
+  useEffect(() => {
+    cancelledRef.current = false;
+    const paymentId = new URLSearchParams(window.location.search).get("paymentId");
+    if (paymentId && (step === "form" || step === "idle")) {
+      setStep("checking");
+      pollUntilDone(paymentId);
+    }
+    return () => {
+      cancelledRef.current = true;
+      if (pollTimerRef.current) window.clearTimeout(pollTimerRef.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function handleServerError(code: string | undefined) {
     if (code === "already_pro") {
@@ -95,7 +136,7 @@ export function CheckoutSection({ initialOpen = false }: { initialOpen?: boolean
     }
     setFormErrorKey(null);
     setMessageKey("failed");
-    setStep("creating");
+    setStep("submitting");
     try {
       const response = await fetch("/api/checkout", {
         method: "POST",
@@ -111,8 +152,13 @@ export function CheckoutSection({ initialOpen = false }: { initialOpen?: boolean
         handleServerError((data as { error?: string }).error);
         return;
       }
-      setSession(data as CheckoutSession);
-      setStep("ready");
+      // Polar Hosted Checkout: navigate the browser to the hosted checkout URL.
+      // Never fetch-follow the redirect — the session URL is the target.
+      if ("url" in data && data.url) {
+        window.location.href = data.url;
+        return;
+      }
+      handleServerError("provider_error");
     } catch {
       setMessageKey("failed");
       setStep("failed");
@@ -122,71 +168,8 @@ export function CheckoutSection({ initialOpen = false }: { initialOpen?: boolean
   function handleRetry() {
     setFormErrorKey(null);
     setMessageKey("failed");
-    setSession(null);
     setStep("form");
   }
-
-  useEffect(() => {
-    if (step !== "processing" || !session) return;
-    const paymentId = session.paymentId;
-    let cancelled = false;
-    let attempts = 0;
-    const maxAttempts = Math.ceil(POLL_MAX_MS / POLL_INTERVAL_MS);
-
-    async function poll() {
-      if (cancelled) return;
-      attempts += 1;
-      let keepPolling = false;
-      try {
-        const response = await fetch(`/api/checkout/${paymentId}`);
-        if (cancelled) return;
-        if (!response.ok) {
-          if (response.status === 404 || response.status === 401) {
-            setMessageKey("failed");
-            setStep("failed");
-            return;
-          }
-          keepPolling = true;
-        } else {
-          const data = (await response.json()) as { status?: string };
-          const status = data.status;
-          if (status === "paid") {
-            setStep("success");
-            return;
-          }
-          if (status === "failed") {
-            setMessageKey("failed");
-            setStep("failed");
-            return;
-          }
-          if (status === "cancelled") {
-            setStep("cancelled");
-            return;
-          }
-          if (status === "not_found" || status === "provider_error") {
-            setMessageKey(status === "provider_error" ? "provider_error" : "failed");
-            setStep("failed");
-            return;
-          }
-          keepPolling = true;
-        }
-      } catch {
-        if (cancelled) return;
-        keepPolling = true;
-      }
-      if (keepPolling && attempts < maxAttempts) {
-        window.setTimeout(poll, POLL_INTERVAL_MS);
-      } else {
-        setMessageKey("failed");
-        setStep("failed");
-      }
-    }
-
-    poll();
-    return () => {
-      cancelled = true;
-    };
-  }, [step, session]);
 
   if (step === "idle") return null;
 
@@ -246,22 +229,10 @@ export function CheckoutSection({ initialOpen = false }: { initialOpen?: boolean
           </form>
         )}
 
-        {(step === "creating" || step === "processing") && (
+        {(step === "submitting" || step === "checking") && (
           <p role="status" className="font-serif2 text-sm text-ink-2">
-            {step === "creating" ? t("loading") : t("processing")}
+            {step === "submitting" ? t("loading") : t("processing")}
           </p>
-        )}
-
-        {step === "ready" && session && (
-          <PaymobPixel
-            key={session.paymentId}
-            clientSecret={session.clientSecret}
-            publicKey={session.publicKey}
-            paymentMethods={session.paymentMethods}
-            onComplete={handlePixelComplete}
-            onCancel={handlePixelCancel}
-            onError={handlePixelError}
-          />
         )}
 
         {step === "success" && (
