@@ -59,9 +59,9 @@ not a claim of completion.
 | 21-phone-identity | 0 | `app/api/auth/{check-phone,store-phone}` present |
 | 22-popup-ui | 0 | no distinct module found |
 | 23-paymob-payments | 6 | **REMOVED** — Paymob fully removed (code, pixel, webhook route, `PAYMOB_*` env) |
-| 24-polar-migration | 0 | `features/payments/polar` + `app/api/webhooks/polar` — **Polar-only**, see below |
+| 24-polar-migration | 0 | `features/payments/polar` + `app/api/webhooks/polar` — **Polar provider**, see below |
 
-### Where payments work stands (24-polar-migration) — POLAR-ONLY
+### Where payments work stands (24-polar-migration + expansion EPIC 1) — POLAR + EG MANUAL
 
 Done: provider abstraction + Polar provider · hosted-checkout `url` through the seam · Standard
 Webhooks HMAC verification · idempotent `order.paid` processing · `POST /api/checkout` returns the
@@ -69,11 +69,26 @@ session and the browser follows `url` · return-from-Polar poll on `/pricing?pay
 fonts (removes the Google Fonts build failure).
 
 Done (Paymob removal): `paymob/` module, Paymob pixel, `/api/webhooks/paymob` route and all
-`PAYMOB_*` env vars removed; checkout is Polar-only with no fallback logic.
+`PAYMOB_*` env vars removed; there is no fallback logic.
 
-Not done: Polar dashboard webhook endpoint must be **registered by a human** (URL
-`https://<domain>/api/webhooks/polar`, subscribe `order.paid` + `subscription.*`), and a real
-`order.paid` round-trip has not yet been verified.
+Done (expansion EPIC 1): `user.country` captured server-side at signup (`shared/auth/server.ts`,
+`input: false`, never from a request body) and exposed on `SessionUser` · one shared rule
+`getAvailablePaymentMethods(country)` in `features/payments/lib/payment-methods.ts` (EG → polar +
+Vodafone Cash + InstaPay, everyone else → Polar only), enforced server-side by `POST /api/checkout`
+(422 `method_unavailable`) · manual methods run `initiated → awaiting_verification → paid` on the
+existing `PaymentRecord` model with proof at `POST /api/checkout/[paymentId]/proof` and admin-only
+grant at `POST /api/checkout/[paymentId]/verify` · read-time expiry
+(`MANUAL_PAYMENT_EXPIRE_HOURS`, default 24) · checkout UI renders method tabs for EG accounts, Polar
+flow unchanged · `.env.example` documents `ADMIN_EMAILS`,
+`MANUAL_PAYMENT_VODAFONE_NUMBER`, `MANUAL_PAYMENT_INSTAPAY_NUMBER`.
+
+Not done (needs a human):
+- Set `ADMIN_EMAILS` — without it **nobody can verify** a manual payment.
+- Set `MANUAL_PAYMENT_VODAFONE_NUMBER` / `MANUAL_PAYMENT_INSTAPAY_NUMBER` — the EG instructions
+  render with an empty number until these are set.
+- Register the Polar dashboard webhook endpoint (`https://<domain>/api/webhooks/polar`, subscribe
+  `order.paid` + `subscription.*`) and verify a real `order.paid` round-trip.
+- Accounts created before EPIC 1 have no `country` → Polar only until they re-register.
 
 ---
 

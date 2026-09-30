@@ -13,6 +13,7 @@ import {
   restoreAccount,
   upsertSubscription,
 } from "@/features/monetization/repository";
+import { asPaymentMethod } from "../lib/payment-methods";
 
 export type WebhookOutcome = "processed" | "duplicate_ignored" | "payment_not_found";
 
@@ -94,7 +95,7 @@ async function transition(
     // trying to claim the same transaction (markPaymentStatus swallows 11000).
     await markPaymentStatus(payment._id.toString(), "paid", {
       providerTransactionId: result.providerTransactionId,
-      paymentMethod: result.paymentMethod,
+      paymentMethod: asPaymentMethod(result.paymentMethod),
       providerMetadata: result.metadata,
     });
 
@@ -151,7 +152,7 @@ async function transition(
   if (result.status === "failed") {
     await markPaymentStatus(payment._id.toString(), "failed", {
       providerTransactionId: result.providerTransactionId,
-      paymentMethod: result.paymentMethod,
+      paymentMethod: asPaymentMethod(result.paymentMethod),
     });
     return { outcome: "processed" };
   }

@@ -5,9 +5,14 @@ import type { PaymentProvider } from "../provider";
 import {
   createPaymentRecord,
   getPaymentRecordForUser,
+  isManualExpired,
+  cancelManualPayment,
   updatePaymentAfterProviderSession,
 } from "../repository";
-import type { PaymentSession, PaymentStatus } from "../types";
+import { isManualMethod } from "../lib/payment-methods";
+import { getManualPaymentExpiryHours } from "../lib/manual-payment-config";
+import { createManualCheckoutSession } from "./manual-payment";
+import type { ManualPaymentInstructions, PaymentMethod, PaymentSession, PaymentStatus } from "../types";
 
 export type CheckoutSessionResult =
   | {
@@ -17,7 +22,20 @@ export type CheckoutSessionResult =
       amountMinorUnits: number;
       currency: string;
       status: PaymentStatus;
-      url: string; // Polar hosted checkout URL the browser should navigate to
+      url?: string; // Polar hosted checkout URL the browser should navigate to
+      method?: never;
+      instructions?: never;
+    }
+  | {
+      ok: true;
+      paymentId: string;
+      planId: "pro";
+      amountMinorUnits: number;
+      currency: string;
+      status: "initiated";
+      method: "vodafone_cash" | "instapay";
+      instructions: ManualPaymentInstructions;
+      url?: never;
     }
   | {
       ok: false;
@@ -48,9 +66,30 @@ async function getDefaultProvider(): Promise<PaymentProvider> {
 
 export async function createCheckoutSession(
   user: { id: string; email?: string; name?: string },
-  input: { planId: "pro"; phoneNumber: string },
+  input: { planId: "pro"; phoneNumber: string; method: PaymentMethod },
   provider?: PaymentProvider
 ): Promise<CheckoutSessionResult> {
+  if (isManualMethod(input.method)) {
+    const manual = await createManualCheckoutSession(user, {
+      planId: input.planId,
+      phoneNumber: input.phoneNumber,
+      method: input.method,
+    });
+    if (manual.ok) {
+      return {
+        ok: true,
+        paymentId: manual.paymentId,
+        planId: manual.planId,
+        amountMinorUnits: manual.amountMinorUnits,
+        currency: manual.currency,
+        status: manual.status,
+        method: manual.method,
+        instructions: manual.instructions,
+      };
+    }
+    return manual;
+  }
+
   const plan = getPlanById(input.planId);
   if (!plan || typeof plan.priceMinorUnits !== "number" || !plan.currency) {
     return { ok: false, code: "invalid_plan", status: 400 };
@@ -88,7 +127,7 @@ export async function createCheckoutSession(
         phoneNumber: input.phoneNumber,
       },
     });
-    } catch (error) {
+  } catch (error) {
     console.error(
       `checkout: payment provider rejected the session (plan ${input.planId})`,
       error instanceof Error
@@ -131,6 +170,17 @@ export async function getCheckoutStatus(
   if (!mongoose.Types.ObjectId.isValid(paymentId)) return null;
   const record = await getPaymentRecordForUser(paymentId, userId);
   if (!record) return null;
+
+  // Un-verified manual payments expire at read time (no background job).
+  if (
+    isManualMethod(record.paymentMethod) &&
+    isManualExpired(record, new Date(), getManualPaymentExpiryHours())
+  ) {
+    await cancelManualPayment(paymentId, userId);
+    record.status = "cancelled";
+    record.updatedAt = new Date();
+  }
+
   return {
     paymentId: record._id.toString(),
     status: record.status,

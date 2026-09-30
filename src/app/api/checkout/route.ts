@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getSession } from "@/features/auth/lib/session";
 import { createCheckoutSession } from "@/features/payments/api/checkout";
 import { checkoutSchema } from "@/features/payments/schema";
+import { getAvailablePaymentMethods } from "@/features/payments/lib/payment-methods";
 
 export async function POST(request: Request): Promise<NextResponse> {
   const session = await getSession();
@@ -21,6 +22,14 @@ export async function POST(request: Request): Promise<NextResponse> {
     return NextResponse.json({ error: "phone_required" }, { status: 400 });
   }
 
+  // Server resolves the allowed methods for THIS user's stored country and
+  // refuses any method outside the set (422). The client only renders what
+  // the same rule (lib/payment-methods.ts) provides.
+  const available = getAvailablePaymentMethods(session.user.country);
+  if (!available.includes(parsed.data.method)) {
+    return NextResponse.json({ error: "method_unavailable" }, { status: 422 });
+  }
+
   const result = await createCheckoutSession(
     {
       id: session.user.id,
@@ -30,6 +39,7 @@ export async function POST(request: Request): Promise<NextResponse> {
     {
       planId: parsed.data.planId,
       phoneNumber: parsed.data.phoneNumber,
+      method: parsed.data.method,
     }
   );
 
@@ -44,6 +54,8 @@ export async function POST(request: Request): Promise<NextResponse> {
       amountMinorUnits: result.amountMinorUnits,
       currency: result.currency,
       status: result.status,
+      method: result.method ?? "polar",
+      instructions: result.instructions,
       url: result.url,
     },
     { status: 200 }

@@ -2,13 +2,27 @@ import type { Types } from "mongoose";
 
 export type PaymentProviderId = "polar";
 
+// Payment method the user picked, distinct from the provider that executes
+// the payment. Manual methods (Vodafone Cash / InstaPay) have no automated
+// provider: they go through PaymentRecord + human verification.
+export type PaymentMethod = "polar" | "vodafone_cash" | "instapay";
+export type ManualPaymentMethod = Extract<PaymentMethod, "vodafone_cash" | "instapay">;
+
 export type PaymentStatus =
-  | "pending" // initial, waiting on provider
-  | "paid" // authoritatively confirmed by webhook
+  | "pending" // polar: initial, waiting on provider
+  | "initiated" // manual: instructions shown, waiting for user proof
+  | "awaiting_verification" // manual: proof submitted, waiting for admin
+  | "paid" // authoritatively confirmed (polar webhook or manual admin verify)
   | "failed"
   | "cancelled" // expired / cancelled before completion
   | "refunded"
   | "voided";
+
+export interface ManualProof {
+  reference: string;
+  paidAt?: string;
+  note?: string;
+}
 
 export interface PaymentRecord {
   _id: Types.ObjectId;
@@ -23,7 +37,8 @@ export interface PaymentRecord {
   providerOrderId?: string;
   providerTransactionId?: string;
   providerMetadata?: Record<string, unknown>;
-  paymentMethod?: string;
+  paymentMethod?: PaymentMethod;
+  proof?: ManualProof;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -34,6 +49,8 @@ export interface CreatePaymentRecordInput {
   amountMinorUnits: number;
   currency: string;
   description: string;
+  status?: PaymentStatus;
+  paymentMethod?: PaymentMethod;
 }
 
 export interface CreatePaymentInput {
@@ -47,6 +64,11 @@ export interface CreatePaymentInput {
     name: string;
     phoneNumber: string;
   };
+}
+
+export interface ManualPaymentInstructions {
+  method: ManualPaymentMethod;
+  number: string;
 }
 
 export interface PaymentSession {

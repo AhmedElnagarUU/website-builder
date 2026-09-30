@@ -59,7 +59,7 @@ Standard feature layout: `types.ts` (contract) · `schemas.ts` (zod) · `reposit
 | `create-wizard` | 4-step onboarding: business-info → templates → language → generating | 7 |
 | `publishing` | Publish/unpublish → slug + snapshot + public live site | 8 |
 | `monetization` | Plans, entitlements, paywalls (402/403), trials | 17 |
-| `payments` | Polar-only — one `PaymentProvider` implementation, hosted checkout, Standard-Webhooks verification | 22 |
+| `payments` | Polar provider + Egypt manual methods (Vodafone Cash / InstaPay), hosted checkout, Standard-Webhooks verification, admin-verified manual proof | 19 |
 | `images` | S3 presigned uploads + signed read URLs | 4 |
 | `analytics` | Pageview recording + aggregation | 4 |
 | `auth` | Session helpers (`getSession`, `requireSession`) | 4 |
@@ -102,23 +102,30 @@ via **HMAC signature**, not session.
 
 ---
 
-## 5. Payments: Polar only
+## 5. Payments: Polar + Egyptian manual methods
 
-`features/payments/` implements a `PaymentProvider` interface. Polar is the sole provider; there is
-no fallback and no Paymob code remains:
+`features/payments/` implements a `PaymentProvider` interface. Polar is the sole **provider**; Egypt
+additionally gets two **manual** methods (Vodafone Cash, InstaPay) that are verified by a human, not a
+provider. No Paymob code remains:
 
 ```
 features/payments/
 ├── provider.ts        the PaymentProvider contract (createPayment, handleWebhook)
-├── types.ts           PaymentRecord, PaymentSession, PaymentProviderId = "polar"
-├── api/checkout.ts    the SEAM — getDefaultProvider() always returns PolarProvider
-├── api/webhook.ts     processWebhook() — idempotent paid/failed transitions
+├── types.ts           PaymentRecord, PaymentSession, PaymentProviderId = "polar",
+│                      PaymentMethod, ManualPaymentMethod, ManualProof
+├── api/checkout.ts    the SEAM — getDefaultProvider() always returns PolarProvider;
+│                      createCheckoutSession() branches manual → api/manual-payment.ts
+├── api/manual-payment.ts  create/submit-proof/verify for the manual methods
+├── api/webhook.ts     processWebhook() — idempotent paid/failed transitions (Polar)
+├── lib/payment-methods.ts  getAvailablePaymentMethods(country) — ONE rule, client + server
 └── polar/             hosted-checkout redirect integration
 ```
 
-- `POST /api/checkout` (auth required) creates a **Polar hosted checkout session** and returns
-  `session.url`; the browser navigates to it with `window.location.href`. The server resolves the
-  product from `POLAR_PRODUCT_ID_PRO` — nothing product-specific is trusted from the client.
+- `POST /api/checkout` (auth required) accepts `method` and **enforces availability server-side**
+  from `session.user.country` (`422 method_unavailable` when the method is not on offer).
+- **Polar** (`method: "polar"`) creates a **hosted checkout session** and returns `session.url`; the
+  browser navigates to it with `window.location.href`. The server resolves the product from
+  `POLAR_PRODUCT_ID_PRO` — nothing product-specific is trusted from the client.
 - **Payment success is authoritative only from a signed webhook** (`order.paid`), never from the
   browser redirect. Webhook handling is idempotent so retries cannot double-grant Pro.
 - Polar webhooks use the **Standard Webhooks** signature scheme: message =
@@ -126,6 +133,20 @@ features/payments/
   `webhook-signature: v1,<base64>`.
 - Polar hosted checkout needs only the **Product ID** (`products: [POLAR_PRODUCT_ID_PRO]`) — Polar
   resolves catalog pricing server-side. Do **not** reintroduce a Price-ID requirement.
+- **Manual methods** (`vodafone_cash`, `instapay`) have no provider call. The flow is:
+  `POST /api/checkout` → record `initiated` + transfer instructions → user transfers and submits a
+  proof (`POST /api/checkout/[paymentId]/proof`) → record `awaiting_verification` → an admin whose
+  email is in `ADMIN_EMAILS` calls `POST /api/checkout/[paymentId]/verify`, which flips the record to
+  `paid` and grants Pro. **Never mark a manual payment paid from a client request.**
+- `features/payments/lib/payment-methods.ts` is the single source of truth for the country → methods
+  rule and is a pure module safe to import from client and server code. The browser may only *ask*;
+  the server decides.
+- Manual payment env: `ADMIN_EMAILS`, `MANUAL_PAYMENT_VODAFONE_NUMBER`,
+  `MANUAL_PAYMENT_INSTAPAY_NUMBER`, `MANUAL_PAYMENT_EXPIRE_HOURS` (default 24). Unset wallets still
+  render (number line is simply empty); unset `ADMIN_EMAILS` means nobody can verify.
+- User country is captured **server-side at signup** only (`user.additionalFields.country`,
+  `input: false`, written by a `databaseHooks.user.create.before` hook reading proxy headers /
+  `accept-language`). It is never read from a request body.
 
 ---
 
@@ -205,6 +226,8 @@ writes `publishedSnapshot` + `liveUrl` → visitors hit `/live/{slug}/{lang}/{pa
 | Add/remove a section or template field | `templates/catalog.ts` (registry) + `templates/pages.ts` |
 | Checkout / payment 502 or wrong provider | `payments/api/checkout.ts` seam + `payments/polar/config.ts` |
 | Webhook not granting Pro | `app/api/webhooks/polar` + `payments/polar/hmac.ts` (signature scheme) |
+| Which payment methods an account sees | `payments/lib/payment-methods.ts` (`getAvailablePaymentMethods`) + `user.country` |
+| Manual payment stuck / not granted | `payments/api/manual-payment.ts` state machine + `ADMIN_EMAILS` |
 | Translations | `src/messages/en.json` **and** `ar.json` |
 | RTL / direction bugs | `shared/i18n/config.ts`; logical properties only |
 | Images failing | `images/lib/s3.ts` + S3 vars in `.env` |

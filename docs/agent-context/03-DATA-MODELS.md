@@ -126,18 +126,28 @@ site until publish runs again.
 
 ```ts
 type PaymentProviderId = "polar";
-type PaymentStatus = "pending" | "paid" | "failed" | "cancelled" | "refunded" | "voided";
+type PaymentMethod = "polar" | "vodafone_cash" | "instapay";
+type ManualPaymentMethod = Extract<PaymentMethod, "vodafone_cash" | "instapay">;
+
+type PaymentStatus =
+  | "pending"                 // polar: waiting on provider
+  | "initiated"               // manual: instructions shown, awaiting user proof
+  | "awaiting_verification"   // manual: proof submitted, awaiting admin
+  | "paid" | "failed" | "cancelled" | "refunded" | "voided";
+
+interface ManualProof { reference: string; paidAt?: string; note?: string; }
 
 interface PaymentRecord {
   _id: Types.ObjectId; userId: Types.ObjectId;
   planId: "pro";
-  status: PaymentStatus;           // "paid" only ever set by a verified webhook
+  status: PaymentStatus;           // "paid" only via verified webhook or admin verification
   amountMinorUnits: number;        // integer minor units — never floats
   currency: string;
   provider?: PaymentProviderId;
   providerPaymentId?: string; providerOrderId?: string; providerTransactionId?: string;
   providerMetadata?: Record<string, unknown>;
-  paymentMethod?: string;
+  paymentMethod?: PaymentMethod;   // method the user chose (manual only for vodafone_cash/instapay)
+  proof?: ManualProof;             // manual methods only
   createdAt: Date; updatedAt: Date;
 }
 
@@ -154,6 +164,24 @@ the provider as `external_customer_id` so the webhook can find the record again.
 
 **Amounts are integers in minor units** (EGP piastres). Pro is `49900` minor units = **499.00 EGP**.
 Take the amount from the plan definition, never hardcode it in a route or component.
+
+Manual methods have **no `PaymentSession`**: `POST /api/checkout` returns
+`{ method, instructions: { method, number } }` instead of a `url`, and the record advances
+`initiated → awaiting_verification → paid`. `paid` is reached only by
+`POST /api/checkout/[paymentId]/verify` from an email listed in `ADMIN_EMAILS`. Un-verified manual
+records are treated as `cancelled` at read time once older than `MANUAL_PAYMENT_EXPIRE_HOURS`
+(default 24) — there is no background job.
+
+### User country
+
+```ts
+user.country?: string   // ISO-3166-1 alpha-2, e.g. "EG"
+```
+
+Server-written at signup only (`user.additionalFields.country`, `input: false`, set by a
+`databaseHooks.user.create.before` hook from proxy headers / `accept-language`). It gates
+`getAvailablePaymentMethods(country)` — the one rule that decides which methods an account may pay
+with. Never accept a country from a request body.
 
 ---
 
