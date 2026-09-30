@@ -378,7 +378,7 @@ function def(
   };
 }
 
-export const TEMPLATES: TemplateDefinition[] = [
+const ALL_TEMPLATES: TemplateDefinition[] = [
   def(
     "classic-services",
     { en: "Classic Services", ar: "الخدمات الكلاسيكية" },
@@ -1107,3 +1107,18 @@ export const TEMPLATES: TemplateDefinition[] = [
     }
   ),
 ];
+
+const MVP_TEMPLATE_IDS = new Set([
+  "classic-services",
+  "modern-studio",
+  "warm-kitchen",
+  "bistro-menu",
+  "simple-shop",
+  "professional-profile",
+  "clean-portfolio",
+  "law-profile",
+]);
+
+export const TEMPLATES: TemplateDefinition[] = ALL_TEMPLATES.filter((template) =>
+  MVP_TEMPLATE_IDS.has(template.id)
+);

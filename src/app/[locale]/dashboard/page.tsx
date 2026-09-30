@@ -1,4 +1,6 @@
-﻿import { getTranslations, setRequestLocale } from "next-intl/server";
+﻿export const dynamic = "force-dynamic";
+
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { requireSession } from "@/features/auth/lib/session";
 import { listSitesByOwner, toSiteDTO } from "@/features/sites/repository";
 import { getTemplate } from "@/features/templates/api/list-templates";
